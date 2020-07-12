@@ -1,4 +1,4 @@
-package com.xju.onlinemall.helloworld;
+package com.xju.onlinemall;
 
 import com.xju.onlinemall.common.domain.Admin;
 import com.xju.onlinemall.common.domain.AdminExample;
@@ -12,7 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 @SpringBootTest
-class HelloworldApplicationTests {
+class OnlinemallApplicationTests {
     @Autowired
     BookMapper bookMapper;
     @Autowired
