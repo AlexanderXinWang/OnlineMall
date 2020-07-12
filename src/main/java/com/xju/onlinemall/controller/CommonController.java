@@ -9,4 +9,8 @@ public class CommonController {
     public String index(){
         return "index";
     }
+    @RequestMapping("/login")
+    public String login(){
+        return "my-account";
+    }
 }
