@@ -4,7 +4,9 @@ import com.xju.onlinemall.common.domain.Category;
 import com.xju.onlinemall.common.domain.CategoryExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface CategoryMapper {
     long countByExample(CategoryExample example);
 

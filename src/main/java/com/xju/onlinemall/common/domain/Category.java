@@ -30,4 +30,13 @@ public class Category {
     public void setIsDelete(Byte isDelete) {
         this.isDelete = isDelete;
     }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "categoryId=" + categoryId +
+                ", name='" + name + '\'' +
+                ", isDelete=" + isDelete +
+                '}';
+    }
 }
