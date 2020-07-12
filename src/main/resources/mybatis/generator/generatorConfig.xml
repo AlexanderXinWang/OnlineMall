@@ -11,7 +11,7 @@
         </commentGenerator>
         <!--覆盖生成XML文件-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/springboot_demo?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/onlinemall?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"
                         userId="root"
                         password="199811">
 <!--            设置你的数据库密码-->
@@ -36,8 +36,21 @@
         </javaClientGenerator>
 
 
-        <table tableName="Admin" domainObjectName="Admin"/>
+<!--        <table tableName="Admin" domainObjectName="Admin"/>-->
         <!--<table tableName="Book" domainObjectName="Book"/>-->
+        <table tableName="order_info" domainObjectName="OrderItem"></table>
+        <table tableName="tb_cart" domainObjectName="Cart"></table>
+        <table tableName="tb_category" domainObjectName="Category"></table>
+        <table tableName="tb_comment" domainObjectName="Comment"></table>
+        <table tableName="tb_coupon" domainObjectName="Coupon"></table>
+        <table tableName="tb_order" domainObjectName="Order"></table>
+        <table tableName="tb_output_order" domainObjectName="OutputOder"></table>
+        <table tableName="tb_product" domainObjectName="Product"></table>
+        <table tableName="tb_product_manage" domainObjectName="ProductManage"></table>
+        <table tableName="tb_star" domainObjectName="Star"></table>
+        <table tableName="tb_system_log" domainObjectName="SystemLog"></table>
+        <table tableName="tb_user" domainObjectName="User"></table>
+
 
         <!--  <table schema="DB2ADMIN" tableName="ALLTYPES" domainObjectName="Customer" >
               <property name="useActualColumnNames" value="true"/>

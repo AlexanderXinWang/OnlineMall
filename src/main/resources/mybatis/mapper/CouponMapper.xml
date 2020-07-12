@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xju.onlinemall.mapper.CouponMapper">
+  <resultMap id="BaseResultMap" type="com.xju.onlinemall.common.domain.Coupon">
+    <id column="coupon_id" jdbcType="INTEGER" property="couponId" />
+    <result column="coupon_name" jdbcType="VARCHAR" property="couponName" />
+    <result column="coupon_info" jdbcType="VARCHAR" property="couponInfo" />
+    <result column="coupon_is_used" jdbcType="TINYINT" property="couponIsUsed" />
+    <result column="coupon_is_delete" jdbcType="TINYINT" property="couponIsDelete" />
+    <result column="coupon_keep_field_" jdbcType="VARCHAR" property="couponKeepField" />
+    <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    coupon_id, coupon_name, coupon_info, coupon_is_used, coupon_is_delete, coupon_keep_field_, 
+    category_id, product_id
+  </sql>
+  <select id="selectByExample" parameterType="com.xju.onlinemall.common.domain.CouponExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_coupon
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_coupon
+    where coupon_id = #{couponId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_coupon
+    where coupon_id = #{couponId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xju.onlinemall.common.domain.CouponExample">
+    delete from tb_coupon
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xju.onlinemall.common.domain.Coupon">
+    insert into tb_coupon (coupon_id, coupon_name, coupon_info, 
+      coupon_is_used, coupon_is_delete, coupon_keep_field_, 
+      category_id, product_id)
+    values (#{couponId,jdbcType=INTEGER}, #{couponName,jdbcType=VARCHAR}, #{couponInfo,jdbcType=VARCHAR}, 
+      #{couponIsUsed,jdbcType=TINYINT}, #{couponIsDelete,jdbcType=TINYINT}, #{couponKeepField,jdbcType=VARCHAR}, 
+      #{categoryId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xju.onlinemall.common.domain.Coupon">
+    insert into tb_coupon
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="couponId != null">
+        coupon_id,
+      </if>
+      <if test="couponName != null">
+        coupon_name,
+      </if>
+      <if test="couponInfo != null">
+        coupon_info,
+      </if>
+      <if test="couponIsUsed != null">
+        coupon_is_used,
+      </if>
+      <if test="couponIsDelete != null">
+        coupon_is_delete,
+      </if>
+      <if test="couponKeepField != null">
+        coupon_keep_field_,
+      </if>
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="couponId != null">
+        #{couponId,jdbcType=INTEGER},
+      </if>
+      <if test="couponName != null">
+        #{couponName,jdbcType=VARCHAR},
+      </if>
+      <if test="couponInfo != null">
+        #{couponInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="couponIsUsed != null">
+        #{couponIsUsed,jdbcType=TINYINT},
+      </if>
+      <if test="couponIsDelete != null">
+        #{couponIsDelete,jdbcType=TINYINT},
+      </if>
+      <if test="couponKeepField != null">
+        #{couponKeepField,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xju.onlinemall.common.domain.CouponExample" resultType="java.lang.Long">
+    select count(*) from tb_coupon
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tb_coupon
+    <set>
+      <if test="record.couponId != null">
+        coupon_id = #{record.couponId,jdbcType=INTEGER},
+      </if>
+      <if test="record.couponName != null">
+        coupon_name = #{record.couponName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.couponInfo != null">
+        coupon_info = #{record.couponInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.couponIsUsed != null">
+        coupon_is_used = #{record.couponIsUsed,jdbcType=TINYINT},
+      </if>
+      <if test="record.couponIsDelete != null">
+        coupon_is_delete = #{record.couponIsDelete,jdbcType=TINYINT},
+      </if>
+      <if test="record.couponKeepField != null">
+        coupon_keep_field_ = #{record.couponKeepField,jdbcType=VARCHAR},
+      </if>
+      <if test="record.categoryId != null">
+        category_id = #{record.categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.productId != null">
+        product_id = #{record.productId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tb_coupon
+    set coupon_id = #{record.couponId,jdbcType=INTEGER},
+      coupon_name = #{record.couponName,jdbcType=VARCHAR},
+      coupon_info = #{record.couponInfo,jdbcType=VARCHAR},
+      coupon_is_used = #{record.couponIsUsed,jdbcType=TINYINT},
+      coupon_is_delete = #{record.couponIsDelete,jdbcType=TINYINT},
+      coupon_keep_field_ = #{record.couponKeepField,jdbcType=VARCHAR},
+      category_id = #{record.categoryId,jdbcType=INTEGER},
+      product_id = #{record.productId,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xju.onlinemall.common.domain.Coupon">
+    update tb_coupon
+    <set>
+      <if test="couponName != null">
+        coupon_name = #{couponName,jdbcType=VARCHAR},
+      </if>
+      <if test="couponInfo != null">
+        coupon_info = #{couponInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="couponIsUsed != null">
+        coupon_is_used = #{couponIsUsed,jdbcType=TINYINT},
+      </if>
+      <if test="couponIsDelete != null">
+        coupon_is_delete = #{couponIsDelete,jdbcType=TINYINT},
+      </if>
+      <if test="couponKeepField != null">
+        coupon_keep_field_ = #{couponKeepField,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where coupon_id = #{couponId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xju.onlinemall.common.domain.Coupon">
+    update tb_coupon
+    set coupon_name = #{couponName,jdbcType=VARCHAR},
+      coupon_info = #{couponInfo,jdbcType=VARCHAR},
+      coupon_is_used = #{couponIsUsed,jdbcType=TINYINT},
+      coupon_is_delete = #{couponIsDelete,jdbcType=TINYINT},
+      coupon_keep_field_ = #{couponKeepField,jdbcType=VARCHAR},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=INTEGER}
+    where coupon_id = #{couponId,jdbcType=INTEGER}
+  </update>
+</mapper>
