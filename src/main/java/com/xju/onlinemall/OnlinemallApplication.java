@@ -6,10 +6,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan({"com.xju.onlinemall.mapper"})
-public class HelloworldApplication {
+public class OnlinemallApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(HelloworldApplication.class, args);
+        SpringApplication.run(OnlinemallApplication.class, args);
     }
 
 }
