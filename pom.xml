@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.xju.onlinemall</groupId>
-    <artifactId>onlinemail</artifactId>
+    <artifactId>onlinemall</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>onlinemall</name>
    
