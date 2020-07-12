@@ -1,14 +1,199 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org/">
 <head>
-    <meta charset="UTF-8">
-    <title>登录</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="../static/assets/images/favicon.png" th:href="@{/assets/images/favicon.png}"/>
+    <!--<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">-->
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/bootstrap.min.css" th:href="@{/assets/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/animate.css" th:href="@{/assets/css/animate.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/bootstrap.min.css" th:href="@{/assets/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/chosen.min.css" th:href="@{/assets/css/chosen.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/font-awesome.min.css" th:href="@{/assets/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/jquery.scrollbar.css" th:href="@{/assets/css/jquery.scrollbar.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/lightbox.min.css" th:href="@{/assets/css/lightbox.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/magnific-popup.css" th:href="@{/assets/css/magnific-popup.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/slick.min.css" th:href="@{/assets/css/slick.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/assets/fonts/flaticon.css" th:href="@{/assets/fonts/flaticon.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/megamenu.css" th:href="@{/assets/css/megamenu.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/dreaming-attribute.css" th:href="@{/assets/css/dreaming-attribute.css}"/>
+    <link rel="stylesheet" type="text/css" href="../static/assets/css/style.css" th:href="@{/assets/css/style.css}"/>
+
+    <script src="../static/assets/js/jquery-1.12.4.min.js" th:src="@{/assets/js/jquery-1.12.4.min.js}"/>
+    <script src="../static/assets/js/bootstrap.min.js" th:src="@{/assets/js/bootstrap.min.js}"/>
+    <script src="../static/assets/js/chosen.min.js" th:src="@{/assets/js/chosen.min.js}"/>
+    <script src="../static/assets/js/countdown.min.js" th:src="@{/assets/js/countdown.min.js}"/>
+    <script src="../static/assets/js/jquery.scrollbar.min.js" th:src="@{/assets/js/jquery.scrollbar.min.js}"/>
+    <script src="../static/assets/js/lightbox.min.js" th:src="@{/assets/js/lightbox.min.js}"/>
+    <script src="../static/assets/js/magnific-popup.min.js" th:src="@{/assets/js/magnific-popup.min.js}"/>
+    <script src="../static/assets/js/slick.js" th:src="@{/assets/js/slick.js}"/>
+    <script src="../static/assets/js/jquery.zoom.min.js" th:src="@{/assets/js/jquery.zoom.min.js}"/>
+    <script src="../static/assets/js/threesixty.min.js" th:src="@{/assets/js/threesixty.min.js}"/>
+    <script src="../static/assets/js/jquery-ui.min.js" th:src="@{/assets/js/jquery-ui.min.js}"/>
+    <script src="../static/assets/js/mobilemenu.js" th:src="@{/assets/js/mobilemenu.js}"/>
+    <!--<script src='http://www.google.cn/maps/api/js?key=AIzaSyC3nDHy1dARR-Pa_2jjPCjvsOR4bcILYsM'></script>-->
+    <script src="../static/assets/js/functions.js" th:src="@{/assets/js/functions.js}"/>
+
+    <title>Online Mall</title>
 </head>
 <body>
-<form action="/login">
-    用户名: <input type="text" name="loginname"  value="admin">
-    密码: <input type="text" name="password" value="admin" >
-    <input type="submit" value="提交">
-</form>
+<div>
+    <div th:replace="~{fragment/header :: header}"></div>
+
+    <main class="site-main  main-container no-sidebar">
+        <div class="container">
+            <div class="row">
+                <div class="main-content col-md-12">
+                    <div class="page-main-content">
+                        <div class="furgan">
+                            <div class="furgan-notices-wrapper"></div>
+                            <div class="u-columns col2-set" id="customer_login">
+                                <div class="u-column1 col-1">
+                                    <h2>登录</h2>
+                                    <form class="furgan-form furgan-form-login login" method="post">
+                                        <p class="furgan-form-row furgan-form-row--wide form-row form-row-wide">
+                                            <label for="username">用户名 或 注册邮箱&nbsp;<span
+                                                    class="required">*</span></label>
+                                            <input type="text" class="furgan-Input furgan-Input--text input-text"
+                                                   name="username" id="username" autocomplete="username" value=""></p>
+                                        <p class="furgan-form-row furgan-form-row--wide form-row form-row-wide">
+                                            <label for="password">密码&nbsp;<span class="required">*</span></label>
+                                            <input class="furgan-Input furgan-Input--text input-text"
+                                                   type="password" name="password" id="password"
+                                                   autocomplete="current-password">
+                                        </p>
+                                        <p class="form-row">
+                                            <input type="hidden" id="furgan-login-nonce" name="furgan-login-nonce"
+                                                   value="832993cb93"><input type="hidden" name="_wp_http_referer"
+                                                                             value="/furgan/my-account/">
+                                            <button type="submit" class="furgan-Button button" name="login"
+                                                    value="Log in">点击登录
+                                            </button>
+                                            <label class="furgan-form__label furgan-form__label-for-checkbox inline">
+                                                <input class="furgan-form__input furgan-form__input-checkbox"
+                                                       name="rememberme" type="checkbox" id="rememberme" value="forever">
+                                                <span>记住 我</span>
+                                            </label>
+                                        </p>
+                                        <p class="furgan-LostPassword lost_password">
+                                            <a href="my-account.htmllost-password/">忘记密码 ?</a>
+                                        </p>
+                                    </form>
+                                </div>
+                                <div class="u-column2 col-2">
+                                    <h2>注册</h2>
+                                    <form method="post" class="furgan-form furgan-form-register register">
+                                        <p class="furgan-form-row furgan-form-row--wide form-row form-row-wide">
+                                            <label for="reg_email">电子邮箱&nbsp;<span
+                                                    class="required">*</span></label>
+                                            <input type="email" class="furgan-Input furgan-Input--text input-text"
+                                                   name="email" id="reg_email" autocomplete="email" value=""></p>
+                                        <div class="furgan-privacy-policy-text"><p>您的个人资料将用于支持您在整个网站的体验，管理对您帐户的访问，以及我们<a href="#" class="furgan-privacy-policy-link" target="_blank">隐私政策</a>中描述的其他目的。</p>
+                                        </div>
+                                        <p class="furgan-FormRow form-row">
+                                            <input type="hidden" id="furgan-register-nonce"
+                                                   name="furgan-register-nonce" value="45fae70a87"><input type="hidden"
+                                                                                                          name="_wp_http_referer"
+                                                                                                          value="/furgan/my-account/">
+                                            <button type="submit" class="furgan-Button button" name="register"
+                                                    value="Register">点击注册
+                                            </button>
+                                        </p>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="footer" class="footer style-01">
+        <div class="section-010">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>© Copyright 2020 <a href="http://www.bootstrapmb.com/">Furgan</a>. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="furgan-socials style-01">
+                            <div class="content-socials">
+                                <ul class="socials-list">
+                                    <li>
+                                        <a href="https://facebook.com" target="_blank">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.instagram.com" target="_blank">
+                                            <i class="fa fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://twitter.com" target="_blank">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.pinterest.com" target="_blank">
+                                            <i class="fa fa-pinterest-p"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="footer-device-mobile">
+        <div class="wapper">
+            <div class="footer-device-mobile-item device-home">
+                <a href="index.html">
+					<span class="icon">
+						<i class="fa fa-home" aria-hidden="true"></i>
+					</span>
+                    Home
+                </a>
+            </div>
+            <div class="footer-device-mobile-item device-home device-wishlist">
+                <a href="wishlist.html">
+					<span class="icon">
+						<i class="fa fa-heart" aria-hidden="true"></i>
+					</span>
+                    Wishlist
+                </a>
+            </div>
+            <div class="footer-device-mobile-item device-home device-cart">
+                <a href="cart.html">
+					<span class="icon">
+						<i class="fa fa-shopping-basket" aria-hidden="true"></i>
+						<span class="count-icon">
+							0
+						</span>
+					</span>
+                    <span class="text">Cart</span>
+                </a>
+            </div>
+            <div class="footer-device-mobile-item device-home device-user">
+                <a href="my-account.html">
+					<span class="icon">
+						<i class="fa fa-user" aria-hidden="true"></i>
+					</span>
+                    Account
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<a href="#" class="backtotop active">
+    <i class="fa fa-angle-double-up"></i>
+</a>
+
 </body>
 </html>
