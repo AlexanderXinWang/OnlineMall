@@ -1,20 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:include="/fragment/headerSource::commonCss">
-<!--<head>-->
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" th:href="@{/assets/images/favicon.png}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" th:href="@{/assets/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.css" th:href="@{/assets/css/animate.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" th:href="@{/assets/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/chosen.min.css" th:href="@{/assets/css/chosen.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" th:href="@{/assets/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.scrollbar.css" th:href="@{/assets/css/jquery.scrollbar.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/lightbox.min.css" th:href="@{/assets/css/lightbox.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css" th:href="@{/assets/css/magnific-popup.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/slick.min.css" th:href="@{/assets/css/slick.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/fonts/flaticon.css" th:href="@{/assets/fonts/flaticon.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/megamenu.css" th:href="@{/assets/css/megamenu.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/dreaming-attribute.css" th:href="@{/assets/css/dreaming-attribute.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" th:href="@{/assets/css/style.css}"/>
     <title>Furgan - HTML Template </title>
 </head>
 <body>
-<div th:include="/fragment/header::header"></div>
-<div th:include="/fragment/jsFooter::commonJs"></div>
-
+<div th:replace="~{fragment/header::header}"></div>
 <div class="fullwidth-template">
     <div class="slide-home-01">
         <div class="response-product product-list-owl owl-slick equal-container better-height"
              data-slick="{&quot;arrows&quot;:false,&quot;slidesMargin&quot;:0,&quot;dots&quot;:true,&quot;infinite&quot;:false,&quot;speed&quot;:300,&quot;slidesToShow&quot;:1,&quot;rows&quot;:1}"
              data-responsive="[{&quot;breakpoint&quot;:480,&quot;settings&quot;:{&quot;slidesToShow&quot;:1,&quot;slidesMargin&quot;:&quot;0&quot;}},{&quot;breakpoint&quot;:768,&quot;settings&quot;:{&quot;slidesToShow&quot;:1,&quot;slidesMargin&quot;:&quot;0&quot;}},{&quot;breakpoint&quot;:992,&quot;settings&quot;:{&quot;slidesToShow&quot;:1,&quot;slidesMargin&quot;:&quot;0&quot;}},{&quot;breakpoint&quot;:1200,&quot;settings&quot;:{&quot;slidesToShow&quot;:1,&quot;slidesMargin&quot;:&quot;0&quot;}},{&quot;breakpoint&quot;:1500,&quot;settings&quot;:{&quot;slidesToShow&quot;:1,&quot;slidesMargin&quot;:&quot;0&quot;}}]">
             <div class="slide-wrap">
-                <img src="/static/assets/images/slide2222.jpg" alt="image">
+                <img src="assets/images/slide2222.jpg" alt="image">
                 <div class="slide-info">
                     <div class="container">
                         <div class="slide-inner">
@@ -27,7 +40,7 @@
                 </div>
             </div>
             <div class="slide-wrap">
-                <img src="/static/assets/images/slide11new.jpg" alt="image">
+                <img src="assets/images/slide11new.jpg" alt="image">
                 <div class="slide-info">
                     <div class="container">
                         <div class="slide-inner">
@@ -40,7 +53,7 @@
                 </div>
             </div>
             <div class="slide-wrap">
-                <img src="/static/assets/images/slide333.jpg" alt="image">
+                <img src="assets/images/slide333.jpg" alt="image">
                 <div class="slide-info">
                     <div class="container">
                         <div class="slide-inner">
@@ -109,7 +122,7 @@
                     <div class="furgan-banner style-01 left-center">
                         <div class="banner-inner">
                             <figure class="banner-thumb">
-                                <img src="../static/assets/images/banner11.jpg"
+                                <img src="assets/images/banner11.jpg"
                                      class="attachment-full size-full" alt="img"></figure>
                             <div class="banner-info ">
                                 <div class="banner-content">
@@ -129,7 +142,7 @@
                     <div class="furgan-banner style-01 right-top">
                         <div class="banner-inner">
                             <figure class="banner-thumb">
-                                <img src="../static/assets/images/banner12.jpg"
+                                <img src="assets/images/banner12.jpg"
                                      class="attachment-full size-full" alt="img"></figure>
                             <div class="banner-info ">
                                 <div class="banner-content">
@@ -147,7 +160,7 @@
                     <div class="furgan-banner style-01 left-bottom">
                         <div class="banner-inner">
                             <figure class="banner-thumb">
-                                <img src="../static/assets/images/banner13.jpg"
+                                <img src="assets/images/banner13.jpg"
                                      class="attachment-full size-full" alt="img"></figure>
                             <div class="banner-info ">
                                 <div class="banner-content">
@@ -186,7 +199,7 @@
                                 <a class="thumb-link"
                                    href="#" tabindex="0">
                                     <img class="img-responsive"
-                                         src="../static/assets/images/apro61-1-270x350.jpg"
+                                         src="assets/images/apro61-1-270x350.jpg"
                                          alt="Sweeper Funnel" width="270" height="350">
                                 </a>
                                 <div class="flash">
@@ -227,7 +240,7 @@
                                    href="#"
                                    tabindex="0">
                                     <img class="img-responsive"
-                                         src="../static/assets/images/apro71-1-270x350.jpg"
+                                         src="assets/images/apro71-1-270x350.jpg"
                                          alt="Moss Sofa" width="270" height="350">
                                 </a>
                                 <div class="flash">
@@ -269,7 +282,7 @@
                                    href="#"
                                    tabindex="0">
                                     <img class="img-responsive"
-                                         src="../static/assets/images/apro101-1-270x350.jpg"
+                                         src="assets/images/apro101-1-270x350.jpg"
                                          alt="Tulip Chair" width="270" height="350">
                                 </a>
                                 <div class="flash">
@@ -309,7 +322,7 @@
                                    href="#"
                                    tabindex="0">
                                     <img class="img-responsive"
-                                         src="../static/assets/images/apro91-1-270x350.jpg"
+                                         src="assets/images/apro91-1-270x350.jpg"
                                          alt="DAX Armchair" width="270" height="350">
                                 </a>
                                 <div class="flash">
@@ -350,7 +363,7 @@
                                    href="#"
                                    tabindex="0">
                                     <img class="img-responsive"
-                                         src="../static/assets/images/apro1113-270x350.jpg"
+                                         src="assets/images/apro1113-270x350.jpg"
                                          alt="Alarm Clock" width="270" height="350">
                                 </a>
                                 <div class="flash">
@@ -389,7 +402,7 @@
                                    href="#"
                                    tabindex="0">
                                     <img class="img-responsive"
-                                         src="../static/assets/images/apro1211-2-270x350.jpg"
+                                         src="assets/images/apro1211-2-270x350.jpg"
                                          alt="Prix Chair" width="270" height="350">
                                 </a>
                                 <div class="flash">
@@ -432,7 +445,7 @@
                                    href="#"
                                    tabindex="0">
                                     <img class="img-responsive"
-                                         src="../static/assets/images/apro141-1-270x350.jpg"
+                                         src="assets/images/apro141-1-270x350.jpg"
                                          alt="Chair AAC" width="270" height="350">
                                 </a>
                                 <div class="flash">
@@ -471,7 +484,7 @@
                                    href="#"
                                    tabindex="0">
                                     <img class="img-responsive"
-                                         src="../static/assets/images/apro151-1-270x350.jpg"
+                                         src="assets/images/apro151-1-270x350.jpg"
                                          alt="Office Chair" width="270" height="350">
                                 </a>
                                 <div class="flash">
@@ -514,7 +527,7 @@
                                 <a class="thumb-link"
                                    href="#" tabindex="-1">
                                     <img class="img-responsive"
-                                         src="../static/assets/images/apro161-1-270x350.jpg"
+                                         src="assets/images/apro161-1-270x350.jpg"
                                          alt="Moss Sofa" width="270" height="350">
                                 </a>
                                 <div class="flash">
@@ -598,7 +611,7 @@
                                    href="#"
                                    tabindex="-1">
                                     <img class="img-responsive"
-                                         src="../static/assets/images/apro181-2-270x350.jpg"
+                                         src="assets/images/apro181-2-270x350.jpg"
                                          alt="Wall Lamp" width="270" height="350">
                                 </a>
                                 <div class="flash">
@@ -639,7 +652,7 @@
         <div class="furgan-banner style-02 left-center">
             <div class="banner-inner">
                 <figure class="banner-thumb">
-                    <img src="../static/assets/images/banner101.jpg"
+                    <img src="assets/images/banner101.jpg"
                          class="attachment-full size-full" alt="img"></figure>
                 <div class="banner-info container">
                     <div class="banner-content">
@@ -681,7 +694,7 @@
                                 <a class="thumb-link"
                                    href="#" tabindex="0">
                                     <img class="img-responsive"
-                                         src="../static/assets/images/apro13-1-270x350.jpg"
+                                         src="assets/images/apro13-1-270x350.jpg"
                                          alt="Woody Table" width="270" height="350">
                                 </a>
                                 <div class="flash">
@@ -721,7 +734,7 @@
                                 <a class="thumb-link"
                                    href="#" tabindex="0">
                                     <img class="img-responsive"
-                                         src="../static/assets/images/apro302-270x350.jpg"
+                                         src="assets/images/apro302-270x350.jpg"
                                          alt="Lynn Storage" width="270" height="350">
                                 </a>
                                 <div class="flash">
@@ -761,7 +774,7 @@
                                 <a class="thumb-link" href="#"
                                    tabindex="0">
                                     <img class="img-responsive"
-                                         src="../static/assets/images/apro31-1-270x350.jpg"
+                                         src="assets/images/apro31-1-270x350.jpg"
                                          alt="Knit Lamp" width="270" height="350">
                                 </a>
                                 <div class="flash">
@@ -800,7 +813,7 @@
                                 <a class="thumb-link" href="#"
                                    tabindex="0">
                                     <img class="img-responsive"
-                                         src="../static/assets/images/apro41-1-270x350.jpg"
+                                         src="assets/images/apro41-1-270x350.jpg"
                                          alt="Round Basket" width="270" height="350">
                                 </a>
                                 <div class="flash">
@@ -839,7 +852,7 @@
                                 <a class="thumb-link" href="#"
                                    tabindex="-1">
                                     <img class="img-responsive"
-                                         src="../static/assets/images/apro51012-1-270x350.jpg"
+                                         src="assets/images/apro51012-1-270x350.jpg"
                                          alt="Long Sofa" width="270" height="350">
                                 </a>
                                 <div class="flash">
@@ -881,7 +894,7 @@
                                 <a class="thumb-link" href="#"
                                    tabindex="-1">
                                     <img class="img-responsive"
-                                         src="../static/assets/images/apro61-1-270x350.jpg"
+                                         src="assets/images/apro61-1-270x350.jpg"
                                          alt="Sweeper Funnel" width="270" height="350">
                                 </a>
                                 <div class="flash">
@@ -925,7 +938,7 @@
         <div class="furgan-banner style-07 left-center">
             <div class="banner-inner">
                 <figure class="banner-thumb">
-                    <img src="../static/assets/images/banner28.jpg"
+                    <img src="assets/images/banner28.jpg"
                          class="attachment-full size-full" alt="img"></figure>
                 <div class="banner-info container">
                     <div class="banner-content">
@@ -971,7 +984,7 @@
                         <div class="post-inner blog-grid">
                             <div class="post-thumb">
                                 <a href="#" tabindex="0">
-                                    <img src="../static/assets/images/blogpost1-370x330.jpg"
+                                    <img src="assets/images/blogpost1-370x330.jpg"
                                          class="img-responsive attachment-370x330 size-370x330" alt="img"
                                          width="370" height="330"> </a>
                                 <a class="datebox" href="#" tabindex="0">
@@ -1007,7 +1020,7 @@
                             <div class="post-thumb">
                                 <a href="#"
                                    tabindex="0">
-                                    <img src="../static/assets/images/blogpost5-370x330.jpg"
+                                    <img src="assets/images/blogpost5-370x330.jpg"
                                          class="img-responsive attachment-370x330 size-370x330" alt="img"
                                          width="370" height="330"> </a>
                                 <a class="datebox" href="#" tabindex="0">
@@ -1043,7 +1056,7 @@
                             <div class="post-thumb">
                                 <a href="#"
                                    tabindex="0">
-                                    <img src="../static/assets/images/blogpost9-370x330.jpg"
+                                    <img src="assets/images/blogpost9-370x330.jpg"
                                          class="img-responsive attachment-370x330 size-370x330" alt="img"
                                          width="370" height="330"> </a>
                                 <a class="datebox" href="#" tabindex="0">
@@ -1079,7 +1092,7 @@
                             <div class="post-thumb">
                                 <a href="#"
                                    tabindex="-1">
-                                    <img src="../static/assets/images/blogpost4-370x330.jpg"
+                                    <img src="assets/images/blogpost4-370x330.jpg"
                                          class="img-responsive attachment-370x330 size-370x330" alt="img"
                                          width="370" height="330"> </a>
                                 <a class="datebox" href="#" tabindex="-1">
@@ -1114,7 +1127,7 @@
                         <div class="post-inner blog-grid">
                             <div class="post-thumb">
                                 <a href="#" tabindex="-1">
-                                    <img src="../static/assets/images/blogpost2-370x330.jpg"
+                                    <img src="assets/images/blogpost2-370x330.jpg"
                                          class="img-responsive attachment-370x330 size-370x330" alt="img"
                                          width="370" height="330"> </a>
                                 <a class="datebox" href="#" tabindex="-1">
@@ -1157,7 +1170,7 @@
                     <div class="dreaming_single_image dreaming_content_element az_align_center">
                         <figure class="dreaming_wrapper az_figure">
                             <div class="az_single_image-wrapper   az_box_border_grey effect bounce-in "><img
-                                    src="../static/assets/images/brand-logo-1.png"
+                                    src="assets/images/brand-logo-1.png"
                                     class="az_single_image-img attachment-full" alt="img">
                             </div>
                         </figure>
@@ -1165,7 +1178,7 @@
                     <div class="dreaming_single_image dreaming_content_element az_align_center">
                         <figure class="dreaming_wrapper az_figure">
                             <div class="az_single_image-wrapper  az_box_border_grey effect bounce-in "><img
-                                    src="../static/assets/images/brand-logo-5.png"
+                                    src="assets/images/brand-logo-5.png"
                                     class="az_single_image-img attachment-full" alt="img">
                             </div>
                         </figure>
@@ -1173,7 +1186,7 @@
                     <div class="dreaming_single_image dreaming_content_element az_align_center">
                         <figure class="dreaming_wrapper az_figure">
                             <div class="az_single_image-wrapper   az_box_border_grey effect bounce-in "><img
-                                    src="../static/assets/images/brand-logo-4.png"
+                                    src="assets/images/brand-logo-4.png"
                                     class="az_single_image-img attachment-full" alt="img">
                             </div>
                         </figure>
@@ -1181,7 +1194,7 @@
                     <div class="dreaming_single_image dreaming_content_element az_align_center">
                         <figure class="dreaming_wrapper az_figure">
                             <div class="az_single_image-wrapper   az_box_border_grey effect bounce-in"><img
-                                    src="../static/assets/images/brand-logo-3.png"
+                                    src="assets/images/brand-logo-3.png"
                                     class="az_single_image-img attachment-full" alt="img">
                             </div>
                         </figure>
@@ -1189,7 +1202,7 @@
                     <div class="dreaming_single_image dreaming_content_element az_align_center">
                         <figure class="dreaming_wrapper az_figure">
                             <div class="az_single_image-wrapper  az_box_border_grey effect bounce-in "><img
-                                    src="../static/assets/images/brand-logo-2.png"
+                                    src="assets/images/brand-logo-2.png"
                                     class="az_single_image-img attachment-full" alt="img">
                             </div>
                         </figure>
@@ -1206,7 +1219,7 @@
                 <div class="rows-space-0">
                     <a target="_blank" href="#" class="item"
                        tabindex="0">
-                        <img class="img-responsive lazy" src="../static/assets/images/insta1.jpg" alt="Home 01">
+                        <img class="img-responsive lazy" src="assets/images/insta1.jpg" alt="Home 01">
                         <span class="instagram-info">
                                  <span class="social-wrap">
                                     <span class="social-info">1
@@ -1221,7 +1234,7 @@
                 </div>
                 <div class="rows-space-0">
                     <a target="_blank" href="#" class="item" tabindex="0">
-                        <img class="img-responsive lazy" src="../static/assets/images/insta2.jpg" alt="Home 01">
+                        <img class="img-responsive lazy" src="assets/images/insta2.jpg" alt="Home 01">
                         <span class="instagram-info">
                                          <span class="social-wrap">
                                             <span class="social-info">0
@@ -1237,7 +1250,7 @@
                 <div class="rows-space-0">
                     <a target="_blank" href="#" class="item"
                        tabindex="0">
-                        <img class="img-responsive lazy" src="../static/assets/images/insta3.jpg" alt="Home 01">
+                        <img class="img-responsive lazy" src="assets/images/insta3.jpg" alt="Home 01">
                         <span class="instagram-info">
                                          <span class="social-wrap">
                                             <span class="social-info">0
@@ -1252,7 +1265,7 @@
                 </div>
                 <div class="rows-space-0">
                     <a target="_blank" href="#" class="item" tabindex="0">
-                        <img class="img-responsive lazy" src="../static/assets/images/insta4.jpg" alt="Home 01">
+                        <img class="img-responsive lazy" src="assets/images/insta4.jpg" alt="Home 01">
                         <span class="instagram-info">
                                          <span class="social-wrap">
                                             <span class="social-info">0
@@ -1267,7 +1280,7 @@
                 </div>
                 <div class="rows-space-0">
                     <a target="_blank" href="#" class="item" tabindex="0">
-                        <img class="img-responsive lazy" src="../static/assets/images/insta5.jpg" alt="Home 01">
+                        <img class="img-responsive lazy" src="assets/images/insta5.jpg" alt="Home 01">
                         <span class="instagram-info">
                                          <span class="social-wrap">
                                             <span class="social-info">0
@@ -1283,7 +1296,7 @@
                 <div class="rows-space-0">
                     <a target="_blank" href="#" class="item"
                        tabindex="-1">
-                        <img class="img-responsive lazy" src="../static/assets/images/insta6.jpg" alt="Home 01">
+                        <img class="img-responsive lazy" src="assets/images/insta6.jpg" alt="Home 01">
                         <span class="instagram-info">
                                          <span class="social-wrap">
                                             <span class="social-info">0
@@ -1299,7 +1312,7 @@
                 <div class="rows-space-0">
                     <a target="_blank" href="#" class="item"
                        tabindex="-1">
-                        <img class="img-responsive lazy" src="../static/assets/images/insta7.jpg" alt="Home 01">
+                        <img class="img-responsive lazy" src="assets/images/insta7.jpg" alt="Home 01">
                         <span class="instagram-info">
                                          <span class="social-wrap">
                                             <span class="social-info">0
@@ -1315,7 +1328,7 @@
                 <div class="rows-space-0">
                     <a target="_blank" href="#" class="item"
                        tabindex="-1">
-                        <img class="img-responsive lazy" src="../static/assets/images/insta8.jpg" alt="Home 01">
+                        <img class="img-responsive lazy" src="assets/images/insta8.jpg" alt="Home 01">
                         <span class="instagram-info">
                                      <span class="social-wrap">
                                         <span class="social-info">0
@@ -1403,40 +1416,55 @@
 					<span class="icon">
 						<i class="fa fa-home" aria-hidden="true"></i>
 					</span>
-                    Home
-                </a>
-            </div>
-            <div class="footer-device-mobile-item device-home device-wishlist">
-                <a href="wishlist.html">
+                Home
+            </a>
+        </div>
+        <div class="footer-device-mobile-item device-home device-wishlist">
+            <a href="wishlist.html">
 					<span class="icon">
 						<i class="fa fa-heart" aria-hidden="true"></i>
 					</span>
-                    Wishlist
-                </a>
-            </div>
-            <div class="footer-device-mobile-item device-home device-cart">
-                <a href="cart.html">
+                Wishlist
+            </a>
+        </div>
+        <div class="footer-device-mobile-item device-home device-cart">
+            <a href="cart.html">
 					<span class="icon">
 						<i class="fa fa-shopping-basket" aria-hidden="true"></i>
 						<span class="count-icon">
 							0
 						</span>
 					</span>
-                    <span class="text">Cart</span>
-                </a>
-            </div>
-            <div class="footer-device-mobile-item device-home device-user">
-                <a href="my-account.html">
+                <span class="text">Cart</span>
+            </a>
+        </div>
+        <div class="footer-device-mobile-item device-home device-user">
+            <a href="my-account.html">
 					<span class="icon">
 						<i class="fa fa-user" aria-hidden="true"></i>
 					</span>
-                    Account
-                </a>
-            </div>
+                Account
+            </a>
         </div>
     </div>
+</div>
 <a href="#" class="backtotop active">
     <i class="fa fa-angle-double-up"></i>
 </a>
+
+<script src="assets/js/jquery-1.12.4.min.js" th:src="@{/assets/js/jquery-1.12.4.min.js}"></script>
+<script src="assets/js/bootstrap.min.js" th:src="@{/assets/js/bootstrap.min.js}"></script>
+<script src="assets/js/chosen.min.js" th:src="@{/assets/js/chosen.min.js}"></script>
+<script src="assets/js/countdown.min.js" th:src="@{/assets/js/countdown.min.js}"></script>
+<script src="assets/js/jquery.scrollbar.min.js" th:src="@{/assets/js/jquery.scrollbar.min.js}"></script>
+<script src="assets/js/lightbox.min.js" th:src="@{/assets/js/lightbox.min.js}"></script>
+<script src="assets/js/magnific-popup.min.js" th:src="@{/assets/js/magnific-popup.min.js}"></script>
+<script src="assets/js/slick.js" th:src="@{/assets/js/slick.js}"></script>
+<script src="assets/js/jquery.zoom.min.js" th:src="@{/assets/js/jquery.zoom.min.js}"></script>
+<script src="assets/js/threesixty.min.js" th:src="@{/assets/js/threesixty.min.js}"></script>
+<script src="assets/js/jquery-ui.min.js" th:src="@{/assets/js/jquery-ui.min.js}"></script>
+<script src="assets/js/mobilemenu.js" th:src="@{/assets/js/mobilemenu.js}"></script>
+<script src="assets/js/functions.js" th:src="@{/assets/js/functions.js}"></script>
+
 </body>
 </html>

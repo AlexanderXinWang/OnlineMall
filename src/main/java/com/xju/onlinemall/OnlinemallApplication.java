@@ -9,7 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 
 @SpringBootApplication
 @MapperScan({"com.xju.onlinemall.mapper"})
-public class OnlinemallApplication extends WebMvcConfigurationSupport {
+public class OnlinemallApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(OnlinemallApplication.class, args);
