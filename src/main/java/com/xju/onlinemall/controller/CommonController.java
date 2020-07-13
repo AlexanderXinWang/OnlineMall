@@ -58,6 +58,30 @@ public class CommonController {
     }
 
     /**
+     *跳转博客页
+     * */
+    @RequestMapping("/blog.html")
+    public String blog(){
+        return "views_front/blog";
+    }
+
+    /**
+     *跳转关于我们页面
+     * */
+    @RequestMapping("/about.html")
+    public String about(){
+        return "views_front/about";
+    }
+
+    /**
+     *跳转联系我们页面
+     * */
+    @RequestMapping("/message.html")
+    public String contact(){
+        return "views_front/contact";
+    }
+
+    /**
      *跳转购物车
      * */
     @RequestMapping("/cart.html")
@@ -79,6 +103,14 @@ public class CommonController {
     @RequestMapping("/checkout.html")
     public String checkout(){
         return "views_front/checkout";
+    }
+
+    /**
+     *跳转用户收藏夹
+     * */
+    @RequestMapping("/wishlist.html")
+    public String wishlist(){
+        return "views_front/wishlist";
     }
 
     /**

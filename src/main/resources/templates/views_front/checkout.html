@@ -25,7 +25,7 @@
     <img src="assets/images/banner-for-all2.jpg"
          class="img-responsive attachment-1920x447 size-1920x447" alt="img">
     <div class="banner-wrapper-inner">
-        <h1 class="page-title">Checkout</h1>
+        <h1 class="page-title">结算</h1>
         <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
             <ul class="trail-items breadcrumb">
                 <li class="trail-item trail-begin"><a href="index.html"><span>首页</span></a></li>
@@ -46,7 +46,7 @@
                             <div class="furgan-checkout-login">
                                 <div class="furgan-form-login-toggle">
                                     <div class="furgan-info">
-                                        Returning customer? <a href="#" class="showlogin">Click here to login</a></div>
+                                         已有账号? <a href="my-account.html" class="showlogin">点击这里来登录</a></div>
                                 </div>
                                 <form class="furgan-form furgan-form-login login" method="post"
                                       style="display:none;">
@@ -134,16 +134,18 @@
                                                                                         id="billing_last_name"
                                                                                         placeholder="" value=""
                                                                                         autocomplete="family-name"></span>
-                                            </p>
-                                            <p class="form-row form-row-wide" id="billing_company_field"
-                                               data-priority="30"><label for="billing_company" class="">公司名称&nbsp;<span
-                                                    class="optional">(optional)</span></label><span
-                                                    class="furgan-input-wrapper"><input type="text"
-                                                                                        class="input-text "
-                                                                                        name="billing_company"
-                                                                                        id="billing_company"
-                                                                                        placeholder="" value=""
-                                                                                        autocomplete="organization"></span>
+                                            </p><br>
+                                            <p class="form-row form-row-wide" id="billing_company_field" data-priority="30">
+                                                <label for="billing_company" class="">Company name&nbsp;
+                                                    <span class="optional">(选填)</span>
+                                                </label>
+                                                <span class="furgan-input-wrapper">
+                                                    <input type="text" class="input-text "
+                                                            name="billing_company"
+                                                            id="billing_company"
+                                                            placeholder="" value=""
+                                                            autocomplete="organization">
+                                                </span>
                                             </p>
                                             <p class="form-row form-row-wide adchair-field update_totals_on_change validate-required"
                                                id="billing_country_field" data-priority="40"><label
@@ -308,10 +310,10 @@
                                                                                         class="input-text "
                                                                                         name="billing_adchair_1"
                                                                                         id="billing_adchair_1"
-                                                                                        placeholder="House number and street name"
+                                                                                        placeholder="街道及详细住址"
                                                                                         value=""
                                                                                         autocomplete="adchair-line1"
-                                                                                        data-placeholder="House number and street name"></span>
+                                                                                        data-placeholder="街道及详细住址"></span>
                                             </p>
                                             <p class="form-row form-row-wide adchair-field" id="billing_adchair_2_field"
                                                data-priority="60" style="display: none;"><label for="billing_adchair_2"
@@ -331,7 +333,7 @@
                                                id="billing_postcode_field" data-priority="65"
                                                data-o_class="form-row form-row-wide adchair-field validate-postcode">
                                                 <label for="billing_postcode" class="">邮编&nbsp;<span
-                                                        class="optional">(optional)</span></label><span
+                                                        class="optional">(选填)</span></label><span
                                                     class="furgan-input-wrapper"><input type="text"
                                                                                         class="input-text "
                                                                                         name="billing_postcode"
@@ -366,7 +368,7 @@
                                             </p>
                                             <p class="form-row form-row-wide validate-required validate-phone"
                                                id="billing_phone_field" data-priority="100"><label for="billing_phone"
-                                                                                                   class="">Phone&nbsp;<abbr
+                                                                                                   class="">手机号&nbsp;<abbr
                                                     class="required" title="required">*</abbr></label><span
                                                     class="furgan-input-wrapper"><input type="tel"
                                                                                         class="input-text "
@@ -377,8 +379,8 @@
                                             </p>
                                             <p class="form-row form-row-wide validate-required validate-email"
                                                id="billing_email_field" data-priority="110"><label for="billing_email"
-                                                                                                   class="">Email
-                                                adchair&nbsp;<abbr class="required"
+                                                                                                   class="">电子邮箱
+                                                <abbr class="required"
                                                                    title="required">*</abbr></label><span
                                                     class="furgan-input-wrapper"><input type="email"
                                                                                         class="input-text "
@@ -402,15 +404,15 @@
                                     <div class="furgan-shipping-fields">
                                     </div>
                                     <div class="furgan-additional-fields">
-                                        <h3>Additional information</h3>
+                                        <h3>额外信息</h3>
                                         <div class="furgan-additional-fields__field-wrapper">
                                             <p class="form-row notes" id="order_comments_field" data-priority=""><label
                                                     for="order_comments" class="">订单记录&nbsp;<span
-                                                    class="optional">(optional)</span></label><span
+                                                    class="optional">(选填)</span></label><span
                                                     class="furgan-input-wrapper"><textarea name="order_comments"
                                                                                            class="input-text "
                                                                                            id="order_comments"
-                                                                                           placeholder="Notes about your order, e.g. special notes for delivery."
+                                                                                           placeholder="关于你的订单的备注, e.g. 请于工作日早晨送达."
                                                                                            rows="2"
                                                                                            cols="5"></textarea></span>
                                             </p></div>
@@ -474,30 +476,27 @@
                                                    name="payment_method" value="bacs" checked="checked"
                                                    data-order_button_text="">
                                             <label for="payment_method_bacs">
-                                                Direct bank transfer </label>
+                                                银行转账 </label>
                                             <div class="payment_box payment_method_bacs">
-                                                <p>Make your payment directly into our bank account. Please use your
-                                                    Order ID as the payment reference. Your order will not be shipped
-                                                    until the funds have cleared in our account.</p>
+                                                <p>直接转到我们的银行账户上. 请使用你的订单作为交易参照. 你的订单不会被寄送直到我们收到您的付款.</p>
                                             </div>
                                         </li>
                                         <li class="wc_payment_method payment_method_cheque">
                                             <input id="payment_method_cheque" type="radio" class="input-radio"
                                                    name="payment_method" value="cheque" data-order_button_text="">
                                             <label for="payment_method_cheque">
-                                                Check payments </label>
+                                                选择支付方式 </label>
                                             <div class="payment_box payment_method_cheque" style="display:none;">
-                                                <p>Please send a check to Store Name, Store Street, Store Town, Store
-                                                    State / County, Store Postcode.</p>
+                                                <p>支付宝 / 微信支付.</p>
                                             </div>
                                         </li>
                                         <li class="wc_payment_method payment_method_cod">
                                             <input id="payment_method_cod" type="radio" class="input-radio"
                                                    name="payment_method" value="cod" data-order_button_text="">
                                             <label for="payment_method_cod">
-                                                Cash on delivery </label>
+                                                货到付款 </label>
                                             <div class="payment_box payment_method_cod" style="display:none;">
-                                                <p>Pay with cash upon delivery.</p>
+                                                <p>收货时进行付款.</p>
                                             </div>
                                         </li>
                                         <li class="wc_payment_method payment_method_paypal">
@@ -505,7 +504,7 @@
                                                    name="payment_method" value="paypal"
                                                    data-order_button_text="Proceed to PayPal">
                                             <label for="payment_method_paypal">
-                                                PayPal <img src="assets/images/AM_mc_vs_ms_ae_UK.png"
+                                                支付宝 <img src="assets/images/AM_mc_vs_ms_ae_UK.png"
                                                             alt="PayPal acceptance mark"><a href="#"
                                                                                             class="about_paypal">What is
                                                 PayPal?</a> </label>
@@ -527,17 +526,13 @@
                                             </button>
                                         </noscript>
                                         <div class="furgan-terms-and-conditions-wrapper">
-                                            <div class="furgan-privacy-policy-text"><p>Your personal data will be
-                                                used to process your order, support your experience throughout this
-                                                website, and for other purposes described in our <a
+                                            <div class="furgan-privacy-policy-text"><p>您的个人数据将会被用于处理您的订单, 用于帮助提升您在此网站的体验。其他用途请详见 <a
                                                         href="#"
-                                                        class="furgan-privacy-policy-link" target="_blank">privacy
-                                                    policy</a>.</p>
+                                                        class="furgan-privacy-policy-link" target="_blank">隐私条例</a>。</p>
                                             </div>
                                         </div>
                                         <button type="submit" class="button alt" name="furgan_checkout_place_order"
-                                                id="place_order" value="Place order" data-value="Place order">Place
-                                            order
+                                                id="place_order" value="Place order" data-value="Place order">立即下单
                                         </button>
                                         <input type="hidden" id="furgan-process-checkout-nonce"
                                                name="furgan-process-checkout-nonce" value="634590c981"><input
