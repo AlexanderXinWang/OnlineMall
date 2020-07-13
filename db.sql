@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2020/7/12 18:48:26                           */
+/* Created on:     2020/7/13 18:14:40                           */
 /*==============================================================*/
 
 
@@ -57,7 +57,7 @@ create table tb_cart
 create table tb_category
 (
    category_id          int not null auto_increment,
-   name                 varchar(50),
+   category_name        varchar(50),
    is_delete            tinyint,
    primary key (category_id)
 );
@@ -135,9 +135,9 @@ create table tb_product
    product_id           int not null auto_increment,
    category_id          int,
    pro_no               varchar(32),
-   name                 varchar(50),
+   product_name         varchar(50),
    price                float,
-   pimage               longblob,
+   pimage               varchar(32),
    context              varchar(500),
    pkey                 varchar(50),
    status               tinyint,
@@ -200,6 +200,7 @@ create table tb_user
    pay_password         varchar(6) not null,
    register_time        date,
    is_delete            tinyint not null,
+   image_url            varchar(32),
    primary key (user_id)
 );
 

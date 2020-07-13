@@ -56,4 +56,20 @@ public class CommonController {
     public String cart(){
         return "views_front/cart";
     }
+
+    /**
+     *跳转收藏夹
+     * */
+    @RequestMapping("/wishlist.html")
+    public String wishlist(){
+        return "views_front/wishlist";
+    }
+
+    /**
+     *跳转结算页面
+     * */
+    @RequestMapping("/checkout.html")
+    public String checkout(){
+        return "views_front/checkout";
+    }
 }
