@@ -5,7 +5,7 @@
     <id column="comment_id" jdbcType="INTEGER" property="commentId" />
     <result column="context" jdbcType="VARCHAR" property="context" />
     <result column="score" jdbcType="INTEGER" property="score" />
-    <result column="comment_time" jdbcType="DATE" property="commentTime" />
+    <result column="comment_time" jdbcType="TIMESTAMP" property="commentTime" />
     <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="product_id" jdbcType="INTEGER" property="productId" />
@@ -106,7 +106,7 @@
       comment_time, is_delete, user_id, 
       product_id)
     values (#{commentId,jdbcType=INTEGER}, #{context,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER}, 
-      #{commentTime,jdbcType=DATE}, #{isDelete,jdbcType=TINYINT}, #{userId,jdbcType=INTEGER}, 
+      #{commentTime,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=TINYINT}, #{userId,jdbcType=INTEGER}, 
       #{productId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.xju.onlinemall.common.domain.Comment">
@@ -145,7 +145,7 @@
         #{score,jdbcType=INTEGER},
       </if>
       <if test="commentTime != null">
-        #{commentTime,jdbcType=DATE},
+        #{commentTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null">
         #{isDelete,jdbcType=TINYINT},
@@ -177,7 +177,7 @@
         score = #{record.score,jdbcType=INTEGER},
       </if>
       <if test="record.commentTime != null">
-        comment_time = #{record.commentTime,jdbcType=DATE},
+        comment_time = #{record.commentTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.isDelete != null">
         is_delete = #{record.isDelete,jdbcType=TINYINT},
@@ -198,7 +198,7 @@
     set comment_id = #{record.commentId,jdbcType=INTEGER},
       context = #{record.context,jdbcType=VARCHAR},
       score = #{record.score,jdbcType=INTEGER},
-      comment_time = #{record.commentTime,jdbcType=DATE},
+      comment_time = #{record.commentTime,jdbcType=TIMESTAMP},
       is_delete = #{record.isDelete,jdbcType=TINYINT},
       user_id = #{record.userId,jdbcType=INTEGER},
       product_id = #{record.productId,jdbcType=INTEGER}
@@ -216,7 +216,7 @@
         score = #{score,jdbcType=INTEGER},
       </if>
       <if test="commentTime != null">
-        comment_time = #{commentTime,jdbcType=DATE},
+        comment_time = #{commentTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null">
         is_delete = #{isDelete,jdbcType=TINYINT},
@@ -234,7 +234,7 @@
     update tb_comment
     set context = #{context,jdbcType=VARCHAR},
       score = #{score,jdbcType=INTEGER},
-      comment_time = #{commentTime,jdbcType=DATE},
+      comment_time = #{commentTime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=TINYINT},
       user_id = #{userId,jdbcType=INTEGER},
       product_id = #{productId,jdbcType=INTEGER}

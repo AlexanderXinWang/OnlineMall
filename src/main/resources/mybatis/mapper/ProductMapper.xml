@@ -11,7 +11,7 @@
     <result column="context" jdbcType="VARCHAR" property="context" />
     <result column="pkey" jdbcType="VARCHAR" property="pkey" />
     <result column="status" jdbcType="TINYINT" property="status" />
-    <result column="add_time" jdbcType="DATE" property="addTime" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="count" jdbcType="INTEGER" property="count" />
     <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
     <result column="pm_id" jdbcType="INTEGER" property="pmId" />
@@ -117,7 +117,7 @@
     values (#{productId,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{proNo,jdbcType=VARCHAR}, 
       #{productName,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, #{pimage,jdbcType=VARCHAR}, 
       #{context,jdbcType=VARCHAR}, #{pkey,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
-      #{addTime,jdbcType=DATE}, #{count,jdbcType=INTEGER}, #{isDelete,jdbcType=TINYINT}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{count,jdbcType=INTEGER}, #{isDelete,jdbcType=TINYINT}, 
       #{pmId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.xju.onlinemall.common.domain.Product">
@@ -192,7 +192,7 @@
         #{status,jdbcType=TINYINT},
       </if>
       <if test="addTime != null">
-        #{addTime,jdbcType=DATE},
+        #{addTime,jdbcType=TIMESTAMP},
       </if>
       <if test="count != null">
         #{count,jdbcType=INTEGER},
@@ -242,7 +242,7 @@
         status = #{record.status,jdbcType=TINYINT},
       </if>
       <if test="record.addTime != null">
-        add_time = #{record.addTime,jdbcType=DATE},
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.count != null">
         count = #{record.count,jdbcType=INTEGER},
@@ -269,7 +269,7 @@
       context = #{record.context,jdbcType=VARCHAR},
       pkey = #{record.pkey,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=TINYINT},
-      add_time = #{record.addTime,jdbcType=DATE},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
       count = #{record.count,jdbcType=INTEGER},
       is_delete = #{record.isDelete,jdbcType=TINYINT},
       pm_id = #{record.pmId,jdbcType=INTEGER}
@@ -305,7 +305,7 @@
         status = #{status,jdbcType=TINYINT},
       </if>
       <if test="addTime != null">
-        add_time = #{addTime,jdbcType=DATE},
+        add_time = #{addTime,jdbcType=TIMESTAMP},
       </if>
       <if test="count != null">
         count = #{count,jdbcType=INTEGER},
@@ -329,7 +329,7 @@
       context = #{context,jdbcType=VARCHAR},
       pkey = #{pkey,jdbcType=VARCHAR},
       status = #{status,jdbcType=TINYINT},
-      add_time = #{addTime,jdbcType=DATE},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
       count = #{count,jdbcType=INTEGER},
       is_delete = #{isDelete,jdbcType=TINYINT},
       pm_id = #{pmId,jdbcType=INTEGER}

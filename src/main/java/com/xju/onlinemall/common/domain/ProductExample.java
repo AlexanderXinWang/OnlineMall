@@ -2,7 +2,6 @@ package com.xju.onlinemall.common.domain;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 public class ProductExample {
@@ -104,32 +103,6 @@ public class ProductExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
-        }
-
-        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
-            if (value == null) {
-                throw new RuntimeException("Value for " + property + " cannot be null");
-            }
-            addCriterion(condition, new java.sql.Date(value.getTime()), property);
-        }
-
-        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
-            if (values == null || values.size() == 0) {
-                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
-            }
-            List<java.sql.Date> dateList = new ArrayList<>();
-            Iterator<Date> iter = values.iterator();
-            while (iter.hasNext()) {
-                dateList.add(new java.sql.Date(iter.next().getTime()));
-            }
-            addCriterion(condition, dateList, property);
-        }
-
-        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
-            if (value1 == null || value2 == null) {
-                throw new RuntimeException("Between values for " + property + " cannot be null");
-            }
-            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
         }
 
         public Criteria andProductIdIsNull() {
@@ -733,52 +706,52 @@ public class ProductExample {
         }
 
         public Criteria andAddTimeEqualTo(Date value) {
-            addCriterionForJDBCDate("add_time =", value, "addTime");
+            addCriterion("add_time =", value, "addTime");
             return (Criteria) this;
         }
 
         public Criteria andAddTimeNotEqualTo(Date value) {
-            addCriterionForJDBCDate("add_time <>", value, "addTime");
+            addCriterion("add_time <>", value, "addTime");
             return (Criteria) this;
         }
 
         public Criteria andAddTimeGreaterThan(Date value) {
-            addCriterionForJDBCDate("add_time >", value, "addTime");
+            addCriterion("add_time >", value, "addTime");
             return (Criteria) this;
         }
 
         public Criteria andAddTimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("add_time >=", value, "addTime");
+            addCriterion("add_time >=", value, "addTime");
             return (Criteria) this;
         }
 
         public Criteria andAddTimeLessThan(Date value) {
-            addCriterionForJDBCDate("add_time <", value, "addTime");
+            addCriterion("add_time <", value, "addTime");
             return (Criteria) this;
         }
 
         public Criteria andAddTimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("add_time <=", value, "addTime");
+            addCriterion("add_time <=", value, "addTime");
             return (Criteria) this;
         }
 
         public Criteria andAddTimeIn(List<Date> values) {
-            addCriterionForJDBCDate("add_time in", values, "addTime");
+            addCriterion("add_time in", values, "addTime");
             return (Criteria) this;
         }
 
         public Criteria andAddTimeNotIn(List<Date> values) {
-            addCriterionForJDBCDate("add_time not in", values, "addTime");
+            addCriterion("add_time not in", values, "addTime");
             return (Criteria) this;
         }
 
         public Criteria andAddTimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("add_time between", value1, value2, "addTime");
+            addCriterion("add_time between", value1, value2, "addTime");
             return (Criteria) this;
         }
 
         public Criteria andAddTimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("add_time not between", value1, value2, "addTime");
+            addCriterion("add_time not between", value1, value2, "addTime");
             return (Criteria) this;
         }
 

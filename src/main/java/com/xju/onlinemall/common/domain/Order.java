@@ -15,7 +15,7 @@ public class Order {
 
     private Double payMoney;
 
-    private Byte payState;
+    private Byte payStatus;
 
     private Byte isDelete;
 
@@ -71,12 +71,12 @@ public class Order {
         this.payMoney = payMoney;
     }
 
-    public Byte getPayState() {
-        return payState;
+    public Byte getPayStatus() {
+        return payStatus;
     }
 
-    public void setPayState(Byte payState) {
-        this.payState = payState;
+    public void setPayStatus(Byte payStatus) {
+        this.payStatus = payStatus;
     }
 
     public Byte getIsDelete() {

@@ -2,7 +2,6 @@ package com.xju.onlinemall.common.domain;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 public class OrderExample {
@@ -104,32 +103,6 @@ public class OrderExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
-        }
-
-        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
-            if (value == null) {
-                throw new RuntimeException("Value for " + property + " cannot be null");
-            }
-            addCriterion(condition, new java.sql.Date(value.getTime()), property);
-        }
-
-        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
-            if (values == null || values.size() == 0) {
-                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
-            }
-            List<java.sql.Date> dateList = new ArrayList<>();
-            Iterator<Date> iter = values.iterator();
-            while (iter.hasNext()) {
-                dateList.add(new java.sql.Date(iter.next().getTime()));
-            }
-            addCriterion(condition, dateList, property);
-        }
-
-        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
-            if (value1 == null || value2 == null) {
-                throw new RuntimeException("Between values for " + property + " cannot be null");
-            }
-            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
         }
 
         public Criteria andOrderIdIsNull() {
@@ -333,52 +306,52 @@ public class OrderExample {
         }
 
         public Criteria andCreateTimeEqualTo(Date value) {
-            addCriterionForJDBCDate("create_time =", value, "createTime");
+            addCriterion("create_time =", value, "createTime");
             return (Criteria) this;
         }
 
         public Criteria andCreateTimeNotEqualTo(Date value) {
-            addCriterionForJDBCDate("create_time <>", value, "createTime");
+            addCriterion("create_time <>", value, "createTime");
             return (Criteria) this;
         }
 
         public Criteria andCreateTimeGreaterThan(Date value) {
-            addCriterionForJDBCDate("create_time >", value, "createTime");
+            addCriterion("create_time >", value, "createTime");
             return (Criteria) this;
         }
 
         public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("create_time >=", value, "createTime");
+            addCriterion("create_time >=", value, "createTime");
             return (Criteria) this;
         }
 
         public Criteria andCreateTimeLessThan(Date value) {
-            addCriterionForJDBCDate("create_time <", value, "createTime");
+            addCriterion("create_time <", value, "createTime");
             return (Criteria) this;
         }
 
         public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("create_time <=", value, "createTime");
+            addCriterion("create_time <=", value, "createTime");
             return (Criteria) this;
         }
 
         public Criteria andCreateTimeIn(List<Date> values) {
-            addCriterionForJDBCDate("create_time in", values, "createTime");
+            addCriterion("create_time in", values, "createTime");
             return (Criteria) this;
         }
 
         public Criteria andCreateTimeNotIn(List<Date> values) {
-            addCriterionForJDBCDate("create_time not in", values, "createTime");
+            addCriterion("create_time not in", values, "createTime");
             return (Criteria) this;
         }
 
         public Criteria andCreateTimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("create_time between", value1, value2, "createTime");
+            addCriterion("create_time between", value1, value2, "createTime");
             return (Criteria) this;
         }
 
         public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("create_time not between", value1, value2, "createTime");
+            addCriterion("create_time not between", value1, value2, "createTime");
             return (Criteria) this;
         }
 
@@ -393,52 +366,52 @@ public class OrderExample {
         }
 
         public Criteria andOutputTimeEqualTo(Date value) {
-            addCriterionForJDBCDate("output_time =", value, "outputTime");
+            addCriterion("output_time =", value, "outputTime");
             return (Criteria) this;
         }
 
         public Criteria andOutputTimeNotEqualTo(Date value) {
-            addCriterionForJDBCDate("output_time <>", value, "outputTime");
+            addCriterion("output_time <>", value, "outputTime");
             return (Criteria) this;
         }
 
         public Criteria andOutputTimeGreaterThan(Date value) {
-            addCriterionForJDBCDate("output_time >", value, "outputTime");
+            addCriterion("output_time >", value, "outputTime");
             return (Criteria) this;
         }
 
         public Criteria andOutputTimeGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("output_time >=", value, "outputTime");
+            addCriterion("output_time >=", value, "outputTime");
             return (Criteria) this;
         }
 
         public Criteria andOutputTimeLessThan(Date value) {
-            addCriterionForJDBCDate("output_time <", value, "outputTime");
+            addCriterion("output_time <", value, "outputTime");
             return (Criteria) this;
         }
 
         public Criteria andOutputTimeLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("output_time <=", value, "outputTime");
+            addCriterion("output_time <=", value, "outputTime");
             return (Criteria) this;
         }
 
         public Criteria andOutputTimeIn(List<Date> values) {
-            addCriterionForJDBCDate("output_time in", values, "outputTime");
+            addCriterion("output_time in", values, "outputTime");
             return (Criteria) this;
         }
 
         public Criteria andOutputTimeNotIn(List<Date> values) {
-            addCriterionForJDBCDate("output_time not in", values, "outputTime");
+            addCriterion("output_time not in", values, "outputTime");
             return (Criteria) this;
         }
 
         public Criteria andOutputTimeBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("output_time between", value1, value2, "outputTime");
+            addCriterion("output_time between", value1, value2, "outputTime");
             return (Criteria) this;
         }
 
         public Criteria andOutputTimeNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("output_time not between", value1, value2, "outputTime");
+            addCriterion("output_time not between", value1, value2, "outputTime");
             return (Criteria) this;
         }
 
@@ -502,63 +475,63 @@ public class OrderExample {
             return (Criteria) this;
         }
 
-        public Criteria andPayStateIsNull() {
-            addCriterion("pay_state is null");
+        public Criteria andPayStatusIsNull() {
+            addCriterion("pay_status is null");
             return (Criteria) this;
         }
 
-        public Criteria andPayStateIsNotNull() {
-            addCriterion("pay_state is not null");
+        public Criteria andPayStatusIsNotNull() {
+            addCriterion("pay_status is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPayStateEqualTo(Byte value) {
-            addCriterion("pay_state =", value, "payState");
+        public Criteria andPayStatusEqualTo(Byte value) {
+            addCriterion("pay_status =", value, "payStatus");
             return (Criteria) this;
         }
 
-        public Criteria andPayStateNotEqualTo(Byte value) {
-            addCriterion("pay_state <>", value, "payState");
+        public Criteria andPayStatusNotEqualTo(Byte value) {
+            addCriterion("pay_status <>", value, "payStatus");
             return (Criteria) this;
         }
 
-        public Criteria andPayStateGreaterThan(Byte value) {
-            addCriterion("pay_state >", value, "payState");
+        public Criteria andPayStatusGreaterThan(Byte value) {
+            addCriterion("pay_status >", value, "payStatus");
             return (Criteria) this;
         }
 
-        public Criteria andPayStateGreaterThanOrEqualTo(Byte value) {
-            addCriterion("pay_state >=", value, "payState");
+        public Criteria andPayStatusGreaterThanOrEqualTo(Byte value) {
+            addCriterion("pay_status >=", value, "payStatus");
             return (Criteria) this;
         }
 
-        public Criteria andPayStateLessThan(Byte value) {
-            addCriterion("pay_state <", value, "payState");
+        public Criteria andPayStatusLessThan(Byte value) {
+            addCriterion("pay_status <", value, "payStatus");
             return (Criteria) this;
         }
 
-        public Criteria andPayStateLessThanOrEqualTo(Byte value) {
-            addCriterion("pay_state <=", value, "payState");
+        public Criteria andPayStatusLessThanOrEqualTo(Byte value) {
+            addCriterion("pay_status <=", value, "payStatus");
             return (Criteria) this;
         }
 
-        public Criteria andPayStateIn(List<Byte> values) {
-            addCriterion("pay_state in", values, "payState");
+        public Criteria andPayStatusIn(List<Byte> values) {
+            addCriterion("pay_status in", values, "payStatus");
             return (Criteria) this;
         }
 
-        public Criteria andPayStateNotIn(List<Byte> values) {
-            addCriterion("pay_state not in", values, "payState");
+        public Criteria andPayStatusNotIn(List<Byte> values) {
+            addCriterion("pay_status not in", values, "payStatus");
             return (Criteria) this;
         }
 
-        public Criteria andPayStateBetween(Byte value1, Byte value2) {
-            addCriterion("pay_state between", value1, value2, "payState");
+        public Criteria andPayStatusBetween(Byte value1, Byte value2) {
+            addCriterion("pay_status between", value1, value2, "payStatus");
             return (Criteria) this;
         }
 
-        public Criteria andPayStateNotBetween(Byte value1, Byte value2) {
-            addCriterion("pay_state not between", value1, value2, "payState");
+        public Criteria andPayStatusNotBetween(Byte value1, Byte value2) {
+            addCriterion("pay_status not between", value1, value2, "payStatus");
             return (Criteria) this;
         }
 
