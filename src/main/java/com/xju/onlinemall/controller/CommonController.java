@@ -44,9 +44,17 @@ public class CommonController {
     /**
      *跳转商品页
      * */
-    @RequestMapping("/commodity.html")
+    @RequestMapping("/product.html")
     public String commodity(){
-        return "views_front/commodity";
+        return "views_front/product";
+    }
+
+    /**
+     *跳转商品列表页
+     * */
+    @RequestMapping("/product-list.html")
+    public String product_list(){
+        return "views_front/product-list";
     }
 
     /**
