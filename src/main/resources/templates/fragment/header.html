@@ -576,8 +576,11 @@
                                             <span class="flaticon-profile"></span>
                                         </a>
                                         <ul class="sub-menu">
-                                            <li class="menu-item furgan-MyAccount-navigation-link furgan-MyAccount-navigation-link--dashboard is-active">
-                                                <a href="#">仪表盘</a>
+                                            <li class="menu-item furgan-MyAccount-navigation-link furgan-MyAccount-navigation-link--customer-logout">
+                                                <a href="#">用户名: <span th:text="${uname}">未登录</span> </a>
+                                            </li>
+                                            <li class="menu-item furgan-MyAccount-navigation-link furgan-MyAccount-navigation-link--edit-account">
+                                                <a href="#">账户明细</a>
                                             </li>
                                             <li class="menu-item furgan-MyAccount-navigation-link furgan-MyAccount-navigation-link--orders">
                                                 <a href="#">订单</a>
@@ -586,13 +589,10 @@
                                                 <a href="wishlist.html">收藏夹</a>
                                             </li>
                                             <li class="menu-item furgan-MyAccount-navigation-link furgan-MyAccount-navigation-link--edit-adchair">
-                                                <a href="address.html">地址</a>
+                                                <a href="#">地址</a>
                                             </li>
-                                            <li class="menu-item furgan-MyAccount-navigation-link furgan-MyAccount-navigation-link--edit-account">
-                                                <a href="#">账户明细</a>
-                                            </li>
-                                            <li class="menu-item furgan-MyAccount-navigation-link furgan-MyAccount-navigation-link--customer-logout">
-                                                <a href="#">用户名: <span th:text="${uname}">未登录</span> </a>
+                                            <li class="menu-item furgan-MyAccount-navigation-link furgan-MyAccount-navigation-link--dashboard is-active">
+                                                <a href="#">仪表盘</a>
                                             </li>
                                             <li class="menu-item furgan-MyAccount-navigation-link furgan-MyAccount-navigation-link--customer-logout">
                                                 <a href="/logout">退出登录</a>
