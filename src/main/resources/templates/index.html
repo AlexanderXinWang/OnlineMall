@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/animate.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/chosen.min.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/jquery.scrollbar.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/lightbox.min.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/slick.min.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/fonts/flaticon.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/megamenu.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/dreaming-attribute.css"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
-    <title>Furgan - HTML Template </title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" th:href="@{/assets/images/favicon.png}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" th:href="@{/assets/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.css" th:href="@{/assets/css/animate.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" th:href="@{/assets/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/chosen.min.css" th:href="@{/assets/css/chosen.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" th:href="@{/assets/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.scrollbar.css" th:href="@{/assets/css/jquery.scrollbar.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/lightbox.min.css" th:href="@{/assets/css/lightbox.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css" th:href="@{/assets/css/magnific-popup.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/slick.min.css" th:href="@{/assets/css/slick.min.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/fonts/flaticon.css" th:href="@{/assets/fonts/flaticon.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/megamenu.css" th:href="@{/assets/css/megamenu.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/dreaming-attribute.css" th:href="@{/assets/css/dreaming-attribute.css}"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" th:href="@{/assets/css/style.css}"/>
+    <title>Online Mall </title>
 </head>
 <body>
+
 <div th:replace="~{fragment/header::header}"></div>
 
 <div class="fullwidth-template">
@@ -79,8 +80,8 @@
                                 <span class="flaticon-startup"></span>
                             </div>
                             <div class="content">
-                                <h4 class="title">高效配送.</h4>
-                                <div class="desc">With sites in 5 languages, we ship to over 200 countries</div>
+                                <h4 class="title">快速 发货.</h4>
+                                <div class="desc">网站仅支持1种语言，预计可发送到200多个国家。</div>
                             </div>
                         </div>
                     </div>
@@ -93,8 +94,8 @@
                                 <span class="flaticon-padlock"></span>
                             </div>
                             <div class="content">
-                                <h4 class="title">安全送达.</h4>
-                                <div class="desc">Pay with the world’s most popular, secure payment methods.</div>
+                                <h4 class="title">安全 支付</h4>
+                                <div class="desc">使用世界上最流行、最安全的支付方式支付。</div>
                             </div>
                         </div>
                     </div>
@@ -107,8 +108,8 @@
                                 <span class="flaticon-recycle"></span>
                             </div>
                             <div class="content">
-                                <h4 class="title">365天可退还服务</h4>
-                                <div class="desc">Round-the-clock assistance for a shopping experience.</div>
+                                <h4 class="title">365天 均可退货</h4>
+                                <div class="desc">全天候协助式购物体验。</div>
                             </div>
                         </div>
                     </div>
@@ -129,7 +130,7 @@
                                 <div class="banner-content">
                                     <div class="title-wrap">
                                         <h6 class="title">
-                                            <a target="_self" href="#">Cuckoo Clock</a>
+                                            <a target="_self" href="#">布谷挂钟</a>
                                         </h6>
                                     </div>
                                     <div class="button-wrap">
@@ -149,7 +150,7 @@
                                 <div class="banner-content">
                                     <div class="title-wrap">
                                         <h6 class="title">
-                                            <a target="_self" href="#">Elephant Chair</a>
+                                            <a target="_self" href="#">象 椅</a>
                                         </h6>
                                     </div>
                                     <div class="button-wrap">
@@ -167,7 +168,7 @@
                                 <div class="banner-content">
                                     <div class="title-wrap">
                                         <h6 class="title">
-                                            <a target="_self" href="#">Wood Table</a>
+                                            <a target="_self" href="#">实木桌</a>
                                         </h6>
                                     </div>
                                     <div class="button-wrap">
@@ -184,9 +185,8 @@
         <div class="container">
             <div class="furgan-heading style-01">
                 <div class="heading-inner">
-                    <h3 class="title">Featured Products </h3>
-                    <div class="subtitle">Made with care for your little ones, our products are perfect for every
-                        occasion. Check it out.
+                    <h3 class="title">特色产品 </h3>
+                    <div class="subtitle">为您的孩子精心制作，我们的产品适合任何场合。来看看吧。
                     </div>
                 </div>
             </div>
@@ -204,33 +204,33 @@
                                          alt="Sweeper Funnel" width="270" height="350">
                                 </a>
                                 <div class="flash">
-                                    <span class="onnew"><span class="text">New</span></span></div>
-                                <a href="#" class="button yith-wcqv-button">Quick View</a></div>
+                                    <span class="onnew"><span class="text">新品</span></span></div>
+                                <a href="#" class="button yith-wcqv-button">快速查看</a></div>
                             <div class="product-info">
                                 <div class="rating-wapper nostar">
-                                    <div class="star-rating"><span style="width:0%">Rated <strong
+                                    <div class="star-rating"><span style="width:90%">Rated <strong
                                             class="rating">0</strong> out of 5</span></div>
                                     <span class="review">(0)</span></div>
                                 <h3 class="product-name product_title">
                                     <a href="#"
-                                       tabindex="0">Sweeper Funnel</a>
+                                       tabindex="0">清扫漏斗</a>
                                 </h3>
                                 <span class="price"><span class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>79.00</span> – <span
+                                        class="furgan-Price-currencySymbol">￥</span>79.00</span> – <span
                                         class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>139.00</span></span>
+                                        class="furgan-Price-currencySymbol">￥</span>139.00</span></span>
                             </div>
                             <div class="group-button clearfix">
                                 <div class="yith-wcwl-add-to-wishlist">
                                     <div class="yith-wcwl-add-button show">
-                                        <a href="#" class="add_to_wishlist">Add to Wishlist</a>
+                                        <a href="#" class="add_to_wishlist">添加到愿望清单</a>
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
                                     <a href="#" class="button product_type_grouped">
-                                        View products</a></div>
+                                        添加到购物车</a></div>
                                 <div class="furgan product compare-button">
-                                    <a href="#" class="compare button">Compare</a></div>
+                                    <a href="#" class="compare button">比较其他商品</a></div>
                             </div>
                         </div>
                     </div>
@@ -246,33 +246,33 @@
                                 </a>
                                 <div class="flash">
                                     <span class="onsale"><span class="number">-18%</span></span>
-                                    <span class="onnew"><span class="text">New</span></span></div>
-                                <a href="#" class="button yith-wcqv-button">Quick View</a></div>
+                                    <span class="onnew"><span class="text">新品</span></span></div>
+                                <a href="#" class="button yith-wcqv-button">快速查看</a></div>
                             <div class="product-info">
                                 <div class="rating-wapper nostar">
-                                    <div class="star-rating"><span style="width:0%">Rated <strong
+                                    <div class="star-rating"><span style="width:85%">Rated <strong
                                             class="rating">0</strong> out of 5</span></div>
                                     <span class="review">(0)</span></div>
                                 <h3 class="product-name product_title">
                                     <a href="#"
-                                       tabindex="0">Moss Sofa</a>
+                                       tabindex="0">吊 灯</a>
                                 </h3>
                                 <span class="price"><del><span
                                         class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>109.00</span></del> <ins><span
+                                        class="furgan-Price-currencySymbol">￥</span>109.00</span></del> <ins><span
                                         class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>89.00</span></ins></span>
+                                        class="furgan-Price-currencySymbol">￥</span>89.00</span></ins></span>
                             </div>
                             <div class="group-button clearfix">
                                 <div class="yith-wcwl-add-to-wishlist">
                                     <div class="yith-wcwl-add-button show">
-                                        <a href="#" class="add_to_wishlist">Add to Wishlist</a>
+                                        <a href="#" class="add_to_wishlist">添加到愿望清单</a>
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
-                                    <a href="#" class="button product_type_grouped">Add to cart</a></div>
+                                    <a href="#" class="button product_type_grouped">添加到购物车</a></div>
                                 <div class="furgan product compare-button">
-                                    <a href="#" class="compare button">Compare</a></div>
+                                    <a href="#" class="compare button">比较其他商品</a></div>
                             </div>
                         </div>
                     </div>
@@ -287,32 +287,32 @@
                                          alt="Tulip Chair" width="270" height="350">
                                 </a>
                                 <div class="flash">
-                                    <span class="onnew"><span class="text">New</span></span></div>
+                                    <span class="onnew"><span class="text">新品</span></span></div>
                                 <a href="#" class="button yith-wcqv-button" data-product_id="30"
-                                   tabindex="0">Quick View</a></div>
+                                   tabindex="0">快速查看</a></div>
                             <div class="product-info">
                                 <div class="rating-wapper nostar">
-                                    <div class="star-rating"><span style="width:0%">Rated <strong
+                                    <div class="star-rating"><span style="width:80%">Rated <strong
                                             class="rating">0</strong> out of 5</span></div>
                                     <span class="review">(0)</span></div>
                                 <h3 class="product-name product_title">
                                     <a href="#"
-                                       tabindex="0">Tulip Chair</a>
+                                       tabindex="0">郁金香椅子</a>
                                 </h3>
                                 <span class="price"><span class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>60.00</span></span>
+                                        class="furgan-Price-currencySymbol">￥</span>60.00</span></span>
                             </div>
                             <div class="group-button clearfix">
                                 <div class="yith-wcwl-add-to-wishlist">
                                     <div class="yith-wcwl-add-button show">
-                                        <a href="#" class="add_to_wishlist">Add to Wishlist</a>
+                                        <a href="#" class="add_to_wishlist">添加到愿望清单</a>
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
                                     <a href="#" class="button product_type_grouped">
-                                        Add to cart</a></div>
+                                        添加到购物车</a></div>
                                 <div class="furgan product compare-button">
-                                    <a href="#" class="compare button">Compare</a></div>
+                                    <a href="#" class="compare button">比较其他商品</a></div>
                             </div>
                         </div>
                     </div>
@@ -327,33 +327,33 @@
                                          alt="DAX Armchair" width="270" height="350">
                                 </a>
                                 <div class="flash">
-                                    <span class="onnew"><span class="text">New</span></span></div>
-                                <a href="#" class="button yith-wcqv-button">Quick View</a></div>
+                                    <span class="onnew"><span class="text">新品</span></span></div>
+                                <a href="#" class="button yith-wcqv-button">快速查看</a></div>
                             <div class="product-info">
                                 <div class="rating-wapper nostar">
-                                    <div class="star-rating"><span style="width:0%">Rated <strong
+                                    <div class="star-rating"><span style="width:77%">Rated <strong
                                             class="rating">0</strong> out of 5</span></div>
                                     <span class="review">(0)</span></div>
                                 <h3 class="product-name product_title">
                                     <a href="#"
-                                       tabindex="0">DAX Armchair</a>
+                                       tabindex="0">DAX 扶手椅</a>
                                 </h3>
                                 <span class="price"><span class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>89.00</span> – <span
+                                        class="furgan-Price-currencySymbol">￥</span>89.00</span> – <span
                                         class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>139.00</span></span>
+                                        class="furgan-Price-currencySymbol">￥</span>139.00</span></span>
                             </div>
                             <div class="group-button clearfix">
                                 <div class="yith-wcwl-add-to-wishlist">
                                     <div class="yith-wcwl-add-button show">
-                                        <a href="#" class="add_to_wishlist">Add to Wishlist</a>
+                                        <a href="#" class="add_to_wishlist">添加到愿望清单</a>
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
                                     <a href="#" class="button product_type_grouped">
-                                        View products</a></div>
+                                        添加到购物车</a></div>
                                 <div class="furgan product compare-button">
-                                    <a href="#" class="compare button">Compare</a></div>
+                                    <a href="#" class="compare button">比较其他商品</a></div>
                             </div>
                         </div>
                     </div>
@@ -368,31 +368,31 @@
                                          alt="Alarm Clock" width="270" height="350">
                                 </a>
                                 <div class="flash">
-                                    <span class="onnew"><span class="text">New</span></span></div>
-                                <a href="#" class="button yith-wcqv-button">Quick View</a></div>
+                                    <span class="onnew"><span class="text">新品</span></span></div>
+                                <a href="#" class="button yith-wcqv-button">快速查看</a></div>
                             <div class="product-info">
                                 <div class="rating-wapper nostar">
-                                    <div class="star-rating"><span style="width:0%">Rated <strong
+                                    <div class="star-rating"><span style="width:77%">Rated <strong
                                             class="rating">0</strong> out of 5</span></div>
                                     <span class="review">(0)</span></div>
                                 <h3 class="product-name product_title">
                                     <a href="#"
-                                       tabindex="0">Alarm Clock</a>
+                                       tabindex="0">闹 钟</a>
                                 </h3>
                                 <span class="price"><span class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>129.00</span></span>
+                                        class="furgan-Price-currencySymbol">￥</span>129.00</span></span>
                             </div>
                             <div class="group-button clearfix">
                                 <div class="yith-wcwl-add-to-wishlist">
                                     <div class="yith-wcwl-add-button show">
-                                        <a href="#" class="add_to_wishlist">Add to Wishlist</a>
+                                        <a href="#" class="add_to_wishlist">添加到愿望清单</a>
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
                                     <a href="#" class="button product_type_grouped">
-                                        Add to cart</a></div>
+                                        添加到购物车</a></div>
                                 <div class="furgan product compare-button">
-                                    <a href="#" class="compare button">Compare</a></div>
+                                    <a href="#" class="compare button">比较其他商品</a></div>
                             </div>
                         </div>
                     </div>
@@ -408,34 +408,34 @@
                                 </a>
                                 <div class="flash">
                                     <span class="onsale"><span class="number">-14%</span></span>
-                                    <span class="onnew"><span class="text">New</span></span></div>
-                                <a href="#" class="button yith-wcqv-button">Quick View</a></div>
+                                    <span class="onnew"><span class="text">新品</span></span></div>
+                                <a href="#" class="button yith-wcqv-button">快速查看</a></div>
                             <div class="product-info">
                                 <div class="rating-wapper ">
-                                    <div class="star-rating"><span style="width:100%">Rated <strong
+                                    <div class="star-rating"><span style="width:0%">Rated <strong
                                             class="rating">5.00</strong> out of 5</span></div>
                                     <span class="review">(1)</span></div>
                                 <h3 class="product-name product_title">
                                     <a href="#"
-                                       tabindex="0">Prix Chair</a>
+                                       tabindex="0">Prix 椅子</a>
                                 </h3>
                                 <span class="price"><del><span
                                         class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>138.00</span></del> <ins><span
+                                        class="furgan-Price-currencySymbol">￥</span>138.00</span></del> <ins><span
                                         class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>119.00</span></ins></span>
+                                        class="furgan-Price-currencySymbol">￥</span>119.00</span></ins></span>
                             </div>
                             <div class="group-button clearfix">
                                 <div class="yith-wcwl-add-to-wishlist">
                                     <div class="yith-wcwl-add-button show">
-                                        <a href="#" class="add_to_wishlist">Add to Wishlist</a>
+                                        <a href="#" class="add_to_wishlist">添加到愿望清单</a>
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
                                     <a href="#" class="button product_type_grouped">
-                                        Add to cart</a></div>
+                                        添加到购物车</a></div>
                                 <div class="furgan product compare-button">
-                                    <a href="#" class="compare button">Compare</a></div>
+                                    <a href="#" class="compare button">比较其他商品</a></div>
                             </div>
                         </div>
                     </div>
@@ -450,31 +450,31 @@
                                          alt="Chair AAC" width="270" height="350">
                                 </a>
                                 <div class="flash">
-                                    <span class="onnew"><span class="text">New</span></span></div>
-                                <a href="#" class="button yith-wcqv-button">Quick View</a></div>
+                                    <span class="onnew"><span class="text">新品</span></span></div>
+                                <a href="#" class="button yith-wcqv-button">快速查看</a></div>
                             <div class="product-info">
                                 <div class="rating-wapper ">
                                     <div class="star-rating"><span style="width:100%">Rated <strong
-                                            class="rating">5.00</strong> out of 5</span></div>
-                                    <span class="review">(1)</span></div>
+                                            class="rating">0</strong> out of 5</span></div>
+                                    <span class="review">(0)</span></div>
                                 <h3 class="product-name product_title">
                                     <a href="#"
-                                       tabindex="0">Chair AAC</a>
+                                       tabindex="0">AAC 椅子</a>
                                 </h3>
                                 <span class="price"><span class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>207.00</span></span>
+                                        class="furgan-Price-currencySymbol">￥</span>207.00</span></span>
                             </div>
                             <div class="group-button clearfix">
                                 <div class="yith-wcwl-add-to-wishlist">
                                     <div class="yith-wcwl-add-button show">
-                                        <a href="#" class="add_to_wishlist">Add to Wishlist</a>
+                                        <a href="#" class="add_to_wishlist">添加到愿望清单</a>
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
                                     <a href="#" class="button product_type_grouped">
-                                        Buy it on Amazon</a></div>
+                                        添加到购物车</a></div>
                                 <div class="furgan product compare-button">
-                                    <a href="#" class="compare button">Compare</a></div>
+                                    <a href="#" class="compare button">比较其他商品</a></div>
                             </div>
                         </div>
                     </div>
@@ -490,35 +490,35 @@
                                 </a>
                                 <div class="flash">
                                     <span class="onsale"><span class="number">-11%</span></span>
-                                    <span class="onnew"><span class="text">New</span></span></div>
+                                    <span class="onnew"><span class="text">新品</span></span></div>
                                 <a href="#" class="button yith-wcqv-button" data-product_id="25"
-                                   tabindex="0">Quick View</a></div>
+                                   tabindex="0">快速查看</a></div>
                             <div class="product-info">
                                 <div class="rating-wapper nostar">
-                                    <div class="star-rating"><span style="width:0%">Rated <strong
+                                    <div class="star-rating"><span style="width:67%">Rated <strong
                                             class="rating">0</strong> out of 5</span></div>
                                     <span class="review">(0)</span></div>
                                 <h3 class="product-name product_title">
                                     <a href="#"
-                                       tabindex="0">Office Chair</a>
+                                       tabindex="0">办公椅</a>
                                 </h3>
                                 <span class="price"><del><span
                                         class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>89.00</span></del> <ins><span
+                                        class="furgan-Price-currencySymbol">￥</span>89.00</span></del> <ins><span
                                         class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>79.00</span></ins></span>
+                                        class="furgan-Price-currencySymbol">￥</span>79.00</span></ins></span>
                             </div>
                             <div class="group-button clearfix">
                                 <div class="yith-wcwl-add-to-wishlist">
                                     <div class="yith-wcwl-add-button show">
-                                        <a href="#" class="add_to_wishlist">Add to Wishlist</a>
+                                        <a href="#" class="add_to_wishlist">添加到愿望清单</a>
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
                                     <a href="#" class="button product_type_grouped">
-                                        Add to cart</a></div>
+                                        添加到购物车</a></div>
                                 <div class="furgan product compare-button">
-                                    <a href="#" class="compare button">Compare</a></div>
+                                    <a href="#" class="compare button">比较其他商品</a></div>
                             </div>
                         </div>
                     </div>
@@ -532,7 +532,7 @@
                                          alt="Moss Sofa" width="270" height="350">
                                 </a>
                                 <div class="flash">
-                                    <span class="onnew"><span class="text">New</span></span></div>
+                                    <span class="onnew"><span class="text">新品</span></span></div>
                                 <form class="variations_form cart">
                                     <table class="variations">
                                         <tbody>
@@ -544,19 +544,19 @@
                                                         data-attribute_name="attribute_pa_color"
                                                         data-show_option_none="yes" tabindex="-1">
                                                     <option data-type="" data-pa_color="" value="">
-                                                        Choose an option
+                                                        选择一个选项
                                                     </option>
                                                     <option data-width="30" data-height="30"
                                                             data-type="color" data-pa_color="#3155e2"
-                                                            value="blue">Blue
+                                                            value="blue">蓝色
                                                     </option>
                                                     <option data-width="30" data-height="30"
                                                             data-type="color" data-pa_color="#49aa51"
-                                                            value="green">Green
+                                                            value="green">绿色
                                                     </option>
                                                     <option data-width="30" data-height="30"
                                                             data-type="color" data-pa_color="#ff63cb"
-                                                            value="pink">Pink
+                                                            value="pink">粉色
                                                     </option>
                                                 </select>
                                                 <div class="data-val attribute-pa_color"
@@ -571,37 +571,37 @@
                                                         style="background: #ff63cb;"
                                                         data-value="pink"></a></div>
                                                 <a class="reset_variations" href="#"
-                                                   tabindex="-1">Clear</a></td>
+                                                   tabindex="-1">还原</a></td>
                                         </tr>
                                         </tbody>
                                     </table>
                                 </form>
-                                <a href="#" class="button yith-wcqv-button">Quick View</a></div>
+                                <a href="#" class="button yith-wcqv-button">快速查看</a></div>
                             <div class="product-info">
                                 <div class="rating-wapper nostar">
-                                    <div class="star-rating"><span style="width:0%">Rated <strong
+                                    <div class="star-rating"><span style="width:50%">Rated <strong
                                             class="rating">0</strong> out of 5</span></div>
                                     <span class="review">(0)</span></div>
                                 <h3 class="product-name product_title">
                                     <a href="#"
-                                       tabindex="-1">Moss Sofa</a>
+                                       tabindex="-1">苔藓沙发</a>
                                 </h3>
                                 <span class="price"><span class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>45.00</span> – <span
+                                        class="furgan-Price-currencySymbol">￥</span>45.00</span> – <span
                                         class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>54.00</span></span>
+                                        class="furgan-Price-currencySymbol">￥</span>54.00</span></span>
                             </div>
                             <div class="group-button clearfix">
                                 <div class="yith-wcwl-add-to-wishlist">
                                     <div class="yith-wcwl-add-button show">
-                                        <a href="#" class="add_to_wishlist">Add to Wishlist</a>
+                                        <a href="#" class="add_to_wishlist">添加到愿望清单</a>
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
                                     <a href="#" class="button product_type_grouped">
-                                        Select options</a></div>
+                                        添加到购物车</a></div>
                                 <div class="furgan product compare-button">
-                                    <a href="#" class="compare button">Compare</a></div>
+                                    <a href="#" class="compare button">比较其他商品</a></div>
                             </div>
                         </div>
                     </div>
@@ -616,32 +616,32 @@
                                          alt="Wall Lamp" width="270" height="350">
                                 </a>
                                 <div class="flash">
-                                    <span class="onnew"><span class="text">New</span></span></div>
+                                    <span class="onnew"><span class="text">新品</span></span></div>
                                 <a href="#" class="button yith-wcqv-button" data-product_id="22"
-                                   tabindex="-1">Quick View</a></div>
+                                   tabindex="-1">快速查看</a></div>
                             <div class="product-info">
                                 <div class="rating-wapper nostar">
-                                    <div class="star-rating"><span style="width:0%">Rated <strong
+                                    <div class="star-rating"><span style="width:75%">Rated <strong
                                             class="rating">0</strong> out of 5</span></div>
                                     <span class="review">(0)</span></div>
                                 <h3 class="product-name product_title">
                                     <a href="#"
-                                       tabindex="-1">Wall Lamp</a>
+                                       tabindex="-1">挂式床头灯</a>
                                 </h3>
                                 <span class="price"><span class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>98.00</span></span>
+                                        class="furgan-Price-currencySymbol">￥</span>98.00</span></span>
                             </div>
                             <div class="group-button clearfix">
                                 <div class="yith-wcwl-add-to-wishlist">
                                     <div class="yith-wcwl-add-button show">
-                                        <a href="#" class="add_to_wishlist">Add to cart</a>
+                                        <a href="#" class="add_to_wishlist">添加到愿望清单</a>
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
                                     <a href="#" class="button product_type_grouped">
-                                        Add to cart</a></div>
+                                        添加到购物车</a></div>
                                 <div class="furgan product compare-button">
-                                    <a href="#" class="compare button">Compare</a></div>
+                                    <a href="#" class="compare button">比较其他商品</a></div>
                             </div>
                         </div>
                     </div>
@@ -659,16 +659,16 @@
                     <div class="banner-content">
                         <div class="title-wrap">
                             <div class="banner-label">
-                                Modern Chair
+                                现代椅子
                             </div>
                             <h6 class="title">
-                                Best Seller </h6>
+                                畅销商品 </h6>
                         </div>
                         <div class="button-wrap">
                             <div class="subtitle">
-                                Lorem ipsum dolor sit amet consectetur adipiscing elit justo
+                                阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴阿巴
                             </div>
-                            <a class="button" target="_self" href="#"><span>Shop now</span></a>
+                            <a class="button" target="_self" href="#"><span>立即购买</span></a>
                         </div>
                     </div>
                 </div>
@@ -679,9 +679,9 @@
         <div class="container">
             <div class="furgan-heading style-01">
                 <div class="heading-inner">
-                    <h3 class="title">New Arrival</h3>
+                    <h3 class="title">新品上市</h3>
                     <div class="subtitle">
-                        Made with care for your little ones, our products are perfect for every occasion. Check it out.
+                        为您的孩子精心制作，我们的产品适合各种场合。过来看看。
                     </div>
                 </div>
             </div>
@@ -699,33 +699,33 @@
                                          alt="Woody Table" width="270" height="350">
                                 </a>
                                 <div class="flash">
-                                    <span class="onnew"><span class="text">New</span></span></div>
+                                    <span class="onnew"><span class="text">新品</span></span></div>
                                 <div class="group-button">
                                     <div class="yith-wcwl-add-to-wishlist">
                                         <div class="yith-wcwl-add-button show">
-                                            <a href="#" class="add_to_wishlist">Add to Wishlist</a>
+                                            <a href="#" class="add_to_wishlist">添加到愿望清单</a>
                                         </div>
                                     </div>
                                     <div class="furgan product compare-button">
-                                        <a href="#" class="compare button">Compare</a>
+                                        <a href="#" class="compare button">比较其他商品</a>
                                     </div>
-                                    <a href="#" class="button yith-wcqv-button">Quick View</a>
+                                    <a href="#" class="button yith-wcqv-button">快速查看</a>
                                     <div class="add-to-cart">
-                                        <a href="#" class="button product_type_simple add_to_cart_button">Add to cart</a>
+                                        <a href="#" class="button product_type_simple add_to_cart_button">添加到购物车</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="product-info equal-elem">
                                 <h3 class="product-name product_title">
                                     <a href="#"
-                                       tabindex="0">Woody Table</a>
+                                       tabindex="0">实木桌</a>
                                 </h3>
                                 <div class="rating-wapper nostar">
-                                    <div class="star-rating"><span style="width:0%">Rated <strong
+                                    <div class="star-rating"><span style="width:65%">Rated <strong
                                             class="rating">0</strong> out of 5</span></div>
                                     <span class="review">(0)</span></div>
                                 <span class="price"><span class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>109.00</span></span>
+                                        class="furgan-Price-currencySymbol">￥</span>109.00</span></span>
                             </div>
                         </div>
                     </div>
@@ -739,33 +739,33 @@
                                          alt="Lynn Storage" width="270" height="350">
                                 </a>
                                 <div class="flash">
-                                    <span class="onnew"><span class="text">New</span></span></div>
+                                    <span class="onnew"><span class="text">新品</span></span></div>
                                 <div class="group-button">
                                     <div class="yith-wcwl-add-to-wishlist">
                                         <div class="yith-wcwl-add-button show">
-                                            <a href="#" class="add_to_wishlist">Add to Wishlist</a>
+                                            <a href="#" class="add_to_wishlist">添加到愿望清单</a>
                                         </div>
                                     </div>
                                     <div class="furgan product compare-button">
-                                        <a href="#" class="compare button">Compare</a>
+                                        <a href="#" class="compare button">比较其他商品</a>
                                     </div>
-                                    <a href="#" class="button yith-wcqv-button">Quick View</a>
+                                    <a href="#" class="button yith-wcqv-button">快速查看</a>
                                     <div class="add-to-cart">
-                                        <a href="#" class="button product_type_simple add_to_cart_button">Add to cart</a>
+                                        <a href="#" class="button product_type_simple add_to_cart_button">添加到购物车</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="product-info equal-elem">
                                 <h3 class="product-name product_title">
                                     <a href="#"
-                                       tabindex="0">Lynn Storage</a>
+                                       tabindex="0">钥匙扣支架</a>
                                 </h3>
                                 <div class="rating-wapper nostar">
-                                    <div class="star-rating"><span style="width:0%">Rated <strong
+                                    <div class="star-rating"><span style="width:80%">Rated <strong
                                             class="rating">0</strong> out of 5</span></div>
                                     <span class="review">(0)</span></div>
                                 <span class="price"><span class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>79.00</span></span>
+                                        class="furgan-Price-currencySymbol">￥</span>79.00</span></span>
                             </div>
                         </div>
                     </div>
@@ -779,32 +779,32 @@
                                          alt="Knit Lamp" width="270" height="350">
                                 </a>
                                 <div class="flash">
-                                    <span class="onnew"><span class="text">New</span></span></div>
+                                    <span class="onnew"><span class="text">新品</span></span></div>
                                 <div class="group-button">
                                     <div class="yith-wcwl-add-to-wishlist">
                                         <div class="yith-wcwl-add-button show">
-                                            <a href="#" class="add_to_wishlist">Add to Wishlist</a>
+                                            <a href="#" class="add_to_wishlist">添加到愿望清单</a>
                                         </div>
                                     </div>
                                     <div class="furgan product compare-button">
-                                        <a href="#" class="compare button">Compare</a>
+                                        <a href="#" class="compare button">比较其他商品</a>
                                     </div>
-                                    <a href="#" class="button yith-wcqv-button">Quick View</a>
+                                    <a href="#" class="button yith-wcqv-button">快速查看</a>
                                     <div class="add-to-cart">
-                                        <a href="#" class="button product_type_simple add_to_cart_button">Add to cart</a>
+                                        <a href="#" class="button product_type_simple add_to_cart_button">添加到购物车</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="product-info equal-elem">
                                 <h3 class="product-name product_title">
-                                    <a href="#" tabindex="0">Knit Lamp</a>
+                                    <a href="#" tabindex="0">针织灯</a>
                                 </h3>
                                 <div class="rating-wapper nostar">
                                     <div class="star-rating"><span style="width:0%">Rated <strong
                                             class="rating">0</strong> out of 5</span></div>
                                     <span class="review">(0)</span></div>
                                 <span class="price"><span class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>120.00</span></span>
+                                        class="furgan-Price-currencySymbol">￥</span>120.00</span></span>
                             </div>
                         </div>
                     </div>
@@ -818,32 +818,32 @@
                                          alt="Round Basket" width="270" height="350">
                                 </a>
                                 <div class="flash">
-                                    <span class="onnew"><span class="text">New</span></span></div>
+                                    <span class="onnew"><span class="text">新品</span></span></div>
                                 <div class="group-button">
                                     <div class="yith-wcwl-add-to-wishlist">
                                         <div class="yith-wcwl-add-button show">
-                                            <a href="#" class="add_to_wishlist">Add to Wishlist</a>
+                                            <a href="#" class="add_to_wishlist">添加到愿望清单</a>
                                         </div>
                                     </div>
                                     <div class="furgan product compare-button">
-                                        <a href="#" class="compare button">Compare</a>
+                                        <a href="#" class="compare button">比较其他商品</a>
                                     </div>
-                                    <a href="#" class="button yith-wcqv-button">Quick View</a>
+                                    <a href="#" class="button yith-wcqv-button">快速查看</a>
                                     <div class="add-to-cart">
-                                        <a href="#" class="button product_type_simple add_to_cart_button">Add to cart</a>
+                                        <a href="#" class="button product_type_simple add_to_cart_button">添加到购物车</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="product-info equal-elem">
                                 <h3 class="product-name product_title">
-                                    <a href="#" tabindex="0">Round Basket</a>
+                                    <a href="#" tabindex="0">圆 筐</a>
                                 </h3>
                                 <div class="rating-wapper nostar">
                                     <div class="star-rating"><span style="width:0%">Rated <strong
                                             class="rating">0</strong> out of 5</span></div>
                                     <span class="review">(0)</span></div>
                                 <span class="price"><span class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>134.00</span></span>
+                                        class="furgan-Price-currencySymbol">￥</span>134.00</span></span>
                             </div>
                         </div>
                     </div>
@@ -858,34 +858,34 @@
                                 </a>
                                 <div class="flash">
                                     <span class="onsale"><span class="number">-21%</span></span>
-                                    <span class="onnew"><span class="text">New</span></span></div>
+                                    <span class="onnew"><span class="text">新品</span></span></div>
                                 <div class="group-button">
                                     <div class="yith-wcwl-add-to-wishlist">
                                         <div class="yith-wcwl-add-button show">
-                                            <a href="#" class="add_to_wishlist">Add to Wishlist</a>
+                                            <a href="#" class="add_to_wishlist">添加到愿望清单</a>
                                         </div>
                                     </div>
                                     <div class="furgan product compare-button">
-                                        <a href="#" class="compare button">Compare</a>
+                                        <a href="#" class="compare button">比较其他商品</a>
                                     </div>
-                                    <a href="#" class="button yith-wcqv-button">Quick View</a>
+                                    <a href="#" class="button yith-wcqv-button">快速查看</a>
                                     <div class="add-to-cart">
-                                        <a href="#" class="button product_type_simple add_to_cart_button">Add to cart</a>
+                                        <a href="#" class="button product_type_simple add_to_cart_button">添加到购物车</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="product-info equal-elem">
                                 <h3 class="product-name product_title">
-                                    <a href="#" tabindex="-1">Long Sofa</a>
+                                    <a href="#" tabindex="-1">长条沙发</a>
                                 </h3>
                                 <div class="rating-wapper nostar">
                                     <div class="star-rating"><span style="width:0%">Rated <strong
                                             class="rating">0</strong> out of 5</span></div>
                                     <span class="review">(0)</span></div>
                                 <span class="price"><del><span class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>125.00</span></del> <ins><span
+                                        class="furgan-Price-currencySymbol">￥</span>125.00</span></del> <ins><span
                                         class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>99.00</span></ins></span>
+                                        class="furgan-Price-currencySymbol">￥</span>99.00</span></ins></span>
                             </div>
                         </div>
                     </div>
@@ -899,35 +899,35 @@
                                          alt="Sweeper Funnel" width="270" height="350">
                                 </a>
                                 <div class="flash">
-                                    <span class="onnew"><span class="text">New</span></span></div>
+                                    <span class="onnew"><span class="text">新品</span></span></div>
                                 <div class="group-button">
                                     <div class="yith-wcwl-add-to-wishlist">
                                         <div class="yith-wcwl-add-button show">
-                                            <a href="#" class="add_to_wishlist">Add to Wishlist</a>
+                                            <a href="#" class="add_to_wishlist">添加到愿望清单</a>
                                         </div>
                                     </div>
                                     <div class="furgan product compare-button">
-                                        <a href="#" class="compare button">Compare</a>
+                                        <a href="#" class="compare button">比较其他商品</a>
                                     </div>
-                                    <a href="#" class="button yith-wcqv-button">Quick View</a>
+                                    <a href="#" class="button yith-wcqv-button">快速查看</a>
                                     <div class="add-to-cart">
                                         <a href="#"
-                                           class="button product_type_simple add_to_cart_button">Viewproducts</a>
+                                           class="button product_type_simple add_to_cart_button">查看商品</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="product-info equal-elem">
                                 <h3 class="product-name product_title">
-                                    <a href="#" tabindex="-1">Sweeper Funnel</a>
+                                    <a href="#" tabindex="-1">清扫漏斗</a>
                                 </h3>
                                 <div class="rating-wapper nostar">
                                     <div class="star-rating"><span style="width:0%">Rated <strong
                                             class="rating">0</strong> out of 5</span></div>
                                     <span class="review">(0)</span></div>
                                 <span class="price"><span class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>79.00</span> – <span
+                                        class="furgan-Price-currencySymbol">￥</span>79.00</span> – <span
                                         class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">$</span>139.00</span></span>
+                                        class="furgan-Price-currencySymbol">￥</span>139.00</span></span>
                             </div>
                         </div>
                     </div>
@@ -945,19 +945,19 @@
                     <div class="banner-content">
                         <div class="title-wrap">
                             <div class="banner-label">
-                                30 Nov - 03 Dec
+                                11月 30日 - 12月 3 日
                             </div>
                             <h6 class="title">
-                                New Chairs </h6>
+                                新款 椅子 </h6>
                         </div>
                         <div class="cate">
-                            50% Off / Selected items
+                            50% 优惠 / 选项
                         </div>
                         <div class="button-wrap">
                             <div class="subtitle">
-                                Mus venenatis habitasse leo malesuada lacus commodo faucibus torquent donec
+                                歪比歪比，歪比巴卜
                             </div>
-                            <a class="button" target="_self" href="#"><span>Shop now</span></a>
+                            <a class="button" target="_self" href="#"><span>立即购买</span></a>
                         </div>
                     </div>
                 </div>
@@ -969,10 +969,9 @@
             <div class="furgan-heading style-01">
                 <div class="heading-inner">
                     <h3 class="title">
-                        From Our Blog </h3>
+                        来自我们精选博客 </h3>
                     <div class="subtitle">
-                        Lorem ipsum dolor sit amet consectetur adipiscing elit erat vehicula ad, mollis viverra
-                        vulputate
+                        歪比歪比，歪比巴卜
                     </div>
                 </div>
             </div>
@@ -990,27 +989,26 @@
                                          width="370" height="330"> </a>
                                 <a class="datebox" href="#" tabindex="0">
                                     <span>19</span>
-                                    <span>Dec</span>
+                                    <span>十二月</span>
                                 </a>
                             </div>
                             <div class="post-content">
                                 <div class="post-meta">
                                     <div class="post-author">
                                         By:<a href="#" tabindex="0">
-                                        admin </a>
+                                        王金金金 </a>
                                     </div>
                                     <div class="post-comment-icon">
                                         <a href="#"
                                            tabindex="0">
-                                            0 </a>
+                                            1024 </a>
                                     </div>
                                 </div>
                                 <div class="post-info equal-elem">
                                     <h2 class="post-title"><a
                                             href="#"
-                                            tabindex="0">Not your ordinary furniture service.</a></h2>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Malesuada sodales
-                                    quisque litora dapibus primis lacinia
+                                            tabindex="0">不是一般的家具服务。</a></h2>
+                                    歪比歪比，歪比巴卜歪比歪比，歪比巴卜歪比歪比，歪比巴卜歪比歪比，歪比巴卜
                                 </div>
                             </div>
                         </div>
@@ -1026,27 +1024,26 @@
                                          width="370" height="330"> </a>
                                 <a class="datebox" href="#" tabindex="0">
                                     <span>19</span>
-                                    <span>Dec</span>
+                                    <span>十二月</span>
                                 </a>
                             </div>
                             <div class="post-content">
                                 <div class="post-meta">
                                     <div class="post-author">
                                         By:<a href="#" tabindex="0">
-                                        admin </a>
+                                        王老板 </a>
                                     </div>
                                     <div class="post-comment-icon">
                                         <a href="#"
                                            tabindex="0">
-                                            0 </a>
+                                            1000 </a>
                                     </div>
                                 </div>
                                 <div class="post-info equal-elem">
                                     <h2 class="post-title"><a
                                             href="#"
-                                            tabindex="0">We bring you the best by working</a></h2>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Malesuada sodales
-                                    quisque litora dapibus primis lacinia
+                                            tabindex="0">我们通过工作带给你最好的。</a></h2>
+                                    歪比歪比，歪比巴卜歪比歪比，歪比巴卜歪比歪比，歪比巴卜歪比歪比，歪比巴卜
                                 </div>
                             </div>
                         </div>
@@ -1062,14 +1059,14 @@
                                          width="370" height="330"> </a>
                                 <a class="datebox" href="#" tabindex="0">
                                     <span>19</span>
-                                    <span>Dec</span>
+                                    <span>十二月</span>
                                 </a>
                             </div>
                             <div class="post-content">
                                 <div class="post-meta">
                                     <div class="post-author">
                                         By:<a href="#" tabindex="0">
-                                        admin </a>
+                                        王经理 </a>
                                     </div>
                                     <div class="post-comment-icon">
                                         <a href="#"
@@ -1080,9 +1077,8 @@
                                 <div class="post-info equal-elem">
                                     <h2 class="post-title"><a
                                             href="#"
-                                            tabindex="0">We design functional best furniture</a></h2>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Malesuada sodales
-                                    quisque litora dapibus primis lacinia
+                                            tabindex="0">我们设计功能最好的家具。</a></h2>
+                                    歪比歪比，歪比巴卜歪比歪比，歪比巴卜歪比歪比，歪比巴卜歪比歪比，歪比巴卜
                                 </div>
                             </div>
                         </div>
@@ -1098,14 +1094,14 @@
                                          width="370" height="330"> </a>
                                 <a class="datebox" href="#" tabindex="-1">
                                     <span>19</span>
-                                    <span>Dec</span>
+                                    <span>十二月</span>
                                 </a>
                             </div>
                             <div class="post-content">
                                 <div class="post-meta">
                                     <div class="post-author">
                                         By:<a href="#" tabindex="-1">
-                                        admin </a>
+                                        王总 </a>
                                     </div>
                                     <div class="post-comment-icon">
                                         <a href="#"
@@ -1116,9 +1112,8 @@
                                 <div class="post-info equal-elem">
                                     <h2 class="post-title"><a
                                             href="#"
-                                            tabindex="-1">The child is swimming with a buoy</a></h2>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Malesuada sodales
-                                    quisque litora dapibus primis lacinia
+                                            tabindex="-1">这孩子正拿着浮标游泳。</a></h2>
+                                    歪比歪比，歪比巴卜歪比歪比，歪比巴卜歪比歪比，歪比巴卜歪比歪比，歪比巴卜
                                 </div>
                             </div>
                         </div>
@@ -1133,14 +1128,14 @@
                                          width="370" height="330"> </a>
                                 <a class="datebox" href="#" tabindex="-1">
                                     <span>19</span>
-                                    <span>Dec</span>
+                                    <span>十二月</span>
                                 </a>
                             </div>
                             <div class="post-content">
                                 <div class="post-meta">
                                     <div class="post-author">
                                         By:<a href="#" tabindex="-1">
-                                        admin </a>
+                                        管理员 </a>
                                     </div>
                                     <div class="post-comment-icon">
                                         <a href="#"
@@ -1151,9 +1146,8 @@
                                 <div class="post-info equal-elem">
                                     <h2 class="post-title"><a
                                             href="#"
-                                            tabindex="-1">Furniture hiding beside beige wall</a></h2>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Malesuada sodales
-                                    quisque litora dapibus primis lacinia
+                                            tabindex="-1">藏在米色墙上的家具。</a></h2>
+                                    Furniture hiding beside beige wallFurniture hiding beside beige wall
                                 </div>
                             </div>
                         </div>
@@ -1354,19 +1348,19 @@
     <i class="fa fa-angle-double-up"></i>
 </a>
 
-<script src="assets/js/jquery-1.12.4.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/chosen.min.js"></script>
-<script src="assets/js/countdown.min.js"></script>
-<script src="assets/js/jquery.scrollbar.min.js"></script>
-<script src="assets/js/lightbox.min.js"></script>
-<script src="assets/js/magnific-popup.min.js"></script>
-<script src="assets/js/slick.js"></script>
-<script src="assets/js/jquery.zoom.min.js"></script>
-<script src="assets/js/threesixty.min.js"></script>
-<script src="assets/js/jquery-ui.min.js"></script>
-<script src="assets/js/mobilemenu.js"></script>
-<script src="assets/js/functions.js"></script>
+<script src="assets/js/jquery-1.12.4.min.js" th:src="@{/assets/js/jquery-1.12.4.min.js}"></script>
+<script src="assets/js/bootstrap.min.js" th:src="@{/assets/js/bootstrap.min.js}"></script>
+<script src="assets/js/chosen.min.js" th:src="@{/assets/js/chosen.min.js}"></script>
+<script src="assets/js/countdown.min.js" th:src="@{/assets/js/countdown.min.js}"></script>
+<script src="assets/js/jquery.scrollbar.min.js" th:src="@{/assets/js/jquery.scrollbar.min.js}"></script>
+<script src="assets/js/lightbox.min.js" th:src="@{/assets/js/lightbox.min.js}"></script>
+<script src="assets/js/magnific-popup.min.js" th:src="@{/assets/js/magnific-popup.min.js}"></script>
+<script src="assets/js/slick.js" th:src="@{/assets/js/slick.js}"></script>
+<script src="assets/js/jquery.zoom.min.js" th:src="@{/assets/js/jquery.zoom.min.js}"></script>
+<script src="assets/js/threesixty.min.js" th:src="@{/assets/js/threesixty.min.js}"></script>
+<script src="assets/js/jquery-ui.min.js" th:src="@{/assets/js/jquery-ui.min.js}"></script>
+<script src="assets/js/mobilemenu.js" th:src="@{/assets/js/mobilemenu.js}"></script>
+<script src="assets/js/functions.js" th:src="@{/assets/js/functions.js}"></script>
 
 </body>
 </html>

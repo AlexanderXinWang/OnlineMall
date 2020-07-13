@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/megamenu.css" th:href="@{/assets/css/megamenu.css}"/>
     <link rel="stylesheet" type="text/css" href="assets/css/dreaming-attribute.css" th:href="@{/assets/css/megamenu.css}"/>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" th:href="@{/assets/css/style.css}"/>
-    <title>Furgan - HTML Template </title>
+    <title>Online Mall </title>
 </head>
 <body>
 <div th:replace="~{fragment/header::header}"></div>
@@ -25,11 +25,11 @@
     <img src="assets/images/banner-for-all2.jpg"
          class="img-responsive attachment-1920x447 size-1920x447" alt="img">
     <div class="banner-wrapper-inner">
-        <h1 class="page-title">我的账户</h1>
+        <h1 class="page-title">我的账号</h1>
         <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
             <ul class="trail-items breadcrumb">
                 <li class="trail-item trail-begin"><a href="index.html"><span>首页</span></a></li>
-                <li class="trail-item trail-end active"><span>我的账户</span>
+                <li class="trail-item trail-end active"><span>我的账号</span>
                 </li>
             </ul>
         </div>
@@ -47,7 +47,7 @@
                                 <h2>登录</h2>
                                 <form class="furgan-form furgan-form-login login" method="post">
                                     <p class="furgan-form-row furgan-form-row--wide form-row form-row-wide">
-                                        <label for="username">用户名 或 邮箱&nbsp;<span
+                                        <label for="username">用户名 或 注册邮箱&nbsp;<span
                                                 class="required">*</span></label>
                                         <input type="text" class="furgan-Input furgan-Input--text input-text"
                                                name="username" id="username" autocomplete="username" value=""></p>
@@ -105,7 +105,9 @@
 </main>
 
 <div th:replace="~{fragment/footer::footer}"></div>
+
 <div th:replace="~{fragment/footer::footer_mobile}"></div>
+
 <a href="#" class="backtotop active">
     <i class="fa fa-angle-double-up"></i>
 </a>
