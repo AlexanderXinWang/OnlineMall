@@ -3,7 +3,7 @@
 <mapper namespace="com.xju.onlinemall.mapper.CategoryMapper">
   <resultMap id="BaseResultMap" type="com.xju.onlinemall.common.domain.Category">
     <id column="category_id" jdbcType="INTEGER" property="categoryId" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
     <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -65,7 +65,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    category_id, name, is_delete
+    category_id, category_name, is_delete
   </sql>
   <select id="selectByExample" parameterType="com.xju.onlinemall.common.domain.CategoryExample" resultMap="BaseResultMap">
     select
@@ -98,9 +98,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.xju.onlinemall.common.domain.Category">
-    insert into tb_category (category_id, name, is_delete
+    insert into tb_category (category_id, category_name, is_delete
       )
-    values (#{categoryId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{isDelete,jdbcType=TINYINT}
+    values (#{categoryId,jdbcType=INTEGER}, #{categoryName,jdbcType=VARCHAR}, #{isDelete,jdbcType=TINYINT}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.xju.onlinemall.common.domain.Category">
@@ -109,8 +109,8 @@
       <if test="categoryId != null">
         category_id,
       </if>
-      <if test="name != null">
-        name,
+      <if test="categoryName != null">
+        category_name,
       </if>
       <if test="isDelete != null">
         is_delete,
@@ -120,8 +120,8 @@
       <if test="categoryId != null">
         #{categoryId,jdbcType=INTEGER},
       </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
+      <if test="categoryName != null">
+        #{categoryName,jdbcType=VARCHAR},
       </if>
       <if test="isDelete != null">
         #{isDelete,jdbcType=TINYINT},
@@ -140,8 +140,8 @@
       <if test="record.categoryId != null">
         category_id = #{record.categoryId,jdbcType=INTEGER},
       </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.categoryName != null">
+        category_name = #{record.categoryName,jdbcType=VARCHAR},
       </if>
       <if test="record.isDelete != null">
         is_delete = #{record.isDelete,jdbcType=TINYINT},
@@ -154,7 +154,7 @@
   <update id="updateByExample" parameterType="map">
     update tb_category
     set category_id = #{record.categoryId,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
+      category_name = #{record.categoryName,jdbcType=VARCHAR},
       is_delete = #{record.isDelete,jdbcType=TINYINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -163,8 +163,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.xju.onlinemall.common.domain.Category">
     update tb_category
     <set>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+      <if test="categoryName != null">
+        category_name = #{categoryName,jdbcType=VARCHAR},
       </if>
       <if test="isDelete != null">
         is_delete = #{isDelete,jdbcType=TINYINT},
@@ -174,7 +174,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xju.onlinemall.common.domain.Category">
     update tb_category
-    set name = #{name,jdbcType=VARCHAR},
+    set category_name = #{categoryName,jdbcType=VARCHAR},
       is_delete = #{isDelete,jdbcType=TINYINT}
     where category_id = #{categoryId,jdbcType=INTEGER}
   </update>

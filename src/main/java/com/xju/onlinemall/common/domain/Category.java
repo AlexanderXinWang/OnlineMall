@@ -3,7 +3,7 @@ package com.xju.onlinemall.common.domain;
 public class Category {
     private Integer categoryId;
 
-    private String name;
+    private String categoryName;
 
     private Byte isDelete;
 
@@ -15,12 +15,12 @@ public class Category {
         this.categoryId = categoryId;
     }
 
-    public String getName() {
-        return name;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName == null ? null : categoryName.trim();
     }
 
     public Byte getIsDelete() {
@@ -29,14 +29,5 @@ public class Category {
 
     public void setIsDelete(Byte isDelete) {
         this.isDelete = isDelete;
-    }
-
-    @Override
-    public String toString() {
-        return "Category{" +
-                "categoryId=" + categoryId +
-                ", name='" + name + '\'' +
-                ", isDelete=" + isDelete +
-                '}';
     }
 }

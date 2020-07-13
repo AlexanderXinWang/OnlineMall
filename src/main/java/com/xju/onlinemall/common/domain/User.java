@@ -23,6 +23,8 @@ public class User {
 
     private Byte isDelete;
 
+    private String imageUrl;
+
     public Integer getUserId() {
         return userId;
     }
@@ -101,5 +103,13 @@ public class User {
 
     public void setIsDelete(Byte isDelete) {
         this.isDelete = isDelete;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl == null ? null : imageUrl.trim();
     }
 }

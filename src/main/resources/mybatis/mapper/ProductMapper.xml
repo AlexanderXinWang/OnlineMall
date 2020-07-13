@@ -5,8 +5,9 @@
     <id column="product_id" jdbcType="INTEGER" property="productId" />
     <result column="category_id" jdbcType="INTEGER" property="categoryId" />
     <result column="pro_no" jdbcType="VARCHAR" property="proNo" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
     <result column="price" jdbcType="REAL" property="price" />
+    <result column="pimage" jdbcType="VARCHAR" property="pimage" />
     <result column="context" jdbcType="VARCHAR" property="context" />
     <result column="pkey" jdbcType="VARCHAR" property="pkey" />
     <result column="status" jdbcType="TINYINT" property="status" />
@@ -14,9 +15,6 @@
     <result column="count" jdbcType="INTEGER" property="count" />
     <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
     <result column="pm_id" jdbcType="INTEGER" property="pmId" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.xju.onlinemall.common.domain.Product">
-    <result column="pimage" jdbcType="LONGVARBINARY" property="pimage" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -77,28 +75,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    product_id, category_id, pro_no, name, price, context, pkey, status, add_time, count, 
-    is_delete, pm_id
+    product_id, category_id, pro_no, product_name, price, pimage, context, pkey, status, 
+    add_time, count, is_delete, pm_id
   </sql>
-  <sql id="Blob_Column_List">
-    pimage
-  </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.xju.onlinemall.common.domain.ProductExample" resultMap="ResultMapWithBLOBs">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from tb_product
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
   <select id="selectByExample" parameterType="com.xju.onlinemall.common.domain.ProductExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -113,11 +92,9 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from tb_product
     where product_id = #{productId,jdbcType=INTEGER}
   </select>
@@ -133,15 +110,15 @@
   </delete>
   <insert id="insert" parameterType="com.xju.onlinemall.common.domain.Product">
     insert into tb_product (product_id, category_id, pro_no, 
-      name, price, context, 
-      pkey, status, add_time, 
-      count, is_delete, pm_id, 
-      pimage)
+      product_name, price, pimage, 
+      context, pkey, status, 
+      add_time, count, is_delete, 
+      pm_id)
     values (#{productId,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{proNo,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, #{context,jdbcType=VARCHAR}, 
-      #{pkey,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{addTime,jdbcType=DATE}, 
-      #{count,jdbcType=INTEGER}, #{isDelete,jdbcType=TINYINT}, #{pmId,jdbcType=INTEGER}, 
-      #{pimage,jdbcType=LONGVARBINARY})
+      #{productName,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, #{pimage,jdbcType=VARCHAR}, 
+      #{context,jdbcType=VARCHAR}, #{pkey,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{addTime,jdbcType=DATE}, #{count,jdbcType=INTEGER}, #{isDelete,jdbcType=TINYINT}, 
+      #{pmId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.xju.onlinemall.common.domain.Product">
     insert into tb_product
@@ -155,11 +132,14 @@
       <if test="proNo != null">
         pro_no,
       </if>
-      <if test="name != null">
-        name,
+      <if test="productName != null">
+        product_name,
       </if>
       <if test="price != null">
         price,
+      </if>
+      <if test="pimage != null">
+        pimage,
       </if>
       <if test="context != null">
         context,
@@ -182,9 +162,6 @@
       <if test="pmId != null">
         pm_id,
       </if>
-      <if test="pimage != null">
-        pimage,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="productId != null">
@@ -196,11 +173,14 @@
       <if test="proNo != null">
         #{proNo,jdbcType=VARCHAR},
       </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
         #{price,jdbcType=REAL},
+      </if>
+      <if test="pimage != null">
+        #{pimage,jdbcType=VARCHAR},
       </if>
       <if test="context != null">
         #{context,jdbcType=VARCHAR},
@@ -223,9 +203,6 @@
       <if test="pmId != null">
         #{pmId,jdbcType=INTEGER},
       </if>
-      <if test="pimage != null">
-        #{pimage,jdbcType=LONGVARBINARY},
-      </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.xju.onlinemall.common.domain.ProductExample" resultType="java.lang.Long">
@@ -246,11 +223,14 @@
       <if test="record.proNo != null">
         pro_no = #{record.proNo,jdbcType=VARCHAR},
       </if>
-      <if test="record.name != null">
-        name = #{record.name,jdbcType=VARCHAR},
+      <if test="record.productName != null">
+        product_name = #{record.productName,jdbcType=VARCHAR},
       </if>
       <if test="record.price != null">
         price = #{record.price,jdbcType=REAL},
+      </if>
+      <if test="record.pimage != null">
+        pimage = #{record.pimage,jdbcType=VARCHAR},
       </if>
       <if test="record.context != null">
         context = #{record.context,jdbcType=VARCHAR},
@@ -273,29 +253,7 @@
       <if test="record.pmId != null">
         pm_id = #{record.pmId,jdbcType=INTEGER},
       </if>
-      <if test="record.pimage != null">
-        pimage = #{record.pimage,jdbcType=LONGVARBINARY},
-      </if>
     </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map">
-    update tb_product
-    set product_id = #{record.productId,jdbcType=INTEGER},
-      category_id = #{record.categoryId,jdbcType=INTEGER},
-      pro_no = #{record.proNo,jdbcType=VARCHAR},
-      name = #{record.name,jdbcType=VARCHAR},
-      price = #{record.price,jdbcType=REAL},
-      context = #{record.context,jdbcType=VARCHAR},
-      pkey = #{record.pkey,jdbcType=VARCHAR},
-      status = #{record.status,jdbcType=TINYINT},
-      add_time = #{record.addTime,jdbcType=DATE},
-      count = #{record.count,jdbcType=INTEGER},
-      is_delete = #{record.isDelete,jdbcType=TINYINT},
-      pm_id = #{record.pmId,jdbcType=INTEGER},
-      pimage = #{record.pimage,jdbcType=LONGVARBINARY}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -305,8 +263,9 @@
     set product_id = #{record.productId,jdbcType=INTEGER},
       category_id = #{record.categoryId,jdbcType=INTEGER},
       pro_no = #{record.proNo,jdbcType=VARCHAR},
-      name = #{record.name,jdbcType=VARCHAR},
+      product_name = #{record.productName,jdbcType=VARCHAR},
       price = #{record.price,jdbcType=REAL},
+      pimage = #{record.pimage,jdbcType=VARCHAR},
       context = #{record.context,jdbcType=VARCHAR},
       pkey = #{record.pkey,jdbcType=VARCHAR},
       status = #{record.status,jdbcType=TINYINT},
@@ -327,11 +286,14 @@
       <if test="proNo != null">
         pro_no = #{proNo,jdbcType=VARCHAR},
       </if>
-      <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
         price = #{price,jdbcType=REAL},
+      </if>
+      <if test="pimage != null">
+        pimage = #{pimage,jdbcType=VARCHAR},
       </if>
       <if test="context != null">
         context = #{context,jdbcType=VARCHAR},
@@ -354,34 +316,16 @@
       <if test="pmId != null">
         pm_id = #{pmId,jdbcType=INTEGER},
       </if>
-      <if test="pimage != null">
-        pimage = #{pimage,jdbcType=LONGVARBINARY},
-      </if>
     </set>
-    where product_id = #{productId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.xju.onlinemall.common.domain.Product">
-    update tb_product
-    set category_id = #{categoryId,jdbcType=INTEGER},
-      pro_no = #{proNo,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      price = #{price,jdbcType=REAL},
-      context = #{context,jdbcType=VARCHAR},
-      pkey = #{pkey,jdbcType=VARCHAR},
-      status = #{status,jdbcType=TINYINT},
-      add_time = #{addTime,jdbcType=DATE},
-      count = #{count,jdbcType=INTEGER},
-      is_delete = #{isDelete,jdbcType=TINYINT},
-      pm_id = #{pmId,jdbcType=INTEGER},
-      pimage = #{pimage,jdbcType=LONGVARBINARY}
     where product_id = #{productId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xju.onlinemall.common.domain.Product">
     update tb_product
     set category_id = #{categoryId,jdbcType=INTEGER},
       pro_no = #{proNo,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
       price = #{price,jdbcType=REAL},
+      pimage = #{pimage,jdbcType=VARCHAR},
       context = #{context,jdbcType=VARCHAR},
       pkey = #{pkey,jdbcType=VARCHAR},
       status = #{status,jdbcType=TINYINT},

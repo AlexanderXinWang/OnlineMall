@@ -9,9 +9,11 @@ public class Product {
 
     private String proNo;
 
-    private String name;
+    private String productName;
 
     private Float price;
+
+    private String pimage;
 
     private String context;
 
@@ -26,8 +28,6 @@ public class Product {
     private Byte isDelete;
 
     private Integer pmId;
-
-    private byte[] pimage;
 
     public Integer getProductId() {
         return productId;
@@ -53,12 +53,12 @@ public class Product {
         this.proNo = proNo == null ? null : proNo.trim();
     }
 
-    public String getName() {
-        return name;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setProductName(String productName) {
+        this.productName = productName == null ? null : productName.trim();
     }
 
     public Float getPrice() {
@@ -67,6 +67,14 @@ public class Product {
 
     public void setPrice(Float price) {
         this.price = price;
+    }
+
+    public String getPimage() {
+        return pimage;
+    }
+
+    public void setPimage(String pimage) {
+        this.pimage = pimage == null ? null : pimage.trim();
     }
 
     public String getContext() {
@@ -123,13 +131,5 @@ public class Product {
 
     public void setPmId(Integer pmId) {
         this.pmId = pmId;
-    }
-
-    public byte[] getPimage() {
-        return pimage;
-    }
-
-    public void setPimage(byte[] pimage) {
-        this.pimage = pimage;
     }
 }

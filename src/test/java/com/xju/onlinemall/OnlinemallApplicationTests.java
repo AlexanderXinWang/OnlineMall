@@ -26,7 +26,7 @@ class OnlinemallApplicationTests {
     @Test
     public void t2(){
         UserExample userExample = new UserExample();
-        userExample.createCriteria().andUserNameEqualTo("userName").andPasswordEqualTo("password");
+        userExample.createCriteria().andUserNameEqualTo("user1").andPasswordEqualTo("123");
         List<User> users = userMapper.selectByExample(userExample);
         System.out.println(users.size());
     }

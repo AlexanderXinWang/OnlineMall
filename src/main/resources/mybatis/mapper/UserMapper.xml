@@ -12,6 +12,7 @@
     <result column="pay_password" jdbcType="VARCHAR" property="payPassword" />
     <result column="register_time" jdbcType="DATE" property="registerTime" />
     <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -73,7 +74,7 @@
   </sql>
   <sql id="Base_Column_List">
     user_id, user_name, password, user_role, sex, phone, email, pay_password, register_time, 
-    is_delete
+    is_delete, image_url
   </sql>
   <select id="selectByExample" parameterType="com.xju.onlinemall.common.domain.UserExample" resultMap="BaseResultMap">
     select
@@ -109,11 +110,11 @@
     insert into tb_user (user_id, user_name, password, 
       user_role, sex, phone, 
       email, pay_password, register_time, 
-      is_delete)
+      is_delete, image_url)
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{userRole,jdbcType=INTEGER}, #{sex,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{payPassword,jdbcType=VARCHAR}, #{registerTime,jdbcType=DATE}, 
-      #{isDelete,jdbcType=TINYINT})
+      #{isDelete,jdbcType=TINYINT}, #{imageUrl,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xju.onlinemall.common.domain.User">
     insert into tb_user
@@ -148,6 +149,9 @@
       <if test="isDelete != null">
         is_delete,
       </if>
+      <if test="imageUrl != null">
+        image_url,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -179,6 +183,9 @@
       </if>
       <if test="isDelete != null">
         #{isDelete,jdbcType=TINYINT},
+      </if>
+      <if test="imageUrl != null">
+        #{imageUrl,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -221,6 +228,9 @@
       <if test="record.isDelete != null">
         is_delete = #{record.isDelete,jdbcType=TINYINT},
       </if>
+      <if test="record.imageUrl != null">
+        image_url = #{record.imageUrl,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -237,7 +247,8 @@
       email = #{record.email,jdbcType=VARCHAR},
       pay_password = #{record.payPassword,jdbcType=VARCHAR},
       register_time = #{record.registerTime,jdbcType=DATE},
-      is_delete = #{record.isDelete,jdbcType=TINYINT}
+      is_delete = #{record.isDelete,jdbcType=TINYINT},
+      image_url = #{record.imageUrl,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -272,6 +283,9 @@
       <if test="isDelete != null">
         is_delete = #{isDelete,jdbcType=TINYINT},
       </if>
+      <if test="imageUrl != null">
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
@@ -285,7 +299,8 @@
       email = #{email,jdbcType=VARCHAR},
       pay_password = #{payPassword,jdbcType=VARCHAR},
       register_time = #{registerTime,jdbcType=DATE},
-      is_delete = #{isDelete,jdbcType=TINYINT}
+      is_delete = #{isDelete,jdbcType=TINYINT},
+      image_url = #{imageUrl,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>
