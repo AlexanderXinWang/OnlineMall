@@ -3,9 +3,13 @@ package com.xju.onlinemall.mapper;
 import com.xju.onlinemall.common.domain.Cart;
 import com.xju.onlinemall.common.domain.CartExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
-public interface CartMapper {
+import com.xju.onlinemall.mapper.extend.CartMapperExtend;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface CartMapper extends CartMapperExtend {
     long countByExample(CartExample example);
 
     int deleteByExample(CartExample example);

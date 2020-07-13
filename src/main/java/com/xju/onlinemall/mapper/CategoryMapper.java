@@ -3,11 +3,13 @@ package com.xju.onlinemall.mapper;
 import com.xju.onlinemall.common.domain.Category;
 import com.xju.onlinemall.common.domain.CategoryExample;
 import java.util.List;
+
+import com.xju.onlinemall.mapper.extend.CategoryMapperExtend;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CategoryMapper {
+public interface CategoryMapper extends CategoryMapperExtend {
     long countByExample(CategoryExample example);
 
     int deleteByExample(CategoryExample example);

@@ -40,4 +40,14 @@ public class Cart {
     public void setProductId(Integer productId) {
         this.productId = productId;
     }
+
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "cartId=" + cartId +
+                ", userId=" + userId +
+                ", isDelete=" + isDelete +
+                ", productId=" + productId +
+                '}';
+    }
 }

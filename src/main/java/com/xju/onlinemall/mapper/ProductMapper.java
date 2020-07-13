@@ -3,9 +3,14 @@ package com.xju.onlinemall.mapper;
 import com.xju.onlinemall.common.domain.Product;
 import com.xju.onlinemall.common.domain.ProductExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
-public interface ProductMapper {
+import com.xju.onlinemall.mapper.extend.ProductMapperExtend;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Repository
+public interface ProductMapper extends ProductMapperExtend {
     long countByExample(ProductExample example);
 
     int deleteByExample(ProductExample example);

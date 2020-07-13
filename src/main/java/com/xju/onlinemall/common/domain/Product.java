@@ -132,4 +132,23 @@ public class Product {
     public void setPmId(Integer pmId) {
         this.pmId = pmId;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId=" + productId +
+                ", categoryId=" + categoryId +
+                ", proNo='" + proNo + '\'' +
+                ", productName='" + productName + '\'' +
+                ", price=" + price +
+                ", pimage='" + pimage + '\'' +
+                ", context='" + context + '\'' +
+                ", pkey='" + pkey + '\'' +
+                ", status=" + status +
+                ", addTime=" + addTime +
+                ", count=" + count +
+                ", isDelete=" + isDelete +
+                ", pmId=" + pmId +
+                '}';
+    }
 }

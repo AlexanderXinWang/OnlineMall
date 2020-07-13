@@ -1,6 +1,8 @@
 package com.xju.onlinemall.common.domain;
 
-public class Category {
+import com.xju.onlinemall.common.domain.extend.CategoryExtend;
+
+public class Category extends CategoryExtend{
     private Integer categoryId;
 
     private String categoryName;
@@ -29,5 +31,14 @@ public class Category {
 
     public void setIsDelete(Byte isDelete) {
         this.isDelete = isDelete;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "categoryId=" + categoryId +
+                ", categoryName='" + categoryName + '\'' +
+                ", isDelete=" + isDelete +
+                '}';
     }
 }

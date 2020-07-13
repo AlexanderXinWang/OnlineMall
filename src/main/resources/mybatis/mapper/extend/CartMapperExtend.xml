@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xju.onlinemall.mapper.CartMapper">
+    <resultMap id="MyResultMap" type="com.xju.onlinemall.common.domain.Cart" extends="BaseResultMap">
+    </resultMap>
+    <select id="selectCartList" resultType="map">
+        <!-- 管理查询，查询购物车id、用户名、加入购物车的商品、价格 ，返回类型为map，并注入结果集中 -->
+        select c.cart_id,u.user_name,p.product_name,p.price from tb_cart c
+        left join tb_user u on c.user_id=u.user_id
+        left join tb_product p on c.product_id=p.product_id
+    </select>
+</mapper>
