@@ -4,7 +4,9 @@ import com.xju.onlinemall.common.domain.SystemLog;
 import com.xju.onlinemall.common.domain.SystemLogExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface SystemLogMapper {
     long countByExample(SystemLogExample example);
 
