@@ -25,8 +25,31 @@ public class CommonController {
             return "index";
         }
     }
-//    @RequestMapping("/login")
-//    public String login(){
-//        return "my-account";
-//    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // 导航栏header页面跳转请求处理
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     *跳转首页
+     * */
+    @RequestMapping("/index.html")
+    public String index(){
+        return "index";
+    }
+
+    /**
+     *跳转商品页
+     * */
+    @RequestMapping("/commodity.html")
+    public String commodity(){
+        return "views_front/commodity";
+    }
+
+    /**
+     *跳转购物车
+     * */
+    @RequestMapping("/cart.html")
+    public String cart(){
+        return "views_front/cart";
+    }
 }
