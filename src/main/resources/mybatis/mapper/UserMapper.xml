@@ -10,7 +10,7 @@
     <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="pay_password" jdbcType="VARCHAR" property="payPassword" />
-    <result column="register_time" jdbcType="DATE" property="registerTime" />
+    <result column="register_time" jdbcType="TIMESTAMP" property="registerTime" />
     <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
     <result column="image_url" jdbcType="VARCHAR" property="imageUrl" />
   </resultMap>
@@ -113,7 +113,7 @@
       is_delete, image_url)
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{userRole,jdbcType=INTEGER}, #{sex,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{payPassword,jdbcType=VARCHAR}, #{registerTime,jdbcType=DATE}, 
+      #{email,jdbcType=VARCHAR}, #{payPassword,jdbcType=VARCHAR}, #{registerTime,jdbcType=TIMESTAMP}, 
       #{isDelete,jdbcType=TINYINT}, #{imageUrl,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xju.onlinemall.common.domain.User">
@@ -179,7 +179,7 @@
         #{payPassword,jdbcType=VARCHAR},
       </if>
       <if test="registerTime != null">
-        #{registerTime,jdbcType=DATE},
+        #{registerTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null">
         #{isDelete,jdbcType=TINYINT},
@@ -223,7 +223,7 @@
         pay_password = #{record.payPassword,jdbcType=VARCHAR},
       </if>
       <if test="record.registerTime != null">
-        register_time = #{record.registerTime,jdbcType=DATE},
+        register_time = #{record.registerTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.isDelete != null">
         is_delete = #{record.isDelete,jdbcType=TINYINT},
@@ -246,7 +246,7 @@
       phone = #{record.phone,jdbcType=VARCHAR},
       email = #{record.email,jdbcType=VARCHAR},
       pay_password = #{record.payPassword,jdbcType=VARCHAR},
-      register_time = #{record.registerTime,jdbcType=DATE},
+      register_time = #{record.registerTime,jdbcType=TIMESTAMP},
       is_delete = #{record.isDelete,jdbcType=TINYINT},
       image_url = #{record.imageUrl,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -278,7 +278,7 @@
         pay_password = #{payPassword,jdbcType=VARCHAR},
       </if>
       <if test="registerTime != null">
-        register_time = #{registerTime,jdbcType=DATE},
+        register_time = #{registerTime,jdbcType=TIMESTAMP},
       </if>
       <if test="isDelete != null">
         is_delete = #{isDelete,jdbcType=TINYINT},
@@ -298,7 +298,7 @@
       phone = #{phone,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
       pay_password = #{payPassword,jdbcType=VARCHAR},
-      register_time = #{registerTime,jdbcType=DATE},
+      register_time = #{registerTime,jdbcType=TIMESTAMP},
       is_delete = #{isDelete,jdbcType=TINYINT},
       image_url = #{imageUrl,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}

@@ -1,5 +1,7 @@
 package com.xju.onlinemall.common.domain;
 
+import java.util.Date;
+
 public class Coupon {
     private Integer couponId;
 
@@ -16,6 +18,10 @@ public class Coupon {
     private Integer categoryId;
 
     private Integer productId;
+
+    private Date expireTime;
+
+    private Date createTime;
 
     public Integer getCouponId() {
         return couponId;
@@ -79,5 +85,21 @@ public class Coupon {
 
     public void setProductId(Integer productId) {
         this.productId = productId;
+    }
+
+    public Date getExpireTime() {
+        return expireTime;
+    }
+
+    public void setExpireTime(Date expireTime) {
+        this.expireTime = expireTime;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

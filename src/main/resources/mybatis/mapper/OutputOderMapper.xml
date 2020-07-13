@@ -5,7 +5,7 @@
     <id column="out_id" jdbcType="INTEGER" property="outId" />
     <result column="pm_id" jdbcType="INTEGER" property="pmId" />
     <result column="out_number" jdbcType="INTEGER" property="outNumber" />
-    <result column="out_date" jdbcType="DATE" property="outDate" />
+    <result column="out_date" jdbcType="TIMESTAMP" property="outDate" />
     <result column="out_status" jdbcType="INTEGER" property="outStatus" />
     <result column="out_is_delete" jdbcType="TINYINT" property="outIsDelete" />
     <result column="out_keep_field" jdbcType="VARCHAR" property="outKeepField" />
@@ -107,7 +107,7 @@
       out_date, out_status, out_is_delete, 
       out_keep_field, product_id)
     values (#{outId,jdbcType=INTEGER}, #{pmId,jdbcType=INTEGER}, #{outNumber,jdbcType=INTEGER}, 
-      #{outDate,jdbcType=DATE}, #{outStatus,jdbcType=INTEGER}, #{outIsDelete,jdbcType=TINYINT}, 
+      #{outDate,jdbcType=TIMESTAMP}, #{outStatus,jdbcType=INTEGER}, #{outIsDelete,jdbcType=TINYINT}, 
       #{outKeepField,jdbcType=VARCHAR}, #{productId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.xju.onlinemall.common.domain.OutputOder">
@@ -149,7 +149,7 @@
         #{outNumber,jdbcType=INTEGER},
       </if>
       <if test="outDate != null">
-        #{outDate,jdbcType=DATE},
+        #{outDate,jdbcType=TIMESTAMP},
       </if>
       <if test="outStatus != null">
         #{outStatus,jdbcType=INTEGER},
@@ -184,7 +184,7 @@
         out_number = #{record.outNumber,jdbcType=INTEGER},
       </if>
       <if test="record.outDate != null">
-        out_date = #{record.outDate,jdbcType=DATE},
+        out_date = #{record.outDate,jdbcType=TIMESTAMP},
       </if>
       <if test="record.outStatus != null">
         out_status = #{record.outStatus,jdbcType=INTEGER},
@@ -208,7 +208,7 @@
     set out_id = #{record.outId,jdbcType=INTEGER},
       pm_id = #{record.pmId,jdbcType=INTEGER},
       out_number = #{record.outNumber,jdbcType=INTEGER},
-      out_date = #{record.outDate,jdbcType=DATE},
+      out_date = #{record.outDate,jdbcType=TIMESTAMP},
       out_status = #{record.outStatus,jdbcType=INTEGER},
       out_is_delete = #{record.outIsDelete,jdbcType=TINYINT},
       out_keep_field = #{record.outKeepField,jdbcType=VARCHAR},
@@ -227,7 +227,7 @@
         out_number = #{outNumber,jdbcType=INTEGER},
       </if>
       <if test="outDate != null">
-        out_date = #{outDate,jdbcType=DATE},
+        out_date = #{outDate,jdbcType=TIMESTAMP},
       </if>
       <if test="outStatus != null">
         out_status = #{outStatus,jdbcType=INTEGER},
@@ -248,7 +248,7 @@
     update tb_output_order
     set pm_id = #{pmId,jdbcType=INTEGER},
       out_number = #{outNumber,jdbcType=INTEGER},
-      out_date = #{outDate,jdbcType=DATE},
+      out_date = #{outDate,jdbcType=TIMESTAMP},
       out_status = #{outStatus,jdbcType=INTEGER},
       out_is_delete = #{outIsDelete,jdbcType=TINYINT},
       out_keep_field = #{outKeepField,jdbcType=VARCHAR},

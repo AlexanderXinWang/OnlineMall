@@ -5,10 +5,10 @@
     <id column="order_id" jdbcType="INTEGER" property="orderId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
-    <result column="create_time" jdbcType="DATE" property="createTime" />
-    <result column="output_time" jdbcType="DATE" property="outputTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="output_time" jdbcType="TIMESTAMP" property="outputTime" />
     <result column="pay_money" jdbcType="DOUBLE" property="payMoney" />
-    <result column="pay_state" jdbcType="TINYINT" property="payState" />
+    <result column="pay_status" jdbcType="TINYINT" property="payStatus" />
     <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="is_deliver" jdbcType="TINYINT" property="isDeliver" />
@@ -72,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    order_id, user_id, order_number, create_time, output_time, pay_money, pay_state, 
+    order_id, user_id, order_number, create_time, output_time, pay_money, pay_status, 
     is_delete, address, is_deliver
   </sql>
   <select id="selectByExample" parameterType="com.xju.onlinemall.common.domain.OrderExample" resultMap="BaseResultMap">
@@ -108,11 +108,11 @@
   <insert id="insert" parameterType="com.xju.onlinemall.common.domain.Order">
     insert into tb_order (order_id, user_id, order_number, 
       create_time, output_time, pay_money, 
-      pay_state, is_delete, address, 
+      pay_status, is_delete, address, 
       is_deliver)
     values (#{orderId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{orderNumber,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=DATE}, #{outputTime,jdbcType=DATE}, #{payMoney,jdbcType=DOUBLE}, 
-      #{payState,jdbcType=TINYINT}, #{isDelete,jdbcType=TINYINT}, #{address,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{outputTime,jdbcType=TIMESTAMP}, #{payMoney,jdbcType=DOUBLE}, 
+      #{payStatus,jdbcType=TINYINT}, #{isDelete,jdbcType=TINYINT}, #{address,jdbcType=VARCHAR}, 
       #{isDeliver,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.xju.onlinemall.common.domain.Order">
@@ -136,8 +136,8 @@
       <if test="payMoney != null">
         pay_money,
       </if>
-      <if test="payState != null">
-        pay_state,
+      <if test="payStatus != null">
+        pay_status,
       </if>
       <if test="isDelete != null">
         is_delete,
@@ -160,16 +160,16 @@
         #{orderNumber,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
-        #{createTime,jdbcType=DATE},
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="outputTime != null">
-        #{outputTime,jdbcType=DATE},
+        #{outputTime,jdbcType=TIMESTAMP},
       </if>
       <if test="payMoney != null">
         #{payMoney,jdbcType=DOUBLE},
       </if>
-      <if test="payState != null">
-        #{payState,jdbcType=TINYINT},
+      <if test="payStatus != null">
+        #{payStatus,jdbcType=TINYINT},
       </if>
       <if test="isDelete != null">
         #{isDelete,jdbcType=TINYINT},
@@ -201,16 +201,16 @@
         order_number = #{record.orderNumber,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=DATE},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.outputTime != null">
-        output_time = #{record.outputTime,jdbcType=DATE},
+        output_time = #{record.outputTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.payMoney != null">
         pay_money = #{record.payMoney,jdbcType=DOUBLE},
       </if>
-      <if test="record.payState != null">
-        pay_state = #{record.payState,jdbcType=TINYINT},
+      <if test="record.payStatus != null">
+        pay_status = #{record.payStatus,jdbcType=TINYINT},
       </if>
       <if test="record.isDelete != null">
         is_delete = #{record.isDelete,jdbcType=TINYINT},
@@ -231,10 +231,10 @@
     set order_id = #{record.orderId,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
       order_number = #{record.orderNumber,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=DATE},
-      output_time = #{record.outputTime,jdbcType=DATE},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      output_time = #{record.outputTime,jdbcType=TIMESTAMP},
       pay_money = #{record.payMoney,jdbcType=DOUBLE},
-      pay_state = #{record.payState,jdbcType=TINYINT},
+      pay_status = #{record.payStatus,jdbcType=TINYINT},
       is_delete = #{record.isDelete,jdbcType=TINYINT},
       address = #{record.address,jdbcType=VARCHAR},
       is_deliver = #{record.isDeliver,jdbcType=TINYINT}
@@ -252,16 +252,16 @@
         order_number = #{orderNumber,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null">
-        create_time = #{createTime,jdbcType=DATE},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="outputTime != null">
-        output_time = #{outputTime,jdbcType=DATE},
+        output_time = #{outputTime,jdbcType=TIMESTAMP},
       </if>
       <if test="payMoney != null">
         pay_money = #{payMoney,jdbcType=DOUBLE},
       </if>
-      <if test="payState != null">
-        pay_state = #{payState,jdbcType=TINYINT},
+      <if test="payStatus != null">
+        pay_status = #{payStatus,jdbcType=TINYINT},
       </if>
       <if test="isDelete != null">
         is_delete = #{isDelete,jdbcType=TINYINT},
@@ -279,10 +279,10 @@
     update tb_order
     set user_id = #{userId,jdbcType=INTEGER},
       order_number = #{orderNumber,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=DATE},
-      output_time = #{outputTime,jdbcType=DATE},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      output_time = #{outputTime,jdbcType=TIMESTAMP},
       pay_money = #{payMoney,jdbcType=DOUBLE},
-      pay_state = #{payState,jdbcType=TINYINT},
+      pay_status = #{payStatus,jdbcType=TINYINT},
       is_delete = #{isDelete,jdbcType=TINYINT},
       address = #{address,jdbcType=VARCHAR},
       is_deliver = #{isDeliver,jdbcType=TINYINT}

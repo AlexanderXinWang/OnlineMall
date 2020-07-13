@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.xju.onlinemall.common.domain.SystemLog">
     <id column="log_id" jdbcType="INTEGER" property="logId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="operation" jdbcType="VARCHAR" property="operation" />
     <result column="level" jdbcType="INTEGER" property="level" />
   </resultMap>
@@ -102,7 +102,7 @@
   <insert id="insert" parameterType="com.xju.onlinemall.common.domain.SystemLog">
     insert into tb_system_log (log_id, user_id, create_time, 
       operation, level)
-    values (#{logId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{createTime,jdbcType=DATE}, 
+    values (#{logId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
       #{operation,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.xju.onlinemall.common.domain.SystemLog">
@@ -132,7 +132,7 @@
         #{userId,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
-        #{createTime,jdbcType=DATE},
+        #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="operation != null">
         #{operation,jdbcType=VARCHAR},
@@ -158,7 +158,7 @@
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
       <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=DATE},
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.operation != null">
         operation = #{record.operation,jdbcType=VARCHAR},
@@ -175,7 +175,7 @@
     update tb_system_log
     set log_id = #{record.logId,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
-      create_time = #{record.createTime,jdbcType=DATE},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
       operation = #{record.operation,jdbcType=VARCHAR},
       level = #{record.level,jdbcType=INTEGER}
     <if test="_parameter != null">
@@ -189,7 +189,7 @@
         user_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="createTime != null">
-        create_time = #{createTime,jdbcType=DATE},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="operation != null">
         operation = #{operation,jdbcType=VARCHAR},
@@ -203,7 +203,7 @@
   <update id="updateByPrimaryKey" parameterType="com.xju.onlinemall.common.domain.SystemLog">
     update tb_system_log
     set user_id = #{userId,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=DATE},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
       operation = #{operation,jdbcType=VARCHAR},
       level = #{level,jdbcType=INTEGER}
     where log_id = #{logId,jdbcType=INTEGER}
