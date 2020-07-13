@@ -54,7 +54,7 @@ public class UserController {
         //如果查询不到用户信息
         if (users.size()==0){
             System.out.println("查询到的用户数量为0");
-            //返回前端查询结果
+            //查询结果返回前端
             modelMap.put("success",false);
             return modelMap;
         }
@@ -67,6 +67,7 @@ public class UserController {
             modelMap.put("success",true);
             //如果是用户
             if (user.getUserRole()==0){
+                //登录成功,请求控制器/,返回主页
                 modelMap.put("msg","/");
                 return modelMap;
             }
