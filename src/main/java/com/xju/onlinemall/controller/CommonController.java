@@ -80,4 +80,12 @@ public class CommonController {
     public String checkout(){
         return "views_front/checkout";
     }
+
+    /**
+     *跳转结算页面
+     * */
+    @RequestMapping("/about.html")
+    public String about(){
+        return "views_front/about";
+    }
 }
