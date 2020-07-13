@@ -20,7 +20,7 @@
     <title>Furgan - HTML Template </title>
 </head>
 <body>
-<div th:replace="~{fragment/header::header2}"></div>
+<div th:replace="~{fragment/header::header1}"></div>
 <div class="banner-wrapper has_background">
     <img src="assets/images/banner-for-all2.jpg"
          class="img-responsive attachment-1920x447 size-1920x447" alt="img">
@@ -47,7 +47,7 @@
                                 <h2>登录</h2>
                                 <form class="furgan-form furgan-form-login login" method="post">
                                     <p class="furgan-form-row furgan-form-row--wide form-row form-row-wide">
-                                        <label for="username">用户名 或 注册邮箱&nbsp;<span
+                                        <label for="username">用户名 或 邮箱&nbsp;<span
                                                 class="required">*</span></label>
                                         <input type="text" class="furgan-Input furgan-Input--text input-text"
                                                name="username" id="username" autocomplete="username" value=""></p>
@@ -61,7 +61,7 @@
                                         <input type="hidden" id="furgan-login-nonce" name="furgan-login-nonce"
                                                value="832993cb93"><input type="hidden" name="_wp_http_referer"
                                                                          value="/furgan/my-account/">
-                                        <button type="submit" class="furgan-Button button" name="login"
+                                        <button id="buttonlogin" type="button" class="furgan-Button button" name="loginbutton"
                                                 value="Log in">点击登录
                                         </button>
                                         <label class="furgan-form__label furgan-form__label-for-checkbox inline">
@@ -209,18 +209,43 @@
 <a href="#" class="backtotop active">
     <i class="fa fa-angle-double-up"></i>
 </a>
-<script src="assets/js/jquery-1.12.4.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/chosen.min.js"></script>
-<script src="assets/js/countdown.min.js"></script>
-<script src="assets/js/jquery.scrollbar.min.js"></script>
-<script src="assets/js/lightbox.min.js"></script>
-<script src="assets/js/magnific-popup.min.js"></script>
-<script src="assets/js/slick.js"></script>
-<script src="assets/js/jquery.zoom.min.js"></script>
-<script src="assets/js/threesixty.min.js"></script>
-<script src="assets/js/jquery-ui.min.js"></script>
-<script src="assets/js/mobilemenu.js"></script>
-<script src="assets/js/functions.js"></script>
+<script src="assets/js/jquery-1.12.4.min.js" th:src="@{/assets/js/jquery-1.12.4.min.js}"></script>
+<script src="assets/js/bootstrap.min.js" th:src="@{/assets/js/bootstrap.min.js}"></script>
+<script src="assets/js/chosen.min.js" th:src="@{/assets/js/chosen.min.js}"></script>
+<script src="assets/js/countdown.min.js" th:src="@{/assets/js/countdown.min.js}"></script>
+<script src="assets/js/jquery.scrollbar.min.js" th:src="@{/assets/js/jquery.scrollbar.min.js}"></script>
+<script src="assets/js/lightbox.min.js" th:src="@{/assets/js/lightbox.min.js}"></script>
+<script src="assets/js/magnific-popup.min.js" th:src="@{/assets/js/magnific-popup.min.js}"></script>
+<script src="assets/js/slick.js" th:src="@{/assets/js/slick.js}"></script>
+<script src="assets/js/jquery.zoom.min.js" th:src="@{/assets/js/jquery.zoom.min.js}"></script>
+<script src="assets/js/threesixty.min.js" th:src="@{/assets/js/threesixty.min.js}"></script>
+<script src="assets/js/jquery-ui.min.js" th:src="@{/assets/js/jquery-ui.min.js}"></script>
+<script src="assets/js/mobilemenu.js" th:src="@{/assets/js/mobilemenu.js}"></script>
+<script src="assets/js/functions.js" th:src="@{/assets/js/functions.js}"></script>
+<script>
+    $(function () {
+        $("#buttonlogin").click(function () {
+            var name=$("#username").val().trim();
+            var pwd=$("#password").val().trim();
+            $.ajax({
+                type:"POST",
+                //该URL 如果前面加/,相对的是根地址，不是项目地址,不加/相对的就是项目地址
+                url:"login",
+                dataType:"json",
+                data:{"username":name,"password":pwd},
+                success:function (data) {
+                    if (data["success"]){
+                        //返回值是learn/t1 相对于项目地址
+                        //返回值是/learn/t1 相对于根地址 http://localhost:8080/learn/t1
+                        window.location.href=data["msg"];
+                    }
+                    else{
+                       alert("用户名或密码错误！")
+                    }
+                }
+            })
+        })
+    })
+</script>
 </body>
 </html>

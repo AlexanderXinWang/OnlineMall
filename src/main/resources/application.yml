@@ -3,7 +3,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
 #    我们的项目数据库是 onlinemall
-    url: jdbc:mysql://127.0.0.1:3306/onlinemall?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    url: jdbc:mysql://127.0.0.1:3306/onlinemall?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
 #    设置你的数据密码
     password: 199811
