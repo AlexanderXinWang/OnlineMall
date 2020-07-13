@@ -89,13 +89,6 @@ public class CommonController {
         return "views_front/cart";
     }
 
-    /**
-     *跳转收藏夹
-     * */
-    @RequestMapping("/wishlist.html")
-    public String wishlist(){
-        return "views_front/wishlist";
-    }
 
     /**
      *跳转结算页面
@@ -113,11 +106,5 @@ public class CommonController {
         return "views_front/wishlist";
     }
 
-    /**
-     *跳转结算页面
-     * */
-    @RequestMapping("/about.html")
-    public String about(){
-        return "views_front/about";
-    }
+
 }
