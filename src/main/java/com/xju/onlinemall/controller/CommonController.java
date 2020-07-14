@@ -3,6 +3,7 @@ package com.xju.onlinemall.controller;
 import com.xju.onlinemall.common.domain.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.ServletException;
@@ -116,10 +117,13 @@ public class CommonController {
     }
 
     /**
-     *跳转购物车
+     *跳转购物车,并传递用户商品数据
      * */
     @RequestMapping("/cart.html")
-    public String cart(){
+    public String cart(HttpSession session, ModelMap modelMap){
+        //获取购物车商品内的商品
+        List cartProducts = (List)session.getAttribute("cartProducts");
+
         return "views_front/cart";
     }
 

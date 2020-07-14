@@ -40,15 +40,18 @@ public class CartController {
      * 该方法是跳转购物车页面，并把商品信息传入
      **/
 
-    @RequestMapping("/getCartList")
-    public String getProducts(HttpSession session, ModelMap modelMap){
-        //获得当前登录的用户
-        User user = (User)session.getAttribute("user");
-        //从session中获得商品列表
-        List cartProducts =(List) session.getAttribute("cartProducts");
-        //添加商品信息到modelMap中
-        return "views_front/cart";
-    }
+    //下面代码由于过滤器和session的设置,请在/cart.html里写
+
+
+//    @RequestMapping("/getCartList")
+//    public String getProducts(HttpSession session, ModelMap modelMap){
+//        //获得当前登录的用户
+//        User user = (User)session.getAttribute("user");
+//        //从session中获得商品列表
+//        List cartProducts =(List) session.getAttribute("cartProducts");
+//        //添加商品信息到modelMap中
+//        return "views_front/cart";
+//    }
     /**
      * 加入购物车的AJAX请求
      * 注意！ 前台必须用AJAX请求添加商品！
