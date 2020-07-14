@@ -6,7 +6,7 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/onlinemall?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false
     username: root
 #    设置你的数据密码
-    password: root
+    password: 199811
 
 
 

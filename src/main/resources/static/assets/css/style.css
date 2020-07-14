@@ -9570,16 +9570,17 @@ body.furgan-account .furgan-notices-wrapper ~ .furgan-form-login {
 #customer_login .col-1,
 #customer_login .col-2 {
 	width: calc(50% - 20px);
-	float: left;
+	margin-right: auto;
+	margin-left: auto;
 	background-color: #f6f6f6;
 	padding: 30px 25px 7px 25px;
 	min-height: 517px;
 	border-radius: 0;
 	max-width: 100%;
 }
-#customer_login .col-2 {
+/*#customer_login .col-2 {
 	float: right;
-}
+}*/
 #customer_login .form-row {
 	margin-bottom: 25px;
 }

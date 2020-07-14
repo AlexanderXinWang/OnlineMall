@@ -29,12 +29,18 @@ public class CartServiceImpl implements CartService{
         CartExample cartExample = new CartExample();
         cartExample.createCriteria().andUserIdEqualTo(userId);
         List<Cart> carts = cartMapper.selectByExample(cartExample);
-        List<Integer> productIds = new ArrayList<>();
-        for (Cart cart: carts) {
-            productIds.add(cart.getProductId());
+        List<Product> list = null;
+        if (carts.size()==0){
+            list = null;
+        } else if(carts.size()!=0){
+            list = null;
+            List<Integer> productIds = new ArrayList<>();
+            for (Cart cart: carts) {
+                productIds.add(cart.getProductId());
+            }
+            //查询返回当前用户购物车里的所有商品
+            list= cartMapper.selectMyProductByCartId(productIds);
         }
-        //查询返回当前用户购物车里的所有商品
-        List<Product> list= cartMapper.selectMyProductByCartId(productIds);
         return list;
     }
 
