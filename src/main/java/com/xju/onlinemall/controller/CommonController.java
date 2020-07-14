@@ -129,5 +129,21 @@ public class CommonController {
         return "views_front/testimonials";
     }
 
+    /**
+     *跳转订单页面
+     * */
+    @RequestMapping("/order.html")
+    public String order(){
+        return "views_front/order";
+    }
+
+    /**
+     *跳转订单追踪
+     * */
+    @RequestMapping("/order-tracking.html")
+    public String ordertracking(){
+        return "views_front/order-tracking";
+    }
+
 
 }

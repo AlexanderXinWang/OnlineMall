@@ -9875,6 +9875,18 @@ form.furgan-form-login .lost_password a::before {
 	font-size: 16px;
 	color: #000;
 }
+.furgan table.wishlist_table .product-number {
+	font-size: 16px;
+	color: #000;
+}
+.furgan table.wishlist_table .product-pay {
+	font-size: 16px;
+	color: #000;
+}
+.furgan table.wishlist_table .product-detail {
+	font-size: 16px;
+	color: #000;
+}
 .furgan table.wishlist_table tbody tr td.wishlist-empty {
 	font-size: 42px;
 	line-height: 1.2;
@@ -9894,6 +9906,7 @@ form.furgan-form-login .lost_password a::before {
 	color: #ecb02f;
 }
 .furgan table.wishlist_table td.product-add-to-cart {
+	text-align: center;
 	border-right: 0;
 }
 .furgan table.wishlist_table td.product-add-to-cart a {

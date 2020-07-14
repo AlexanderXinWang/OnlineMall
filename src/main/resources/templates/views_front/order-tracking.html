@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/chosen.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.scrollbar.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/lightbox.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/fonts/flaticon.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/megamenu.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/dreaming-attribute.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+    <title>订单追踪</title>
+</head>
+<body>
+<div th:replace="~{fragment/header::header}"></div>
+<div class="banner-wrapper has_background">
+    <img src="assets/images/banner-for-all2.jpg"
+         class="img-responsive attachment-1920x447 size-1920x447" alt="img">
+    <div class="banner-wrapper-inner">
+        <h1 class="page-title">订单追踪</h1>
+        <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
+            <ul class="trail-items breadcrumb">
+                <li class="trail-item trail-begin"><a href="index.html"><span>首页</span></a></li>
+                <li class="trail-item trail-end active"><span>订单追踪</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<main class="site-main  main-container no-sidebar">
+    <div class="container">
+        <div class="row">
+            <div class="main-content col-md-12">
+                <div class="page-main-content">
+                    <div class="furgan">
+                        <form class="track_order">
+                            <p>To track your order please enter your Order ID in the box below and press
+                                the "Track" button. This was given to you on your receipt and in the
+                                confirmation email you should have received.</p>
+                            <p class="form-row form-row-first"><label for="orderid">请输入你的订单号</label>
+                                <input class="input-text" type="text" name="orderid" id="orderid"
+                                       value="" placeholder="Found in your order confirmation email.">
+                            </p>
+                            <p class="form-row form-row-last"><label for="order_email">请输入你的邮箱</label>
+                                <input class="input-text" type="text" name="order_email" id="order_email" value="" placeholder="Email you used during checkout."></p>
+                            <div class="clear"></div>
+                            <p class="form-row">
+                                <button type="submit" class="button" name="track" value="Track">提交</button>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<div th:replace="~{fragment/footer::footer}"></div>
+<div th:replace="~{fragment/footer::footer_mobile}"></div>
+
+<a href="#" class="backtotop active">
+    <i class="fa fa-angle-double-up"></i>
+</a>
+<script src="assets/js/jquery-1.12.4.min.js" th:src="@{/assets/js/jquery-1.12.4.min.js}"></script>
+<script src="assets/js/bootstrap.min.js" th:src="@{/assets/js/bootstrap.min.js}"></script>
+<script src="assets/js/chosen.min.js" th:src="@{/assets/js/chosen.min.js}"></script>
+<script src="assets/js/countdown.min.js" th:src="@{/assets/js/countdown.min.js}"></script>
+<script src="assets/js/jquery.scrollbar.min.js" th:src="@{/assets/js/jquery.scrollbar.min.js}"></script>
+<script src="assets/js/lightbox.min.js" th:src="@{/assets/js/lightbox.min.js}"></script>
+<script src="assets/js/magnific-popup.min.js" th:src="@{/assets/js/magnific-popup.min.js}"></script>
+<script src="assets/js/slick.js" th:src="@{/assets/js/slick.js}"></script>
+<script src="assets/js/jquery.zoom.min.js" th:src="@{/assets/js/jquery.zoom.min.js}"></script>
+<script src="assets/js/threesixty.min.js" th:src="@{/assets/js/threesixty.min.js}"></script>
+<script src="assets/js/jquery-ui.min.js" th:src="@{/assets/js/jquery-ui.min.js}"></script>
+<script src="assets/js/mobilemenu.js" th:src="@{/assets/js/mobilemenu.js}"></script>
+<script src="assets/js/functions.js" th:src="@{/assets/js/functions.js}"></script>
+
+</body>
+</html>

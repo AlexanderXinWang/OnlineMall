@@ -1,0 +1,237 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/chosen.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.scrollbar.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/lightbox.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/fonts/flaticon.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/megamenu.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/dreaming-attribute.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+    <title>用户订单</title>
+</head>
+<body>
+<div th:replace="~{fragment/header::header}"></div>
+<div class="banner-wrapper has_background">
+    <img src="assets/images/banner-for-all2.jpg"
+         class="img-responsive attachment-1920x447 size-1920x447" alt="img">
+    <div class="banner-wrapper-inner">
+        <h1 class="page-title">用户订单</h1>
+        <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
+            <ul class="trail-items breadcrumb">
+                <li class="trail-item trail-begin"><a href="index.html"><span>首页</span></a></li>
+                <li class="trail-item trail-end active"><span>用户订单</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<main class="site-main  main-container no-sidebar">
+    <div class="container">
+        <div class="row">
+            <div class="main-content col-md-12">
+                <div class="page-main-content">
+                    <form id="yith-wcwl-form" class="furgan">
+                        <!-- TITLE -->
+                        <!-- WISHLIST TABLE -->
+                        <table class="shop_table cart wishlist_table" data-pagination="no" data-per-page="5"
+                               data-page="1" data-id="" data-token="">
+                            <thead>
+                            <tr>
+                                <th class="product-remove"></th>
+                                <th class="product-thumbnail"></th>
+                                <th class="product-name">
+                                    <span class="nobr">Product Name</span>
+                                </th>
+                                <th class="product-price">
+                    <span class="nobr">
+                        Unit Price                    </span>
+                                </th>
+                                <th class="product-stock-status">
+                    <span class="nobr">
+                        Stock Status                    </span>
+                                </th>
+                                <th class="product-add-to-cart"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr id="yith-wcwl-row-26" data-row-id="26" style="background-color: #F0F0F0;">
+                                <td class="product-thumbnail">
+                                    <a href="#">已下单宝贝</a></td>
+                                <td class="product-name">
+                                    </td>
+                                <td class="product-price">
+                                    <span class="furgan-Price-amount amount"><span
+                                            class="furgan-Price-currencySymbol"></span>单价</span></td>
+                                <td class="product-number">
+                                    <span class="furgan-Price-amount amount"><span
+                                            class="furgan-Price-currencySymbol"></span>数量</span></td>
+                                <td class="product-pay">
+                                    <span class="furgan-Price-amount amount"><span
+                                            class="furgan-Price-currencySymbol"></span>实付款</span></td>
+                                <td class="product-stock-status">
+                                    <span class="wishlist-in-stock">交易状态</span></td>
+                                <td class="product-detail">
+                                    <span class="furgan-Price-amount amount"><span
+                                            class="furgan-Price-currencySymbol"></span>订单详情</span></td>
+                                <td class="product-add-to-cart">
+                                    <span class="furgan-Price-amount amount" style="color: #0b0b0b"><span
+                                            class="furgan-Price-currencySymbol"></span>操作</span></td>
+                                </td>
+                            </tr>
+                            <tr id="yith-wcwl-row-29" data-row-id="29">
+                                <td class="product-thumbnail">
+                                    <a href="#">
+                                        <img src="assets/images/apro1113-600x778.jpg"
+                                             class="attachment-furgan_thumbnail size-furgan_thumbnail" alt="img"
+                                             width="600" height="778"> </a>
+                                </td>
+                                <td class="product-name">
+                                    <a href="#">闹钟</a>
+                                    <a href="#" class="button yith-wcqv-button" data-product_id="29">Quick View</a></td>
+                                <td class="product-price">
+                                    <span class="furgan-Price-amount amount"><span
+                                            class="furgan-Price-currencySymbol">¥</span>129.00</span></td>
+                                <td class="product-number">
+                                    <span class="furgan-Price-amount amount"><span
+                                            class="furgan-Price-currencySymbol">×</span>1</span></td>
+                                <td class="product-pay">
+                                    <span class="furgan-Price-amount amount"><span
+                                            class="furgan-Price-currencySymbol">¥</span>129.00</span></td>
+                                <td class="product-stock-status">
+                                    <span class="wishlist-in-stock">卖家已发货</span></td>
+                                <td class="product-detail">
+                                    <a href="#">查看详情</a>
+                                    <a href="#" class="button yith-wcqv-button" data-product_id="29">Quick View</a></td></td>
+                                <td class="product-add-to-cart">
+                                    <!-- Date added -->
+                                    <!-- Add to cart button -->
+                                    <a href="#"
+                                       data-quantity="1"
+                                       class="button product_type_simple add_to_cart_button ajax_add_to_cart add_to_cart button alt"
+                                       data-product_id="29" data-product_sku="003D754"
+                                       aria-label="Add “Alarm Clock” to your cart" rel="nofollow">确认收货</a>
+                                    <!-- Change wishlist -->
+                                    <!-- Remove from wishlist -->
+                                </td>
+                            </tr>
+                            <tr id="yith-wcwl-row-25" data-row-id="25">
+                                <td class="product-thumbnail">
+                                    <a href="#">
+                                        <img src="assets/images/apro151-1-600x778.jpg"
+                                             class="attachment-furgan_thumbnail size-furgan_thumbnail" alt="img"
+                                             width="600" height="778"> </a>
+                                </td>
+                                <td class="product-name">
+                                    <a href="#">Office Chair</a>
+                                    <a href="#" class="button yith-wcqv-button" data-product_id="25">Quick View</a></td>
+                                <td class="product-price">
+                                    <del><span class="furgan-Price-amount amount"><span
+                                            class="furgan-Price-currencySymbol">¥</span>89.00</span></del>
+                                    <ins><span class="furgan-Price-amount amount"><span
+                                            class="furgan-Price-currencySymbol">¥</span>79.00</span></ins>
+                                </td>
+                                <td class="product-number">
+                                    <span class="furgan-Price-amount amount"><span
+                                            class="furgan-Price-currencySymbol">×</span>1</span></td>
+                                <td class="product-pay">
+                                    <span class="furgan-Price-amount amount"><span
+                                            class="furgan-Price-currencySymbol">¥</span>79.00</span></td>
+                                <td class="product-stock-status">
+                                    <span class="wishlist-in-stock">卖家已发货</span></td>
+                                <td class="product-detail">
+                                    <a href="#">查看详情</a>
+                                    <a href="#" class="button yith-wcqv-button" data-product_id="29">Quick View</a></td></td>
+                                <td class="product-add-to-cart">
+                                    <!-- Date added -->
+                                    <!-- Add to cart button -->
+                                    <a href="#"
+                                       data-quantity="1"
+                                       class="button product_type_simple add_to_cart_button ajax_add_to_cart add_to_cart button alt"
+                                       data-product_id="25" data-product_sku="018Q711"
+                                       aria-label="Add “Office Chair” to your cart" rel="nofollow">确认收货</a>
+                                    <!-- Change wishlist -->
+                                    <!-- Remove from wishlist -->
+                                </td>
+                            </tr>
+                            <tr id="yith-wcwl-row-22" data-row-id="22">
+                                <td class="product-thumbnail">
+                                    <a href="#">
+                                        <img src="assets/images/apro181-2-600x778.jpg"
+                                             class="attachment-furgan_thumbnail size-furgan_thumbnail" alt="img"
+                                             width="600" height="778"> </a>
+                                </td>
+                                <td class="product-name">
+                                    <a href="#">Wall Lamp</a>
+                                    <a href="#" class="button yith-wcqv-button" data-product_id="22">Quick View</a></td>
+                                <td class="product-price">
+                                    <span class="furgan-Price-amount amount"><span
+                                            class="furgan-Price-currencySymbol">¥</span>98.00</span></td>
+                                <td class="product-number">
+                                    <span class="furgan-Price-amount amount"><span
+                                            class="furgan-Price-currencySymbol">×</span>2</span></td>
+                                <td class="product-pay">
+                                    <span class="furgan-Price-amount amount"><span
+                                            class="furgan-Price-currencySymbol">¥</span>196.00</span></td>
+                                <td class="product-stock-status">
+                                    <span class="wishlist-in-stock">卖家已发货</span></td>
+                                <td class="product-detail">
+                                    <a href="#">查看详情</a>
+                                    <a href="#" class="button yith-wcqv-button" data-product_id="29">Quick View</a></td></td>
+                                <td class="product-add-to-cart">
+                                    <!-- Date added -->
+                                    <!-- Add to cart button -->
+                                    <a href="#"
+                                       data-quantity="1"
+                                       class="button product_type_simple add_to_cart_button ajax_add_to_cart add_to_cart button alt"
+                                       data-product_id="22" data-product_sku="389N100"
+                                       aria-label="Add “Wall Lamp” to your cart" rel="nofollow">确认收货</a>
+                                    <!-- Change wishlist -->
+                                    <!-- Remove from wishlist -->
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="6">
+                                </td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<div th:replace="~{fragment/footer::footer}"></div>
+<div th:replace="~{fragment/footer::footer_mobile}"></div>
+
+<a href="#" class="backtotop active">
+    <i class="fa fa-angle-double-up"></i>
+</a>
+<script src="assets/js/jquery-1.12.4.min.js" th:src="@{/assets/js/jquery-1.12.4.min.js}"></script>
+<script src="assets/js/bootstrap.min.js" th:src="@{/assets/js/bootstrap.min.js}"></script>
+<script src="assets/js/chosen.min.js" th:src="@{/assets/js/chosen.min.js}"></script>
+<script src="assets/js/countdown.min.js" th:src="@{/assets/js/countdown.min.js}"></script>
+<script src="assets/js/jquery.scrollbar.min.js" th:src="@{/assets/js/jquery.scrollbar.min.js}"></script>
+<script src="assets/js/lightbox.min.js" th:src="@{/assets/js/lightbox.min.js}"></script>
+<script src="assets/js/magnific-popup.min.js" th:src="@{/assets/js/magnific-popup.min.js}"></script>
+<script src="assets/js/slick.js" th:src="@{/assets/js/slick.js}"></script>
+<script src="assets/js/jquery.zoom.min.js" th:src="@{/assets/js/jquery.zoom.min.js}"></script>
+<script src="assets/js/threesixty.min.js" th:src="@{/assets/js/threesixty.min.js}"></script>
+<script src="assets/js/jquery-ui.min.js" th:src="@{/assets/js/jquery-ui.min.js}"></script>
+<script src="assets/js/mobilemenu.js" th:src="@{/assets/js/mobilemenu.js}"></script>
+<script src="assets/js/functions.js" th:src="@{/assets/js/functions.js}"></script>
+
+</body>
+</html>
