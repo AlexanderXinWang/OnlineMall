@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +21,8 @@ class OnlinemallApplicationTests {
     SystemLogMapper systemLogMapper;
     @Autowired
     CommentServiceImpl commentService;
+    @Autowired
+    CartMapper cartMapper;
     @Test
     public void t1(){
         List<Category> categories = mapper.selectByExample(new CategoryExample());
@@ -90,7 +93,19 @@ class OnlinemallApplicationTests {
 //        List<Comment> comments = commentService.selectByUserIdAndProductId(null, 1);
         List<Comment> comments = commentService.selectByUserIdAndProductId(1, 1);
         System.out.println(comments);
+    }
+    //测试根据购物车id,查询商品
+    @Test
+    public void t8(){
 
-
+        CartExample cartExample = new CartExample();
+        cartExample.createCriteria().andUserIdEqualTo(1);
+        List<Cart> carts = cartMapper.selectByExample(cartExample);
+        List<Integer> productIds = new ArrayList<>();
+        for (Cart cart: carts) {
+            productIds.add(cart.getProductId());
+        }
+        List<Product> list= cartMapper.selectMyProductByCartId(productIds);
+        System.out.println(list);
     }
 }
