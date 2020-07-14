@@ -2,6 +2,7 @@ package com.xju.onlinemall;
 
 import com.xju.onlinemall.common.domain.*;
 import com.xju.onlinemall.mapper.*;
+import com.xju.onlinemall.service.CartService;
 import com.xju.onlinemall.service.CommentServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ class OnlinemallApplicationTests {
     CommentServiceImpl commentService;
     @Autowired
     CartMapper cartMapper;
+    @Autowired
+    CartService cartService;
     @Test
     public void t1(){
         List<Category> categories = mapper.selectByExample(new CategoryExample());
@@ -105,7 +108,13 @@ class OnlinemallApplicationTests {
         for (Cart cart: carts) {
             productIds.add(cart.getProductId());
         }
-        List<Product> list= cartMapper.selectMyProductByCartId(productIds);
+        List<Product> list = cartService.getCartListByUserId(1);
+//        List<Product> list= cartMapper.selectMyProductByCartId(productIds);
         System.out.println(list);
+    }
+    //测试加入购物车
+    @Test
+    public void t9(){
+        boolean b = cartService.insertIntoCartByProdcutId(1, 1);
     }
 }

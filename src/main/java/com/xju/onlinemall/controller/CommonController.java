@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class CommonController {
+
     /**
      * 初次访问，判断是否登录，如果没有登录，就跳转登录页面，登录成功时会再次访问此页面设置头部信息
      * */

@@ -14,4 +14,8 @@ public interface CartService {
      * 根据用户id获得购物车中的商品
      * */
     List<Product> getCartListByUserId(Integer userId);
+    /**
+     * 向购物车中添加商品
+     * */
+    boolean insertIntoCartByProdcutId(Integer userId,Integer prodectId);
 }

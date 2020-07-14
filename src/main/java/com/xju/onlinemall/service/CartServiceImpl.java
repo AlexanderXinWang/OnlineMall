@@ -37,4 +37,22 @@ public class CartServiceImpl implements CartService{
         List<Product> list= cartMapper.selectMyProductByCartId(productIds);
         return list;
     }
+
+    @Override
+    public boolean insertIntoCartByProdcutId(Integer userId, Integer prodectId) {
+        if (userId ==null || prodectId == null){
+            System.out.println("用户id或商品id为空,无法添加购物车");
+            return false;
+        }
+        else{
+            Cart cart = new Cart();
+            cart.setUserId(userId);
+            cart.setProductId(prodectId);
+            cartMapper.insert(cart);
+            return true;
+        }
+
+
+    }
+
 }

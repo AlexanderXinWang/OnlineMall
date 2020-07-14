@@ -5,7 +5,7 @@ public class Cart {
 
     private Integer userId;
 
-    private Byte isDelete;
+    private Byte isDelete=0;
 
     private Integer productId;
 
