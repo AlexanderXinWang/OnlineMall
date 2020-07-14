@@ -32,6 +32,7 @@ public class CommonController {
 
     ///////////////////////////////////////////////////////////////////////////
     // 导航栏header页面跳转请求处理
+    // 后续添加session验证
     ///////////////////////////////////////////////////////////////////////////
     /**
      *跳转首页
@@ -40,7 +41,13 @@ public class CommonController {
     public String index(){
         return "index";
     }
-
+    /**
+     * 跳转到商品详细页面以及商品评论
+     * */
+    @RequestMapping("/single-product-simple.html")
+    public String singleProduct(){
+        return "views_front/single-product-simple";
+    }
     /**
      *跳转商品页
      * */
