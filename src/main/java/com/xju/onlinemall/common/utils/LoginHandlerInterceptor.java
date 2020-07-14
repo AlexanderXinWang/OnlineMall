@@ -17,14 +17,17 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
         Object cardProducts = request.getSession().getAttribute("cartProducts");
 //        System.out.println("preHandle----"+user+" ::: "+request.getRequestURL());
         if(user == null) {
-            System.out.println("当前无权限,请先登录");
-            request.setAttribute("uname","未登录");
-            //这样做会使得每个人页面访问都会设置一遍，浪费性能
-            request.setAttribute("cartProducts","无商品！！！");
-            // 获取request返回页面到登录页
-           request.getRequestDispatcher("/account.html").forward(request,response);
-            return false;
+            if (request.getRequestURI().equals("/register.html")) {
+                return true;
             }
+            System.out.println("当前无权限,请先登录");
+            request.setAttribute("uname", "未登录");
+            //这样做会使得每个人页面访问都会设置一遍，浪费性能
+            request.setAttribute("cartProducts", "无商品！！！");
+            // 获取request返回页面到登录页
+            request.getRequestDispatcher("/account.html").forward(request, response);
+            return false;
+        }
         else {
             //已登录，放行请求
             User u=(User)user;
@@ -32,7 +35,7 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
             request.setAttribute("uname",u.getUserName());
             //设置当前用户的购物车商品
             //这样做会使得每个人页面访问都会设置一遍，浪费性能
-//            request.setAttribute("cartProducts",cardProducts);
+            //request.setAttribute("cartProducts",cardProducts);
             return true;
         }
     }

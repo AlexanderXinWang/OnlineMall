@@ -62,6 +62,15 @@ public class CommonController {
     public String account(){
         return "views_front/my-account";
     }
+
+    /**
+     * 跳转注册页面
+     * */
+    @RequestMapping("/register.html")
+    public String register(){
+        return "views_front/register";
+    }
+
     /**
      *跳转首页
      * */
@@ -69,6 +78,7 @@ public class CommonController {
     public String index(){
         return "index";
     }
+
     /**
      * 跳转到商品详细页面以及商品评论
      * */

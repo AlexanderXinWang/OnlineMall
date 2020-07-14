@@ -118,4 +118,12 @@ public class UserController {
         return "/templates/my-account.html";
     }*/
 
+    /**
+     * 注册,可以获得AJAX数据,并将该操作写入日志
+     * */
+    @RequestMapping("/register")
+    @ResponseBody
+    public Object register(String username, String password, HttpSession session){
+        return null;
+    }
 }

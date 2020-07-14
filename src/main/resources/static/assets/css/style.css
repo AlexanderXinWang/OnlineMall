@@ -9648,7 +9648,7 @@ form.furgan-form-login .furgan-form__label {
 	line-height: 52px;
 }
 form.furgan-form-login .lost_password {
-	text-align: center;
+	text-align: right;
 	font-style: italic;
 	font-size: 14px;
 	font-weight: 600;
