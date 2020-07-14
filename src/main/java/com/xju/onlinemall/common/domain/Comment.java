@@ -11,11 +11,24 @@ public class Comment {
 
     private Date commentTime;
 
-    private Byte isDelete;
+    private Byte isDelete=0;
 
     private Integer userId;
 
     private Integer productId;
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "commentId=" + commentId +
+                ", context='" + context + '\'' +
+                ", score=" + score +
+                ", commentTime=" + commentTime +
+                ", isDelete=" + isDelete +
+                ", userId=" + userId +
+                ", productId=" + productId +
+                '}';
+    }
 
     public Integer getCommentId() {
         return commentId;

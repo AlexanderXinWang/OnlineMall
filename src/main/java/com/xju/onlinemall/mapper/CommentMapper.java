@@ -4,7 +4,9 @@ import com.xju.onlinemall.common.domain.Comment;
 import com.xju.onlinemall.common.domain.CommentExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface CommentMapper {
     long countByExample(CommentExample example);
 
