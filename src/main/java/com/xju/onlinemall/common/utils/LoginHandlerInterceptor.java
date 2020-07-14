@@ -19,10 +19,10 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
         if(user == null) {
             System.out.println("当前无权限,请先登录");
             request.setAttribute("uname","未登录");
+            //这样做会使得每个人页面访问都会设置一遍，浪费性能
             request.setAttribute("cartProducts","无商品！！！");
             // 获取request返回页面到登录页
-            //这样做会使得每个人页面访问都会设置一遍，浪费性能
-//           request.getRequestDispatcher("/account.html").forward(request,response);
+           request.getRequestDispatcher("/account.html").forward(request,response);
             return false;
             }
         else {
@@ -32,7 +32,7 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
             request.setAttribute("uname",u.getUserName());
             //设置当前用户的购物车商品
             //这样做会使得每个人页面访问都会设置一遍，浪费性能
-//            request.setAttribute("cartProducts",cardProducts);
+            request.setAttribute("cartProducts",cardProducts);
             return true;
         }
     }
