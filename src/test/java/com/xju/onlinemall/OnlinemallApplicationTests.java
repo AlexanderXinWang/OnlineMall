@@ -117,4 +117,17 @@ class OnlinemallApplicationTests {
     public void t9(){
         boolean b = cartService.insertIntoCartByProdcutId(1, 1);
     }
+    //测试Object->List
+    @Test
+    public void t10(){
+        List<Product> list = cartService.getCartListByUserId(1);
+        System.out.println("----------------------------------------------");
+        System.out.println(list);
+        System.out.println("----------------------------------------------");
+        Object o=list;
+        List list1=(List)o;
+        System.out.println(list1);
+        System.out.println("----------------------------------------------");
+
+    }
 }

@@ -1,7 +1,9 @@
 package com.xju.onlinemall.controller;
 
+import com.xju.onlinemall.common.domain.Product;
 import com.xju.onlinemall.common.domain.SystemLog;
 import com.xju.onlinemall.common.domain.User;
+import com.xju.onlinemall.service.CartService;
 import com.xju.onlinemall.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,8 @@ import java.util.Map;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    CartService cartService;
 
     /**
      * 测试获得AJAX数据能否获得
@@ -51,7 +55,7 @@ public class UserController {
         return "redirect:/";
     }
     /**
-     * 登录,可以获得AJAX数据,并将该操作写入日志
+     * 登录,可以获得AJAX数据,并将该操作写入日志,并且把当前用户的购物车商品信息写入session！！！
      * */
     @RequestMapping("/login")
     @ResponseBody
@@ -76,8 +80,11 @@ public class UserController {
             //加入session
             session.setAttribute("user",user);
             modelMap.put("success",true);
-            //如果是用户
+            //如果是用户，添加成功信息进JSON,并添加商品信息到session中
             if (user.getUserRole()==0){
+                //添加用户的购物车商品列表信息信息进session
+                List<Product> cartListByUserId = cartService.getCartListByUserId(user.getUserId());
+                session.setAttribute("cartProducts",cartListByUserId);
                 //登录成功,请求控制器/,返回主页
                 modelMap.put("msg","/");
                 //把登录信息写入日志表中

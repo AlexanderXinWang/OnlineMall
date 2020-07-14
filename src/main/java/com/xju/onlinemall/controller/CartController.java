@@ -43,7 +43,9 @@ public class CartController {
     @RequestMapping("/getCartList")
     public String getProducts(HttpSession session, ModelMap modelMap){
         //获得当前登录的用户
-        Object user = session.getAttribute("user");
+        User user = (User)session.getAttribute("user");
+        //从session中获得商品列表
+        List cartProducts =(List) session.getAttribute("cartProducts");
         //添加商品信息到modelMap中
         return "views_front/cart";
     }
