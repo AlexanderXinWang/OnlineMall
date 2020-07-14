@@ -83,7 +83,7 @@ public class CommonController {
     /**
      *跳转联系我们页面
      * */
-    @RequestMapping("/message.html")
+    @RequestMapping("/contact.html")
     public String contact(){
         return "views_front/contact";
     }
@@ -111,6 +111,22 @@ public class CommonController {
     @RequestMapping("/wishlist.html")
     public String wishlist(){
         return "views_front/wishlist";
+    }
+
+    /**
+     *跳转用404页面
+     * */
+    @RequestMapping("/404.html")
+    public String html404(){
+        return "404";
+    }
+
+    /**
+     *跳转项目感言
+     * */
+    @RequestMapping("/testimonials.html")
+    public String testimonials(){
+        return "views_front/testimonials";
     }
 
 
