@@ -1,22 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" th:href="@{/assets/images/favicon.png}"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" th:href="@{/assets/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/animate.css" th:href="@{/assets/css/animate.css}"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" th:href="@{/assets/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/chosen.min.css" th:href="@{/assets/css/chosen.min.css}"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" th:href="@{/assets/css/font-awesome.min.css}"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/jquery.scrollbar.css" th:href="@{/assets/css/jquery.scrollbar.css}"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/lightbox.min.css" th:href="@{/assets/css/lightbox.min.css}"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css" th:href="@{/assets/css/magnific-popup.css}"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/slick.min.css" th:href="@{/assets/css/slick.min.css}"/>
-    <link rel="stylesheet" type="text/css" href="assets/fonts/flaticon.css" th:href="@{/assets/fonts/flaticon.css}"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/megamenu.css" th:href="@{/assets/css/megamenu.css}"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/dreaming-attribute.css" th:href="@{/assets/css/megamenu.css}"/>
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" th:href="@{/assets/css/style.css}"/>
+    <div th:replace="~{fragment/static::link}"></div>
     <title>Online Mall </title>
 </head>
 <body>
@@ -28,8 +13,8 @@
         <h1 class="page-title">我的账号</h1>
         <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
             <ul class="trail-items breadcrumb">
-                <li class="trail-item trail-begin"><a href="index.html"><span>首页</span></a></li>
-                <li class="trail-item trail-end active"><span>我的账号</span>
+                <li class="trail-item trail-begin"><a href="index.html"><span>账号</span></a></li>
+                <li class="trail-item trail-end active"><span>登录</span>
                 </li>
             </ul>
         </div>
@@ -85,25 +70,10 @@
 </main>
 
 <div th:replace="~{fragment/footer::footer}"></div>
-
 <div th:replace="~{fragment/footer::footer_mobile}"></div>
+<div th:replace="~{fragment/footer::footer_up}"></div>
 
-<a href="#" class="backtotop active">
-    <i class="fa fa-angle-double-up"></i>
-</a>
-<script src="../../static/assets/js/jquery-1.12.4.min.js" th:src="@{/assets/js/jquery-1.12.4.min.js}"></script>
-<script src="../../static/assets/js/bootstrap.min.js" th:src="@{/assets/js/bootstrap.min.js}"></script>
-<script src="../../static/assets/js/chosen.min.js" th:src="@{/assets/js/chosen.min.js}"></script>
-<script src="../../static/assets/js/countdown.min.js" th:src="@{/assets/js/countdown.min.js}"></script>
-<script src="../../static/assets/js/jquery.scrollbar.min.js" th:src="@{/assets/js/jquery.scrollbar.min.js}"></script>
-<script src="../../static/assets/js/lightbox.min.js" th:src="@{/assets/js/lightbox.min.js}"></script>
-<script src="../../static/assets/js/magnific-popup.min.js" th:src="@{/assets/js/magnific-popup.min.js}"></script>
-<script src="../../static/assets/js/slick.js" th:src="@{/assets/js/slick.js}"></script>
-<script src="../../static/assets/js/jquery.zoom.min.js" th:src="@{/assets/js/jquery.zoom.min.js}"></script>
-<script src="../../static/assets/js/threesixty.min.js" th:src="@{/assets/js/threesixty.min.js}"></script>
-<script src="../../static/assets/js/jquery-ui.min.js" th:src="@{/assets/js/jquery-ui.min.js}"></script>
-<script src="../../static/assets/js/mobilemenu.js" th:src="@{/assets/js/mobilemenu.js}"></script>
-<script src="../../static/assets/js/functions.js" th:src="@{/assets/js/functions.js}"></script>
+<div th:replace="~{fragment/static::script}"></div>
 <script>
     $(function () {
         $("#buttonlogin").click(function () {
