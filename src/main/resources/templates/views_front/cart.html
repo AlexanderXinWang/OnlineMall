@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/megamenu.css" th:href="@{/assets/css/megamenu.css}"/>
     <link rel="stylesheet" type="text/css" href="assets/css/dreaming-attribute.css" th:href="@{/assets/css/megamenu.css}"/>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" th:href="@{/assets/css/style.css}"/>
-    <title>Online Mall </title>
+    <title>Online Mall - 购物车</title>
 </head>
 <body>
 <div th:replace="~{fragment/header::header}"></div>
@@ -71,10 +71,10 @@
                                             with skirt – Pink</a></td>
                                     <td class="product-price" data-title="Price">
                                         <span class="furgan-Price-amount amount"><span
-                                                class="furgan-Price-currencySymbol">$</span>150.00</span></td>
+                                                class="furgan-Price-currencySymbol">￥</span>150.00</span></td>
                                     <td class="product-quantity" data-title="Quantity">
                                         <div class="quantity">
-                                            <span class="qty-label">Quantiy:</span>
+                                            <span class="qty-label">数量:</span>
                                             <div class="control">
                                                 <a class="btn-number qtyminus quantity-minus" href="#">-</a>
                                                 <input type="text"
@@ -85,7 +85,7 @@
                                     </td>
                                     <td class="product-subtotal" data-title="Total">
                                         <span class="furgan-Price-amount amount"><span
-                                                class="furgan-Price-currencySymbol">$</span>150.00</span></td>
+                                                class="furgan-Price-currencySymbol">￥</span>150.00</span></td>
                                 </tr>
                                 <tr class="furgan-cart-form__cart-item cart_item">
                                     <td class="product-remove">
@@ -102,10 +102,10 @@
                                             Loose</a></td>
                                     <td class="product-price" data-title="Price">
                                         <span class="furgan-Price-amount amount"><span
-                                                class="furgan-Price-currencySymbol">$</span>129.00</span></td>
+                                                class="furgan-Price-currencySymbol">￥</span>129.00</span></td>
                                     <td class="product-quantity" data-title="Quantity">
                                         <div class="quantity">
-                                            <span class="qty-label">Quantiy:</span>
+                                            <span class="qty-label">数量:</span>
                                             <div class="control">
                                                 <a class="btn-number qtyminus quantity-minus" href="#">-</a>
                                                 <input type="text"
@@ -116,7 +116,7 @@
                                     </td>
                                     <td class="product-subtotal" data-title="Total">
                                         <span class="furgan-Price-amount amount"><span
-                                                class="furgan-Price-currencySymbol">$</span>129.00</span></td>
+                                                class="furgan-Price-currencySymbol">￥</span>129.00</span></td>
                                 </tr>
                                 <tr class="furgan-cart-form__cart-item cart_item">
                                     <td class="product-remove">
@@ -132,10 +132,10 @@
                                         <a href="#">Chair AAC</a></td>
                                     <td class="product-price" data-title="Price">
                                         <span class="furgan-Price-amount amount"><span
-                                                class="furgan-Price-currencySymbol">$</span>139.00</span></td>
+                                                class="furgan-Price-currencySymbol">￥</span>139.00</span></td>
                                     <td class="product-quantity" data-title="Quantity">
                                         <div class="quantity">
-                                            <span class="qty-label">Quantiy:</span>
+                                            <span class="qty-label">数量:</span>
                                             <div class="control">
                                                 <a class="btn-number qtyminus quantity-minus" href="#">-</a>
                                                 <input type="text"
@@ -146,22 +146,22 @@
                                     </td>
                                     <td class="product-subtotal" data-title="Total">
                                         <span class="furgan-Price-amount amount"><span
-                                                class="furgan-Price-currencySymbol">$</span>139.00</span></td>
+                                                class="furgan-Price-currencySymbol">￥</span>139.00</span></td>
                                 </tr>
                                 <tr>
                                     <td colspan="6" class="actions">
                                         <div class="coupon">
-                                            <label for="coupon_code">Coupon:</label> <input type="text"
+                                            <label for="coupon_code">优惠券:</label> <input type="text"
                                                                                             name="coupon_code"
                                                                                             class="input-text"
                                                                                             id="coupon_code" value=""
-                                                                                            placeholder="Coupon code">
+                                                                                            placeholder="优惠券码">
                                             <button type="submit" class="button" name="apply_coupon"
-                                                    value="Apply coupon">Apply coupon
+                                                    value="使用优惠券">使用优惠券
                                             </button>
                                         </div>
                                         <button type="submit" class="button" name="update_cart" value="Update cart"
-                                                disabled="">Update cart
+                                                disabled="">更新购物车
                                         </button>
                                         <input type="hidden" id="furgan-cart-nonce" name="furgan-cart-nonce"
                                                value="f41b5bf554"><input type="hidden" name="_wp_http_referer"
@@ -178,13 +178,13 @@
                                     <tr class="cart-subtotal">
                                         <th>小计</th>
                                         <td data-title="Subtotal"><span class="furgan-Price-amount amount"><span
-                                                class="furgan-Price-currencySymbol">$</span>418.00</span></td>
+                                                class="furgan-Price-currencySymbol">￥</span>418.00</span></td>
                                     </tr>
                                     <tr class="order-total">
                                         <th>总计</th>
                                         <td data-title="Total"><strong><span
                                                 class="furgan-Price-amount amount"><span
-                                                class="furgan-Price-currencySymbol">$</span>418.00</span></strong>
+                                                class="furgan-Price-currencySymbol">￥</span>418.00</span></strong>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -192,7 +192,7 @@
                                 <div class="furgan-proceed-to-checkout">
                                     <a href="#"
                                        class="checkout-button button alt furgan-forward">
-                                        继续结算</a>
+                                        去结算</a>
                                 </div>
                             </div>
                         </div>
@@ -217,7 +217,7 @@
                                             </a>
                                             <div class="flash">
                                                 <span class="onsale"><span class="number">-21%</span></span>
-                                                <span class="onnew"><span class="text">New</span></span></div>
+                                                <span class="onnew"><span class="text">新品</span></span></div>
                                             <div class="group-button">
                                                 <div class="yith-wcwl-add-to-wishlist">
                                                     <div class="yith-wcwl-add-button show">
@@ -248,9 +248,9 @@
                                                 <span class="review">(0)</span></div>
                                             <span class="price"><del><span
                                                     class="furgan-Price-amount amount"><span
-                                                    class="furgan-Price-currencySymbol">$</span>125.00</span></del> <ins><span
+                                                    class="furgan-Price-currencySymbol">￥</span>125.00</span></del> <ins><span
                                                     class="furgan-Price-amount amount"><span
-                                                    class="furgan-Price-currencySymbol">$</span>99.00</span></ins></span>
+                                                    class="furgan-Price-currencySymbol">￥</span>99.00</span></ins></span>
                                         </div>
                                     </div>
                                 </div>
@@ -266,7 +266,7 @@
                                             </a>
                                             <div class="flash">
                                                 <span class="onsale"><span class="number">-18%</span></span>
-                                                <span class="onnew"><span class="text">New</span></span></div>
+                                                <span class="onnew"><span class="text">新品</span></span></div>
                                             <div class="group-button">
                                                 <div class="yith-wcwl-add-to-wishlist">
                                                     <div class="yith-wcwl-add-button show">
@@ -297,9 +297,9 @@
                                                 <span class="review">(0)</span></div>
                                             <span class="price"><del><span
                                                     class="furgan-Price-amount amount"><span
-                                                    class="furgan-Price-currencySymbol">$</span>109.00</span></del> <ins><span
+                                                    class="furgan-Price-currencySymbol">￥</span>109.00</span></del> <ins><span
                                                     class="furgan-Price-amount amount"><span
-                                                    class="furgan-Price-currencySymbol">$</span>89.00</span></ins></span>
+                                                    class="furgan-Price-currencySymbol">￥</span>89.00</span></ins></span>
                                         </div>
                                     </div>
                                 </div>
@@ -314,7 +314,7 @@
                                                      alt="DAX Armchair" width="600" height="778">
                                             </a>
                                             <div class="flash">
-                                                <span class="onnew"><span class="text">New</span></span></div>
+                                                <span class="onnew"><span class="text">新品</span></span></div>
                                             <div class="group-button">
                                                 <div class="yith-wcwl-add-to-wishlist">
                                                     <div class="yith-wcwl-add-button show">
@@ -345,9 +345,9 @@
                                                 <span class="review">(0)</span></div>
                                             <span class="price"><span
                                                     class="furgan-Price-amount amount"><span
-                                                    class="furgan-Price-currencySymbol">$</span>89.00</span> – <span
+                                                    class="furgan-Price-currencySymbol">￥</span>89.00</span> – <span
                                                     class="furgan-Price-amount amount"><span
-                                                    class="furgan-Price-currencySymbol">$</span>139.00</span></span>
+                                                    class="furgan-Price-currencySymbol">￥</span>139.00</span></span>
                                         </div>
                                     </div>
                                 </div>

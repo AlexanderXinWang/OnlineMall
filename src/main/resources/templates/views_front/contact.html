@@ -17,7 +17,16 @@
     <link rel="stylesheet" type="text/css" href="assets/css/megamenu.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/dreaming-attribute.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
-    <title>Online Mall </title>
+    <title>Online Mall - 地址</title>
+
+    <style>#container {
+        width: 1280px;
+        height: 640px;
+        margin: auto
+    }  </style>
+    <script type="text/javascript"
+            src="http://webapi.amap.com/maps?v=1.4.15&key=bc7d6eadd950b76bdfb3340a621bcc5f"></script>
+
 </head>
 <body>
 <div th:replace="~{fragment/header::header}"></div>
@@ -29,13 +38,15 @@
         <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
             <ul class="trail-items breadcrumb">
                 <li class="trail-item trail-begin"><a href="index.html"><span>用户</span></a></li>
-                <li class="trail-item trail-end active"><span>地址</span>
-                </li>
+                <li class="trail-item trail-end active"><span>地址</span></li>
             </ul>
         </div>
     </div>
 </div>
+<br>
+<div id="container"></div>
 <div class="site-main main-container no-sidebar">
+
     <div class="section-042">
         <div class="container">
             <div class="row">
@@ -100,5 +111,60 @@
 <script src="assets/js/jquery-ui.min.js"></script>
 <script src="assets/js/mobilemenu.js"></script>
 <script src="assets/js/functions.js"></script>
+
+<script>
+    var map = new AMap.Map('container', {
+        zoom: 15,//级别
+        center: [87.58335281822966, 43.82078199892847],//中心点坐标 北京 116.397428, 39.90923
+        viewMode: '3D'//使用3D视图
+    });
+
+
+    // var buildings = new AMap.Buildings({
+    //     'zooms':[16,18],
+    //     'zIndex':10,
+    //     'heightFactor':2//2倍于默认高度，3D下有效
+    // });//楼块图层
+    // var map = new AMap.Map('container', {
+    //     center: [87.58335281822966,43.82078199892847],
+    //     viewMode:'3D',
+    //     pitch:60,
+    //     rotation:-35,
+    //     features:['bg','road','point'],//隐藏默认楼块
+    //     mapStyle:'amap://styles/light',
+    //     layers: [new AMap.TileLayer.Satellite(),//高德默认标准图层
+    //         buildings],
+    //     zoom: 17
+    // });
+
+    // var trafficLayer = new AMap.TileLayer.Traffic({
+    //     zIndex: 10
+    // });
+    // map.add(trafficLayer);//添加图层到地图
+    // 同时引入工具条插件，比例尺插件和鹰眼插件
+    AMap.plugin([
+        'AMap.ToolBar',
+        'AMap.Scale',
+        'AMap.OverView',
+        'AMap.MapType',
+        'AMap.Geolocation',
+    ], function () {
+        // 在图面添加工具条控件，工具条控件集成了缩放、平移、定位等功能按钮在内的组合控件
+        map.addControl(new AMap.ToolBar());
+
+        // 在图面添加比例尺控件，展示地图在当前层级和纬度下的比例尺
+        map.addControl(new AMap.Scale());
+
+        // 在图面添加鹰眼控件，在地图右下角显示地图的缩略图
+        map.addControl(new AMap.OverView({isOpen: false}));
+
+        // 在图面添加类别切换控件，实现默认图层与卫星图、实施交通图层之间切换的控制
+        map.addControl(new AMap.MapType());
+
+        // 在图面添加定位控件，用来获取和展示用户主机所在的经纬度位置
+        map.addControl(new AMap.Geolocation());
+    });
+</script>
+
 </body>
 </html>

@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/megamenu.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/dreaming-attribute.css"/>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
-    <title>订单追踪</title>
+    <title>Online Mall - 订单追踪</title>
 </head>
 <body>
 <div th:replace="~{fragment/header::header}"></div>
@@ -25,11 +25,11 @@
     <img src="assets/images/banner-for-all2.jpg"
          class="img-responsive attachment-1920x447 size-1920x447" alt="img">
     <div class="banner-wrapper-inner">
-        <h1 class="page-title">订单追踪</h1>
+        <h1 class="page-title">查询订单</h1>
         <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
             <ul class="trail-items breadcrumb">
                 <li class="trail-item trail-begin"><a href="index.html"><span>首页</span></a></li>
-                <li class="trail-item trail-end active"><span>订单追踪</span>
+                <li class="trail-item trail-end active"><span>查询订单</span>
                 </li>
             </ul>
         </div>
@@ -42,18 +42,16 @@
                 <div class="page-main-content">
                     <div class="furgan">
                         <form class="track_order">
-                            <p>To track your order please enter your Order ID in the box below and press
-                                the "Track" button. This was given to you on your receipt and in the
-                                confirmation email you should have received.</p>
+                            <p>若要查询您的订单及其相关情况，请在下框中输入您的订单号和电子邮箱号，您所查询的内容将通过电子邮件的形式发送给您。感谢您的配合。</p>
                             <p class="form-row form-row-first"><label for="orderid">请输入你的订单号</label>
                                 <input class="input-text" type="text" name="orderid" id="orderid"
-                                       value="" placeholder="Found in your order confirmation email.">
+                                       value="" placeholder="请输入你的订单号...">
                             </p>
                             <p class="form-row form-row-last"><label for="order_email">请输入你的邮箱</label>
-                                <input class="input-text" type="text" name="order_email" id="order_email" value="" placeholder="Email you used during checkout."></p>
+                                <input class="input-text" type="text" name="order_email" id="order_email" value="" placeholder="请输入你的邮箱..."></p>
                             <div class="clear"></div>
                             <p class="form-row">
-                                <button type="submit" class="button" name="track" value="Track">提交</button>
+                                <button type="submit" class="button" name="track" value="Track">查询</button>
                             </p>
                         </form>
                     </div>
