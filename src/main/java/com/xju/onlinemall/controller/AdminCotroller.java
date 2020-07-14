@@ -25,7 +25,7 @@ public class AdminCotroller {
             String passwordInDB = adminInDB.getPassword();
             if(passwordInDB.equals(admin.getPassword())){
                 System.out.println("登录成功");
-                return "/views/book/book-list.html";
+                return "/views_back/login.html";
             }else{
                 System.out.println("登录失败");
             }

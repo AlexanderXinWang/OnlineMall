@@ -137,7 +137,6 @@ public class CommonController {
         return "views_front/cart";
     }
 
-
     /**
      *跳转结算页面
      * */
@@ -182,9 +181,19 @@ public class CommonController {
      *跳转订单追踪
      * */
     @RequestMapping("/order-tracking.html")
-    public String ordertracking(){
+    public String orderTracking(){
         return "views_front/order-tracking";
     }
 
 
+    ///////////////////////////////////////////////////////////////////////////
+    // 管理员页面
+    ///////////////////////////////////////////////////////////////////////////
+    /**
+     *跳转管理员登陆
+     * */
+    @RequestMapping("/adminLogin")
+    public String adminLogin(){
+        return "views_back/login";
+    }
 }
