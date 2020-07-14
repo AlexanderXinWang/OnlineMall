@@ -1,5 +1,6 @@
 package com.xju.onlinemall.common.utils;
 
+import com.xju.onlinemall.common.domain.Product;
 import com.xju.onlinemall.common.domain.User;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -7,6 +8,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sound.midi.Soundbank;
+import java.util.List;
 
 @Component
 public class LoginHandlerInterceptor implements HandlerInterceptor{
@@ -15,6 +18,16 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
 
         Object user = request.getSession().getAttribute("user");
         Object cardProducts = request.getSession().getAttribute("cartProducts");
+        List<Product> list =(List<Product>)cardProducts;
+        int cartCount=0;
+        if (list!=null){
+            System.out.println("该用户购物车里有"+list.size()+"件商品");
+            System.out.println("分别是："+list);
+            cartCount=list.size();
+        }else{
+            System.out.println("该用户购物车为 空");
+            cartCount=0;
+        }
 //        System.out.println("preHandle----"+user+" ::: "+request.getRequestURL());
         if(user == null) {
             System.out.println("当前无权限,请先登录");
@@ -32,7 +45,8 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
             request.setAttribute("uname",u.getUserName());
             //设置当前用户的购物车商品
             //这样做会使得每个人页面访问都会设置一遍，浪费性能
-//            request.setAttribute("cartProducts",cardProducts);
+            //request.setAttribute("cartProducts",cardProducts);
+            request.setAttribute("cartCount",cartCount);
             return true;
         }
     }
