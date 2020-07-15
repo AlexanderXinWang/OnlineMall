@@ -45,7 +45,7 @@
                                     <p class="furgan-form-row furgan-form-row--wide form-row form-row-wide">
                                         <label for="password">支付密码&nbsp;<span class="required">*</span></label>
                                         <input class="furgan-Input furgan-Input--text input-text"
-                                               type="password" name="password_pay" id="password_pay"
+                                               type="password" name="PayPassowrd" id="PayPassowrd"
                                                autocomplete="current-password">
                                     </p>
                                     <p class="furgan-form-row furgan-form-row--wide form-row form-row-wide">
@@ -84,13 +84,16 @@
         $("#buttonRegister").click(function () {
             var name=$("#username").val().trim();
             var pwd=$("#password").val().trim();
-            var pwd_pay=$("#password_pay").val().trim();
+            var pwd_pay=$("#PayPassowrd").val().trim();
             var phone=$("#phone").val().trim();
+            var d={"username":name,"passowrd":pwd,"pwdPay":pwd_pay,"phone":phone};
+            //可以拿到值
+            // alert(name+"  "+pwd+"  "+pwd_pay+"  "+phone);
             $.ajax({
                 type:"POST",
                 url:"userRegister",
                 dataType:"json",
-                data:{"username_reg":name,"pwd_reg":pwd,"pwd_pay":pwd_pay,"phone":phone},
+                data:{"username":name,"password":pwd,"pwdPay":pwd_pay,"phone":phone},
                 success:function (data) {
                     if (data["success"]){
                         //返回值是learn/t1 相对于项目地址
@@ -99,6 +102,7 @@
                         window.location.href=data["msg"];
                     }
                     else{
+
                         alert("注册失败！")
                     }
                 }
