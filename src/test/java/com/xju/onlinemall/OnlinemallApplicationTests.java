@@ -168,4 +168,35 @@ class OnlinemallApplicationTests {
         }
         System.out.println(orders);
     }
+    //测试修改后的购物车后端逻辑
+    @Test
+    public void t12(){
+        CartExample cartExample = new CartExample();
+        cartExample.createCriteria().andUserIdEqualTo(1);
+        List<Cart> carts = cartMapper.selectByExample(cartExample);
+        List<Product> list = null;
+        if (carts.size()==0){
+            list = null;
+        } else if(carts.size()!=0){
+            //获取商品id的列表
+            List<Integer> productIds = new ArrayList<>();
+            for (Cart cart: carts) {
+                productIds.add(cart.getProductId());
+            }
+            //查询返回当前用户购物车里的所有商品
+            list= cartMapper.selectMyProductByCartId(productIds);
+            //设置每个商品的数量
+            for (Product product:list){
+                int count=0;
+                Integer productId = product.getProductId();
+                for(Integer single:productIds){
+                    if (single==productId){
+                        count++;
+                    }
+                }
+                product.setCount(count);
+            }
+        }
+        System.out.println(list);
+    }
 }
