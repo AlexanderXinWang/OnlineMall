@@ -30,7 +30,7 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
      * */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginHandlerInterceptor).addPathPatterns("/**").excludePathPatterns("/account.html","/login","/register.html","/userRegister").excludePathPatterns("/static/**")
+        registry.addInterceptor(loginHandlerInterceptor).addPathPatterns("/**").excludePathPatterns("/account.html","/login","/register.html","/userRegister","/adminLogin").excludePathPatterns("/static/**")
         .excludePathPatterns("/assets/**").excludePathPatterns("/layuiadmin/**");
 
     }

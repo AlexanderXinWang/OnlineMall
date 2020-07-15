@@ -180,7 +180,19 @@ public class CommonController {
         return "views_front/order-tracking";
     }
 
-
+    /**
+     *
+     * 跳转相关客户界面
+     *
+     * */
+    @RequestMapping("/client.html")
+    public String Client(){
+        /**
+         *
+         * x
+         * */
+        return "views_front/client.html";
+    }
     ///////////////////////////////////////////////////////////////////////////
     // 管理员页面
     ///////////////////////////////////////////////////////////////////////////
