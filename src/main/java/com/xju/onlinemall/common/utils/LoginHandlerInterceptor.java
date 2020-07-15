@@ -24,8 +24,6 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
         List cardProductsList =(List)cardProducts;
         int cartCount=0;
         if (cardProductsList!=null){
-            System.out.println("该用户购物车里有"+cardProductsList.size()+"件商品");
-            System.out.println("分别是："+cardProductsList);
             cartCount=cardProductsList.size();
         }else{
             System.out.println("该用户购物车为 空");
