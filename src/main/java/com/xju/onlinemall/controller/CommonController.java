@@ -134,7 +134,7 @@ public class CommonController {
     public String cart(HttpSession session, ModelMap modelMap){
         //获取购物车商品内的商品
         List cartProducts = (List)session.getAttribute("cartProducts");
-        modelMap.addAttribute("userCartProudcts",cartProducts);
+        modelMap.addAttribute("cardProductsList",cartProducts);
         return "views_front/cart";
     }
 
