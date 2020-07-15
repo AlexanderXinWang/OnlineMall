@@ -14,7 +14,7 @@
         <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs">
             <ul class="trail-items breadcrumb">
                 <li class="trail-item trail-begin"><a href="index.html"><span>账号</span></a></li>
-                <li class="trail-item trail-end active"><span>注册</span>
+                <li class="trail-item trail-end active"><span>账户明细</span>
                 </li>
             </ul>
         </div>
@@ -29,40 +29,48 @@
                         <div class="furgan-notices-wrapper"></div>
                         <div class="u-columns col2-set" id="customer_login">
                             <div class="u-column1 col-1">
-                                <h2>注册</h2>
+                                <h2>个人信息</h2>
                                 <form class="furgan-form furgan-form-login login" method="post">
                                     <p class="furgan-form-row furgan-form-row--wide form-row form-row-wide">
                                         <label for="username">用户名&nbsp<span
                                                 class="required">*</span></label>
                                         <input type="text" class="furgan-Input furgan-Input--text input-text"
-                                               name="username" id="username" autocomplete="username" value=""></p>
+                                               name="username" id="username" autocomplete="username" value="" th:value="${uname}"></p>
                                     <p class="furgan-form-row furgan-form-row--wide form-row form-row-wide">
                                         <label for="password">密码&nbsp;<span class="required">*</span></label>
                                         <input class="furgan-Input furgan-Input--text input-text"
                                                type="password" name="password" id="password"
-                                               autocomplete="current-password">
+                                               autocomplete="current-password" th:value="${password}">
                                     </p>
                                     <p class="furgan-form-row furgan-form-row--wide form-row form-row-wide">
-                                        <label for="password">支付密码&nbsp;<span class="required">*</span></label>
-                                        <input class="furgan-Input furgan-Input--text input-text"
-                                               type="password" name="password_pay" id="password_pay"
-                                               autocomplete="current-password">
+                                        <label for="username">性别&nbsp</label>
+                                        <input type="text" class="furgan-Input furgan-Input--text input-text"
+                                               name="sex" id="sex" autocomplete="sex" value="">
                                     </p>
                                     <p class="furgan-form-row furgan-form-row--wide form-row form-row-wide">
                                         <label for="username">电话号码&nbsp<span
                                                 class="required">*</span></label>
                                         <input type="text" class="furgan-Input furgan-Input--text input-text"
-                                               name="phone" id="phone" autocomplete="phone" value=""></p>
+                                               name="phone" id="phone" autocomplete="phone" value="" th:value="${phone}"></p>
                                     <p class="form-row">
+                                    <p class="furgan-form-row furgan-form-row--wide form-row form-row-wide">
+                                        <label for="email">Email&nbsp;</label>
+                                        <input type="email" class="furgan-Input furgan-Input--text input-text"
+                                               name="email" id="email" autocomplete="email" value="" th:value="${email}">
+                                    </p>
+                                    <p class="furgan-form-row furgan-form-row--wide form-row form-row-wide">
+                                        <label for="password">支付密码&nbsp;<span class="required">*</span></label>
+                                        <input class="furgan-Input furgan-Input--text input-text"
+                                               type="password" name="password_pay" id="password_pay"
+                                               autocomplete="current-password" th:value="${payPassword}">
+                                    </p>
+                                    <p>
                                         <input type="hidden" id="furgan-login-nonce" name="furgan-login-nonce"
                                                value="832993cb93"><input type="hidden" name="_wp_http_referer"
                                                                          value="/furgan/my-account/">
-                                        <button id="buttonRegister" type="button" class="furgan-Button button" name="registerbutton"
-                                                value="Register">点击注册
+                                        <button id="buttonChangeDetail" type="button" class="furgan-Button button" name="changeDetailButton"
+                                                value="Change">点击修改
                                         </button>
-                                        <label class="furgan-form__label furgan-form__label-for-checkbox inline">
-                                            <a href="/account.html">已有帐号 ?</a>
-                                        </label>
                                     </p>
                                 </form>
                             </div>
@@ -84,22 +92,25 @@
         $("#buttonRegister").click(function () {
             var name=$("#username").val().trim();
             var pwd=$("#password").val().trim();
-            var pwd_pay=$("#password_pay").val().trim();
+            var sex=$("#sex").val();
             var phone=$("#phone").val().trim();
+            var email = $("#email").val().trim();
+            var password_pay=$("#password_pay").val().trim();
+
             $.ajax({
                 type:"POST",
-                url:"userRegister",
+                url:"changeDetail",
                 dataType:"json",
-                data:{"username_reg":name,"pwd_reg":pwd,"pwd_pay":pwd_pay,"phone":phone},
+                data:{"username":name,"password":pwd,"sex":sex,"phone":phone,"email":email,"payPassword":password_pay,},
                 success:function (data) {
                     if (data["success"]){
                         //返回值是learn/t1 相对于项目地址
                         //返回值是/learn/t1 相对于根地址 http://localhost:8080/learn/t1
-                        alert("注册成功!");
+                        alert("修改成功!");
                         window.location.href=data["msg"];
                     }
                     else{
-                        alert("注册失败！")
+                        alert("修改失败！")
                     }
                 }
             })
