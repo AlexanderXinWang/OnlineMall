@@ -8539,7 +8539,8 @@ body.furgan-cart .shop_table tr th.product-subtotal {
 	padding-top: 22px;
 	padding-bottom: 22px;
 }
-.furgan-cart-form .shop_table thead th.product-name {
+.furgan-cart-form .shop_table thead th.product-name,
+.furgan-cart-form .shop_table thead th.product-thumbnail{
 	text-align: left;
 }
 .furgan-cart-form .shop_table td.product-price,

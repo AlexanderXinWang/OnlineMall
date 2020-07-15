@@ -33,76 +33,15 @@
                                 <thead>
                                 <tr>
                                     <th class="product-remove">&nbsp;</th>
-                                    <th class="product-thumbnail">&nbsp;</th>
-                                    <th class="product-name">商品</th>
+                                    <th class="product-thumbnail" style="margin-left: -20px;">商品样式</th>
+                                    <th class="product-name">商品名</th>
                                     <th class="product-price">价格</th>
                                     <th class="product-quantity">数量</th>
                                     <th class="product-subtotal">金额</th>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr class="furgan-cart-form__cart-item cart_item">
-                                    <td class="product-remove">
-                                        <a href="#"
-                                           class="remove" aria-label="Remove this item" data-product_id="27"
-                                           data-product_sku="885B712">×</a></td>
-                                    <td class="product-thumbnail">
-                                        <a href="#"><img
-                                                src="assets/images/apro134-1-600x778.jpg"
-                                                class="attachment-furgan_thumbnail size-furgan_thumbnail"
-                                                alt="img" width="600" height="778"></a></td>
-                                    <td class="product-name" data-title="Product">
-                                        <a href="#">T-shirt
-                                            with skirt – Pink</a></td>
-                                    <td class="product-price" data-title="Price">
-                                        <span class="furgan-Price-amount amount"><span
-                                                class="furgan-Price-currencySymbol">￥</span>150.00</span></td>
-                                    <td class="product-quantity" data-title="Quantity">
-                                        <div class="quantity">
-                                            <span class="qty-label">数量:</span>
-                                            <div class="control">
-                                                <a class="btn-number qtyminus quantity-minus" href="#">-</a>
-                                                <input type="text"
-                                                       value="1" title="Qty" class="input-qty input-text qty text">
-                                                <a class="btn-number qtyplus quantity-plus" href="#">+</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="product-subtotal" data-title="Total">
-                                        <span class="furgan-Price-amount amount"><span
-                                                class="furgan-Price-currencySymbol">￥</span>150.00</span></td>
-                                </tr>
-                                <tr class="furgan-cart-form__cart-item cart_item">
-                                    <td class="product-remove">
-                                        <a href="#"
-                                           class="remove" aria-label="Remove this item" data-product_id="29"
-                                           data-product_sku="003D754">×</a></td>
-                                    <td class="product-thumbnail">
-                                        <a href="#"><img
-                                                src="assets/images/apro1113-600x778.jpg"
-                                                class="attachment-furgan_thumbnail size-furgan_thumbnail"
-                                                alt="img" width="600" height="778"></a></td>
-                                    <td class="product-name" data-title="Product">
-                                        <a href="#">Short Sleeve
-                                            Loose</a></td>
-                                    <td class="product-price" data-title="Price">
-                                        <span class="furgan-Price-amount amount"><span
-                                                class="furgan-Price-currencySymbol">￥</span>129.00</span></td>
-                                    <td class="product-quantity" data-title="Quantity">
-                                        <div class="quantity">
-                                            <span class="qty-label">数量:</span>
-                                            <div class="control">
-                                                <a class="btn-number qtyminus quantity-minus" href="#">-</a>
-                                                <input type="text"
-                                                       value="1" title="Qty" class="input-qty input-text qty text">
-                                                <a class="btn-number qtyplus quantity-plus" href="#">+</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="product-subtotal" data-title="Total">
-                                        <span class="furgan-Price-amount amount"><span
-                                                class="furgan-Price-currencySymbol">￥</span>129.00</span></td>
-                                </tr>
+                                <tbody id="products">
+                                <!--购物车在此处通过ajax循环输出-->
                                 <tr class="furgan-cart-form__cart-item cart_item">
                                     <td class="product-remove">
                                         <a href="#"
@@ -123,8 +62,7 @@
                                             <span class="qty-label">数量:</span>
                                             <div class="control">
                                                 <a class="btn-number qtyminus quantity-minus" href="#">-</a>
-                                                <input type="text"
-                                                       value="1" title="Qty" class="input-qty input-text qty text">
+                                                <input type="text" data-step="1" min="0" max="" name="quantity[25]" value="0" title="Qty" class="input-qty input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
                                                 <a class="btn-number qtyplus quantity-plus" href="#">+</a>
                                             </div>
                                         </div>
@@ -349,5 +287,53 @@
 <div th:replace="~{fragment/footer::footer_mobile}"></div>
 <div th:replace="~{fragment/footer::footer_up}"></div>
 <div th:replace="~{fragment/static::script}"></div>
+<script>
+    $(function () {
+        $.ajax({
+            url: 'url地址',
+            type: 'get',                 //获取数据方式:post/get
+            async: false,                  //加载方式默认异步,true为同步
+            dataType: 'json',            //数据格式
+            success: function (res) {
+                var data = res.result;//后台返回数据
+                var productsList = "";
+                $.each(data, function (i, item) {//进行循环
+                    productsList += "<tr class='furgan-cart-form__cart-item cart_item'>" +
+                        "<td class='product-remove'>" +
+                            "<a href='#' class='remove' aria-label='Remove this item' data-product_id='20' data-product_sku='775E109'>×</a>" +
+                        "</td>" +
+                        "<td class='product-thumbnail'>" +
+                            "<a href='#'><img src='assets/images/apro201-1-600x778.jpg' class='attachment-furgan_thumbnail size-furgan_thumbnail' alt='img' width='600' height='778'></a>" +
+                        "</td>" +
+                        "<td class='product-name' data-title='Product'>" +
+                            "<a href='#'>Chair AAC</a>"+
+                        "</td>" +
+                        "<td class='product-price' data-title='Price'>"+
+                            "<span class='furgan-Price-amount amount'><span class='furgan-Price-currencySymbol'>￥</span>139.00</span>"+
+                        "</td>" +
+                        "<td class='product-quantity' data-title='Quantity'>"+
+                            "<div class='quantity'>"+
+                                "<span class='qty-label'>数量:</span>"+
+                                "<div class='control'>"+
+                                    "<a class='btn-number qtyminus quantity-minus' href='#'>-</a>"+
+                                    "<input type='text' data-step='1' min='0' max='' name='quantity[25]' value='0' title='Qty' class='input-qty input-text qty text' size='4' pattern='[0-9]*' inputmode='numeric'>"+
+                                    "<a class='btn-number qtyplus quantity-plus' href='#'>+</a>" +
+                                "</div>"+
+                            "</div>"+
+                        "</td>" +
+                        "<td class='product-subtotal' data-title='Total'>" +
+                            "<span class='furgan-Price-amount amount'><span class='furgan-Price-currencySymbol'>￥</span>139.00</span>" +
+                        "</td>" +
+                    "</tr>"
+                });
+                $('#products').html(productsList);        //数据在<div id="dakas"></div>里面显示
+            },
+            error: function (obj) {
+                alert("提示:请求超时或遇到错误，请刷新页面后重试或联系管理员！");
+            },
+        });
+    });
+
+</script>
 </body>
 </html>
