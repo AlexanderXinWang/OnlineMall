@@ -21,13 +21,12 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
          * */
         Object user = request.getSession().getAttribute("user");
         Object cardProducts = request.getSession().getAttribute("cartProducts");
-        List<Product> list =(List<Product>)cardProducts;
-        //购物车中不同商品的数量
+        List<Product> cardProductsList =(List<Product>)cardProducts;
         int cartCount=0;
-        if (list!=null){
-            System.out.println("该用户购物车里有"+list.size()+"件商品");
-//            System.out.println("分别是："+list);
-            cartCount=list.size();
+        if (cardProductsList!=null){
+            System.out.println("该用户购物车里有"+cardProductsList.size()+"件商品");
+            System.out.println("分别是："+cardProductsList);
+            cartCount=cardProductsList.size();
         }else{
             System.out.println("该用户购物车为 空");
         }
@@ -50,6 +49,8 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
             //这样做会使得每个人页面访问都会设置一遍，浪费性能
             //request.setAttribute("cartProducts",cardProducts);
             request.setAttribute("cartCount",cartCount);
+            request.setAttribute("cardProductsList",cardProductsList);
+
             return true;
         }
     }
