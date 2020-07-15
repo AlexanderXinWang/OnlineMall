@@ -125,33 +125,33 @@ public class UserController {
      * */
     @RequestMapping("/userRegister")
     @ResponseBody
-    public Object register(@Param("username_reg") String username, @Param("pwd_reg") String password,
-                           @Param("pwd_pay") String password_pay, @Param("phone")String phone) {
-
+    public Object register(@Param("username") String username, String password,String pwdPay,
+                            @Param("phone")String phone) {
         ModelMap modelMap = new ModelMap();
         Byte isDelete = 3;
-
+        System.out.println("测试传入值是否正常："+username+"  "+password+"  "+pwdPay+"  "+phone);
         //传入注册信息
         User user = new User();
         user.setUserName(username);
         user.setPassword(password);
-        user.setPayPassword(password_pay);
+        user.setPayPassword(pwdPay);
         user.setPhone(phone);
         user.setIsDelete(isDelete);
+        user.setRegisterTime(new Date());
+        user.setSex(0);
         user.setUserRole(0);
 
         userService.register(user);
-
-        System.out.println("注册用户名" + username + ";注册密码" + password);
 
         //注册操作完成后查询数据库看是否成功
         List<User> users = userService.selectUserByNameAndPassword(username, password);
         //如果查询不到用户信息
         if (users.size() == 0) {
-            System.out.println("查询到的用户数量为0");
+            System.out.println("查询到的用户数量为0,注册失败");
             //查询结果返回前端
             modelMap.put("success", false);
         } else {
+            System.out.println("注册成功!");
             modelMap.put("success", true);
             modelMap.put("msg", "/account.html");
         }
