@@ -128,6 +128,14 @@ public class CommonController {
     }
 
     /**
+     *跳转用户中心
+     * */
+    @RequestMapping("/account-detail.html")
+    public String accountDetail(){
+        return "views_front/account-detail";
+    }
+
+    /**
      *跳转购物车,并传递用户商品数据
      * */
     @RequestMapping("/cart.html")
