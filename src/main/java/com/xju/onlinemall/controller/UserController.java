@@ -88,7 +88,7 @@ public class UserController {
                 List<Product> cartListByUserId = cartService.getCartListByUserId(user.getUserId());
                 session.setAttribute("cartProducts",cartListByUserId);
                 //登录成功,请求控制器/,返回主页
-                modelMap.put("msg","/");
+                modelMap.put("msg","/index.html");
                 //把登录信息写入日志表中
                 SystemLog systemLog = new SystemLog();
                 systemLog.setUserId(user.getUserId());

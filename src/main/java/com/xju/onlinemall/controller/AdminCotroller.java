@@ -12,7 +12,7 @@ public class AdminCotroller {
     @Autowired
     private AdminService adminService;//控制层注入服务层
 
-    @RequestMapping("/***")
+    @RequestMapping("/ffffffffffff")
     // 接受参数的方式:
 //     //直接获取
 //    bean 方式获取

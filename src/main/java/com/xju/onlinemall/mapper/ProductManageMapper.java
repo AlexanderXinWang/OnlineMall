@@ -4,7 +4,9 @@ import com.xju.onlinemall.common.domain.ProductManage;
 import com.xju.onlinemall.common.domain.ProductManageExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ProductManageMapper {
     long countByExample(ProductManageExample example);
 

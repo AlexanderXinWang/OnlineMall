@@ -4,7 +4,9 @@ import com.xju.onlinemall.common.domain.OutputOder;
 import com.xju.onlinemall.common.domain.OutputOderExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface OutputOderMapper {
     long countByExample(OutputOderExample example);
 

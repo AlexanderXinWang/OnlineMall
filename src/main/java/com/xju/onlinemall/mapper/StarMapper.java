@@ -4,7 +4,9 @@ import com.xju.onlinemall.common.domain.Star;
 import com.xju.onlinemall.common.domain.StarExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface StarMapper {
     long countByExample(StarExample example);
 

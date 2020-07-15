@@ -16,12 +16,12 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         /**
-         * 这里最好不要乱写代码
+         * 这里不要改了！！！！！！
          * 因为访问每一个页面,都会先来这里,除了登录和注册页面
          * */
         Object user = request.getSession().getAttribute("user");
         Object cardProducts = request.getSession().getAttribute("cartProducts");
-        List<Product> cardProductsList =(List<Product>)cardProducts;
+        List cardProductsList =(List)cardProducts;
         int cartCount=0;
         if (cardProductsList!=null){
             System.out.println("该用户购物车里有"+cardProductsList.size()+"件商品");
