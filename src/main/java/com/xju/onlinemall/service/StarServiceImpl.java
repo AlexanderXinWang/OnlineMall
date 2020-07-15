@@ -25,21 +25,15 @@ public class StarServiceImpl implements StarService{
         starExample.createCriteria().andUserIdEqualTo(userId);
         List<Star> stars1 = starMapper.selectByExample(starExample);
         System.out.println(stars1);
-
         List<Star> stars = starMapper.selectByMultiExample(userId);
         System.out.println(stars);
-
         List<Product> products = new ArrayList<>();
-
         for (int i=0;i<stars.size();i++){
             Product product = productMapper.selectByPrimaryKey(Integer.parseInt(stars.get(i).toString()));
             System.out.println(product);
             products.add(product);
         }
-
-
         System.out.println(products);
-
         PageHelper.startPage(pageNo,pageSize);
         return new PageInfo<>(products);
     }
