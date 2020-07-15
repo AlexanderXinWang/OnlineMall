@@ -38,5 +38,12 @@ public class UserSerivceImpl implements UserService{
         userMapper.insert(user);
     }
 
+    @Override
+    public void changeAccountDetail(User user) {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andUserIdEqualTo(user.getUserId());
+        userMapper.updateByExample(userExample);
+    }
+
 
 }

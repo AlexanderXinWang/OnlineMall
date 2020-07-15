@@ -17,4 +17,6 @@ public interface UserService {
     public void insertLogByUser(SystemLog log);
 
     void register(User user);
+
+    void changeAccountDetail(User user);
 }

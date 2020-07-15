@@ -158,4 +158,15 @@ public class UserController {
         return modelMap;
     }
 
+
+    /**
+     * 用户修改个人信息,获得AJAX数据
+     * */
+    @RequestMapping("/changeDetail")
+    @ResponseBody
+    public Object changeDetail(ModelMap modelMap,HttpSession session) {
+        User user =(User) session.getAttribute("user");
+        userService.changeAccountDetail(user);
+        return modelMap;
+    }
 }
