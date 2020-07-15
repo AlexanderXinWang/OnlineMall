@@ -1,10 +1,12 @@
 package com.xju.onlinemall.controller;
 
+import com.sun.org.glassfish.gmbal.ParameterNames;
 import com.xju.onlinemall.common.domain.Product;
 import com.xju.onlinemall.common.domain.SystemLog;
 import com.xju.onlinemall.common.domain.User;
 import com.xju.onlinemall.service.CartService;
 import com.xju.onlinemall.service.UserService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -123,7 +125,35 @@ public class UserController {
      * */
     @RequestMapping("/register")
     @ResponseBody
-    public Object register(String username, String password, HttpSession session){
-        return null;
+    public Object register(@Param("username_reg") String username, @Param("pwd_reg") String password,
+                           @Param("pwd_pay") String password_pay, @Param("phone")String phone) {
+
+        ModelMap modelMap = new ModelMap();
+        Byte isDelete = 3;
+
+        //传入注册信息
+        User user = new User();
+        user.setUserName(username);
+        user.setPassword(password);
+        user.setPayPassword(password_pay);
+        user.setPhone(phone);
+        user.setIsDelete(isDelete);
+
+        userService.register(user);
+
+        System.out.println("注册用户名" + username + ";注册密码" + password);
+
+        //注册操作完成后查询数据库看是否成功
+        List<User> users = userService.selectUserByNameAndPassword(username, password);
+        //如果查询不到用户信息
+        if (users.size() == 0) {
+            System.out.println("查询到的用户数量为0");
+            //查询结果返回前端
+            modelMap.put("success", false);
+        } else {
+            modelMap.put("success", true);
+            modelMap.put("msg", "/account.html");
+        }
+        return modelMap;
     }
 }

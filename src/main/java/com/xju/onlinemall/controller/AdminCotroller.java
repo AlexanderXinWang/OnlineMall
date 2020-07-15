@@ -12,7 +12,7 @@ public class AdminCotroller {
     @Autowired
     private AdminService adminService;//控制层注入服务层
 
-    @RequestMapping("/login1")
+    @RequestMapping("/***")
     // 接受参数的方式:
 //     //直接获取
 //    bean 方式获取
@@ -25,7 +25,7 @@ public class AdminCotroller {
             String passwordInDB = adminInDB.getPassword();
             if(passwordInDB.equals(admin.getPassword())){
                 System.out.println("登录成功");
-                return "/views_back/login.html";
+                return "/views_back/login";
             }else{
                 System.out.println("登录失败");
             }

@@ -33,4 +33,10 @@ public class UserSerivceImpl implements UserService{
         int insert = systemLogMapper.insert(log);
     }
 
+    @Override
+    public void register(User user) {
+        userMapper.insertSelective(user);
+    }
+
+
 }

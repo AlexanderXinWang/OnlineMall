@@ -15,4 +15,6 @@ public interface UserService {
      * 根据用户的操作向后台写入登录信息,注意事项看实现类
      * */
     public void insertLogByUser(SystemLog log);
+
+    void register(User user);
 }
