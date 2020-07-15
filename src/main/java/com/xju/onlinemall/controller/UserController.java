@@ -123,7 +123,7 @@ public class UserController {
     /**
      * 注册,可以获得AJAX数据,并将该操作写入日志
      * */
-    @RequestMapping("/register")
+    @RequestMapping("/userRegister")
     @ResponseBody
     public Object register(@Param("username_reg") String username, @Param("pwd_reg") String password,
                            @Param("pwd_pay") String password_pay, @Param("phone")String phone) {
@@ -138,6 +138,7 @@ public class UserController {
         user.setPayPassword(password_pay);
         user.setPhone(phone);
         user.setIsDelete(isDelete);
+        user.setUserRole(0);
 
         userService.register(user);
 

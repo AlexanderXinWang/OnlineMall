@@ -1,7 +1,5 @@
 package com.xju.onlinemall.common.domain;
 
-import java.util.Date;
-
 public class User {
     private Integer userId;
 
@@ -19,7 +17,7 @@ public class User {
 
     private String payPassword;
 
-    private Date registerTime;
+    private long registerTime;
 
     private Byte isDelete;
 
@@ -89,11 +87,11 @@ public class User {
         this.payPassword = payPassword == null ? null : payPassword.trim();
     }
 
-    public Date getRegisterTime() {
+    public long getRegisterTime() {
         return registerTime;
     }
 
-    public void setRegisterTime(Date registerTime) {
+    public void setRegisterTime(long registerTime) {
         this.registerTime = registerTime;
     }
 
