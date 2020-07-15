@@ -63,7 +63,7 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
              *         //获取购物车商品内的商品
              *         ！！！！！！！！！！！！！！！！！！！！！！！在访问cart页面不是已经设置好了吗
              *         List cartProducts = (List)session.getAttribute("cartProducts");
-             *         modelMap.addAttribute("userCartProudcts",cartProducts);
+             *         modelMap.addAttribute("cardProductsList",cartProducts);
              *         return "views_front/cart";
              *     }
              * 或者在cart.html页面里直接拿session里的cartProducts
