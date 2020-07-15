@@ -60,6 +60,9 @@
                                         <button id="buttonRegister" type="button" class="furgan-Button button" name="registerbutton"
                                                 value="Register">点击注册
                                         </button>
+                                        <label class="furgan-form__label furgan-form__label-for-checkbox inline">
+                                            <a href="/my-account.html">已有帐号 ?</a>
+                                        </label>
                                     </p>
                                 </form>
                             </div>
@@ -85,7 +88,7 @@
             var phone=$("#phone").val().trim();
             $.ajax({
                 type:"POST",
-                url:"register",
+                url:"userRegister",
                 dataType:"json",
                 data:{"username_reg":name,"pwd_reg":pwd,"pwd_pay":pwd_pay,"phone":phone},
                 success:function (data) {

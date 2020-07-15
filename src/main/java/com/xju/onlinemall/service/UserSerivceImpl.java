@@ -35,7 +35,7 @@ public class UserSerivceImpl implements UserService{
 
     @Override
     public void register(User user) {
-        userMapper.insertSelective(user);
+        userMapper.insert(user);
     }
 
 
