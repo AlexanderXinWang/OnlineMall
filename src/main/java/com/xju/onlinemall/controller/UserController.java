@@ -158,14 +158,4 @@ public class UserController {
         return modelMap;
     }
 
-    /**
-     * 注册,可以获得AJAX数据,并将该操作写入日志
-     * */
-    @RequestMapping("/changeDetail")
-    @ResponseBody
-    public Object changeDetail(@Param("username") String username, String password,String pwdPay,
-                           @Param("phone")String phone) {
-        ModelMap modelMap = new ModelMap();
-        return modelMap;
-    }
 }
