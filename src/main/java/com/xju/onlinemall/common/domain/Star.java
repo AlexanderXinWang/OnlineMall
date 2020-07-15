@@ -50,4 +50,9 @@ public class Star {
     public void setProductId(Integer productId) {
         this.productId = productId;
     }
+
+    @Override
+    public String toString() {
+        return productId.toString();
+    }
 }

@@ -208,4 +208,6 @@
       product_id = #{productId,jdbcType=INTEGER}
     where star_id = #{starId,jdbcType=INTEGER}
   </update>
+
+
 </mapper>

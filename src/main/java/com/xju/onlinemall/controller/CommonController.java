@@ -1,10 +1,16 @@
 package com.xju.onlinemall.controller;
 
+import com.xju.onlinemall.common.domain.Star;
+import com.xju.onlinemall.common.domain.StarExample;
 import com.xju.onlinemall.common.domain.User;
+import com.xju.onlinemall.common.utils.Result;
+import com.xju.onlinemall.mapper.StarMapper;
+import com.xju.onlinemall.service.StarService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +21,10 @@ import java.util.List;
 
 @Controller
 public class CommonController {
-
+    @Autowired
+    StarService starService;
+    @Autowired
+    StarMapper starMapper;
     /**
      * 初次访问，判断是否登录，如果没有登录，就跳转登录页面，登录成功时会再次访问此页面设置头部信息
      *
@@ -157,9 +166,24 @@ public class CommonController {
     /**
      *跳转用户收藏夹
      * */
+
     @RequestMapping("/wishlist.html")
     public String wishlist(){
         return "views_front/wishlist";
+    }
+
+    @RequestMapping("/getstars")
+    @ResponseBody
+    public Object getStars(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10")int pageSize,HttpSession session){
+        User user = (User)session.getAttribute("user");
+        System.out.println(user.getUserId());
+        StarExample starExample = new StarExample();
+        starExample.createCriteria().andUserIdEqualTo(user.getUserId());
+        List<Star> stars = starMapper.selectByExample(starExample);
+        System.out.println(stars);
+
+        return Result.success(starService.findStars(pageNo,pageSize,user.getUserId()),"分页 查询star 对象");
+
     }
 
     /**

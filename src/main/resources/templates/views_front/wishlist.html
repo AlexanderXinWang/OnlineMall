@@ -28,6 +28,11 @@
                     <form id="yith-wcwl-form" class="furgan">
                         <!-- TITLE -->
                         <!-- WISHLIST TABLE -->
+                        <div id="toolbar">
+                            <button class="btn btn-danger remove-batch">批量删除</button>
+                        </div>
+                        <table id="table1" class="table table-bordered table-hover">
+                        </table>
                         <table class="shop_table cart wishlist_table" data-pagination="no" data-per-page="5"
                                data-page="1" data-id="" data-token="">
                             <thead>
@@ -52,7 +57,7 @@
                             <tr id="yith-wcwl-row-29" data-row-id="29">
                                 <td class="product-remove">
                                     <div>
-                                        <a href="#"
+                                        <a href="#"  onclick="this.parentNode.parentNode.parentNode.style.display='none'"
                                            class="remove remove_from_wishlist" title="Remove this product">×</a>
                                     </div>
                                 </td>
@@ -86,7 +91,7 @@
                             <tr id="yith-wcwl-row-25" data-row-id="25">
                                 <td class="product-remove">
                                     <div>
-                                        <a href="#"
+                                        <a href="#"  onclick="this.parentNode.parentNode.parentNode.style.display='none'"
                                            class="remove remove_from_wishlist" title="Remove this product">×</a>
                                     </div>
                                 </td>
@@ -122,7 +127,7 @@
                             <tr id="yith-wcwl-row-22" data-row-id="22">
                                 <td class="product-remove">
                                     <div>
-                                        <a href="#"
+                                        <a href="#"  onclick="this.parentNode.parentNode.parentNode.style.display='none'"
                                            class="remove remove_from_wishlist" title="Remove this product">×</a>
                                     </div>
                                 </td>
@@ -172,5 +177,159 @@
 <div th:replace="~{fragment/footer::footer_up}"></div>
 
 <div th:replace="~{fragment/static::script}"></div>
+
+<script>
+    $(function () {
+        window.operateEvents = {
+            // 更改操作的方法
+            'click .btn_update': function (e, value, row, index) {
+                var id = row.starId;
+                window.location.href = "/toupdatebook?id=" + id;
+            },
+            //删除 单行/
+            'click .btn_del': function (e, value, row, index) {
+                var id = row.starId;
+                layer.confirm("确认删除: " + row.starId + "  ?", {icon: 3, title: '删除操作'}, function (index) {
+                    //do something
+                    $.ajax({
+                        type: "delete",
+                        url: "/deleteBook",
+                        contentType: "application/json",
+                        data: JSON.stringify({"id": id}),
+                        success: function (msg) {
+                            if (msg["success"]) {
+                                $('#table1').bootstrapTable('remove', {
+                                    field: 'id',
+                                    values: [id]
+                                });
+                                layer.msg("操作成功", {time: 700});
+                            }
+                        }
+                    });
+                    layer.close(index);
+                });
+            }
+        };
+        //批量删除的按钮操作
+        $(".remove-batch").click(function () {
+            var rows = $('#table1').bootstrapTable('getSelections');//获取选中的行
+            var ids = $.map(rows, function (row) {
+                return row.starId;
+            });
+            if (ids.length > 0) {
+                layer.confirm("确认删除", {icon: 3, title: '删除操作'}, function (index) {
+                    //do something
+                    $.ajax({
+                        type: "delete",
+                        url: "/deleteBooks",
+                        contentType: "application/json",
+                        data: JSON.stringify(ids),
+                        success: function (msg) {
+                            if (msg["success"]) {
+                                $('#table1').bootstrapTable('refresh');
+                                layer.msg("批量操作成功", {time: 700});
+                            }
+                        }
+                    });
+                    layer.close(index);
+                });
+            } else {
+                layer.msg("未选中行", {time: 700});
+            }
+        });
+
+
+
+        $('#table1').bootstrapTable('destroy').bootstrapTable({
+
+            method: 'get',
+            url: "/getstars",
+            striped: true,
+            dataField: "list",
+            totalField: "total",
+            pageNumber: 1,
+            pageSize: 10,
+            pagination: true,
+            queryParamsType: 'limit',
+            // search: true,
+            queryParams: function (params) {
+                return {
+                    pageSize: params.limit,
+                    pageNo: params.offset / params.limit + 1
+                }
+            },
+            sidePagination: 'server',
+            pageList: "[10, 25, 50, 100, all]",
+            showRefresh: true,
+            clickToSelect: true,
+            toolbarAlign: 'left',
+            buttonsAlign: 'right',
+            toolbar: '#toolbar',
+            showColumns: false,
+            paginationLoop: false,
+            columns: [
+                {
+                    //  title: '全选/反选',
+                    checkbox: true
+                },
+                {
+                    title: '商品ID',
+                    field: 'productId',
+                    visible: true,
+                    width: 160
+                },
+                {
+                    title: '商品图片',
+                    field: 'pimage',
+                    visible: false,
+                    width: 160,
+                    align: 'center'
+                },
+                {
+                    title: '商品名',
+                    field: 'productName',
+                    visible: true,
+                    width: 160,
+                    align: 'center'
+                },
+                {
+                    title: '商品价格',
+                    field: 'price',
+                    visible: true,
+                    width: 160,
+                    align: 'center'
+                },
+                {
+                    title: '商品状态',
+                    field: 'status',
+                    width: 160,
+                    align: 'center'
+                },
+
+                {
+                    title: '操作',
+                    width: 80,
+                    align: 'center',
+                    formatter: function (value, row, index) {
+                        return [
+                            '<button  type="button" class="btn btn-danger btn-xs btn_del">',
+                            '删除',
+                            '</button>',
+                            ' <button  type="button" class="btn btn-primary btn-xs btn_update">',
+                            '更改',
+                            '</button>',
+                        ].join('')
+                    },
+                    events: window.operateEvents
+                }
+            ],
+            locale: 'zh-CN',
+            responseHandler: function (res) {
+                return res['data'];
+            }
+        });
+    })
+</script>
+
 </body>
 </html>

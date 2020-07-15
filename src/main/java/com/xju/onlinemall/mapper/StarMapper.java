@@ -3,11 +3,13 @@ package com.xju.onlinemall.mapper;
 import com.xju.onlinemall.common.domain.Star;
 import com.xju.onlinemall.common.domain.StarExample;
 import java.util.List;
+
+import com.xju.onlinemall.mapper.extend.StarMapperExtend;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface StarMapper {
+public interface StarMapper extends StarMapperExtend {
     long countByExample(StarExample example);
 
     int deleteByExample(StarExample example);

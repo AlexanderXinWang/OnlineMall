@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xju.onlinemall.mapper.StarMapper">
+    <resultMap id="MyResultMap" type="com.xju.onlinemall.common.domain.Star" extends="BaseResultMap">
+        <id column="star_id" jdbcType="INTEGER" property="starId" />
+        <result column="user_id" jdbcType="INTEGER" property="userId" />
+        <result column="star_is_delete" jdbcType="TINYINT" property="starIsDelete" />
+        <result column="star_keep_field" jdbcType="VARCHAR" property="starKeepField" />
+        <result column="product_id" jdbcType="INTEGER" property="productId" />
+    </resultMap>
+
+    <select id="selectByMultiExample" resultMap="MyResultMap">
+    SELECT product_id FROM tb_star WHERE tb_star.`user_id` = #{userId};
+  </select>
+</mapper>
