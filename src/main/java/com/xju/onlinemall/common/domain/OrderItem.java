@@ -30,4 +30,15 @@ public class OrderItem {
     public void setProductId(Integer productId) {
         this.productId = productId;
     }
+
+
+
+    @Override
+    public String toString() {
+        return "OrderItem{" +
+                "infoId=" + infoId +
+                ", orderId=" + orderId +
+                ", productId=" + productId +
+                '}';
+    }
 }

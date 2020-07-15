@@ -12,15 +12,25 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
     @Autowired
     LoginHandlerInterceptor loginHandlerInterceptor;
 
-    //该代码起作用
+    /**
+     * 重定向,访问直接跳转首页,然后再被拦截检查是否以及登录
+     *
+     * */
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("forward:/index.html");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
+
+
+    /**
+     *添加要拦截的请求和不需要拦截的请求
+     * 以及静态资源不需要拦截,直接放行
+     *
+     * */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginHandlerInterceptor).addPathPatterns("/**").excludePathPatterns("/account.html","/login").excludePathPatterns("/static/**")
+        registry.addInterceptor(loginHandlerInterceptor).addPathPatterns("/**").excludePathPatterns("/account.html","/login","/register.html").excludePathPatterns("/static/**")
         .excludePathPatterns("/assets/**").excludePathPatterns("/layuiadmin/**");
 
     }

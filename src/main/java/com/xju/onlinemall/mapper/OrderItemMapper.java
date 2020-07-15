@@ -4,7 +4,9 @@ import com.xju.onlinemall.common.domain.OrderItem;
 import com.xju.onlinemall.common.domain.OrderItemExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface OrderItemMapper {
     long countByExample(OrderItemExample example);
 

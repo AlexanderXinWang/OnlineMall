@@ -26,6 +26,12 @@ class OnlinemallApplicationTests {
     CartMapper cartMapper;
     @Autowired
     CartService cartService;
+    @Autowired
+    OrderMapper orderMapper;
+    @Autowired
+    OrderItemMapper orderItemMapper;
+    @Autowired
+    ProductMapper productMapper;
     @Test
     public void t1(){
         List<Category> categories = mapper.selectByExample(new CategoryExample());
@@ -129,5 +135,37 @@ class OnlinemallApplicationTests {
         System.out.println(list1);
         System.out.println("----------------------------------------------");
 
+    }
+    //测试OrderServiceImpl能否生效
+    @Test
+    public void t11(){
+        Integer userId=1;
+        //获取所有订单
+        OrderExample orderExample = new OrderExample();
+        orderExample.createCriteria().andUserIdEqualTo(userId);
+        List<Order> orders = orderMapper.selectByExample(orderExample);
+        //注意List中的每一个Order都含有一个商品的List,每次循环下来都会产生一一个完整的订单
+        for (Order order:orders){
+            OrderItemExample orderItemExample = new OrderItemExample();
+
+            orderItemExample.createCriteria().andOrderIdEqualTo(order.getOrderId());
+            //获得该订单的所有订单项
+            List<OrderItem> orderItems = orderItemMapper.selectByExample(orderItemExample);
+            //获得该订单的全部的商品id列表
+            List<Integer> productIdLists=new ArrayList<>();
+
+            //对该订单的订单项遍历,获得全部的商品id
+
+            for (OrderItem orderItem:orderItems){
+                productIdLists.add(orderItem.getProductId());
+            }
+            //获得该订单的所有商品
+            List<Product> products=productMapper.selectByProductIdList(productIdLists);
+            /**
+             * 把该订单的商品列表写入该订单对象的商品列表
+             * */
+            order.setProducts(products);
+        }
+        System.out.println(orders);
     }
 }

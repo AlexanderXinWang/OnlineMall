@@ -102,4 +102,20 @@ public class Coupon {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+    @Override
+    public String toString() {
+        return "Coupon{" +
+                "couponId=" + couponId +
+                ", couponName='" + couponName + '\'' +
+                ", couponInfo='" + couponInfo + '\'' +
+                ", couponIsUsed=" + couponIsUsed +
+                ", couponIsDelete=" + couponIsDelete +
+                ", couponKeepField='" + couponKeepField + '\'' +
+                ", categoryId=" + categoryId +
+                ", productId=" + productId +
+                ", expireTime=" + expireTime +
+                ", createTime=" + createTime +
+                '}';
+    }
 }

@@ -52,7 +52,8 @@ public class CommonController {
 
     ///////////////////////////////////////////////////////////////////////////
     // 导航栏header页面跳转请求处理
-    // 后续添加session验证
+    // 后续添加session验证,该验证已经实现
+    // 对登录页面和注册页面在无登录时可以直接访问
     ///////////////////////////////////////////////////////////////////////////
 
     /**
@@ -169,13 +170,7 @@ public class CommonController {
         return "views_front/testimonials";
     }
 
-    /**
-     *跳转订单页面
-     * */
-    @RequestMapping("/order.html")
-    public String order(){
-        return "views_front/order";
-    }
+
 
     /**
      *跳转订单追踪

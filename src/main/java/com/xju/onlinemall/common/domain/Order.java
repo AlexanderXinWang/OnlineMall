@@ -1,8 +1,10 @@
 package com.xju.onlinemall.common.domain;
 
+import com.xju.onlinemall.common.domain.extend.OrderExtend;
+
 import java.util.Date;
 
-public class Order {
+public class Order extends OrderExtend {
     private Integer orderId;
 
     private Integer userId;
@@ -22,6 +24,23 @@ public class Order {
     private String address;
 
     private Byte isDeliver;
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", userId=" + userId +
+                ", orderNumber='" + orderNumber + '\'' +
+                ", createTime=" + createTime +
+                ", outputTime=" + outputTime +
+                ", payMoney=" + payMoney +
+                ", payStatus=" + payStatus +
+                ", isDelete=" + isDelete +
+                ", address='" + address + '\'' +
+                ", isDeliver=" + isDeliver +
+                ", products=" + products +
+                '}';
+    }
 
     public Integer getOrderId() {
         return orderId;

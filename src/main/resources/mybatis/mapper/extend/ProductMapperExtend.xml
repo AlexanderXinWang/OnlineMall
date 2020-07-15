@@ -7,4 +7,10 @@
         where category_id=
         (select category_id from tb_category where category_name= #{categoryName});
     </select>
+    <select id="selectByProductIdList" resultMap="BaseResultMap">
+        select * from tb_product where product_id in
+        <foreach collection="productIdLists" item="o" open="(" separator="," close=")">
+            #{o}
+        </foreach>
+    </select>
 </mapper>

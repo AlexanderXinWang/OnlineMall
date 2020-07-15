@@ -82,4 +82,18 @@ public class OutputOder {
     public void setProductId(Integer productId) {
         this.productId = productId;
     }
+
+    @Override
+    public String toString() {
+        return "OutputOder{" +
+                "outId=" + outId +
+                ", pmId=" + pmId +
+                ", outNumber=" + outNumber +
+                ", outDate=" + outDate +
+                ", outStatus=" + outStatus +
+                ", outIsDelete=" + outIsDelete +
+                ", outKeepField='" + outKeepField + '\'' +
+                ", productId=" + productId +
+                '}';
+    }
 }

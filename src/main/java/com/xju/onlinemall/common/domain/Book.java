@@ -60,4 +60,16 @@ public class Book {
     public void setRemark(String remark) {
         this.remark = remark == null ? null : remark.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", author='" + author + '\'' +
+                ", creatorid=" + creatorid +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
 }
