@@ -1,21 +1,36 @@
 package com.xju.onlinemall.controller;
 
+import com.xju.onlinemall.common.domain.Comment;
 import com.xju.onlinemall.common.domain.User;
 import com.xju.onlinemall.service.CommentService;
+import com.xju.onlinemall.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 
 @Controller
 public class CommentController {
     @Autowired
     CommentService commentService;
+
+    @Autowired
+    UserService userService;
+
+    /**
+     *
+     * 添加评论的接口
+     *
+     * 请注意前端页面字段是否和下面函数的字段名称一致！！
+     *
+     * */
     @RequestMapping("/addComment")
     @ResponseBody
     public Object addComent(HttpSession session,Integer productId,String author,String email,Integer rating,String comment){
@@ -41,5 +56,57 @@ public class CommentController {
             }
         }
         return  map;
+    }
+    /**
+     * 跳转到商品详细页面以及商品评论
+     * 请注意，默认传入商品的id是1
+     * 访问该商品页面时,请传入商品id,这是对评价展示功能而已实现的
+     * 如果你要实现展示商品的功能,请添加获得商品信息的相关逻辑代码实现
+     * 并添加到modelMap中去
+     * */
+    @RequestMapping("/single-product-simple.html")
+    public String singleProduct(ModelMap modelMap,Integer productId){
+
+        if (productId==null){
+            productId=1;
+        }
+        /**
+         *
+         * 获得该商品评论的列表
+         * */
+        List<Comment> comments = commentService.selectByProductId(productId);
+        /**
+         *
+         * 检测该商品评论是否获得成功
+         * */
+        if (comments==null){
+            System.out.println("后台提示:商品评论获得失败！");
+        }
+        /**
+         *
+         * 如果该商品的评价是0
+         *  给他设置默认的评价
+         * */
+        else if (comments.size()==0){
+            Comment comment = new Comment();
+            comment.setProductId(1);
+            comment.setUserId(1);
+            comment.setScore(10);
+            comment.setCommentTime(new Date());
+            comment.setContext("该商品没有评价！系统默认展示该评价");
+
+            comment.setUsername("系统默认");
+            comment.setCount(1);
+
+            comments.add(comment);
+            modelMap.put("commentsList",comments);
+            modelMap.put("commentCount",1);
+        }
+        else {
+            //传入评论数
+            modelMap.put("commentCount",comments.size());
+            modelMap.put("commentsList",comments);
+        }
+        return "views_front/single-product-simple";
     }
 }

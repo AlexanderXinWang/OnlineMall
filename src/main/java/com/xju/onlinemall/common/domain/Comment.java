@@ -1,8 +1,10 @@
 package com.xju.onlinemall.common.domain;
 
+import com.xju.onlinemall.common.domain.extend.CommentExtend;
+
 import java.util.Date;
 
-public class Comment {
+public class Comment extends CommentExtend {
     private Integer commentId;
 
     private String context;

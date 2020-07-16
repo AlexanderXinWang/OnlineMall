@@ -92,13 +92,6 @@ public class CommonController {
     }
 
     /**
-     * 跳转到商品详细页面以及商品评论
-     * */
-    @RequestMapping("/single-product-simple.html")
-    public String singleProduct(){
-        return "views_front/single-product-simple";
-    }
-    /**
      *跳转商品页
      * */
     @RequestMapping("/product.html")
@@ -123,11 +116,20 @@ public class CommonController {
     }
 
     /**
-     *跳转关于我们页面
+     *
+     * 跳转关于我们页面
+     *
      * */
     @RequestMapping("/about.html")
     public String about(){
         return "views_front/about";
+    }
+    /**
+     *跳转商品360度页面
+     * */
+    @RequestMapping("/single-product-360deg.html")
+    public String productThree(){
+        return "views_front/single-product-360deg";
     }
 
     /**

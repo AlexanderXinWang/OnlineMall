@@ -2,7 +2,9 @@ package com.xju.onlinemall.service;
 
 import com.xju.onlinemall.common.domain.Comment;
 import com.xju.onlinemall.common.domain.CommentExample;
+import com.xju.onlinemall.common.domain.User;
 import com.xju.onlinemall.mapper.CommentMapper;
+import com.xju.onlinemall.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,9 @@ import java.util.List;
 public class CommentServiceImpl implements CommentService {
     @Autowired
     CommentMapper commentMapper;
+
+    @Autowired
+    UserMapper userMapper;
     /**
      * 根据商品id获得评论,注意,评论表是单独的一个表,用户id和商品id请确保正确
      * */
@@ -31,9 +36,23 @@ public class CommentServiceImpl implements CommentService {
             return comments;
         }
         //传入的参数不为空,查找指定的结果
+        /**
+         *
+         * 并且设置评论的用户名
+         * */
         else{
             commentExample.createCriteria().andProductIdEqualTo(productId);
             List<Comment> comments = commentMapper.selectByExample(commentExample);
+            for (Comment comment:comments){
+                Integer userId = comment.getUserId();
+                User user = userMapper.selectByPrimaryKey(userId);
+                /**
+                 *
+                 * 设置每一个评论的用户名
+                 * */
+                comment.setUsername(user.getUserName());
+
+            }
             return comments;
         }
     }

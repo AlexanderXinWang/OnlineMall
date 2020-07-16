@@ -171,7 +171,7 @@
                                 <a href="#tab-additional_information">更多有趣的信息</a>
                             </li>
                             <li class="reviews_tab" id="tab-title-reviews" role="tab" aria-controls="tab-reviews">
-                                <a href="#tab-reviews">商品评价 (0该数字后期通过控制器修改)</a>
+                                <a href="#tab-reviews">商品评价 (<span th:text="${commentCount}"></span>)</a>
                             </li>
                         </ul>
                         <div class="furgan-Tabs-panel furgan-Tabs-panel--description panel entry-content furgan-tab"
@@ -281,7 +281,31 @@
                                                            type="hidden">
                                                 </p></form>
                                         </div><!-- #respond -->
+                                        <div style="height: 50px;width: 100%">
+                                        </div>
+                                        <div>
+                                            <h2>精彩评价</h2>
+                                            <table class="shop_attributes">
+                                                <tbody style="text-align:center">
+                                                <tr>
+                                                    <th> &nbsp;用&nbsp;户&nbsp;</th>
+                                                    <td>&nbsp;评价内容&nbsp;</td>
+                                                    <td> &nbsp;&nbsp;打&nbsp;分&nbsp;&nbsp;</td>
+                                                    <td style="width: 208px"> &nbsp;评价时间&nbsp;</td>
+                                                </tr>
+                                                <tr th:each="item : ${commentsList}">
+                                                    <td th:text="${item.username}"></td>
+                                                    <td th:text="${item.context}"></td>
+                                                    <td th:text="${item.score}"></td>
+<!--                                                    <td th:text="${item.commentTime}"></td>-->
+                                                    <td th:text="${#dates.format(item.commentTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                                                </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
+
                                 </div>
                                 <div class="clear"></div>
                             </div>
