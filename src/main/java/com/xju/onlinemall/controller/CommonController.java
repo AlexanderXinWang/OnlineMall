@@ -51,6 +51,12 @@ public class CommonController {
 //        }
 //        return "index";
 //    }
+    @GetMapping("/page/{views}/{path}")
+    public String toPage2(@PathVariable("views") String view,@PathVariable("path") String path){
+
+        return view+"/"+path;
+
+    }
     //测试requset
     @RequestMapping("/testrequest")
     public void testreq(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -256,4 +262,5 @@ public class CommonController {
     public String backindex(){
         return "views_back/layout";
     }
+
 }

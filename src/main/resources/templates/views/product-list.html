@@ -1,0 +1,167 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="utf-8">
+    <title>layuiAdmin 内容系统 - 评论管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all" th:href="@{/layuiadmin/layui/css/layui.css}">
+    <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all" th:href="@{/layuiadmin/style/admin.css}">
+</head>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-form layui-card-header layuiadmin-card-header-auto">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">商品id</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="cid" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">商品名称</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="username" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <label class="layui-form-label">商品分类</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="content" placeholder="请输入" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-comm" data-type="reload" lay-submit lay-filter="LAY-app-contcomm-search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="layui-card-body">
+            <div style="padding-bottom: 10px;">
+                <button class="layui-btn layuiadmin-btn-comm layui-btn-danger" data-type="createClazz" id="btn_create">添加商品</button>
+                <button class="layui-btn layuiadmin-btn-comm layui-btn-danger" data-type="batchdel" id="btn_batchdel">批量删除</button>
+            </div>
+            <!--  lay-filter 想当于 layui框架自定义 的id 属性-->
+            <table id="mytable" lay-filter="mytable"></table>
+            <script type="text/html" id="table-content-com">
+                <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
+            </script>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="toolbar-Mytable">
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+
+<script src="../../../layuiadmin/layui/layui.js" th:src="@{/layuiadmin/layui/layui.js}"></script>
+<script>
+    layui.config({
+        // base: [('"'+@{/layuiadmin/}+'"')]
+        base:'@{/layuiadmin/}'
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'table'], function(){
+        var $ = layui.$
+            ,form = layui.form
+            ,table = layui.table;
+        table.render({
+            elem: '#mytable'
+            ,method:"get"
+            ,url: '/listProducct'
+            ,page: true
+            ,cols: [     [
+                {type: 'checkbox', fixed: 'left'}
+                ,{field: 'id', title: '商品id',  hide:true}
+                ,{field: 'name', title: '商品名'}
+                ,{field: 'studentcount', title: '商品数量',  sort: true}
+                ,{field: 'remark', title: '备注'}
+                ,{fixed: 'right', title: '备注',  align:'center', toolbar: '#toolbar-Mytable',width:180}
+
+            ]   ]
+            ,parseData: function(res){ //res 即为原始返回的数据
+                return {
+                    "code": (res.code==200?0:500), //解析接口状态
+                    "msg": res.message, //解析提示文本
+                    "count": res.data.total, //解析数据长度
+                    "data": res.data.list //解析数据列表
+                };
+            }
+            ,request: {
+                pageName: 'pageNo' //页码的参数名称，默认：page
+                ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
+            }
+            ,limits:[10,20,50,100]
+        });
+
+        //监听表格的工具：行的删除、编辑、查看
+        table.on('tool(mytable)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'detail'){
+                layer.msg('ID：'+ data.id + ' 的查看操作');
+            } else if(obj.event === 'del'){
+                layer.confirm('真的要删除吗', function(index){
+                    //
+                    obj.del();
+                    layer.close(index);
+                });
+            } else if(obj.event === 'edit'){
+                layer.alert('编辑行：<br>'+ JSON.stringify(data))
+            }
+        });
+
+
+        //监听搜索
+       /* form.on('submit(LAY-app-contcomm-search)', function(data){
+            var field = data.field;
+
+            //执行重载
+            table.reload('LAY-app-content-comm', {
+                where: field
+            });
+        });*/
+
+      //点击 批量删除 事件
+        var active = {
+            batchdel: function(){
+                var checkStatus = table.checkStatus('mytable')
+                    ,checkData = checkStatus.data; //得到选中的数据
+
+                if(checkData.length === 0){
+                    return layer.msg('请选择数据');
+                }
+                layer.confirm('确定删除吗？', function(index) {
+
+                    //执行 Ajax 后重载
+                   /* admin.req({
+                      url: 'xxx'
+                      //,……
+                    });*/
+
+                    table.reload('mytable');
+                    layer.msg('已删除');
+                });
+            }
+            ,createClazz:function () {
+                alert("新添加商品");
+            }
+        }
+
+        $('#btn_batchdel , #btn_create').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+    });
+</script>
+</body>
+</html>
+
