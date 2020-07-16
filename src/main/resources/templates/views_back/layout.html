@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="utf-8">
+    <title>首页</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../layuiadmin/layui/css/layui.css" media="all" th:href="@{/layuiadmin/layui/css/layui.css}">
+    <link rel="stylesheet" href="../layuiadmin/style/admin.css" media="all" th:href="@{/layuiadmin/style/admin.css}">
+
+</head>
+<body class="layui-layout-body">
+
+<div id="LAY_app">
+    <div class="layui-layout layui-layout-admin">
+
+        <div th:replace=" ~{include/header :: head}">这是头部分</div>
+
+        <div th:replace=" ~{include/menu :: menu}">这是左侧菜单</div>
+        <div th:replace=" ~{include/page_tab :: pagetabs}">页面标签</div>
+
+
+        <!-- 主体内容 -->
+        <div class="layui-body" id="LAY_app_body">
+            <div class="layadmin-tabsbody-item layui-show">
+                <iframe src="home/console.html" frameborder="0" class="layadmin-iframe" th:src="@{/page/views/start}"></iframe>
+            </div>
+        </div>
+
+        <!-- 辅助元素，一般用于移动设备下遮罩 -->
+        <div class="layadmin-body-shade" layadmin-event="shade"></div>
+    </div>
+</div>
+
+<script src="../layuiadmin/layui/layui.js" th:src="@{/layuiadmin/layui/layui.js}"></script>
+<script>
+    layui.config({
+        // base: [('"'+@{/layuiadmin/}+'"')]
+        base:'@{/layuiadmin/}'
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use('index');
+</script>
+
+
+</body>
+</html>
+
+

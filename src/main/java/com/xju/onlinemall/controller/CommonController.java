@@ -244,8 +244,16 @@ public class CommonController {
     /**
      *跳转管理员登陆
      * */
-    @RequestMapping("/adminLogin")
+    @RequestMapping("/backAdminLogin")
     public String adminLogin(){
+
+        System.out.println("跳转到后台登录页面");
         return "views_back/login";
+    }
+    //访问后台主页
+
+    @RequestMapping("/backIndex.html")
+    public String backindex(){
+        return "views_back/layout";
     }
 }

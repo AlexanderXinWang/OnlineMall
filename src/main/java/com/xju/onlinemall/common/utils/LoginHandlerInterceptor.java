@@ -25,17 +25,14 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
         int cartCount=0;
         if (cardProductsList!=null){
             cartCount=cardProductsList.size();
-        }else{
-            System.out.println("后台提示:1、该用户购物车为 空");
         }
-//        System.out.println("preHandle----"+user+" ::: "+request.getRequestURL());
         if(user == null) {
-            System.out.println("后台提示:2、当前无权限,请先登录");
+            System.out.println("后台提示:1、当前无权限,请先登录");
             request.setAttribute("uname", "未登录");
             //这样做会使得每个人页面访问都会设置一遍，浪费性能
             request.setAttribute("cartProducts", "用户未登录,无法获得购物车商品！！！");
             // 获取request返回页面到登录页
-            System.out.println("后台提示:3、该语句检测是否多次跳转，如果跳转页面正常，但是多次显示该语句，原因可能是静态资源缺少或被拦截,标志位 0");
+            System.out.println("后台提示:2、该语句检测是否多次跳转，如果跳转页面正常，但是多次显示该语句，原因可能是静态资源缺少或被拦截,标志位 0");
             request.getRequestDispatcher("/account.html").forward(request, response);
             return false;
         }
@@ -49,8 +46,6 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
             //request.setAttribute("cartProducts",cardProducts);
             request.setAttribute("cartCount",cartCount);
             /**
-             *
-             *
              * session里有,不要再添加了
              * request.setAttribute("cardProductsList",cardProductsList);
              * 要不访问每一个页面都要添加一次。 session是常驻的,添加一次可以一直获取,只要你服务器没关或者session没到期

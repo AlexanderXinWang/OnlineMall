@@ -25,13 +25,17 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 
     /**
      *添加要拦截的请求和不需要拦截的请求
-     * 以及静态资源不需要拦截,直接放行
+     *
+     *
+     * 静态资源不需要拦截,后台管理的请求等，直接放行
+     *
      *
      * */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginHandlerInterceptor).addPathPatterns("/**").excludePathPatterns("/account.html","/login","/register.html","/userRegister","/adminLogin").excludePathPatterns("/static/**")
+        registry.addInterceptor(loginHandlerInterceptor).addPathPatterns("/**").excludePathPatterns("/account.html","/login","/backAdminLogin","/register.html","/userRegister")
+                .excludePathPatterns("/static/**")
         .excludePathPatterns("/assets/**").excludePathPatterns("/layuiadmin/**").excludePathPatterns("/bootstrap-3.3.7-dist/**").excludePathPatterns("/bootstrap-table/**").excludePathPatterns("/layer/**");
-
+        //上面这个是对于后台管理系统的首页进行放行
     }
 }

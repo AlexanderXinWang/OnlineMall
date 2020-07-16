@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+
+<!-- 侧边菜单 -->
+<div class="layui-side layui-side-menu" th:fragment="menu">
+    <div class="layui-side-scroll">
+        <div class="layui-logo" lay-href="home/console.html">
+            <span>onlinemall后台管理系统</span>
+        </div>
+        <!--  li 通过  layui-nav-itemed 判断菜单是否展开 ，  layui-this 激活子菜单-->
+        <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
+            <li data-name="clazz" class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;" lay-tips="班级管理" lay-direction="2">
+                    <i class="layui-icon layui-icon-user"></i>
+                    <cite>班级管理</cite>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd>
+<!--                        <a lay-href="user/user/list.html" th:lay-href="@{/page/views/clazz-list}">查询班级</a>-->
+                    </dd>
+
+                </dl>
+            </li>
+
+
+        </ul>
+    </div>
+</div>
+</html>
