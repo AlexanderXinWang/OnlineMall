@@ -43,11 +43,6 @@
                                                autocomplete="current-password" th:value="${password}">
                                     </p>
                                     <p class="furgan-form-row furgan-form-row--wide form-row form-row-wide">
-                                        <label for="username">性别&nbsp</label>
-                                        <input type="text" class="furgan-Input furgan-Input--text input-text"
-                                               name="sex" id="sex" autocomplete="sex" value="">
-                                    </p>
-                                    <p class="furgan-form-row furgan-form-row--wide form-row form-row-wide">
                                         <label for="username">电话号码&nbsp<span
                                                 class="required">*</span></label>
                                         <input type="text" class="furgan-Input furgan-Input--text input-text"
@@ -89,19 +84,19 @@
 <div th:replace="~{fragment/static::script}"></div>
 <script>
     $(function () {
-        $("#buttonRegister").click(function () {
+        $("#buttonChangeDetail").click(function () {
             var name=$("#username").val().trim();
             var pwd=$("#password").val().trim();
-            var sex=$("#sex").val();
+            // var sex=$("#sex").val();
             var phone=$("#phone").val().trim();
             var email = $("#email").val().trim();
-            var password_pay=$("#password_pay").val().trim();
+            var payPassword=$("#password_pay").val().trim();
 
             $.ajax({
                 type:"POST",
                 url:"changeDetail",
                 dataType:"json",
-                data:{"username":name,"password":pwd,"sex":sex,"phone":phone,"email":email,"payPassword":password_pay,},
+                data:{"username":name,"password":pwd,"phone":phone,"email":email,"payPassword":payPassword},
                 success:function (data) {
                     if (data["success"]){
                         //返回值是learn/t1 相对于项目地址
