@@ -78,14 +78,22 @@
         table.render({
             elem: '#mytable'
             ,method:"get"
-            ,url: '/listProducct'
+            ,url: '/list/products'
+
             ,page: true
             ,cols: [     [
                 {type: 'checkbox', fixed: 'left'}
-                ,{field: 'id', title: '商品id',  hide:true}
-                ,{field: 'name', title: '商品名'}
-                ,{field: 'studentcount', title: '商品数量',  sort: true}
-                ,{field: 'remark', title: '备注'}
+                ,{field: 'productId', title: '商品id',sort: true}
+                ,{field: 'categoryId', title: '商品分类id'}
+                ,{field: 'proNo', title: '商品编号'}
+                ,{field: 'productName', title: '商品名称'}
+                ,{field: 'pkey', title: '商品关键字'}
+                ,{field: 'count', title: '商品数量'}
+                ,{field: 'price', title: '商品价格'}
+                ,{field: 'pimage', title: '商品图片路径'}
+                ,{field: 'context', title: '商品描述'}
+                ,{field: 'addTime', title: '商品添加时间'}
+                ,{field: 'status', title: '商品状态'}
                 ,{fixed: 'right', title: '备注',  align:'center', toolbar: '#toolbar-Mytable',width:180}
 
             ]   ]
@@ -101,7 +109,7 @@
                 pageName: 'pageNo' //页码的参数名称，默认：page
                 ,limitName: 'pageSize' //每页数据量的参数名，默认：limit
             }
-            ,limits:[10,20,50,100]
+            ,limits:[10,20,30,60]
         });
 
         //监听表格的工具：行的删除、编辑、查看

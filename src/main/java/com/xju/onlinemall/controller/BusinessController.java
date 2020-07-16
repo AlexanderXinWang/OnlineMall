@@ -1,32 +1,29 @@
 package com.xju.onlinemall.controller;
 
+
 import com.github.pagehelper.PageInfo;
 import com.xju.onlinemall.common.domain.Product;
+import com.xju.onlinemall.common.utils.Result;
 import com.xju.onlinemall.service.ProductService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
-
 @Controller
-@RequestMapping("/product")
-public class ProductController {
+public class BusinessController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping("/listByCategory")
+
+
+    @RequestMapping("/list/products")
     @ResponseBody
-    public List<Product> listByCategory(){  //通过类别查询商品，以“数码”为例
-        String categoryName = null;
-        //int category_id = 0;
-        categoryName="数码";
+    public Object productList(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize,Integer pmId){
 
-        return productService.selectByCategory(categoryName);
+        PageInfo<Product> pageInfo=null;
+        pageInfo = productService.getAllProducts(pageNo, pageSize);
+        return Result.success(pageInfo);
     }
-
 }

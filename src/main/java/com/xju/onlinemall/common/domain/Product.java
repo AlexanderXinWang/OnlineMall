@@ -19,13 +19,13 @@ public class Product {
 
     private String pkey;
 
-    private Byte status;
+    private Byte status=3;
 
     private Date addTime;
 
     private Integer count;
 
-    private Byte isDelete;
+    private Byte isDelete=3;
 
     private Integer pmId;
 

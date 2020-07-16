@@ -1,5 +1,7 @@
 package com.xju.onlinemall;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.xju.onlinemall.common.domain.*;
 import com.xju.onlinemall.mapper.*;
 import com.xju.onlinemall.service.CartService;
@@ -198,5 +200,31 @@ class OnlinemallApplicationTests {
             }
         }
         System.out.println(list);
+    }
+    @Test
+    public void t13(){
+        for (int i=0;i<50;i++){
+            Product product = new Product();
+            product.setProductName("商品"+i);
+            product.setProNo("2020"+i);
+            product.setPrice((float)((int) (Math.random()*1000)+10));
+            product.setCount((int) (Math.random()*10));
+            product.setAddTime(new Date());
+            product.setCategoryId(1);
+            product.setPkey("Pc"+i);
+            product.setContext("非常好用"+i);
+            productMapper.insert(product);
+        }
+
+    }
+    @Test
+    public void t14(){
+        PageHelper.startPage(1,10);
+        ProductExample productExample = new ProductExample();
+        List<Product> list = productMapper.selectByExample(productExample);
+        for (Product product:list){
+            System.out.println(product.getProductName());
+        }
+        PageInfo<Product> objectPageInfo = new PageInfo<>(list);
     }
 }
