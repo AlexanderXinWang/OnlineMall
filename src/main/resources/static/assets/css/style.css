@@ -5914,6 +5914,7 @@ body.admin-bar #yith-quick-view-modal {
 	font-size: 0;
 	display: block;
 	height: 40px;
+	cursor: pointer;
 }
 .add-to-cart a:not(:hover) {
 	color: inherit;
