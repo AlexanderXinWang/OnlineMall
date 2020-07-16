@@ -33,6 +33,12 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
             request.setAttribute("cartProducts", "用户未登录,无法获得购物车商品！！！");
             // 获取request返回页面到登录页
             System.out.println("后台提示:2、该语句检测是否多次跳转，如果跳转页面正常，但是多次显示该语句，原因可能是静态资源缺少或被拦截,标志位 0");
+            System.out.println("▬▬▬▬▬▬.◙.▬▬▬▬▬▬");
+            System.out.println("   ▂▄▄▓▄▄▂ ");
+            System.out.println(" ◢◤ █▀▀████▄▄▄▄◢◤       ▄▀▀▄");
+            System.out.println(" ██ OnlineMall █▀▀▀▀▀▀▀▀▀▀▀ ╬ ");
+            System.out.println(" ◥████████████◤");
+            System.out.println("    ══╩══╩══  冲冲冲冲冲上天");
             request.getRequestDispatcher("/account.html").forward(request, response);
             return false;
         }
@@ -46,6 +52,8 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
             //request.setAttribute("cartProducts",cardProducts);
             request.setAttribute("cartCount",cartCount);
             /**
+             *
+             *
              * session里有,不要再添加了
              * request.setAttribute("cardProductsList",cardProductsList);
              * 要不访问每一个页面都要添加一次。 session是常驻的,添加一次可以一直获取,只要你服务器没关或者session没到期
