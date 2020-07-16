@@ -8,4 +8,6 @@ public interface ProductService {
     List<Product> selectByCategory(String categoryName);
 
     Product selectByProductId(Integer productId);
+
+    List<Product> selectAllProduct();
 }

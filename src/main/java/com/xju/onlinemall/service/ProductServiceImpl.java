@@ -1,6 +1,7 @@
 package com.xju.onlinemall.service;
 
 import com.xju.onlinemall.common.domain.Product;
+import com.xju.onlinemall.common.domain.ProductExample;
 import com.xju.onlinemall.mapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,5 +22,10 @@ public class ProductServiceImpl implements ProductService{
     public Product selectByProductId(Integer productId) {
         Product product = productMapper.selectByPrimaryKey(productId);
         return  product;
+    }
+
+    @Override
+    public List<Product> selectAllProduct() {
+        return productMapper.selectAllProduct();
     }
 }
