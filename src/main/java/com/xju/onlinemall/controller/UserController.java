@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
@@ -164,9 +165,42 @@ public class UserController {
      * */
     @RequestMapping("/changeDetail")
     @ResponseBody
-    public Object changeDetail(ModelMap modelMap,HttpSession session) {
-        User user =(User) session.getAttribute("user");
+    public Object changeDetail(HttpSession session,@Param("username") String username,String password,
+                               String phone,String email,String payPassword) {
+        ModelMap modelMap = new ModelMap();
+        User userOrigin = (User)session.getAttribute("user");
+        User user = new User();
+        Byte isDelete = 3;
+
+        //传入修改信息
+        //不修改的原值
+        user.setUserId(userOrigin.getUserId());
+        user.setUserRole(userOrigin.getUserRole());
+        user.setRegisterTime(userOrigin.getRegisterTime());
+        user.setIsDelete(userOrigin.getIsDelete());
+        user.setImageUrl(userOrigin.getImageUrl());
+
+        //修改的信息
+        user.setUserName(username);
+        user.setPassword(password);
+        user.setPayPassword(payPassword);
+        user.setPhone(phone);
+        user.setEmail(email);
+
         userService.changeAccountDetail(user);
+
+        //修改验证
+        List<User> users = userService.selectUserByNameAndPassword(username, password);
+        if (users.size()==0) {
+            System.out.println("查询到的用户数量为0,修改信息失败");
+            //查询结果返回前端
+            modelMap.put("success", false);
+        }
+        else {
+            System.out.println("修改成功!");
+            modelMap.put("success", true);
+            modelMap.put("msg", "/logout");
+        }
         return modelMap;
     }
 }

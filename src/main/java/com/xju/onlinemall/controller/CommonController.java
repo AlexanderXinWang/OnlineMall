@@ -141,10 +141,19 @@ public class CommonController {
     }
 
     /**
-     *跳转用户中心
+     *跳转用户中心,并传递用户数据
      * */
     @RequestMapping("/account-detail.html")
-    public String accountDetail(){
+    public String accountDetail(HttpSession session, ModelMap modelMap){
+        //获取当前用户对象
+        User user =(User) session.getAttribute("user");
+
+        //向页面传递用户参数
+        modelMap.addAttribute("password",user.getPassword());
+        modelMap.addAttribute("sex",user.getSex());
+        modelMap.addAttribute("phone",user.getPhone());
+        modelMap.addAttribute("email",user.getEmail());
+        modelMap.addAttribute("payPassword",user.getPayPassword());
         return "views_front/account-detail";
     }
 

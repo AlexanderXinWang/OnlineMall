@@ -42,7 +42,7 @@ public class UserSerivceImpl implements UserService{
     public void changeAccountDetail(User user) {
         UserExample userExample = new UserExample();
         userExample.createCriteria().andUserIdEqualTo(user.getUserId());
-        userMapper.updateByExample(userExample);
+        userMapper.updateByExampleSelective(user,userExample);
     }
 
 
