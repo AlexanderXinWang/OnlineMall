@@ -19,4 +19,6 @@ public interface UserService {
     void register(User user);
 
     void changeAccountDetail(User user);
+
+    List<User> selectUserById(Integer userId);
 }

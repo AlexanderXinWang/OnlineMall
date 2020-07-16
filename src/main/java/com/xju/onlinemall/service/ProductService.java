@@ -10,5 +10,7 @@ public interface ProductService {
 
     Product selectByProductId(Integer productId);
 
+    List<Product> selectAllProduct();
+
     PageInfo<Product> getAllProducts(int pageNo,int pageSize);
 }

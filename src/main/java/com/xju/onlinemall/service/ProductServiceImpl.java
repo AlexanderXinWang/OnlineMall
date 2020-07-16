@@ -27,6 +27,11 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
+    public List<Product> selectAllProduct() {
+        return productMapper.selectAllProduct();
+    }
+
+    @Override
     public PageInfo<Product> getAllProducts(int pageNo,int pageSize) {
         //分页查询
         PageHelper.startPage(pageNo,pageSize);

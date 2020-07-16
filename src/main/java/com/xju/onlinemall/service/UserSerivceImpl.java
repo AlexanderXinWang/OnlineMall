@@ -33,16 +33,34 @@ public class UserSerivceImpl implements UserService{
         int insert = systemLogMapper.insert(log);
     }
 
+    /**
+     * 根据用户对象向数据库插入新用户
+     * */
     @Override
     public void register(User user) {
         userMapper.insert(user);
     }
 
+
+    /**
+     * 根据用户id实现更新用户的个人信息
+     * */
     @Override
     public void changeAccountDetail(User user) {
         UserExample userExample = new UserExample();
         userExample.createCriteria().andUserIdEqualTo(user.getUserId());
         userMapper.updateByExampleSelective(user,userExample);
+    }
+
+    /**
+     * 根据用户id查询用户,返回查询结果的列表
+     * */
+    @Override
+    public List<User> selectUserById(Integer userId) {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andUserIdEqualTo(userId);
+        List<User> users = userMapper.selectByExample(userExample);
+        return users;
     }
 
 

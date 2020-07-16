@@ -190,7 +190,7 @@ public class UserController {
         userService.changeAccountDetail(user);
 
         //修改验证
-        List<User> users = userService.selectUserByNameAndPassword(username, password);
+        List<User> users = userService.selectUserById(userOrigin.getUserId());
         if (users.size()==0) {
             System.out.println("查询到的用户数量为0,修改信息失败");
             //查询结果返回前端

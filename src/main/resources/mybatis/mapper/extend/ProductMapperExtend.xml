@@ -13,4 +13,7 @@
             #{o}
         </foreach>
     </select>
+    <select id="selectAllProduct" resultMap="BaseResultMap">
+        select * from tb_product;
+    </select>
 </mapper>

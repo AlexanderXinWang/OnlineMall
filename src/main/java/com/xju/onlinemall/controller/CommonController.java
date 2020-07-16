@@ -1,10 +1,12 @@
 package com.xju.onlinemall.controller;
 
+import com.xju.onlinemall.common.domain.Product;
 import com.xju.onlinemall.common.domain.Star;
 import com.xju.onlinemall.common.domain.StarExample;
 import com.xju.onlinemall.common.domain.User;
 import com.xju.onlinemall.common.utils.Result;
 import com.xju.onlinemall.mapper.StarMapper;
+import com.xju.onlinemall.service.ProductService;
 import com.xju.onlinemall.service.StarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,9 @@ public class CommonController {
     StarService starService;
     @Autowired
     StarMapper starMapper;
+    @Autowired
+    ProductService productService;
+
     /**
      * 初次访问，判断是否登录，如果没有登录，就跳转登录页面，登录成功时会再次访问此页面设置头部信息
      *
@@ -98,15 +103,26 @@ public class CommonController {
     }
 
     /**
-     *跳转商品页
+     *跳转商品页——————未完成
      * */
     @RequestMapping("/product.html")
-    public String commodity(){
+    public String commodity(HttpSession session,ModelMap modelMap){
+        List<Product> products = productService.selectAllProduct();
+
+        if (products.size()==0) {
+            System.out.println("当前数据库中无商品！");
+        }else{
+            for (int i = 0; i < products.size() ; i++) {
+                Product product = products.get(i);
+//                modelMap.put("product",product);
+                System.out.println(product.getPimage());
+            }
+        }
         return "views_front/product";
     }
 
     /**
-     *跳转商品列表页
+     *跳转商品列表页（有分类侧边栏）
      * */
     @RequestMapping("/product-list.html")
     public String product_list(){
