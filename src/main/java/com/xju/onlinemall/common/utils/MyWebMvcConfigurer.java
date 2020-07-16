@@ -33,7 +33,7 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
      * */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(loginHandlerInterceptor).addPathPatterns("/**").excludePathPatterns("/account.html","/login","/backAdminLogin","/backIndex.html","/register.html","/userRegister")
+        registry.addInterceptor(loginHandlerInterceptor).addPathPatterns("/**").excludePathPatterns("/account.html","/login","/backAdminLogin","/backLayout.html","/register.html","/userRegister")
                 .excludePathPatterns("/static/**").excludePathPatterns("/page/**")
         .excludePathPatterns("/assets/**").excludePathPatterns("/layuiadmin/**").excludePathPatterns("/bootstrap-3.3.7-dist/**").excludePathPatterns("/bootstrap-table/**").excludePathPatterns("/layer/**");
         //上面这个是对于后台管理系统的首页进行放行

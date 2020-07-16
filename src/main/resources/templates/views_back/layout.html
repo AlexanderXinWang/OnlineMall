@@ -36,8 +36,9 @@
 <script src="../layuiadmin/layui/layui.js" th:src="@{/layuiadmin/layui/layui.js}"></script>
 <script>
     layui.config({
-        base: [('"'+@{/layuiadmin/}+'"')]
+        // base: [('"'+@{/layuiadmin/}+'"')]
         // base:'@{/layuiadmin/}'
+        base:'/layuiadmin/'
     }).extend({
         index: 'lib/index' //主入口模块
     }).use('index');

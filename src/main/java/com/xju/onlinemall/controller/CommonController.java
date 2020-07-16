@@ -258,7 +258,7 @@ public class CommonController {
     }
     //访问后台主页
 
-    @RequestMapping("/backIndex.html")
+    @RequestMapping("/backLayout.html")
     public String backindex(){
         return "views_back/layout";
     }
