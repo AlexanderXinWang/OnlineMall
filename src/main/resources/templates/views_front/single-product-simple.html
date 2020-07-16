@@ -231,39 +231,50 @@
                                                 <p class="comment-notes"><span id="email-notes">放心，您的电子邮箱不会被公开.</span>
                                                     必填字段已被标记 <span class="required">*</span></p>
                                                 <p class="comment-form-author">
-                                                    <label for="author">用户姓名&nbsp;<span
-                                                            class="required">*</span></label>
+                                                    <label for="author">用户姓名&nbsp;
+                                                    </label>
                                                     <input id="author" name="author" value="" size="30" required=""
-                                                           type="text"></p>
-                                                <p class="comment-form-email"><label for="email">邮件&nbsp;
+                                                           type="text">
+                                                </p>
+                                                <p class="comment-form-email">
+                                                    <label for="email">邮件&nbsp;
                                                     <span class="required">*</span></label>
                                                     <input id="email" name="email" value="" size="30" required=""
-                                                           type="email"></p>
-                                                <div class="comment-form-rating"><label for="rating">您对该商品认可的分数</label>
-                                                    <p class="stars">
-                                                        <span>
-                                                        <a class="star-1" href="#">1</a>
-                                                        <a class="star-2" href="#">2</a>
-                                                        <a class="star-3" href="#">3</a>
-                                                        <a class="star-4" href="#">4</a>
-                                                        <a class="star-5" href="#">5</a>
-                                                        </span>
-                                                    </p>
+                                                           type="email">
+                                                </p>
+                                                <div class="comment-form-rating" style="display: block">
+                                                    <label for="rating">您对该商品认可的分数<span class="required">*</span></label>
+<!--                                                    <p class="stars" id="gradeStars">-->
+<!--                                                        <span>-->
+<!--                                                        <a class="star-1" href="#">1</a>-->
+<!--                                                        <a class="star-2" href="#">2</a>-->
+<!--                                                        <a class="star-3" href="#">3</a>-->
+<!--                                                        <a class="star-4" href="#">4</a>-->
+<!--                                                        <a class="star-5" href="#">5</a>-->
+<!--                                                        </span>-->
+<!--                                                    </p>-->
                                                     <select title="product_cat" name="rating" id="rating" required=""
-                                                            style="display: none;">
-                                                        <option value="">Rate…</option>
-                                                        <option value="5">Perfect</option>
-                                                        <option value="4">Good</option>
-                                                        <option value="3">Average</option>
-                                                        <option value="2">Not that bad</option>
-                                                        <option value="1">Very poor</option>
+                                                            style="display: inline;">
+                                                        <option value="">分数…</option>
+                                                        <option value="10">10</option>
+                                                        <option value="9">9</option>
+                                                        <option value="8">8</option>
+                                                        <option value="7">7</option>
+                                                        <option value="6">6</option>
+                                                        <option value="5">5</option>
+                                                        <option value="4">4</option>
+                                                        <option value="3">3</option>
+                                                        <option value="2">2</option>
+                                                        <option value="1">1</option>
                                                     </select></div>
-                                                <p class="comment-form-comment"><label for="comment">您的评论&nbsp;<span class="required">*</span></label><textarea
+                                                <p class="comment-form-comment"><label for="comment">您的评论&nbsp;<span class="required">*</span></label>
+                                                    <textarea
                                                         id="comment" name="comment" cols="45" rows="8"
-                                                        required=""></textarea></p><input name="wpml_language_code"
+                                                        required=""></textarea>
+                                                </p><input name="wpml_language_code"
                                                                                           value="en" type="hidden">
                                                 <p class="form-submit"><input name="submit" id="submit" class="submit"
-                                                                              value="Submit" type="submit"> <input
+                                                                              value="Submit" type="button"> <input
                                                         name="comment_post_ID" value="27" id="comment_post_ID"
                                                         type="hidden">
                                                     <input name="comment_parent" id="comment_parent" value="0"
@@ -747,5 +758,35 @@
 <div th:replace="~{fragment/footer::footer_up}"></div>
 
 <div th:replace="~{fragment/static::script}"></div>
+<script>
+    $(function () {
+        $("#submit").click(function () {
+            var author=$("#author").val().trim();
+            var email=$("#email").val().trim();
+            var rating=$("#rating option:selected").val();
+            var comment=$("#comment").val().trim();
+            // var gradeStars=$("#gradeStars").val();
+            //测试是否能够拿到值
+            // alert(author+" "+email+" "+rating+" "+comment+" ");
+            $.ajax({
+                type:"POST",
+                //该URL 如果前面加/,相对的是根地址，不是项目地址,不加/相对的就是项目地址
+                url:"addComment",
+                dataType:"json",
+                data:{"author":author,"email":email,"rating":rating,"comment":comment,"productId":1},
+                success:function (data) {
+                    if (data["success"]){
+                        //返回值是learn/t1 相对于项目地址
+                        //返回值是/learn/t1 相对于根地址 http://localhost:8080/learn/t1
+                        alert("评论成功,您可以继续选择购物或关注该产品的后续动态！")
+                    }
+                    else{
+                        alert("评论失败,请检测您的用户名或电子邮件是否正确！")
+                    }
+                }
+            })
+        })
+    })
+</script>
 </body>
 </html>

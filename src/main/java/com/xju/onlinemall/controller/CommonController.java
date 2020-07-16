@@ -70,6 +70,7 @@ public class CommonController {
      * */
     @RequestMapping("/account.html")
     public String account(){
+        System.out.println("跳转account页面---------------------");
         return "views_front/my-account";
     }
 
@@ -86,6 +87,7 @@ public class CommonController {
      * */
     @RequestMapping("/index.html")
     public String index(){
+        System.out.println("跳转index页面-----------------");
         return "index";
     }
 
