@@ -16,4 +16,10 @@ public class ProductServiceImpl implements ProductService{
     public List<Product> selectByCategory(String categoryName) {
         return productMapper.selectByCategory(categoryName);
     }
+
+    @Override
+    public Product selectByProductId(Integer productId) {
+        Product product = productMapper.selectByPrimaryKey(productId);
+        return  product;
+    }
 }

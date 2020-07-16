@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ProductService {
     List<Product> selectByCategory(String categoryName);
+
+    Product selectByProductId(Integer productId);
 }
