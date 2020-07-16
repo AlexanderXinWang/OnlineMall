@@ -74,17 +74,20 @@ public class UserController {
             System.out.println("查询到的用户数量为0");
             //查询结果返回前端
             modelMap.put("success",false);
+            modelMap.put("flag",false);
             return modelMap;
         }
-        //查询到用户信息，判断是商家还是用户还是管理员
+        //查询到用户信息，判断是商家还是用户还是管理员，如果是商家或管理员，提示使用后台登录页面进行登录
         else {
             //查询到角色,判断是否是用户,目前管理员只是后台的管理员,对商品或用户信息进行修改
             User user = users.get(0);
-            //加入session
-            session.setAttribute("user",user);
-            modelMap.put("success",true);
             //如果是用户，添加成功信息进JSON,并添加商品信息到session中
             if (user.getUserRole()==0){
+
+                //加入session
+                session.setAttribute("user",user);
+                modelMap.put("success",true);
+
                 //添加用户的购物车商品列表信息信息进session
                 List<Product> cartListByUserId = cartService.getCartListByUserId(user.getUserId());
                 session.setAttribute("cartProducts",cartListByUserId);
@@ -100,17 +103,14 @@ public class UserController {
 
                 return modelMap;
             }
-//-------------------后期下面代码要删除--------------------------
-            //如果是商家
-           else if (user.getUserRole()==1){
-                //修改为后台管理的请求地址
-                modelMap.put("msg","/");
-                return modelMap;
-            }
+            //如果是其他用户,返回登录提示信息
+            //比如说：该用户是管理员或商家,请进后台登录系统
            //如果是管理员
            else {
+                modelMap.put("success",false);
                 //修改为后台管理的请求地址
-                modelMap.put("msg","/");
+                modelMap.put("msg","请使用后台登录页面进行登录！");
+                modelMap.put("flag",true);
                 return modelMap;
             }
         }
