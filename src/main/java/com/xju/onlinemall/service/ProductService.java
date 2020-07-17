@@ -13,4 +13,6 @@ public interface ProductService {
     List<Product> selectAllProduct();
 
     PageInfo<Product> getAllProducts(int pageNo,int pageSize);
+
+    int removeProudctsByProductIds(Integer... productIds);
 }

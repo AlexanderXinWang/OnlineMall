@@ -43,4 +43,18 @@ public class ProductServiceImpl implements ProductService{
 
         return PageInfo;
     }
+
+    @Override
+    public int removeProudctsByProductIds(Integer... productIds) {
+       int count=0;
+
+        if (productIds!=null && productIds.length>0){
+            for(Integer id:productIds){
+                int i = productMapper.deleteByPrimaryKey(id);
+                count=count+i;
+            }
+        }
+        return count;
+
+    }
 }
