@@ -8,14 +8,20 @@ import java.util.List;
  * 订单的扩充,一个订单有一个商品列表
  **/
 public class OrderExtend {
-    protected List<Product> products;
+    protected Product product;
 
-    public List<Product> getProducts() {
-        return products;
+    public Product getProduct() {
+        return product;
     }
 
-    public OrderExtend setProducts(List<Product> products) {
-        this.products = products;
-        return this;
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderExtend{" +
+                "product=" + product +
+                '}';
     }
 }

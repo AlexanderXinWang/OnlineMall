@@ -4,10 +4,11 @@
   <resultMap id="BaseResultMap" type="com.xju.onlinemall.common.domain.Order">
     <id column="order_id" jdbcType="INTEGER" property="orderId" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="order_number" jdbcType="VARCHAR" property="orderNumber" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="order_number" jdbcType="INTEGER" property="orderNumber" />
+    <result column="pay_money" jdbcType="DOUBLE" property="payMoney" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="output_time" jdbcType="TIMESTAMP" property="outputTime" />
-    <result column="pay_money" jdbcType="DOUBLE" property="payMoney" />
     <result column="pay_status" jdbcType="TINYINT" property="payStatus" />
     <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
     <result column="address" jdbcType="VARCHAR" property="address" />
@@ -72,8 +73,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    order_id, user_id, order_number, create_time, output_time, pay_money, pay_status, 
-    is_delete, address, is_deliver
+    order_id, user_id, product_id, order_number, pay_money, create_time, output_time, 
+    pay_status, is_delete, address, is_deliver
   </sql>
   <select id="selectByExample" parameterType="com.xju.onlinemall.common.domain.OrderExample" resultMap="BaseResultMap">
     select
@@ -106,14 +107,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.xju.onlinemall.common.domain.Order">
-    insert into tb_order (order_id, user_id, order_number, 
-      create_time, output_time, pay_money, 
-      pay_status, is_delete, address, 
-      is_deliver)
-    values (#{orderId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{orderNumber,jdbcType=VARCHAR}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{outputTime,jdbcType=TIMESTAMP}, #{payMoney,jdbcType=DOUBLE}, 
-      #{payStatus,jdbcType=TINYINT}, #{isDelete,jdbcType=TINYINT}, #{address,jdbcType=VARCHAR}, 
-      #{isDeliver,jdbcType=TINYINT})
+    insert into tb_order (order_id, user_id, product_id, 
+      order_number, pay_money, create_time, 
+      output_time, pay_status, is_delete, 
+      address, is_deliver)
+    values (#{orderId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, 
+      #{orderNumber,jdbcType=INTEGER}, #{payMoney,jdbcType=DOUBLE}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{outputTime,jdbcType=TIMESTAMP}, #{payStatus,jdbcType=TINYINT}, #{isDelete,jdbcType=TINYINT}, 
+      #{address,jdbcType=VARCHAR}, #{isDeliver,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.xju.onlinemall.common.domain.Order">
     insert into tb_order
@@ -124,17 +125,20 @@
       <if test="userId != null">
         user_id,
       </if>
+      <if test="productId != null">
+        product_id,
+      </if>
       <if test="orderNumber != null">
         order_number,
+      </if>
+      <if test="payMoney != null">
+        pay_money,
       </if>
       <if test="createTime != null">
         create_time,
       </if>
       <if test="outputTime != null">
         output_time,
-      </if>
-      <if test="payMoney != null">
-        pay_money,
       </if>
       <if test="payStatus != null">
         pay_status,
@@ -156,17 +160,20 @@
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
       </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
       <if test="orderNumber != null">
-        #{orderNumber,jdbcType=VARCHAR},
+        #{orderNumber,jdbcType=INTEGER},
+      </if>
+      <if test="payMoney != null">
+        #{payMoney,jdbcType=DOUBLE},
       </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="outputTime != null">
         #{outputTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="payMoney != null">
-        #{payMoney,jdbcType=DOUBLE},
       </if>
       <if test="payStatus != null">
         #{payStatus,jdbcType=TINYINT},
@@ -197,17 +204,20 @@
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=INTEGER},
       </if>
+      <if test="record.productId != null">
+        product_id = #{record.productId,jdbcType=INTEGER},
+      </if>
       <if test="record.orderNumber != null">
-        order_number = #{record.orderNumber,jdbcType=VARCHAR},
+        order_number = #{record.orderNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.payMoney != null">
+        pay_money = #{record.payMoney,jdbcType=DOUBLE},
       </if>
       <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.outputTime != null">
         output_time = #{record.outputTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.payMoney != null">
-        pay_money = #{record.payMoney,jdbcType=DOUBLE},
       </if>
       <if test="record.payStatus != null">
         pay_status = #{record.payStatus,jdbcType=TINYINT},
@@ -230,10 +240,11 @@
     update tb_order
     set order_id = #{record.orderId,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
-      order_number = #{record.orderNumber,jdbcType=VARCHAR},
+      product_id = #{record.productId,jdbcType=INTEGER},
+      order_number = #{record.orderNumber,jdbcType=INTEGER},
+      pay_money = #{record.payMoney,jdbcType=DOUBLE},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       output_time = #{record.outputTime,jdbcType=TIMESTAMP},
-      pay_money = #{record.payMoney,jdbcType=DOUBLE},
       pay_status = #{record.payStatus,jdbcType=TINYINT},
       is_delete = #{record.isDelete,jdbcType=TINYINT},
       address = #{record.address,jdbcType=VARCHAR},
@@ -248,17 +259,20 @@
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
       </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
       <if test="orderNumber != null">
-        order_number = #{orderNumber,jdbcType=VARCHAR},
+        order_number = #{orderNumber,jdbcType=INTEGER},
+      </if>
+      <if test="payMoney != null">
+        pay_money = #{payMoney,jdbcType=DOUBLE},
       </if>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="outputTime != null">
         output_time = #{outputTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="payMoney != null">
-        pay_money = #{payMoney,jdbcType=DOUBLE},
       </if>
       <if test="payStatus != null">
         pay_status = #{payStatus,jdbcType=TINYINT},
@@ -278,10 +292,11 @@
   <update id="updateByPrimaryKey" parameterType="com.xju.onlinemall.common.domain.Order">
     update tb_order
     set user_id = #{userId,jdbcType=INTEGER},
-      order_number = #{orderNumber,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=INTEGER},
+      order_number = #{orderNumber,jdbcType=INTEGER},
+      pay_money = #{payMoney,jdbcType=DOUBLE},
       create_time = #{createTime,jdbcType=TIMESTAMP},
       output_time = #{outputTime,jdbcType=TIMESTAMP},
-      pay_money = #{payMoney,jdbcType=DOUBLE},
       pay_status = #{payStatus,jdbcType=TINYINT},
       is_delete = #{isDelete,jdbcType=TINYINT},
       address = #{address,jdbcType=VARCHAR},

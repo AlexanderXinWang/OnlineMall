@@ -6,7 +6,7 @@
     <result column="category_id" jdbcType="INTEGER" property="categoryId" />
     <result column="pro_no" jdbcType="VARCHAR" property="proNo" />
     <result column="product_name" jdbcType="VARCHAR" property="productName" />
-    <result column="price" jdbcType="REAL" property="price" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
     <result column="pimage" jdbcType="VARCHAR" property="pimage" />
     <result column="context" jdbcType="VARCHAR" property="context" />
     <result column="pkey" jdbcType="VARCHAR" property="pkey" />
@@ -115,7 +115,7 @@
       add_time, count, is_delete, 
       pm_id)
     values (#{productId,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{proNo,jdbcType=VARCHAR}, 
-      #{productName,jdbcType=VARCHAR}, #{price,jdbcType=REAL}, #{pimage,jdbcType=VARCHAR}, 
+      #{productName,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{pimage,jdbcType=VARCHAR},
       #{context,jdbcType=VARCHAR}, #{pkey,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
       #{addTime,jdbcType=TIMESTAMP}, #{count,jdbcType=INTEGER}, #{isDelete,jdbcType=TINYINT}, 
       #{pmId,jdbcType=INTEGER})
@@ -177,7 +177,7 @@
         #{productName,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
-        #{price,jdbcType=REAL},
+        #{price,jdbcType=DOUBLE},
       </if>
       <if test="pimage != null">
         #{pimage,jdbcType=VARCHAR},
@@ -227,7 +227,7 @@
         product_name = #{record.productName,jdbcType=VARCHAR},
       </if>
       <if test="record.price != null">
-        price = #{record.price,jdbcType=REAL},
+        price = #{record.price,jdbcType=DOUBLE},
       </if>
       <if test="record.pimage != null">
         pimage = #{record.pimage,jdbcType=VARCHAR},
@@ -264,7 +264,7 @@
       category_id = #{record.categoryId,jdbcType=INTEGER},
       pro_no = #{record.proNo,jdbcType=VARCHAR},
       product_name = #{record.productName,jdbcType=VARCHAR},
-      price = #{record.price,jdbcType=REAL},
+      price = #{record.price,jdbcType=DOUBLE},
       pimage = #{record.pimage,jdbcType=VARCHAR},
       context = #{record.context,jdbcType=VARCHAR},
       pkey = #{record.pkey,jdbcType=VARCHAR},
@@ -290,7 +290,7 @@
         product_name = #{productName,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
-        price = #{price,jdbcType=REAL},
+        price = #{price,jdbcType=DOUBLE},
       </if>
       <if test="pimage != null">
         pimage = #{pimage,jdbcType=VARCHAR},
@@ -324,7 +324,7 @@
     set category_id = #{categoryId,jdbcType=INTEGER},
       pro_no = #{proNo,jdbcType=VARCHAR},
       product_name = #{productName,jdbcType=VARCHAR},
-      price = #{price,jdbcType=REAL},
+      price = #{price,jdbcType=DOUBLE},
       pimage = #{pimage,jdbcType=VARCHAR},
       context = #{context,jdbcType=VARCHAR},
       pkey = #{pkey,jdbcType=VARCHAR},

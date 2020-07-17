@@ -832,7 +832,9 @@
         </div>
         <script type="text/javascript">
             $(function () {
+                alert("测试一下")
                 $("#getCategoryName").click(function () {
+                    alert("2")
                     var categoryName = $("#cname").val().trim();
                     $.ajax({
                         type:"POST",

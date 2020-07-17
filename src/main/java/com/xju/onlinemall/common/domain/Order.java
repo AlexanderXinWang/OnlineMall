@@ -9,13 +9,15 @@ public class Order extends OrderExtend {
 
     private Integer userId;
 
-    private String orderNumber;
+    private Integer productId;
+
+    private Integer orderNumber;
+
+    private Double payMoney;
 
     private Date createTime;
 
     private Date outputTime;
-
-    private Double payMoney;
 
     private Byte payStatus;
 
@@ -24,23 +26,6 @@ public class Order extends OrderExtend {
     private String address;
 
     private Byte isDeliver;
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "orderId=" + orderId +
-                ", userId=" + userId +
-                ", orderNumber='" + orderNumber + '\'' +
-                ", createTime=" + createTime +
-                ", outputTime=" + outputTime +
-                ", payMoney=" + payMoney +
-                ", payStatus=" + payStatus +
-                ", isDelete=" + isDelete +
-                ", address='" + address + '\'' +
-                ", isDeliver=" + isDeliver +
-                ", products=" + products +
-                '}';
-    }
 
     public Integer getOrderId() {
         return orderId;
@@ -58,12 +43,28 @@ public class Order extends OrderExtend {
         this.userId = userId;
     }
 
-    public String getOrderNumber() {
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
+
+    public Integer getOrderNumber() {
         return orderNumber;
     }
 
-    public void setOrderNumber(String orderNumber) {
-        this.orderNumber = orderNumber == null ? null : orderNumber.trim();
+    public void setOrderNumber(Integer orderNumber) {
+        this.orderNumber = orderNumber;
+    }
+
+    public Double getPayMoney() {
+        return payMoney;
+    }
+
+    public void setPayMoney(Double payMoney) {
+        this.payMoney = payMoney;
     }
 
     public Date getCreateTime() {
@@ -80,14 +81,6 @@ public class Order extends OrderExtend {
 
     public void setOutputTime(Date outputTime) {
         this.outputTime = outputTime;
-    }
-
-    public Double getPayMoney() {
-        return payMoney;
-    }
-
-    public void setPayMoney(Double payMoney) {
-        this.payMoney = payMoney;
     }
 
     public Byte getPayStatus() {
@@ -120,5 +113,23 @@ public class Order extends OrderExtend {
 
     public void setIsDeliver(Byte isDeliver) {
         this.isDeliver = isDeliver;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", userId=" + userId +
+                ", productId=" + productId +
+                ", orderNumber=" + orderNumber +
+                ", payMoney=" + payMoney +
+                ", createTime=" + createTime +
+                ", outputTime=" + outputTime +
+                ", payStatus=" + payStatus +
+                ", isDelete=" + isDelete +
+                ", address='" + address + '\'' +
+                ", isDeliver=" + isDeliver +
+                ", product=" + product +
+                '}';
     }
 }

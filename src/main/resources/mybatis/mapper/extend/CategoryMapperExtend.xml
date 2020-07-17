@@ -7,7 +7,7 @@
             <result column="category_id" jdbcType="INTEGER" property="categoryId" />
             <result column="pro_no" jdbcType="VARCHAR" property="proNo" />
             <result column="product_name" jdbcType="VARCHAR" property="productName" />
-            <result column="price" jdbcType="REAL" property="price" />
+            <result column="price" jdbcType="DOUBLE" property="price" />
             <result column="pimage" jdbcType="VARCHAR" property="pimage" />
             <result column="context" jdbcType="VARCHAR" property="context" />
             <result column="pkey" jdbcType="VARCHAR" property="pkey" />

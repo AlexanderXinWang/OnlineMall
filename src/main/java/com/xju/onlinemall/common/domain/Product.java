@@ -11,7 +11,7 @@ public class Product {
 
     private String productName;
 
-    private Float price;
+    private Double price;
 
     private String pimage;
 
@@ -19,7 +19,7 @@ public class Product {
 
     private String pkey;
 
-    private Byte status=3;
+    private Byte status=8;
 
     private Date addTime;
 
@@ -61,11 +61,11 @@ public class Product {
         this.productName = productName == null ? null : productName.trim();
     }
 
-    public Float getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
