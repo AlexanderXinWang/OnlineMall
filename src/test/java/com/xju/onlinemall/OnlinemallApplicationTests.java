@@ -38,6 +38,12 @@ class OnlinemallApplicationTests {
     public void t1(){
         List<Category> categories = mapper.selectByExample(new CategoryExample());
         System.out.println(categories);
+        List<String> categoryNames = new ArrayList<>();
+        for (Category category: categories) {
+            categoryNames.add(category.getCategoryName());
+        }
+        String first = categoryNames.get(0);
+        System.out.println(first);
     }
     //测试获取用户
     @Test
@@ -108,10 +114,10 @@ class OnlinemallApplicationTests {
     //测试根据购物车id,查询商品
     @Test
     public void t8(){
-
-        CartExample cartExample = new CartExample();
-        cartExample.createCriteria().andUserIdEqualTo(1);
-        List<Cart> carts = cartMapper.selectByExample(cartExample);
+        int userId =1;
+        Byte isDelete = 3;
+        List<Cart> carts = cartMapper.selectByUserIdAndIsDelete(userId,isDelete);
+        System.out.println(carts);
         List<Integer> productIds = new ArrayList<>();
         for (Cart cart: carts) {
             productIds.add(cart.getProductId());

@@ -26,9 +26,8 @@ public class CartServiceImpl implements CartService{
     //获得当前用户的id购物车内所有的商品
     @Override
     public List<Product> getCartListByUserId(Integer userId) {
-        CartExample cartExample = new CartExample();
-        cartExample.createCriteria().andUserIdEqualTo(userId);
-        List<Cart> carts = cartMapper.selectByExample(cartExample);
+        Byte isDelete = 3;
+        List<Cart> carts = cartMapper.selectByUserIdAndIsDelete(userId,isDelete);
         List<Product> list = null;
         if (carts.size()==0){
             list = null;

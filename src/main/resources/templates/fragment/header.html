@@ -275,25 +275,22 @@
                                                         <div class="listitem-inner">
                                                             <h4 class="title">
                                                                 商品类别 </h4>
-                                                            <ul class="listitem-list">
+                                                            <ul class="listitem-list" th:each="category:${categoryList}">
+
+                                                                <li id="categoryName">
+                                                                    <!--测试，ajax插入类别信息，失败-->
+                                                                </li>
+                                                                <li>
+                                                                    <input type="text" id="cname" name="cname" th:value="${category.categoryName}" style="display: none;">
+                                                                    <a href="javascript:void(0);" id="getCategoryName"
+                                                                       target="_self" th:text="${category.categoryName}"></a>
+                                                                </li>
+
+                                                                <!--
                                                                 <li>
                                                                     <a href="single-product-simple.html"
                                                                        target="_self">
                                                                         简单 </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="single-product.html"
-                                                                       target="_self">
-                                                                            <span class="image"><img
-                                                                                    src="assets/images/label-hot.jpg"
-                                                                                    class="attachment-full size-full"
-                                                                                    alt="img"></span>
-                                                                        变动 </a>
-                                                                </li>
-                                                                <li>
-                                                                    <a href="single-product-external.html"
-                                                                       target="_self">
-                                                                        额外 / 附属 </a>
                                                                 </li>
                                                                 <li>
                                                                     <a href="single-product-group.html"
@@ -309,7 +306,7 @@
                                                                     <a href="single-product-onsale.html"
                                                                        target="_self">
                                                                         在售 </a>
-                                                                </li>
+                                                                </li>-->
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -605,8 +602,8 @@
                                     </div>
                                     <div class="block-minicart block-dreaming furgan-mini-cart furgan-dropdown">
                                         <div class="shopcart-dropdown block-cart-link" data-furgan="furgan-dropdown">
-                                            <a class="block-link link-dropdown" href="/cart.html">
-                                                <span class="flaticon-cart"></span>
+                                            <a href="cart.html" class="block-link link-dropdown">
+                                                <span  class="flaticon-cart"></span>
                                                 <span class="count" th:text="${cartCount}">0</span>
                                             </a>
                                         </div>
@@ -833,6 +830,29 @@
                 </div>
             </div>
         </div>
+        <script type="text/javascript">
+            $(function () {
+                $("#getCategoryName").click(function () {
+                    var categoryName = $("#cname").val().trim();
+                    $.ajax({
+                        type:"POST",
+                        url:"product-list.html",
+                        dataType:"json",
+                        data:{"categoryName":categoryName},
+                        success:function (data) {
+                            if (data["success"]){
+                                alert("传参成功");
+                                window.location.href=data["msg"];
+                            }
+                            else {
+                                alert("失败");
+                            }
+
+                        }
+                    })
+                })
+            })
+        </script>
     </header>
 
 </html>

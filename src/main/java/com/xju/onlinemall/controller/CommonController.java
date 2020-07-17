@@ -129,6 +129,8 @@ public class CommonController {
      * */
     @RequestMapping("/product-list.html")
     public String product_list(Model model,@Param("categoryName")String categoryName){
+        System.out.println(categoryName);
+        //categoryName用来做按类名条件查询
         List<Product> products = productService.selectAllProduct();
 
         if (products.size()==0) {
@@ -139,7 +141,7 @@ public class CommonController {
             System.out.println(products);
             System.out.println(products.size());
         }
-        System.out.println(categoryName);
+
         return "views_front/product-list";
     }
 

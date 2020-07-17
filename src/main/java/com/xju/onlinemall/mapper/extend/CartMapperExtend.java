@@ -10,4 +10,6 @@ public interface CartMapperExtend {
     List<Object> selectCartList(@Param("username") String username);
 
     List<Product> selectMyProductByCartId(@Param("list") List<Integer> productList);
+
+    List<Cart> selectByUserIdAndIsDelete(@Param("userId") int userId, @Param("isDelete") Byte isDelete);
 }

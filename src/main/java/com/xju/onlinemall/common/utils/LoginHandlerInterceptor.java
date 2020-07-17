@@ -21,6 +21,12 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
          * */
         Object user = request.getSession().getAttribute("user");
         Object cardProducts = request.getSession().getAttribute("cartProducts");
+        /**下面两行代码用于head.html中商品分类的类别信息的显示，需要和username一样，
+         * 放到session中，避免页面跳转时，丢失商品类别信息
+         * */
+        Object categors =request.getSession().getAttribute("categoryList");
+        request.setAttribute("categoryList",categors);
+
         List cardProductsList =(List)cardProducts;
         int cartCount=0;
         if (cardProductsList!=null){
@@ -33,12 +39,6 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
             request.setAttribute("cartProducts", "用户未登录,无法获得购物车商品！！！");
             // 获取request返回页面到登录页
             System.out.println("后台提示:2、该语句检测是否多次跳转，如果跳转页面正常，但是多次显示该语句，原因可能是静态资源缺少或被拦截,标志位 0");
-            System.out.println("▬▬▬▬▬▬.◙.▬▬▬▬▬▬");
-            System.out.println("   ▂▄▄▓▄▄▂ ");
-            System.out.println(" ◢◤ █▀▀████▄▄▄▄◢◤       ▄▀▀▄");
-            System.out.println(" ██ OnlineMall █▀▀▀▀▀▀▀▀▀▀▀ ╬ ");
-            System.out.println(" ◥████████████◤");
-            System.out.println("    ══╩══╩══  冲冲冲冲冲上天");
             request.getRequestDispatcher("/account.html").forward(request, response);
             return false;
         }
@@ -75,6 +75,7 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
 
             return true;
         }
+
     }
 
 }
