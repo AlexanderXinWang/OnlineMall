@@ -103,29 +103,38 @@ public class CommonController {
     }
 
     /**
-     *跳转商品页——————未完成
+     *跳转商品页,并从数据库获取商品信息
      * */
     @RequestMapping("/product.html")
-    public String commodity(HttpSession session,ModelMap modelMap){
+    public String commodity(HttpSession session,Model model){
         List<Product> products = productService.selectAllProduct();
 
         if (products.size()==0) {
             System.out.println("当前数据库中无商品！");
         }else{
-            for (int i = 0; i < products.size() ; i++) {
-                Product product = products.get(i);
-//                modelMap.put("product",product);
-                System.out.println(product.getPimage());
-            }
+            //将所有商品对象传入页面
+            model.addAttribute("productList",products);
+            System.out.println(products);
+            System.out.println(products.size());
         }
         return "views_front/product";
     }
 
     /**
-     *跳转商品列表页（有分类侧边栏）
+     *跳转商品列表页（有分类侧边栏），并传入商品数据
      * */
     @RequestMapping("/product-list.html")
-    public String product_list(){
+    public String product_list(Model model){
+        List<Product> products = productService.selectAllProduct();
+
+        if (products.size()==0) {
+            System.out.println("当前数据库中无商品！");
+        }else{
+            //将所有商品对象传入页面
+            model.addAttribute("productList",products);
+            System.out.println(products);
+            System.out.println(products.size());
+        }
         return "views_front/product-list";
     }
 

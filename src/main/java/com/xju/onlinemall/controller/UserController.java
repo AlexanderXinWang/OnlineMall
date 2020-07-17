@@ -122,7 +122,7 @@ public class UserController {
     }*/
 
     /**
-     * 注册,可以获得AJAX数据,并将该操作写入日志
+     * 注册,可以获得AJAX数据
      * */
     @RequestMapping("/userRegister")
     @ResponseBody

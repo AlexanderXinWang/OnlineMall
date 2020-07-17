@@ -38,7 +38,7 @@ public class CommentController {
      * */
     @RequestMapping("/addComment")
     @ResponseBody
-    public Object addComent(HttpSession session,Integer productId,String author,String email,Integer rating,String comment){
+    public Object addComment(HttpSession session,Integer productId,String author,String email,Integer rating,String comment){
         User user = (User)session.getAttribute("user");
 
         //获得用户主键
