@@ -201,16 +201,25 @@ class OnlinemallApplicationTests {
         }
         System.out.println(list);
     }
+
+    @Autowired
+    CategoryMapper categoryMapper;
+    //批量生产产品类别和商品
     @Test
     public void t13(){
         for (int i=0;i<50;i++){
+            Category category = new Category();
+            category.setCategoryName("测试分类"+i);
+            categoryMapper.insert(category);
+        }
+        for (int i=0;i<100;i++){
             Product product = new Product();
             product.setProductName("商品"+i);
             product.setProNo("2020"+i);
             product.setPrice((float)((int) (Math.random()*1000)+10));
             product.setCount((int) (Math.random()*10));
             product.setAddTime(new Date());
-            product.setCategoryId(1);
+            product.setCategoryId((int) (Math.random()*10)+11);
             product.setPkey("Pc"+i);
             product.setContext("非常好用"+i);
             productMapper.insert(product);

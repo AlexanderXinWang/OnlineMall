@@ -7,7 +7,7 @@ public class Category extends CategoryExtend{
 
     private String categoryName;
 
-    private Byte isDelete;
+    private Byte isDelete=3;
 
     public Integer getCategoryId() {
         return categoryId;
