@@ -1,6 +1,5 @@
 package com.xju.onlinemall.service;
 
-import com.xju.onlinemall.common.domain.Admin;
 import com.xju.onlinemall.common.domain.SystemLog;
 import com.xju.onlinemall.common.domain.User;
 

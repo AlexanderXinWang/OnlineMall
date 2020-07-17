@@ -210,7 +210,6 @@ public class CommonController {
     /**
      *跳转用户收藏夹
      * */
-
     @RequestMapping("/wishlist.html")
     public String wishlist(){
         return "views_front/wishlist";
@@ -267,7 +266,7 @@ public class CommonController {
          *
          * x
          * */
-        return "views_front/client.html";
+        return "views_front/client";
     }
     ///////////////////////////////////////////////////////////////////////////
     // 管理员页面

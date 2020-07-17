@@ -31,11 +31,5 @@ public class ProductController {
         return productService.selectByCategory(categoryName);
     }
 
-    /**
-    * TO-DO
-    * */
-    @GetMapping("/showAllProduct")
-    public List<Product> showAllProduct() {
-        return productService.selectAllProduct();
-    }
+
 }

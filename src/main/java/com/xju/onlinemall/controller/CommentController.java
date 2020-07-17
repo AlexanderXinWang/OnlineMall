@@ -6,6 +6,7 @@ import com.xju.onlinemall.common.domain.User;
 import com.xju.onlinemall.service.CommentService;
 import com.xju.onlinemall.service.ProductService;
 import com.xju.onlinemall.service.UserService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -70,7 +71,7 @@ public class CommentController {
      * 并添加到modelMap中去
      * */
     @RequestMapping("/single-product-simple.html")
-    public String singleProduct(ModelMap modelMap,Integer productId){
+    public String singleProduct(ModelMap modelMap,@Param("productId") Integer productId){
 
         if (productId==null){
             productId=1;
@@ -79,6 +80,11 @@ public class CommentController {
          * 获得用户点击的商品信息
          * */
         Product productSingle =  productService.selectByProductId(productId);
+        modelMap.addAttribute("productName",productSingle.getProductName());
+        modelMap.addAttribute("pImage",productSingle.getPimage());
+        modelMap.addAttribute("context",productSingle.getContext());
+        modelMap.addAttribute("price",productSingle.getPrice());
+        modelMap.addAttribute("proNo",productSingle.getProNo());
 
         /**
          *
