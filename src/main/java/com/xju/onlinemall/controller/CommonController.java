@@ -1,13 +1,12 @@
 package com.xju.onlinemall.controller;
 
-import com.xju.onlinemall.common.domain.Product;
-import com.xju.onlinemall.common.domain.Star;
-import com.xju.onlinemall.common.domain.StarExample;
-import com.xju.onlinemall.common.domain.User;
+import com.xju.onlinemall.common.domain.*;
 import com.xju.onlinemall.common.utils.Result;
 import com.xju.onlinemall.mapper.StarMapper;
+import com.xju.onlinemall.service.CategoryService;
 import com.xju.onlinemall.service.ProductService;
 import com.xju.onlinemall.service.StarService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -29,6 +28,8 @@ public class CommonController {
     StarMapper starMapper;
     @Autowired
     ProductService productService;
+    @Autowired
+    CategoryService categoryService;
 
     /**
      * 初次访问，判断是否登录，如果没有登录，就跳转登录页面，登录成功时会再次访问此页面设置头部信息
@@ -80,7 +81,10 @@ public class CommonController {
      * 跳转登录页面
      * */
     @RequestMapping("/account.html")
-    public String account(){
+    public String account(HttpSession session){
+        List<Category> list=categoryService.list();
+        session.setAttribute("categoryList",list);
+        System.out.println(list);
         System.out.println("跳转account页面---------------------");
         return "views_front/my-account";
     }
@@ -115,6 +119,7 @@ public class CommonController {
             //将所有商品对象传入页面
             model.addAttribute("productList",products);
             System.out.println(products);
+            System.out.println(products.size());
         }
         return "views_front/product";
     }
@@ -123,7 +128,7 @@ public class CommonController {
      *跳转商品列表页（有分类侧边栏），并传入商品数据
      * */
     @RequestMapping("/product-list.html")
-    public String product_list(Model model){
+    public String product_list(Model model,@Param("categoryName")String categoryName){
         List<Product> products = productService.selectAllProduct();
 
         if (products.size()==0) {
@@ -132,7 +137,9 @@ public class CommonController {
             //将所有商品对象传入页面
             model.addAttribute("productList",products);
             System.out.println(products);
+            System.out.println(products.size());
         }
+        System.out.println(categoryName);
         return "views_front/product-list";
     }
 
