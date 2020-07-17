@@ -44,7 +44,7 @@
         </div>
         <div class="layui-card-body">
             <div style="padding-bottom: 10px;">
-                <button class="layui-btn layuiadmin-btn-comm layui-btn-danger" data-type="createClazz" id="btn_create">添加商品</button>
+                <button class="layui-btn layuiadmin-btn-comm layui-btn-danger" data-type="createCategory" id="btn_create">添加分类</button>
                 <button class="layui-btn layuiadmin-btn-comm layui-btn-danger" data-type="batchdel" id="btn_batchdel">批量删除</button>
             </div>
             <!--  lay-filter 想当于 layui框架自定义 的id 属性-->
@@ -78,22 +78,14 @@
         table.render({
             elem: '#mytable'
             ,method:"get"
-            ,url: '/list/products'
+            ,url: '/list/categorys'
 
             ,page: true
             ,cols: [     [
                 {type: 'checkbox', fixed: 'left'}
-                ,{field: 'productId', title: '商品id',sort: true}
-                ,{field: 'categoryId', title: '商品分类id'}
-                ,{field: 'proNo', title: '商品编号'}
-                ,{field: 'productName', title: '商品名称'}
-                ,{field: 'pkey', title: '商品关键字'}
-                ,{field: 'count', title: '商品数量'}
-                ,{field: 'price', title: '商品价格'}
-                ,{field: 'pimage', title: '商品图片路径'}
-                ,{field: 'context', title: '商品描述'}
-                ,{field: 'addTime', title: '商品添加时间'}
-                ,{field: 'status', title: '商品状态'}
+                ,{field: 'categoryId', title: '商品分类id',sort: true}
+                ,{field: 'categoryName', title: '商品分类名称'}
+                ,{field: 'isDelete', title: '删除状态'}
                 ,{fixed: 'right', title: '备注',  align:'center', toolbar: '#toolbar-Mytable',width:180}
 
             ]   ]
@@ -116,12 +108,28 @@
         table.on('tool(mytable)', function(obj){
             var data = obj.data;
             if(obj.event === 'detail'){
-                layer.msg('ID：'+ data.id + ' 的查看操作');
+                layer.msg('ID：'+ data.categoryId + ' 的查看操作');
             } else if(obj.event === 'del'){
-                layer.confirm('真的要删除吗', function(index){
-                    //
-                    obj.del();
-                    layer.close(index);
+                layer.confirm('真的要删除 --'+data.categoryName+"--商品吗？", function(index){
+                    // var proId=data.categoryId;
+                    var categoryIds=[];
+                    categoryIds.push(data.categoryId)
+                    $.ajax({
+                        type:"POST",
+                        contentType:"application/json",
+                        url:"/list/deleteCategorys",
+                        data:JSON.stringify(categoryIds),
+                        success:function (msg) {
+                            if(msg["success"]){
+                                obj.del();
+                                layer.msg("操作执行成功~"+msg["data"]+"条记录已删除~",{time:900},function () {
+                                    layer.close(index);
+                                    table.reload('mytable');
+                                })
+                            }
+                        },
+                        dataType:"json"
+                    });
                 });
             } else if(obj.event === 'edit'){
                 layer.alert('编辑行：<br>'+ JSON.stringify(data))
@@ -150,17 +158,36 @@
                 }
                 layer.confirm('确定删除吗？', function(index) {
 
-                    //执行 Ajax 后重载
-                   /* admin.req({
-                      url: 'xxx'
-                      //,……
-                    });*/
+                    // var proId=data.productId;
 
-                    table.reload('mytable');
-                    layer.msg('已删除');
+                    var categoryIds=[];
+
+                    for (var i=0;i<checkData.length;i++){
+
+                        categoryIds.push( checkData[i].categoryId);
+                    }
+
+                    $.ajax({
+                        type:"POST",
+                        contentType:"application/json",
+                        url:"/list/deleteCategorys",
+                        data:JSON.stringify(categoryIds),
+
+                        success:function (msg) {
+                            if(msg["success"]){
+                                // obj.del();
+                                layer.msg("操作执行成功~"+msg["data"]+"条记录已删除~",{time:900},function () {
+                                    layer.close(index);
+                                    table.reload('mytable');
+                                })
+                            }
+                        },
+                        dataType:"json"
+
+                    });
                 });
             }
-            ,createClazz:function () {
+            ,createCategory:function () {
                 alert("新添加商品");
             }
         }
