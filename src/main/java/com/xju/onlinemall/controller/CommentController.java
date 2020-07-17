@@ -1,5 +1,6 @@
 package com.xju.onlinemall.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.xju.onlinemall.common.domain.Comment;
 import com.xju.onlinemall.common.domain.Product;
 import com.xju.onlinemall.common.domain.User;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
@@ -70,6 +72,8 @@ public class CommentController {
      * 如果你要实现展示商品的功能,请添加获得商品信息的相关逻辑代码实现
      * 并添加到modelMap中去
      * */
+
+    //————>ProductController
     @RequestMapping("/single-product-simple.html")
     public String singleProduct(ModelMap modelMap,@Param("productId") Integer productId){
 
@@ -135,4 +139,5 @@ public class CommentController {
         System.out.println("后台提示：查看是否获得和注入正确的商品属性："+productSingle);
         return "views_front/single-product-simple";
     }
+
 }

@@ -88,7 +88,7 @@
                             data-wow-duration="1s" data-wow-delay="0ms" data-wow="fadeInUp" th:each="product : ${productList}">
                             <div class="product-inner tooltip-left">
                                 <div class="product-thumb">
-                                    <a th:id="${product.productId}" class="thumb-link" href="" th:href="@{/single-product-simple.html}" ><!--th:onclick="'javascript:click('+${product.productId}+')'"-->
+                                    <a class="thumb-link" href="" th:href="@{javascript:void(0)}" th:onclick=""><!--th:onclick="'javascript:click('+${product.productId}+')'"-->
                                         <img class="img-responsive"
                                              src="assets/images/apro161-1-600x778.jpg"
                                              alt="Moss Sofa" width="600" height="778" th:src="${product.pimage}">
@@ -171,9 +171,9 @@
                     </ul>
                 </div>
                 <div class="shop-control shop-after-control">
-                    <nav class="furgan-pagination">
-                        <span class="page-numbers current">1</span>
-                        <a class="page-numbers" href="#">2</a>
+                    <nav class="furgan-pagination" th:each="page:${pageInfo}">
+                        <!--<span class="page-numbers current">1</span>-->
+                        <a class="page-numbers" href="#" th:text="${page.page}">2</a>
                         <a class="next page-numbers" href="#">Next</a>
                     </nav>
                     <p class="furgan-result-count">Showing 1–12 of 20 results</p>
@@ -191,11 +191,11 @@
 
 <script>
     $(function () {
-        $("a").click(function () {
+        $(".thumb-link").click(function () {
             var productId=$(this).attr("id");
             $.ajax({
                 type:"POST",
-                url:"single-product-simple.html",
+                url:url,
                 dataType:"json",
                 data:{"productId":productId},
             })

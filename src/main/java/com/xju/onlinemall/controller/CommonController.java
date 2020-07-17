@@ -109,41 +109,12 @@ public class CommonController {
     /**
      *跳转商品页,并从数据库获取商品信息
      * */
-    @RequestMapping("/product.html")
-    public String commodity(HttpSession session,Model model){
-        List<Product> products = productService.selectAllProduct();
-
-        if (products.size()==0) {
-            System.out.println("当前数据库中无商品！");
-        }else{
-            //将所有商品对象传入页面
-            model.addAttribute("productList",products);
-            System.out.println(products);
-            System.out.println(products.size());
-        }
-        return "views_front/product";
-    }
+    //——————>ProductController
 
     /**
      *跳转商品列表页（有分类侧边栏），并传入商品数据
      * */
-    @RequestMapping("/product-list.html")
-    public String product_list(Model model,@Param("categoryName")String categoryName){
-        System.out.println(categoryName);
-        //categoryName用来做按类名条件查询
-        List<Product> products = productService.selectAllProduct();
-
-        if (products.size()==0) {
-            System.out.println("当前数据库中无商品！");
-        }else{
-            //将所有商品对象传入页面
-            model.addAttribute("productList",products);
-            System.out.println(products);
-            System.out.println(products.size());
-        }
-
-        return "views_front/product-list";
-    }
+    //——————>ProductController
 
     /**
      *跳转博客页
