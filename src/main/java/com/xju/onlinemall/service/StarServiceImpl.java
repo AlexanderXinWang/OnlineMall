@@ -24,30 +24,24 @@ public class StarServiceImpl implements StarService{
         StarExample starExample = new StarExample();
         starExample.createCriteria().andUserIdEqualTo(userId);
         List<Star> stars1 = starMapper.selectByExample(starExample);
-        System.out.println(stars1);
-
+//        System.out.println(stars1);
         List<Star> stars = starMapper.selectByMultiExample(userId);
-        System.out.println(stars);
-
+//        System.out.println(stars);
         List<Product> products = new ArrayList<>();
-
         for (int i=0;i<stars.size();i++){
             Product product = productMapper.selectByPrimaryKey(Integer.parseInt(stars.get(i).toString()));
-            System.out.println(product);
+//            System.out.println(product);
             products.add(product);
         }
-
-
-        System.out.println(products);
-
+//        System.out.println(products);
         PageHelper.startPage(pageNo,pageSize);
         return new PageInfo<>(products);
     }
 
     @Override
     @Transactional
-    public void deleteStarById(Star star) {
-//        starMapper.deleteByPrimaryKey(star.getId());
+    public void deleteStarById(Integer starId) {
+        starMapper.deleteByPrimaryKey(starId);
     }
 
     @Override

@@ -9,6 +9,7 @@
         height: 640px;
         margin: auto
     }  </style>
+    <!--高德地图api-->
     <script type="text/javascript"
             src="http://webapi.amap.com/maps?v=1.4.15&key=bc7d6eadd950b76bdfb3340a621bcc5f"></script>
 
@@ -29,7 +30,9 @@
     </div>
 </div>
 <br>
-<div id="container"></div>
+
+<div id="container"></div><!--高德地图-->
+
 <div class="site-main main-container no-sidebar">
 
     <div class="section-042">
@@ -83,6 +86,8 @@
 <div th:replace="~{fragment/footer::footer_up}"></div>
 
 <div th:replace="~{fragment/static::script}"></div>
+
+<!--高德地图api-->
 <script>
     var map = new AMap.Map('container', {
         zoom: 15,//级别
@@ -90,28 +95,6 @@
         viewMode: '3D'//使用3D视图
     });
 
-
-    // var buildings = new AMap.Buildings({
-    //     'zooms':[16,18],
-    //     'zIndex':10,
-    //     'heightFactor':2//2倍于默认高度，3D下有效
-    // });//楼块图层
-    // var map = new AMap.Map('container', {
-    //     center: [87.58335281822966,43.82078199892847],
-    //     viewMode:'3D',
-    //     pitch:60,
-    //     rotation:-35,
-    //     features:['bg','road','point'],//隐藏默认楼块
-    //     mapStyle:'amap://styles/light',
-    //     layers: [new AMap.TileLayer.Satellite(),//高德默认标准图层
-    //         buildings],
-    //     zoom: 17
-    // });
-
-    // var trafficLayer = new AMap.TileLayer.Traffic({
-    //     zIndex: 10
-    // });
-    // map.add(trafficLayer);//添加图层到地图
     // 同时引入工具条插件，比例尺插件和鹰眼插件
     AMap.plugin([
         'AMap.ToolBar',
