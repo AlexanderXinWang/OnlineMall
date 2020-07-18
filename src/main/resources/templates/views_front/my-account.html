@@ -93,6 +93,9 @@
                     if (data["success"]){
                         //返回值是learn/t1 相对于项目地址
                         //返回值是/learn/t1 相对于根地址 http://localhost:8080/learn/t1
+                        layer.msg("登陆成功！现在为您跳转到首页",{time:1500},function () {
+                            layer.close(index);
+                        })
                         window.location.href=data["msg"];
                     }
                     else{
@@ -100,7 +103,10 @@
                             alert(data["msg"])
                         }
                         else {
-                            alert("用户名或密码错误！")
+                            // alert("用户名或密码错误！")
+                            layer.msg("用户名或密码错误！",{time:1400},function () {
+                                layer.close(index);
+                            })
                         }
 
                     }

@@ -51,6 +51,9 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
             //这样做会使得每个人页面访问都会设置一遍，浪费性能
             //request.setAttribute("cartProducts",cardProducts);
             request.setAttribute("cartCount",cartCount);
+
+
+
             /**
              *
              *
