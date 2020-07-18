@@ -153,7 +153,7 @@
                                 </div>
                                 <div class="product-info equal-elem">
                                     <h3 class="product-name product_title">
-                                        <a href="#" th:text="${product.productName}">Moss Sofa</a>
+                                        <a href="#" th:text="${product.productName}" th:href="@{'/single-product-simple.html?id='+${product.productId}}">Moss Sofa</a>
                                     </h3>
                                     <div class="rating-wapper nostar">
                                         <div class="star-rating"><span style="width:0%">Rated <strong

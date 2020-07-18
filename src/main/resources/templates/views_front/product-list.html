@@ -88,7 +88,7 @@
                             data-wow-duration="1s" data-wow-delay="0ms" data-wow="fadeInUp" th:each="product:${productList}">
                             <div class="product-inner images">
                                 <div class="product-thumb">
-                                    <a class="thumb-link" href="#">
+                                    <a class="thumb-link" href="#" th:href="@{'/single-product-simple.html?id='+${product.productId}}">
                                         <img class="img-responsive"
                                              src="assets/images/apro161-1-600x778.jpg"
                                              alt="Moss Sofa" width="600" height="778" th:src="${product.pimage}">
@@ -144,7 +144,7 @@
                                                 class="rating">0</strong> out of 5</span></div>
                                         <span class="review">(0)</span></div>
                                     <h3 class="product-name product_title">
-                                        <a href="#" th:text="${product.productName}">Moss Sofa</a>
+                                        <a href="#" th:text="${product.productName}" th:href="@{'/single-product-simple.html?id='+${product.productId}}">Moss Sofa</a>
                                     </h3>
                                     <span class="price">
                                         <span class="furgan-Price-amount amount">
