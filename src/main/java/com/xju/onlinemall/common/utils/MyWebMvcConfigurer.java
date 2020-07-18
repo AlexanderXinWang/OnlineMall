@@ -40,7 +40,7 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
 
         registry.addInterceptor(loginHandlerInterceptor).addPathPatterns("/**")
                 .excludePathPatterns("/account.html","/login","/backAdminLogin","/backLayout.html","/register.html","/userRegister")
-                .excludePathPatterns("/static/**").excludePathPatterns("/page/**","/list/**")
+                .excludePathPatterns("/static/**").excludePathPatterns("/page/**","/list/**","/views/**")
         .excludePathPatterns("/assets/**").excludePathPatterns("/layuiadmin/**").excludePathPatterns("/bootstrap-3.3.7-dist/**").excludePathPatterns("/bootstrap-table/**").excludePathPatterns("/layer/**");
 
         //请在后面追加不用拦截的url

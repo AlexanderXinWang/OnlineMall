@@ -9,10 +9,8 @@ import com.xju.onlinemall.service.CategoryService;
 import com.xju.onlinemall.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
@@ -93,12 +91,57 @@ public class BusinessController {
         //设置添加的时间
         Date date = new Date();
         product.setAddTime(date);
-
         //查看后台获取到的数据
 //        System.out.println(product);
-
         int i = productService.addProduct(product);
-
         return Result.success(1,"操作成功",200);
     }
+
+    /**
+     * 查询对象，回显页面
+     *
+     * */
+    @GetMapping("/list/updateProductToBackPage")
+    public String getProduct(ModelMap modelMap,Integer productId){
+        System.out.println(productId);
+        //根据Id查询该商品
+        Product product = productService.selectByProductId(productId);
+        //把商品放入其中进行显示
+        modelMap.put("oldProduct",product);
+
+        return "views/list-backProductShowAndUpdate";
+    }
+
+    /**
+     * 查询对象，回显页面
+     *
+     * */
+    @GetMapping("/list/showProductDetail")
+    public String showProductDetail(ModelMap modelMap,Integer productId){
+        System.out.println(productId);
+        //根据Id查询该商品
+        Product product = productService.selectByProductId(productId);
+        //把商品放入其中进行显示
+        modelMap.put("oldProduct",product);
+
+        return "views/list-backProductShowDetail";
+    }
+
+    /**
+     * 更新商品信息
+     *
+     * */
+    @RequestMapping("/list/updateProduct")
+    @ResponseBody
+    public Object updateProduct(@RequestBody Product product){
+        //设置添加的时间
+        Date date = new Date();
+        product.setAddTime(date);
+        //查看后台获取到的数据
+//        System.out.println(product);
+        int i = productService.updateProduct(product);
+        return Result.success(1,"操作成功",200);
+    }
+
+
 }

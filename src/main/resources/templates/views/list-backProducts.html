@@ -117,8 +117,25 @@
         //监听表格的工具：行的删除、编辑、查看
         table.on('tool(mytable)', function(obj){
             var data = obj.data;
+
+            //查看操作
             if(obj.event === 'detail'){
-                layer.msg('ID：'+ data.productId + ' 的查看操作');
+                // layer.msg('ID：'+ data.productId + ' 的查看操作');
+                var productId=data.productId;
+                layer.open({
+                    title:"查看商品",
+                    type: 2,
+                    content: '/list/showProductDetail?productId='+productId,
+                    area: ['725px', '560px'],
+                    maxmin: true,
+                    //打开默认全屏
+                    // success: function(layero, index){
+                    //     layer.full(index);
+                    // }
+                });
+
+
+
             }
             else if(obj.event === 'del'){
                 layer.confirm('真的要删除 --'+data.productName+"--商品吗？", function(index){
@@ -143,8 +160,26 @@
                     });
                 });
             }
+            //编辑操作
             else if(obj.event === 'edit'){
-                layer.alert('编辑行：<br>'+ JSON.stringify(data))
+                // layer.alert('编辑行：<br>'+ JSON.stringify(data))
+                var productId=data.productId;
+                layer.open({
+                    title:"编辑商品",
+                    type: 2,
+                    content: '/list/updateProductToBackPage?productId='+productId,
+                    area: ['725px', '560px'],
+                    maxmin: true,
+                    //打开默认全屏
+                    // success: function(layero, index){
+                    //     layer.full(index);
+                    // }
+                });
+
+
+
+
+
             }
         });
 

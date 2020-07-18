@@ -63,4 +63,9 @@ public class ProductServiceImpl implements ProductService{
         int insert = productMapper.insert(product);
         return insert;
     }
+
+    @Override
+    public int updateProduct(Product product) {
+        return productMapper.updateByPrimaryKeySelective(product);
+    }
 }

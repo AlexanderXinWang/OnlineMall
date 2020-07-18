@@ -17,4 +17,6 @@ public interface ProductService {
     int removeProudctsByProductIds(Integer... productIds);
 
     int addProduct(Product product);
+
+    int updateProduct(Product product);
 }
