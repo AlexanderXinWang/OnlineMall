@@ -98,12 +98,15 @@
                     if (data["success"]){
                         //返回值是learn/t1 相对于项目地址
                         //返回值是/learn/t1 相对于根地址 http://localhost:8080/learn/t1
-                        alert("注册成功!");
+                        layer.msg("注册成功！赶快登陆购物吧！",{time:1700},function () {
+                            layer.close(index);
+                        })
                         window.location.href=data["msg"];
                     }
                     else{
-
-                        alert("注册失败！")
+                        layer.msg("注册失败！请稍后再试",{time:1600},function () {
+                            layer.close(index);
+                        })
                     }
                 }
             })

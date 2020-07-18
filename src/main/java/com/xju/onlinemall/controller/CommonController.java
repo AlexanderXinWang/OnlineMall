@@ -84,7 +84,7 @@ public class CommonController {
     public String account(HttpSession session){
         List<Category> list=categoryService.list();
         session.setAttribute("categoryList",list);
-        System.out.println(list);
+//        System.out.println(list);
         System.out.println("跳转account页面---------------------");
         return "views_front/my-account";
     }

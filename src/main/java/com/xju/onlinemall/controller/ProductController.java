@@ -51,7 +51,7 @@ public class ProductController {
         }else{
             //将所有商品对象传入页面
             model.addAttribute("productList",products);
-            System.out.println(products);
+//            System.out.println(products);
             System.out.println(products.size());
         }
 
@@ -78,7 +78,7 @@ public class ProductController {
         }else{
             //将所有商品对象传入页面
             model.addAttribute("productList",products);
-            System.out.println(products);
+//            System.out.println(products);
             System.out.println("商品数"+products.size());
         }
 

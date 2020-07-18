@@ -22,7 +22,7 @@ public class CategoryController {
     public List<Category> list(ModelMap modelMap){  //查询商品类
         List<Category> list=categoryService.list();
         modelMap.addAttribute("categoryList",list);
-        System.out.println(list);
+//        System.out.println(list);
         return list;
     }
 }
