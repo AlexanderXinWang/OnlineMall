@@ -173,8 +173,21 @@
                 <div class="shop-control shop-after-control">
                     <nav class="furgan-pagination">
                         <!--<span class="page-numbers current">1</span>-->
-                        <a class="page-numbers" href="#">2</a>
-                        <a class="next page-numbers" href="#">Next</a>
+                        <!--<a class="next page-numbers" href="#"
+                           th:href="@{'/product.html?page='+${pageInfo.getPretPage()}+'&pageSize'+${pageInfo.getPageSize()}}">
+                            上一页
+                        </a>-->
+                        <span th:each="pageNo:${#numbers.sequence(1,pageInfo.getPages())}">
+                            <a class="page-numbers current" href="#"
+                               th:href="@{'/product.html?pageNo='+${pageNo}+'&pageSize='+${pageInfo.getPageSize()}}"
+                               th:text="${pageNo}">
+                            </a>
+                        </span>
+
+                        <a class="next page-numbers" href="#"
+                           th:href="@{'/product.html?page='+${pageInfo.getNextPage()}+'&pageSize='+${pageInfo.getPageSize()}}">
+                            下一页
+                        </a>
                     </nav>
                     <p class="furgan-result-count">Showing 1–12 of 20 results</p>
                 </div>

@@ -75,8 +75,8 @@
                             </tr>
                             <tr id="yith-wcwl-row-29" data-row-id="29" th:each="order:${orderList}">
                                 <td class="product-thumbnail">
-                                    <a href="#">
-                                        <img src="assets/images/apro1113-600x778.jpg"
+                                    <a href="#" th:href="@{'/single-product-simple.html?id='+${order.product.productId}}">
+                                        <img src="assets/images/apro1113-600x778.jpg" th:src="${order.product.pimage}"
                                              class="attachment-furgan_thumbnail size-furgan_thumbnail" alt="img"
                                              width="600" height="778"> </a>
                                 </td>
