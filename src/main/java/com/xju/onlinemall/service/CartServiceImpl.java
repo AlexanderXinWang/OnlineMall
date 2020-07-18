@@ -71,4 +71,14 @@ public class CartServiceImpl implements CartService{
 
     }
 
+    @Override
+    public String logicDelete(Integer userId, Integer productId) {
+        CartExample cartExample = new CartExample();
+        Byte isDelete = 0;
+        cartExample.createCriteria().andUserIdEqualTo(userId);
+        cartExample.createCriteria().andProductIdEqualTo(productId);
+        cartMapper.logicDelete(userId, productId);
+        return "删除成功！";
+    }
+
 }

@@ -19,15 +19,14 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-    @GetMapping("/cart/list")
-    @ResponseBody
-    public List<Object> list(){  //查询用户购物车信息
-
-        String username = null;
-        username="MuShaoAi";
-        List<Object> cartList=cartService.list(username);
-        System.out.println(cartList);
-        return cartList;
+    @RequestMapping("/cart.html")
+    public String cart(HttpSession session, ModelMap modelMap){
+        //获取当前登录用户信息
+        User user=new User();
+        user=(User) session.getAttribute("user");
+        List<Product> cartProducts = cartService.getCartListByUserId(user.getUserId());
+        modelMap.addAttribute("cardProductsList",cartProducts);
+        return "views_front/cart";
     }
     /**
      * 通过用户id获得购物车内所有的product
@@ -96,6 +95,24 @@ public class CartController {
             map.put("success",false);
             return map;
         }
+    }
+
+    @RequestMapping("/deleteFromCart")
+    public String deleteFromCart(HttpSession session, ModelMap modelMap,
+                                 HttpServletRequest request,
+                                 Integer productId){
+        //获取当前登录用户信息
+        User user=new User();
+        user=(User) session.getAttribute("user");
+        String msg=null;
+        Integer userId = user.getUserId();
+        productId=Integer.parseInt(request.getParameter("id"));
+        System.out.println(productId);
+        msg=cartService.logicDelete(userId,productId);
+        System.out.println(msg);
+        List<Product> cartListByUserId = cartService.getCartListByUserId(user.getUserId());
+        modelMap.addAttribute("cardProductsList",cartListByUserId);
+        return "views_front/cart";
     }
 
 }

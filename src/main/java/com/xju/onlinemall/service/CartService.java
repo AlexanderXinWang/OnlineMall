@@ -18,4 +18,6 @@ public interface CartService {
      * 向购物车中添加商品
      * */
     boolean insertIntoCartByProdcutId(Integer userId,Integer prodectId);
+
+    String logicDelete(Integer userId, Integer productId);
 }
