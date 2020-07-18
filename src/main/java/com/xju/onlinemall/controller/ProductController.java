@@ -69,8 +69,8 @@ public class ProductController {
     @RequestMapping("/product-list.html")
     public String productList(Model model,HttpServletRequest request,Integer categoryId,
                               @RequestParam(defaultValue = "1") int pageNo,
-                              @RequestParam(defaultValue = "5") int pageSize/*,
-                              @RequestParam("cid") String cid*/){
+                              @RequestParam(defaultValue = "5") int pageSize
+                              /*@RequestParam("cid") categoryId*/){
         //若为正常访问list页面（未分类）
         if(request.getParameter("cid")==null){
             //分页
@@ -100,28 +100,33 @@ public class ProductController {
         }
         //通过header分类跳转，携带cid（商品类别）
         else{
-            /*//分页
+            //分页
             PageInfo<Product> pageInfo;
 
+            categoryId = Integer.parseInt(request.getParameter("cid"));
+
             //从header传入商品种类id
-            headerCategoryId = Integer.parseInt(request.getParameter("cid"));
-            model.addAttribute("cid",headerCategoryId);
-            System.out.println(headerCategoryId);
+//            /*headerCategoryId = Integer.parseInt(request.getParameter("cid"));
+            model.addAttribute("cid",categoryId);
+//            System.out.println(headerCategoryId);*/
 
-            pageInfo = productService.selectByCategory(pageNo, pageSize,headerCategoryId);
-
+            pageInfo = productService.getByCategory(pageNo, pageSize,categoryId);
+            //分页注入视图
+            model.addAttribute("pageInfo",pageInfo);
+            System.out.println(pageInfo);
 
             //取出商品列表并注入视图
-            List<Product> productList = pageInfo.getList();*/
+            List<Product> productList = pageInfo.getList();
 
-            categoryId = Integer.parseInt(request.getParameter("cid"));
-            List<Product> productList = productService.selectByCategory(categoryId);
+
+//            List<Product> productList = productService.selectByCategory(categoryId);
 
             //将对应分类的商品传入页面
             model.addAttribute("productList",productList);
 
             if (productList.size()==0) {
                 System.out.println("当前数据库中无商品！");
+                return "404";
             }else{
 
                 //将所有商品对象传入页面

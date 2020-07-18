@@ -151,7 +151,7 @@
                                         <span class="toggle-submenu"></span>
                                         <div class="submenu megamenu megamenu-shop">
                                             <div class="row">
-                                                <div class="col-md-4">
+                                                <!--<div class="col-md-4">
                                                     <div class="furgan-listitem style-01">
                                                         <div class="listitem-inner">
                                                             <h4 class="title">选择商品浏览布局 </h4>
@@ -210,7 +210,7 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div>-->
                                                 <div class="col-md-4">
                                                     <div class="furgan-listitem style-01">
                                                         <div class="listitem-inner">
@@ -281,7 +281,7 @@
                                                                     <!--测试，ajax插入类别信息，失败-->
                                                                 </li>
                                                                 <li>
-                                                                    <a th:href="@{'/product-list.html?cid='+${category.categoryId}}"
+                                                                    <a th:href="@{'/product-list.html?pageNo=1&pageSize=5&cid='+${category.categoryId}}"
                                                                        target="_self" th:text="${category.categoryName}"></a>
                                                                 </li>
 

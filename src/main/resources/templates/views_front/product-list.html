@@ -187,13 +187,14 @@
                         <!--<span class="page-numbers current">1</span>-->
                         <span th:each="pageNo:${#numbers.sequence(1,pageInfo.getPages())}">
                             <a class="page-numbers current" href="#"
-                               th:href="@{'/product-list.html?pageNo='+${pageNo}+'&pageSize='+${pageInfo.getPageSize()}}"
+                               th:href="@{'/product-list.html?pageNo='+${pageNo}+'&pageSize='+${pageInfo.getPageSize()}+'&cid='+${cid}}"
                                th:text="${pageNo}">
+                                <!--+'&cid='+${cid}-->
                             </a>
                         </span>
 
                         <a class="next page-numbers" href="#"
-                           th:href="@{'/product-list.html?pageNo='+${pageInfo.getNextPage()}+'&pageSize='+${pageInfo.getPageSize()}}">
+                           th:href="@{'/product-list.html?pageNo='+${pageInfo.getNextPage()}+'&pageSize='+${pageInfo.getPageSize()}+'&cid='+${cid}}">
                             下一页
                         </a>
                     </nav>
@@ -225,7 +226,7 @@
                             </div>
                         </form>
                     </div>
-                    <div id="furgan_furgan_layered_nav-4"
+                    <!--<div id="furgan_furgan_layered_nav-4"
                          class="widget furgan_widget_layered_nav widget_layered_nav">
                         <h2 class="widgettitle">按颜色筛选<span class="arrow"></span></h2>
                         <div class="color-group">
@@ -262,8 +263,8 @@
                                 <span class="term-name">黄色</span>
                                 <span class="count">(2)</span> </a>
                         </div>
-                    </div>
-                    <div id="furgan_layered_nav-6"
+                    </div>-->
+                    <!--<div id="furgan_layered_nav-6"
                          class="widget furgan widget_layered_nav furgan-widget-layered-nav"><h2
                             class="widgettitle">按尺码筛选<span class="arrow"></span></h2>
                         <ul class="furgan-widget-layered-nav-list">
@@ -292,13 +293,15 @@
                                 <a rel="nofollow" href="#">4XL</a>
                                 <span class="count">(3)</span></li>
                         </ul>
-                    </div>
+                    </div>-->
                     <div id="furgan_product_categories-3" class="widget furgan widget_product_categories"><h2
                             class="widgettitle">商品分类<span class="arrow"></span></h2>
-                        <ul class="product-categories">
-                            <li class="cat-item cat-item-22"><a href="#">Light</a>
-                                <span class="count">(11)</span></li>
-                            <li class="cat-item cat-item-16"><a href="#">Chair</a>
+                        <ul class="product-categories" th:each="category:${categoryList}">
+                            <li class="cat-item cat-item-22">
+                                <a href="#" th:href="@{'/product-list.html?pageNo=1&pageSize=5&cid='+${category.categoryId}}"
+                                   th:text="${category.categoryName}">Light</a>
+                            </li>
+                            <!--<li class="cat-item cat-item-16"><a href="#">Chair</a>
                                 <span class="count">(9)</span></li>
                             <li class="cat-item cat-item-24"><a href="#">Table</a>
                                 <span class="count">(6)</span></li>
@@ -309,7 +312,7 @@
                             <li class="cat-item cat-item-26"><a href="#">Specials</a> <span
                                     class="count">(4)</span></li>
                             <li class="cat-item cat-item-18"><a href="#">Sofas</a> <span
-                                    class="count">(6)</span></li>
+                                    class="count">(6)</span></li>-->
                         </ul>
                     </div>
                 </div><!-- .widget-area -->
