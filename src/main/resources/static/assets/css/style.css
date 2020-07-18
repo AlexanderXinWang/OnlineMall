@@ -11622,6 +11622,8 @@ body.error404 .header {
 9.8 FURGAN LISTITEM
 ===============================================================*/
 .furgan-listitem .listitem-list {
+	margin-left: auto;
+	margin-right: auto;
 	padding-left: 0;
 	list-style: none;
 }

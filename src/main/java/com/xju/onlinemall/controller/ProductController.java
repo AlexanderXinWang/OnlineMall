@@ -73,6 +73,9 @@ public class ProductController {
                               /*@RequestParam("cid") categoryId*/){
         //若为正常访问list页面（未分类）
         if(request.getParameter("cid")==null){
+            model.addAttribute("cid",null);
+//            pageNo = Integer.parseInt(request.getParameter("pageNo"));
+//            pageSize = Integer.parseInt(request.getParameter("pageSize"));
             //分页
             PageInfo<Product> pageInfo;
             //获取分页信息与商品列表

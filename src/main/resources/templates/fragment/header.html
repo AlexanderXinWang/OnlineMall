@@ -211,7 +211,7 @@
                                                         </div>
                                                     </div>
                                                 </div>-->
-                                                <div class="col-md-4">
+                                                <!--<div class="col-md-4">
                                                     <div class="furgan-listitem style-01">
                                                         <div class="listitem-inner">
                                                             <h4 class="title">
@@ -269,17 +269,13 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div>-->
                                                 <div class="col-md-4">
                                                     <div class="furgan-listitem style-01">
                                                         <div class="listitem-inner">
                                                             <h4 class="title">
                                                                 商品类别 </h4>
                                                             <ul class="listitem-list" th:each="category:${categoryList}">
-
-                                                                <li id="categoryName">
-                                                                    <!--测试，ajax插入类别信息，失败-->
-                                                                </li>
                                                                 <li>
                                                                     <a th:href="@{'/product-list.html?pageNo=1&pageSize=5&cid='+${category.categoryId}}"
                                                                        target="_self" th:text="${category.categoryName}"></a>
@@ -313,7 +309,7 @@
                                             </div>
                                         </div>
                                     </li>
-                                    <li id="menu-item-229"
+                                    <!--<li id="menu-item-229"
                                         class="menu-item menu-item-type-post_type menu-item-object-megamenu menu-item-229 parent parent-megamenu item-megamenu menu-item-has-children">
                                         <a class="furgan-menu-item-title" title="元素" href="#">元素</a>
                                         <span class="toggle-submenu"></span>
@@ -408,14 +404,14 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </li>
+                                    </li>-->
                                     <li id="menu-item-996"
                                         class="menu-item menu-item-type-post_type menu-item-object-megamenu menu-item-996 parent parent-megamenu item-megamenu menu-item-has-children">
                                         <a class="furgan-menu-item-title" title="博客"
                                            href="blog.html">博客</a>
                                         <span class="toggle-submenu"></span>
                                         <div class="submenu megamenu megamenu-blog">
-                                            <div class="row">
+                                            <!--<div class="row">
                                                 <div class="col-md-4">
                                                     <div class="furgan-listitem style-01">
                                                         <div class="listitem-inner">
@@ -503,7 +499,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div>-->
                                         </div>
                                     </li>
                                     <li id="menu-item-237"
@@ -577,13 +573,13 @@
                                         </a>
                                         <ul class="sub-menu">
                                             <li class="menu-item furgan-MyAccount-navigation-link furgan-MyAccount-navigation-link--customer-logout">
-                                                <a href="/account-detail.html">用户名: <span id="uname" th:text="${uname}">未登录</span> </a>
+                                                <a href="/account-detail.html">欢迎登录: <span id="uname" th:text="${uname}">未登录</span> </a>
                                             </li>
                                             <li class="menu-item furgan-MyAccount-navigation-link furgan-MyAccount-navigation-link--edit-account">
-                                                <a href="/account-detail.html">账户明细</a>
+                                                <a href="/account-detail.html">账户详情</a>
                                             </li>
                                             <li class="menu-item furgan-MyAccount-navigation-link furgan-MyAccount-navigation-link--orders">
-                                                <a href="order.html">订单</a>
+                                                <a href="order.html">个人订单</a>
                                             </li>
                                             <li class="menu-item furgan-MyAccount-navigation-link furgan-MyAccount-navigation-link--downloads">
                                                 <a href="wishlist.html">收藏夹</a>
@@ -591,9 +587,9 @@
                                             <li class="menu-item furgan-MyAccount-navigation-link furgan-MyAccount-navigation-link--edit-adchair">
                                                 <a href="#">地址</a>
                                             </li>
-                                            <li class="menu-item furgan-MyAccount-navigation-link furgan-MyAccount-navigation-link--dashboard is-active">
+                                            <!--<li class="menu-item furgan-MyAccount-navigation-link furgan-MyAccount-navigation-link&#45;&#45;dashboard is-active">
                                                 <a href="#">仪表盘</a>
-                                            </li>
+                                            </li>-->
                                             <li class="menu-item furgan-MyAccount-navigation-link furgan-MyAccount-navigation-link--customer-logout">
                                                 <a href="/logout">退出登录</a>
                                             </li>
