@@ -36,28 +36,5 @@
     <script src="bootstrap-table/bootstrap-table.js"></script>
     <script src="bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
     <script src="layer/layer.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $("#getCategoryName").click(function () {
-                var categoryName = $("#cname").val().trim();
-                $.ajax({
-                    type:"POST",
-                    url:"product-list.html",
-                    dataType:"json",
-                    data:{"categoryName":categoryName},
-                    success:function (data) {
-                        if (data["success"]){
-                            alert("传参成功");
-                            window.location.href=data["msg"];
-                        }
-                        else {
-                            alert("失败");
-                        }
-
-                    }
-                })
-            })
-        })
-    </script>
 </div>
 </html>

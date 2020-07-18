@@ -33,10 +33,16 @@ public class OrderServiceImpl implements OrderService {
              * 把该订单的商品写入该订单对象的商品列表
              * */
             order.setProduct(product);
+            order.setProduct(product);
+            //获取订单状态标记
+            Byte status_num =order.getPayStatus();
+            //获得订单对应状态
+            String orderStatus=orderMapper.selectStatusByNum(status_num);
+            //将订单状态写入订单对象
+            order.setStatus(orderStatus);
             System.out.println(order.getUserId()+","+order.getOrderId()+","+order.getProduct().getProductName()+
-                    ",数量×"+order.getOrderNumber()+",实付: ¥"+order.getPayMoney());
+                    ",数量×"+order.getOrderNumber()+",实付: ¥"+order.getPayMoney()+","+order.getStatus());
         }
-        System.out.println(orders);
         return orders;
     }
 }

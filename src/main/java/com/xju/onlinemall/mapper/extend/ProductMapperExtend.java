@@ -7,7 +7,7 @@ import javax.rmi.PortableRemoteObject;
 import java.util.List;
 
 public interface ProductMapperExtend {
-    List<Product> selectByCategory(@Param("categoryName") String categoryName);
+    List<Product> selectByCategory(@Param("categoryId") Integer categoryId);
     //根据商品id列表进行批量查询
     List<Product> selectByProductIdList(@Param("productIdLists") List<Integer> productIdLists);
 

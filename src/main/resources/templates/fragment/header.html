@@ -281,8 +281,7 @@
                                                                     <!--测试，ajax插入类别信息，失败-->
                                                                 </li>
                                                                 <li>
-                                                                    <input type="text" id="cname" name="cname" th:value="${category.categoryName}" style="display: none;">
-                                                                    <a href="javascript:void(0);" id="getCategoryName"
+                                                                    <a th:href="@{'/product-list.html?id='+${category.categoryId}}"
                                                                        target="_self" th:text="${category.categoryName}"></a>
                                                                 </li>
 

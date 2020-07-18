@@ -73,7 +73,7 @@
                                             class="furgan-Price-currencySymbol"></span>操作</span></td>
                                 </td>
                             </tr>
-                            <tr id="yith-wcwl-row-29" data-row-id="29">
+                            <tr id="yith-wcwl-row-29" data-row-id="29" th:each="order:${orderList}">
                                 <td class="product-thumbnail">
                                     <a href="#">
                                         <img src="assets/images/apro1113-600x778.jpg"
@@ -81,19 +81,20 @@
                                              width="600" height="778"> </a>
                                 </td>
                                 <td class="product-name">
-                                    <a href="#">闹钟</a>
+                                    <a th:href="@{'/single-product-simple.html?id='+${order.product.productId}}" th:text="${order.product.productName}">商品名</a>
                                     <a href="#" class="button yith-wcqv-button" data-product_id="29">Quick View</a></td>
                                 <td class="product-price">
-                                    <span class="furgan-Price-amount amount"><span
-                                            class="furgan-Price-currencySymbol">¥</span>129.00</span></td>
+                                    <span class="furgan-Price-currencySymbol">¥</span>
+                                    <span class="furgan-Price-amount amount" th:text="${order.product.price}">单价</span></td>
                                 <td class="product-number">
-                                    <span class="furgan-Price-amount amount"><span
-                                            class="furgan-Price-currencySymbol">×</span>1</span></td>
+                                    <span class="furgan-Price-currencySymbol">×</span>
+                                    <span class="furgan-Price-amount amount" th:text="${order.orderNumber}">数量</span></td>
                                 <td class="product-pay">
-                                    <span class="furgan-Price-amount amount"><span
-                                            class="furgan-Price-currencySymbol">¥</span>129.00</span></td>
+                                    <span class="furgan-Price-currencySymbol">¥</span>
+                                    <span class="furgan-Price-amount amount" th:text="${order.payMoney}">实付款</span></td>
                                 <td class="product-stock-status">
-                                    <span class="wishlist-in-stock">卖家已发货</span></td>
+                                    <span class='wishlist-in-stock' th:text="${order.status}">交易状态</span>
+                                    </td>
                                 <td class="product-detail">
                                     <a href="#">查看详情</a>
                                     <a href="#" class="button yith-wcqv-button" data-product_id="29">Quick View</a></td></td>
@@ -105,81 +106,6 @@
                                        class="button product_type_simple add_to_cart_button ajax_add_to_cart add_to_cart button alt"
                                        data-product_id="29" data-product_sku="003D754"
                                        aria-label="Add “Alarm Clock” to your cart" rel="nofollow">确认收货</a>
-                                    <!-- Change wishlist -->
-                                    <!-- Remove from wishlist -->
-                                </td>
-                            </tr>
-                            <tr id="yith-wcwl-row-25" data-row-id="25">
-                                <td class="product-thumbnail">
-                                    <a href="#">
-                                        <img src="assets/images/apro151-1-600x778.jpg"
-                                             class="attachment-furgan_thumbnail size-furgan_thumbnail" alt="img"
-                                             width="600" height="778"> </a>
-                                </td>
-                                <td class="product-name">
-                                    <a href="#">Office Chair</a>
-                                    <a href="#" class="button yith-wcqv-button" data-product_id="25">Quick View</a></td>
-                                <td class="product-price">
-                                    <del><span class="furgan-Price-amount amount"><span
-                                            class="furgan-Price-currencySymbol">¥</span>89.00</span></del>
-                                    <ins><span class="furgan-Price-amount amount"><span
-                                            class="furgan-Price-currencySymbol">¥</span>79.00</span></ins>
-                                </td>
-                                <td class="product-number">
-                                    <span class="furgan-Price-amount amount"><span
-                                            class="furgan-Price-currencySymbol">×</span>1</span></td>
-                                <td class="product-pay">
-                                    <span class="furgan-Price-amount amount"><span
-                                            class="furgan-Price-currencySymbol">¥</span>79.00</span></td>
-                                <td class="product-stock-status">
-                                    <span class="wishlist-in-stock">卖家已发货</span></td>
-                                <td class="product-detail">
-                                    <a href="#">查看详情</a>
-                                    <a href="#" class="button yith-wcqv-button" data-product_id="29">Quick View</a></td></td>
-                                <td class="product-add-to-cart">
-                                    <!-- Date added -->
-                                    <!-- Add to cart button -->
-                                    <a href="#"
-                                       data-quantity="1"
-                                       class="button product_type_simple add_to_cart_button ajax_add_to_cart add_to_cart button alt"
-                                       data-product_id="25" data-product_sku="018Q711"
-                                       aria-label="Add “Office Chair” to your cart" rel="nofollow">确认收货</a>
-                                    <!-- Change wishlist -->
-                                    <!-- Remove from wishlist -->
-                                </td>
-                            </tr>
-                            <tr id="yith-wcwl-row-22" data-row-id="22">
-                                <td class="product-thumbnail">
-                                    <a href="#">
-                                        <img src="assets/images/apro181-2-600x778.jpg"
-                                             class="attachment-furgan_thumbnail size-furgan_thumbnail" alt="img"
-                                             width="600" height="778"> </a>
-                                </td>
-                                <td class="product-name">
-                                    <a href="#">Wall Lamp</a>
-                                    <a href="#" class="button yith-wcqv-button" data-product_id="22">Quick View</a></td>
-                                <td class="product-price">
-                                    <span class="furgan-Price-amount amount"><span
-                                            class="furgan-Price-currencySymbol">¥</span>98.00</span></td>
-                                <td class="product-number">
-                                    <span class="furgan-Price-amount amount"><span
-                                            class="furgan-Price-currencySymbol">×</span>2</span></td>
-                                <td class="product-pay">
-                                    <span class="furgan-Price-amount amount"><span
-                                            class="furgan-Price-currencySymbol">¥</span>196.00</span></td>
-                                <td class="product-stock-status">
-                                    <span class="wishlist-in-stock">卖家已发货</span></td>
-                                <td class="product-detail">
-                                    <a href="#">查看详情</a>
-                                    <a href="#" class="button yith-wcqv-button" data-product_id="29">Quick View</a></td></td>
-                                <td class="product-add-to-cart">
-                                    <!-- Date added -->
-                                    <!-- Add to cart button -->
-                                    <a href="#"
-                                       data-quantity="1"
-                                       class="button product_type_simple add_to_cart_button ajax_add_to_cart add_to_cart button alt"
-                                       data-product_id="22" data-product_sku="389N100"
-                                       aria-label="Add “Wall Lamp” to your cart" rel="nofollow">确认收货</a>
                                     <!-- Change wishlist -->
                                     <!-- Remove from wishlist -->
                                 </td>
@@ -204,6 +130,8 @@
 <div th:replace="~{fragment/footer::footer_up}"></div>
 
 <div th:replace="~{fragment/static::script}"></div>
+<script type="text/javascript" th:inline="javascript">
 
+</script>
 </body>
 </html>

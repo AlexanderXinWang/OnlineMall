@@ -26,9 +26,8 @@ public class OrderController {
         List<Order> orderList = orderService.getOrderList(userId);
         // 把订单数据放入ModelMap
         // 在前端用orderList获取数据
-        // 商品数量在product里有一个count的字段
         modelMap.put("orderList",orderList);
-        //显示订单商品
+        //打印订单商品
         System.out.println(orderList);
         return "views_front/order";
     }

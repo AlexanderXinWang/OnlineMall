@@ -1,6 +1,7 @@
 package com.xju.onlinemall.common.domain.extend;
 
 import com.xju.onlinemall.common.domain.Product;
+import sun.print.PSPrinterJob;
 
 import java.util.List;
 
@@ -9,6 +10,15 @@ import java.util.List;
  **/
 public class OrderExtend {
     protected Product product;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public Product getProduct() {
         return product;
@@ -22,6 +32,7 @@ public class OrderExtend {
     public String toString() {
         return "OrderExtend{" +
                 "product=" + product +
+                ", status='" + status + '\'' +
                 '}';
     }
 }

@@ -28,16 +28,6 @@ public class ProductController {
     @Autowired
     CommentService commentService;
 
-    @RequestMapping("/product/listByCategory")
-    @ResponseBody
-    public List<Product> listByCategory(){  //通过类别查询商品，以“数码”为例
-        String categoryName = null;
-        //int category_id = 0;
-        categoryName="数码";
-
-        return productService.selectByCategory(categoryName);
-    }
-
     /**
      *跳转商品页,并从数据库获取商品信息
      * */
@@ -69,10 +59,10 @@ public class ProductController {
      *跳转商品列表页（有分类侧边栏），并传入商品数据
      * */
     @RequestMapping("/product-list.html")
-    public String productList(Model model,@Param("categoryName")String categoryName){
-        System.out.println(categoryName);
-        //categoryName用来做按类名条件查询
-        List<Product> products = productService.selectAllProduct();
+    public String productList(Model model,HttpServletRequest request,Integer categoryId){
+        categoryId = Integer.parseInt(request.getParameter("id"));
+        System.out.println(categoryId);
+        List<Product> products = productService.selectByCategory(categoryId);
 
         if (products.size()==0) {
             System.out.println("当前数据库中无商品！");

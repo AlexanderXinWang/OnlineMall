@@ -3,11 +3,13 @@ package com.xju.onlinemall.mapper;
 import com.xju.onlinemall.common.domain.Order;
 import com.xju.onlinemall.common.domain.OrderExample;
 import java.util.List;
+
+import com.xju.onlinemall.mapper.extend.OrderMapperExtend;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OrderMapper {
+public interface OrderMapper extends OrderMapperExtend {
     long countByExample(OrderExample example);
 
     int deleteByExample(OrderExample example);
