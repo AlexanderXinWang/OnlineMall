@@ -6,6 +6,7 @@ import com.xju.onlinemall.common.domain.*;
 import com.xju.onlinemall.mapper.*;
 import com.xju.onlinemall.service.CartService;
 import com.xju.onlinemall.service.CommentServiceImpl;
+import com.xju.onlinemall.service.OrderService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,6 +33,9 @@ class OnlinemallApplicationTests {
     OrderMapper orderMapper;
     @Autowired
     ProductMapper productMapper;
+    @Autowired
+    OrderService orderService;
+
     @Test
     public void t1(){
         List<Category> categories = mapper.selectByExample(new CategoryExample());
@@ -149,6 +153,7 @@ class OnlinemallApplicationTests {
         //获取某个用户的所有订单
         OrderExample orderExample = new OrderExample();
         orderExample.createCriteria().andUserIdEqualTo(userId);
+        //List<Object> ordersList = orderMapper.selectById(userId);
         List<Order> orders = orderMapper.selectByExample(orderExample);
         //注意List中的每一个Order都含有一个商品的List,每次循环下来都会产生一一个完整的订单
         for (Order order:orders){
@@ -160,8 +165,14 @@ class OnlinemallApplicationTests {
              * 把该订单的商品写入该订单对象的商品列表
              * */
             order.setProduct(product);
+            //获取订单状态标记
+            Byte status_num =order.getPayStatus();
+            //获得订单对应状态
+            String orderStatus=orderMapper.selectStatusByNum(status_num);
+            //将订单状态写入订单对象
+            order.setStatus(orderStatus);
             System.out.println(order.getUserId()+","+order.getOrderId()+","+order.getProduct().getProductName()+
-                    ",数量×"+order.getOrderNumber()+",实付: ¥"+order.getPayMoney());
+                    ",数量×"+order.getOrderNumber()+",实付: ¥"+order.getPayMoney()+","+order.getStatus());
         }
         System.out.println(orders);
     }
@@ -230,5 +241,13 @@ class OnlinemallApplicationTests {
             System.out.println(product.getProductName());
         }
         PageInfo<Product> objectPageInfo = new PageInfo<>(list);
+    }
+
+    //测试根据类别id查询商品
+    @Test
+    public void t15(){
+        Integer categoryId = 2;
+        List<Product> products = productMapper.selectByCategory(categoryId);
+        System.out.println(products);
     }
 }

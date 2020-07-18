@@ -1,28 +1,25 @@
 package com.xju.onlinemall.controller;
 
-import com.xju.onlinemall.common.domain.Cart;
 import com.xju.onlinemall.common.domain.Product;
 import com.xju.onlinemall.common.domain.User;
-import com.xju.onlinemall.common.utils.Result;
 import com.xju.onlinemall.service.CartService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/cart")
 public class CartController {
     @Autowired
     private CartService cartService;
 
-    @GetMapping("/list")
+    @GetMapping("/cart/list")
     @ResponseBody
     public List<Object> list(){  //查询用户购物车信息
 
@@ -42,14 +39,11 @@ public class CartController {
 
     //下面代码由于过滤器和session的设置,请在/cart.html里写
 
-
-//    @RequestMapping("/getCartList")
-//    public String getProducts(HttpSession session, ModelMap modelMap){
-//        //获得当前登录的用户
-//        User user = (User)session.getAttribute("user");
-//        //从session中获得商品列表
-//        List cartProducts =(List) session.getAttribute("cartProducts");
-//        //添加商品信息到modelMap中
+//    @RequestMapping("/cart.html")
+//    public String cart(HttpSession session, ModelMap modelMap){
+//        //获取购物车商品内的商品
+//        List cartProducts = (List)session.getAttribute("cartProducts");
+//        modelMap.addAttribute("cardProductsList",cartProducts);
 //        return "views_front/cart";
 //    }
     /**
@@ -67,20 +61,23 @@ public class CartController {
      * 返回信息的key是msg
      **/
 
-    @RequestMapping("/addProduct")
+    @RequestMapping("/addProductToCart")
     @ResponseBody
-    public Object addProject(HttpSession session, @RequestParam("productId")Integer productID,@Param("count") Integer count){
+    public Object addProject(HttpSession session, ModelMap modelMap,
+                             HttpServletRequest request,
+                             Integer productId,Integer count){
         //获得当前登录的用户信息
         User user = (User) session.getAttribute("user");
         Integer userId = user.getUserId();
+        productId=Integer.parseInt(request.getParameter("id"));
         Map<String,Object> map=new HashMap<>();
         boolean b=true;
         if (count==null || count==1){
-            b = cartService.insertIntoCartByProdcutId(userId, productID);
+            b = cartService.insertIntoCartByProdcutId(userId, productId);
         }
         else {
             for (int i=0;i<count;i++){
-                b = cartService.insertIntoCartByProdcutId(userId, productID);
+                b = cartService.insertIntoCartByProdcutId(userId, productId);
                 if (b==false) break;
             }
         }
@@ -100,4 +97,5 @@ public class CartController {
             return map;
         }
     }
+
 }

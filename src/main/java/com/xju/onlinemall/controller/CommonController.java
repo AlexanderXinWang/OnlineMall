@@ -1,15 +1,10 @@
 package com.xju.onlinemall.controller;
 
 import com.xju.onlinemall.common.domain.*;
-import com.xju.onlinemall.common.utils.Result;
-import com.xju.onlinemall.mapper.StarMapper;
 import com.xju.onlinemall.service.CategoryService;
 import com.xju.onlinemall.service.ProductService;
-import com.xju.onlinemall.service.StarService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 

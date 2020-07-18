@@ -281,7 +281,7 @@
                                                                     <!--测试，ajax插入类别信息，失败-->
                                                                 </li>
                                                                 <li>
-                                                                    <a th:href="@{'/product-list.html?id='+${category.categoryId}}"
+                                                                    <a th:href="@{'/product-list.html?cid='+${category.categoryId}}"
                                                                        target="_self" th:text="${category.categoryName}"></a>
                                                                 </li>
 
@@ -829,31 +829,6 @@
                 </div>
             </div>
         </div>
-        <script type="text/javascript">
-            $(function () {
-                alert("测试一下")
-                $("#getCategoryName").click(function () {
-                    alert("2")
-                    var categoryName = $("#cname").val().trim();
-                    $.ajax({
-                        type:"POST",
-                        url:"product-list.html",
-                        dataType:"json",
-                        data:{"categoryName":categoryName},
-                        success:function (data) {
-                            if (data["success"]){
-                                alert("传参成功");
-                                window.location.href=data["msg"];
-                            }
-                            else {
-                                alert("失败");
-                            }
-
-                        }
-                    })
-                })
-            })
-        </script>
     </header>
 
 </html>
