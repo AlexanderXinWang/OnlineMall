@@ -23,10 +23,6 @@ import java.util.List;
 @Controller
 public class CommonController {
     @Autowired
-    StarService starService;
-    @Autowired
-    StarMapper starMapper;
-    @Autowired
     ProductService productService;
     @Autowired
     CategoryService categoryService;
@@ -193,20 +189,6 @@ public class CommonController {
         return "views_front/wishlist";
     }
 
-    @RequestMapping("/getstars")
-    @ResponseBody
-    public Object getStars(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10")int pageSize,HttpSession session){
-        User user = (User)session.getAttribute("user");
-        System.out.println(user.getUserId());
-        StarExample starExample = new StarExample();
-        starExample.createCriteria().andUserIdEqualTo(user.getUserId());
-        List<Star> stars = starMapper.selectByExample(starExample);
-        System.out.println(stars);
-
-        return Result.success(starService.findStars(pageNo,pageSize,user.getUserId()),"分页 查询star 对象");
-
-    }
-
     /**
      *跳转用404页面
      * */
@@ -222,8 +204,6 @@ public class CommonController {
     public String testimonials(){
         return "views_front/testimonials";
     }
-
-
 
     /**
      *跳转订单追踪

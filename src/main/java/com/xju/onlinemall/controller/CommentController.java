@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.HashMap;
@@ -75,7 +76,10 @@ public class CommentController {
 
     //————>ProductController
     @RequestMapping("/single-product-simple.html")
-    public String singleProduct(ModelMap modelMap,@Param("productId") Integer productId){
+    public String singleProduct(ModelMap modelMap, HttpServletRequest request,
+                                Integer productId){
+
+        productId = Integer.parseInt(request.getParameter("id"));
 
         if (productId==null){
             productId=1;

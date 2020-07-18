@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
@@ -40,7 +41,7 @@ public class ProductController {
     /**
      *跳转商品页,并从数据库获取商品信息
      * */
-    @GetMapping("/product.html")
+    @RequestMapping("/product.html")
     public String commodity(HttpSession session, Model model,
                             @RequestParam(defaultValue = "1") int pageNo,
                             @RequestParam(defaultValue = "10") int pageSize){
@@ -67,7 +68,7 @@ public class ProductController {
     /**
      *跳转商品列表页（有分类侧边栏），并传入商品数据
      * */
-    @GetMapping("/product-list.html")
+    @RequestMapping("/product-list.html")
     public String productList(Model model,@Param("categoryName")String categoryName){
         System.out.println(categoryName);
         //categoryName用来做按类名条件查询
