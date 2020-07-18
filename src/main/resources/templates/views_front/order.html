@@ -73,10 +73,33 @@
                                             class="furgan-Price-currencySymbol"></span>操作</span></td>
                                 </td>
                             </tr>
-                            <tr id="yith-wcwl-row-29" data-row-id="29" th:each="order:${orderList}">
+                            <tr id="yith-wcwl-row-28" data-row-id="28" th:if="${#lists.isEmpty(orderList)}">
+                                <td class="product-thumbnail">
+                                    <a>无订单记录</a>
+                                </td>
+                                <td class="product-name">
+                                    </td>
+                                <td class="product-price">
+                                    <a style="color: #868696">————</a></td>
+                                <td class="product-number">
+                                    <a style="color: #868696">————</a></td>
+                                <td class="product-pay">
+                                    <a style="color: #868696">—————</a></td>
+                                <td class="product-stock-status">
+                                    <a style="color: #868696">——————</a>
+                                </td>
+                                <td class="product-detail">
+                                    <a style="color: #868696">———————</a>
+                                </td>
+                                <td class="product-add-to-cart">
+                                    <span class="furgan-Price-amount amount" style="color: #868696"><span
+                                            class="furgan-Price-currencySymbol"></span>——————</span>
+                                </td>
+                            </tr>
+                            <tr id="yith-wcwl-row-29" data-row-id="29" th:each="order:${orderList}" >
                                 <td class="product-thumbnail">
                                     <a href="#" th:href="@{'/single-product-simple.html?id='+${order.product.productId}}">
-                                        <img src="assets/images/apro1113-600x778.jpg" th:src="${order.product.pimage}"
+                                        <img th:src="${order.product.pimage}"
                                              class="attachment-furgan_thumbnail size-furgan_thumbnail" alt="img"
                                              width="600" height="778"> </a>
                                 </td>
@@ -96,7 +119,8 @@
                                     <span class='wishlist-in-stock' th:text="${order.status}">交易状态</span>
                                     </td>
                                 <td class="product-detail">
-                                    <a href="#">查看详情</a>
+                                    <input th:id="detail" th:value="${order.orderId}" style="display: none;">
+                                    <a href="javascript:;" onclick="getDetail()">查看详情</a>
                                     <a href="#" class="button yith-wcqv-button" data-product_id="29">Quick View</a></td></td>
                                 <td class="product-add-to-cart">
                                     <!-- Date added -->
@@ -131,6 +155,11 @@
 
 <div th:replace="~{fragment/static::script}"></div>
 <script type="text/javascript" th:inline="javascript">
+    function getDetail(){
+        var id= $("#detail").val().trim();
+
+        layer.msg('hello: '+id);
+    }
 
 </script>
 </body>

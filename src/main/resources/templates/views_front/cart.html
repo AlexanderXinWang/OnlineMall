@@ -40,9 +40,56 @@
                                     <th class="product-subtotal">金额</th>
                                 </tr>
                                 </thead>
-                                <tbody id="products">
-                                <!--购物车在此处通过js环输出-->
-
+                                <tbody>
+                                <!--购物车在此处通过thymeleaf循环输出-->
+                                <tr class="furgan-cart-form__cart-item cart_item" th:if="${#lists.isEmpty(cardProductsList)}">
+                                    <td class="product-remove">
+                                    </td>
+                                    <td class="product-thumbnail">
+                                        <a href="#">购物车内暂无商品</a>
+                                    </td>
+                                    <td class="product-name" data-title="Product">
+                                        <a style="color: #868696">————</a>
+                                    </td>
+                                    <td class="product-price" data-title="Price">
+                                        <a style="color: #868696"><b>————</b></a>
+                                    </td>
+                                    <td class="product-quantity" data-title="Quantity">
+                                        <a style="color: #868696"><b>————</b></a>
+                                    </td>
+                                    <td class="product-subtotal" data-title="Total">
+                                        <a style="color: #868696">————</a>
+                                    </td>
+                                </tr>
+                                <tr class="furgan-cart-form__cart-item cart_item" th:each="pro:${cardProductsList}">
+                                    <td class="product-remove">
+                                        <a href="#"
+                                           class="remove" aria-label="Remove this item" data-product_id="20"
+                                           data-product_sku="775E109">×</a></td>
+                                    <td class="product-thumbnail">
+                                        <a href="#"><img
+                                                th:src="${pro.pimage}"
+                                                class="attachment-furgan_thumbnail size-furgan_thumbnail"
+                                                alt="img"></a></td>
+                                    <td class="product-name" data-title="Product">
+                                        <a href="#" th:text="${pro.productName}"></a></td>
+                                    <td class="product-price" data-title="Price">
+                                        <span class="furgan-Price-currencySymbol">￥</span>
+                                        <span class="furgan-Price-amount amount" th:text="${pro.price}"></span></td>
+                                    <td class="product-quantity" data-title="Quantity">
+                                        <div class="quantity">
+                                            <span class="qty-label">数量:</span>
+                                            <div class="control">
+                                                <a class="btn-number qtyminus quantity-minus" href="#">-</a>
+                                                <input type="text" data-step="1" min="1" max="" name="quantity[25]" value="1" title="Qty" class="input-qty input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
+                                                <a class="btn-number qtyplus quantity-plus" href="#">+</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="product-subtotal" data-title="Total">
+                                        <span class="furgan-Price-amount amount"><span
+                                                class="furgan-Price-currencySymbol">￥</span>总额</span></td>
+                                </tr>
                                 <tr>
                                     <td colspan="6" class="actions">
                                         <div class="coupon">
@@ -259,71 +306,5 @@
 <div th:replace="~{fragment/footer::footer_mobile}"></div>
 <div th:replace="~{fragment/footer::footer_up}"></div>
 <div th:replace="~{fragment/static::script}"></div>
-<script th:inline="javascript">
-    var plist = [[${cardProductsList}]];
-    $(function () {
-        //alert(plist);
-        var productsList = "";
-        if (plist==null){
-            productsList += "<tr class='furgan-cart-form__cart-item cart_item'>" +
-                "<td class='product-remove'>" +
-                "<a href='#' class='remove' aria-label='Remove this item' data-product_id='20' data-product_sku='775E109'></a>" +
-                "</td>" +
-                "<td class='product-thumbnail'>" +
-                "<a href='#'>购物车内无商品</a>" +
-                "</td>" +
-                "<td class='product-name' data-title='Product'>" +
-                "<a href='#'></a>"+
-                "</td>" +
-                "<td class='product-price' data-title='Price'>"+
-                "<span class='furgan-Price-amount amount'><span class='furgan-Price-currencySymbol'></span></span>"+
-                "</td>" +
-                "<td class='product-quantity' data-title='Quantity'>"+
-                "<div class='quantity'>"+
-                "<span class='qty-label'>数量:</span>"+
-                "<div class='control'>"+
-                "</div>"+
-                "</div>"+
-                "</td>" +
-                "<td class='product-subtotal' data-title='Total'>" +
-                "<span class='furgan-Price-amount amount'><span class='furgan-Price-currencySymbol'></span></span>" +
-                "</td>" +
-                "</tr>"
-        }else {
-            for(var i=0;i<plist.length;i++) {//进行循环
-                var pro=plist[i];
-                productsList += "<tr class='furgan-cart-form__cart-item cart_item'>" +
-                    "<td class='product-remove'>" +
-                    "<a href='#' class='remove' aria-label='Remove this item' data-product_id='20' data-product_sku='775E109'>×</a>" +
-                    "</td>" +
-                    "<td class='product-thumbnail'>" +
-                    "<a href='#'><img src='assets/images/apro201-1-600x778.jpg' class='attachment-furgan_thumbnail size-furgan_thumbnail' alt='img' width='600' height='778'></a>" +
-                    "</td>" +
-                    "<td class='product-name' data-title='Product'>" +
-                    "<a href='#'>"+pro.productName+"</a>"+
-                    "</td>" +
-                    "<td class='product-price' data-title='Price'>"+
-                    "<span class='furgan-Price-amount amount'><span class='furgan-Price-currencySymbol'>￥</span>"+pro.price+"</span>"+
-                    "</td>" +
-                    "<td class='product-quantity' data-title='Quantity'>"+
-                    "<div class='quantity'>"+
-                    "<span class='qty-label'>数量:</span>"+
-                    "<div class='control'>"+
-                    "<a class='btn-number qtyminus quantity-minus' href='#'>-</a>"+
-                    "<input type='text' data-step='1' min='1' max='' name='quantity[25]' value='1' title='Qty' class='input-qty input-text qty text' size='4' pattern='[0-9]*' inputmode='numeric'>"+
-                    "<a class='btn-number qtyplus quantity-plus' href='#'>+</a>" +
-                    "</div>"+
-                    "</div>"+
-                    "</td>" +
-                    "<td class='product-subtotal' data-title='Total'>" +
-                    "<span class='furgan-Price-amount amount'><span class='furgan-Price-currencySymbol'>￥</span>139.00</span>" +
-                    "</td>" +
-                    "</tr>"
-            };
-        }
-        $('#products').html(productsList);
-    });
-
-</script>
 </body>
 </html>
