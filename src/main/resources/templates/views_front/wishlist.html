@@ -28,11 +28,21 @@
                     <form id="yith-wcwl-form" class="furgan">
                         <!-- TITLE -->
                         <!-- WISHLIST TABLE -->
-                        <div id="toolbar">
-                            <button class="btn btn-danger remove-batch">批量删除</button>
+                        <!--<span style="">[[${USERID}]]</span>-->
+                        <!--<span><%=session.getAttribute("USERID") %></span>-->
+                        <div class="box">
+
+                            <div class="box-header">
+                                <div id="toolbar">
+                                    <button class="btn btn-danger remove-batch">批量删除</button>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <table id="table1" class="table table-bordered table-hover">
+                                </table>
+                            </div>
                         </div>
-                        <table id="table1" class="table table-bordered table-hover">
-                        </table>
+
                         <table class="shop_table cart wishlist_table" data-pagination="no" data-per-page="5"
                                data-page="1" data-id="" data-token="">
                             <thead>
@@ -127,8 +137,8 @@
                             <tr id="yith-wcwl-row-22" data-row-id="22">
                                 <td class="product-remove">
                                     <div>
-                                        <a href="#"  onclick="this.parentNode.parentNode.parentNode.style.display='none'"
-                                           class="remove remove_from_wishlist" title="Remove this product">×</a>
+                                        <button onclick="this.parentNode.parentNode.parentNode.style.display='none'"
+                                           class="remove remove_from_wishlist" title="Remove this product">×</button>
                                     </div>
                                 </td>
                                 <td class="product-thumbnail">
@@ -146,15 +156,13 @@
                                 <td class="product-stock-status">
                                     <span class="wishlist-in-stock">有现货</span></td>
                                 <td class="product-add-to-cart">
-                                    <!-- Date added -->
-                                    <!-- Add to cart button -->
+
                                     <a href="#"
                                        data-quantity="1"
                                        class="button product_type_simple add_to_cart_button ajax_add_to_cart add_to_cart button alt"
                                        data-product_id="22" data-product_sku="389N100"
                                        aria-label="Add “Wall Lamp” to your cart" rel="nofollow"> 添加到购物车</a>
-                                    <!-- Change wishlist -->
-                                    <!-- Remove from wishlist -->
+
                                 </td>
                             </tr>
                             </tbody>
@@ -178,29 +186,44 @@
 
 <div th:replace="~{fragment/static::script}"></div>
 
-<script>
+<script language="JavaScript">
+    // // $.ajax({
+    // //     url: ' getUSERID.do',success:function (data) {
+    // //         alert(data);
+    // //         return data;
+    // //     }
+    // // })
+    // // alert(data);
+    // function getMyName(){
+    //     var myName="<%=session.getAttribute('USERID')%>";
+    //     // alert(myName);
+    //     return myName;
+    // }
     $(function () {
         window.operateEvents = {
             // 更改操作的方法
-            'click .btn_update': function (e, value, row, index) {
-                var id = row.starId;
-                window.location.href = "/toupdatebook?id=" + id;
-            },
+            // 'click .btn_update': function (e, value, row, index) {
+            //     var id = row.starId;
+            //     window.location.href = "/toupdatebook?id=" + id;
+            // },
             //删除 单行/
             'click .btn_del': function (e, value, row, index) {
-                var id = row.starId;
-                layer.confirm("确认删除: " + row.starId + "  ?", {icon: 3, title: '删除操作'}, function (index) {
+                var productId = row.productId;
+
+                // var userId = // alert(productId);
+
+                layer.confirm("确认删除: " + row.productName + "  ?", {icon: 3, title: '删除操作'}, function (index) {
                     //do something
                     $.ajax({
                         type: "delete",
-                        url: "/deleteBook",
+                        url: "/deleteStar",
                         contentType: "application/json",
-                        data: JSON.stringify({"id": id}),
+                        data: JSON.stringify({"productId": productId}),
                         success: function (msg) {
                             if (msg["success"]) {
                                 $('#table1').bootstrapTable('remove', {
-                                    field: 'id',
-                                    values: [id]
+                                    field: 'productId',
+                                    values: [productId]
                                 });
                                 layer.msg("操作成功", {time: 700});
                             }
@@ -260,7 +283,7 @@
             },
             sidePagination: 'server',
             pageList: "[10, 25, 50, 100, all]",
-            showRefresh: true,
+            showRefresh: false,
             clickToSelect: true,
             toolbarAlign: 'left',
             buttonsAlign: 'right',
@@ -308,7 +331,7 @@
 
                 {
                     title: '操作',
-                    width: 80,
+                    width: 160,
                     align: 'center',
                     formatter: function (value, row, index) {
                         return [

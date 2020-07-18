@@ -8,6 +8,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 public interface StarService {
     public PageInfo<Product> findStars(int pageNo, int pageSize, Integer userId);
-    public void deleteStarById(Star star);
+    public void deleteStarById(Integer starId);
     void deleteStarsByIds(List<Integer> ids);
 }
