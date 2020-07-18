@@ -15,4 +15,6 @@ public interface ProductService {
     PageInfo<Product> getAllProducts(int pageNo,int pageSize);
 
     int removeProudctsByProductIds(Integer... productIds);
+
+    int addProduct(Product product);
 }

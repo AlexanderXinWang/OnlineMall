@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="utf-8">
+    <title>添加商品</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all" th:href="@{/layuiadmin/layui/css/layui.css}" >
+    <link rel="stylesheet"  href="../../../layuiadmin/style/admin.css" media="all" th:href="@{/layuiadmin/style/admin.css}" >
+</head>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body" style="padding: 15px;">
+            <form class="layui-form" action="" lay-filter="form1">
+<!--                商家主键-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">商家ID</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="pmId" disabled autocomplete="off" value="1" class="layui-input">
+                    </div>
+                </div>
+<!--             商品编号   商品名称-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">商品编号</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="proNo" placeholder="请输入商品编号" lay-verify="proNo" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">商品名称</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="productName" placeholder="请输入商品名称" lay-verify="productName" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+<!--                商品分类-->
+<!--                商品关键字-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">商品分类</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="categoryId" placeholder="请输入商品分类id" lay-verify="required|number" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">商品关键字</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="pkey" placeholder="请输入商品关键字"  lay-verify="pkey" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+
+<!--                商品数量-->
+<!--                商品价格-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">商品数量</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="count" placeholder="请输入商品数量" lay-verify="required|number" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">商品价格</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="price" placeholder="请输入商品价格" lay-verify="required|number" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                </div>
+<!--                商品图片路径-->
+<!--                商品状态-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">图片路径</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="pimage" placeholder="请输入商品图片路径" lay-verify="pimage" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+<!--                    <div class="layui-inline">-->
+<!--                        <label class="layui-form-label">商品状态</label>-->
+<!--                        <div class="layui-input-inline">-->
+<!--                            <input type="text" name="email" placeholder="请输入商品上架状态" lay-verify="email" autocomplete="off" class="layui-input">-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <div class="layui-inline">
+                        <label class="layui-form-label">商品状态</label>
+                        <div class="layui-input-inline">
+                            <select name="status" lay-verify="required" lay-search="">
+                                <option value="">请选择商品上架状态</option>
+                                <option value="1">上架</option>
+                                <option value="2">下架</option>
+                                <option value="3">缺货</option>
+                            </select>
+<!--                            <div class="layui-form-select"><div class="layui-select-title"><input type="text" placeholder="直接选择或搜索选择" value="" class="layui-input"><i class="layui-edge"></i></div><dl class="layui-anim layui-anim-upbit" style=""><dd lay-value="" class="layui-select-tips">直接选择或搜索选择</dd><dd lay-value="1" class="layui-this">layer</dd><dd lay-value="2" class="">form</dd><dd lay-value="3" class="">layim</dd><dd lay-value="4" class="">element</dd><dd lay-value="5" class="">laytpl</dd><dd lay-value="6" class="">upload</dd><dd lay-value="7" class="">laydate</dd><dd lay-value="8" class="">laypage</dd><dd lay-value="9" class="">flow</dd><dd lay-value="10" class="">util</dd><dd lay-value="11" class="">code</dd><dd lay-value="12" class="">tree</dd><dd lay-value="13" class="">layedit</dd><dd lay-value="14" class="">nav</dd><dd lay-value="15" class="">tab</dd><dd lay-value="16" class="">table</dd><dd lay-value="17" class="">select</dd><dd lay-value="18" class="">checkbox</dd><dd lay-value="19" class="">switch</dd><dd lay-value="20" class="">radio</dd></dl></div>-->
+                        </div>
+                    </div>
+
+                </div><!--                商品描述-->
+                <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">商品描述</label>
+                    <div class="layui-input-block">
+                        <textarea name="contextV"  lay-verify="contextV" placeholder="请输入商品描述信息" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-layout-admin">
+                    <div class="layui-input-block">
+                        <div class="layui-footer" style="left: 0;">
+                            <button class="layui-btn" lay-submit="" lay-filter="layer_addProduct_submit">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../../layuiadmin/layui/layui.js" th:src="@{/layuiadmin/layui/layui.js}"></script>
+<script>
+    layui.config({
+        // base: [('"'+@{/layuiadmin/}+'"')]
+        base:'/layuiadmin/'
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'laydate'], function(){
+        var $ = layui.$
+            ,admin = layui.admin
+            ,element = layui.element
+            ,layer = layui.layer
+            ,laydate = layui.laydate
+            ,form = layui.form;
+
+        form.render(null, 'form1');
+
+
+
+        /* 自定义验证规则 */
+        form.verify({
+            proNo: function(value){
+                if(value.length < 5 || value.length>10){
+                    return '商品编号为5至10个字符';
+                }
+            },
+            productName:function (value) {
+                if(value.length <= 0){
+                    return '商品名称不能为空';
+                }
+            },
+            pkey:function (value) {
+                if(value.length <= 0){
+                    return '商品关键字不能为空';
+                }
+            },
+            pimage:function (value) {
+                if(value.length <= 0){
+                    return '商品图片路径不能为空';
+                }
+            },
+            contextV:function (value) {
+                if(value.length <= 0){
+                    return '商品描述不能为空';
+                }
+            }
+        });
+
+        /* 监听提交 */
+        form.on('submit(layer_addProduct_submit)', function(data){
+            // parent.layer.alert(JSON.stringify(data.field), {
+            //     title: '最终的提交信息'
+            // })
+
+            //添加请求
+            $.ajax({
+                type: "POST",
+                contentType:"application/json",
+                url: "/list/addProduct",
+                data: JSON.stringify(data.field),
+                success: function(msg){
+                    if(msg["success"]){
+                        var layer = parent.layer;
+                        layer.msg("添加成功",{time:900},function () {
+                            layer.closeAll();
+                        });
+                    }
+                },
+                dataType:"json"
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

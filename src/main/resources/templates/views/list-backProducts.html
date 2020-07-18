@@ -71,10 +71,11 @@
         base:'/layuiadmin/'
     }).extend({
         index: 'lib/index' //主入口模块
-    }).use(['index', 'table'], function(){
+    }).use(['index', 'table','layer'], function(){
         var $ = layui.$
             ,form = layui.form
-            ,table = layui.table;
+            ,table = layui.table
+            ,layer =layui.layer;
         table.render({
             elem: '#mytable'
             ,method:"get"
@@ -92,8 +93,9 @@
                 ,{field: 'price', title: '商品价格'}
                 ,{field: 'pimage', title: '商品图片路径'}
                 ,{field: 'context', title: '商品描述'}
-                ,{field: 'addTime', title: '商品添加时间'}
+                ,{field: 'addTime', title: '商品添加时间',templet:'<div>{{ layui.util.toDateString(d.pressTime, "yyyy-MM-dd HH:mm:ss") }}</div>'}
                 ,{field: 'status', title: '商品状态'}
+                ,{field: 'pmId', title: '商家管理id'}
                 ,{fixed: 'right', title: '备注',  align:'center', toolbar: '#toolbar-Mytable',width:180}
 
             ]   ]
@@ -196,8 +198,20 @@
                     });
                 });
             }
+
+      //添加商品
             ,createProdcut:function () {
-                alert("新添加商品");
+                layer.open({
+                    title:"添加商品",
+                    type: 2,
+                    content: '/page/views/layer_addProduct',
+                    area: ['725px', '560px'],
+                    maxmin: true,
+                    //打开默认全屏
+                    // success: function(layero, index){
+                    //     layer.full(index);
+                    // }
+                });
             }
         }
 
