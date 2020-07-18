@@ -223,12 +223,14 @@
                             <div id="reviews" class="furgan-Reviews">
                                 <div id="comments">
                                     <h2 class="furgan-Reviews-title">评价</h2>
-                                    <p class="furgan-noreviews">这里还没有任何评价.</p>
+<!--                                    <p class="furgan-noreviews">这里还没有任何评价.</p>-->
+                                    <p class="furgan-noreviews">评价之地.</p>
+
                                 </div>
                                 <div id="review_form_wrapper">
                                     <div id="review_form">
                                         <div id="respond" class="comment-respond">
-                                            <span id="reply-title" class="comment-reply-title">现在第一个为“T-恤&裙子”评论</span>
+                                            <span id="reply-title" class="comment-reply-title">现在第一个为商品评论</span>
                                             <form id="commentform" class="comment-form">
                                                 <p class="comment-notes"><span id="email-notes">放心，您的电子邮箱不会被公开.</span>
                                                     必填字段已被标记 <span class="required">*</span></p>
@@ -276,7 +278,7 @@
                                                 </p><input name="wpml_language_code"
                                                                                           value="en" type="hidden">
                                                 <p class="form-submit"><input name="submit" id="submit" class="submit"
-                                                                              value="Submit" type="button"> <input
+                                                                              value="提交评论" type="button"> <input
                                                         name="comment_post_ID" value="27" id="comment_post_ID"
                                                         type="hidden">
                                                     <input name="comment_parent" id="comment_parent" value="0"
@@ -286,25 +288,46 @@
                                         <div style="height: 50px;width: 100%">
                                         </div>
                                         <div>
-                                            <h2>精彩评价</h2>
-                                            <table class="shop_attributes">
-                                                <tbody style="text-align:center">
+                                            <div class="page-header">
+                                                <h1>精彩评价</h1>
+                                            </div>
+                                            <table class="table">
+                                                <thead>
                                                 <tr>
                                                     <th> &nbsp;用&nbsp;户&nbsp;</th>
-                                                    <td>&nbsp;评价内容&nbsp;</td>
-                                                    <td> &nbsp;&nbsp;打&nbsp;分&nbsp;&nbsp;</td>
+                                                    <th>&nbsp;评价内容&nbsp;</th>
+                                                    <th> &nbsp;&nbsp;打&nbsp;分&nbsp;&nbsp;</th>
                                                     <td style="width: 208px"> &nbsp;评价时间&nbsp;</td>
                                                 </tr>
+                                                </thead>
                                                 <tr th:each="item : ${commentsList}">
                                                     <td th:text="${item.username}"></td>
                                                     <td th:text="${item.context}"></td>
                                                     <td th:text="${item.score}"></td>
-<!--                                                    <td th:text="${item.commentTime}"></td>-->
+                                                    <!--                                                    <td th:text="${item.commentTime}"></td>-->
                                                     <td th:text="${#dates.format(item.commentTime,'yyyy-MM-dd HH:mm:ss')}"></td>
                                                 </tr>
 
-                                                </tbody>
                                             </table>
+
+<!--                                            <table class="shop_attributes">-->
+<!--                                                <tbody style="text-align:center">-->
+<!--                                                <tr>-->
+<!--                                                    <th> &nbsp;用&nbsp;户&nbsp;</th>-->
+<!--                                                    <td>&nbsp;评价内容&nbsp;</td>-->
+<!--                                                    <td> &nbsp;&nbsp;打&nbsp;分&nbsp;&nbsp;</td>-->
+<!--                                                    <td style="width: 208px"> &nbsp;评价时间&nbsp;</td>-->
+<!--                                                </tr>-->
+<!--                                                <tr th:each="item : ${commentsList}">-->
+<!--                                                    <td th:text="${item.username}"></td>-->
+<!--                                                    <td th:text="${item.context}"></td>-->
+<!--                                                    <td th:text="${item.score}"></td>-->
+<!--&lt;!&ndash;                                                    <td th:text="${item.commentTime}"></td>&ndash;&gt;-->
+<!--                                                    <td th:text="${#dates.format(item.commentTime,'yyyy-MM-dd HH:mm:ss')}"></td>-->
+<!--                                                </tr>-->
+
+<!--                                                </tbody>-->
+<!--                                            </table>-->
                                         </div>
                                     </div>
 
@@ -804,10 +827,16 @@
                     if (data["success"]){
                         //返回值是learn/t1 相对于项目地址
                         //返回值是/learn/t1 相对于根地址 http://localhost:8080/learn/t1
-                        alert("评论成功,您可以继续选择购物或关注该产品的后续动态！")
+                        // alert("评论成功,您可以继续选择购物或关注该产品的后续动态！")
+                        layer.msg("评论成功,您可以继续选择购物或关注该产品的后续动态！",{time:1700},function () {
+                            layer.close(index);
+                        })
                     }
                     else{
-                        alert("评论失败,请检测您的用户名或电子邮件是否正确！")
+                        // alert("评论失败,请检测您的用户名或电子邮件是否正确！")
+                        layer.msg("评论失败,请检测您的用户名或电子邮件是否正确！",{time:1700},function () {
+                            layer.close(index);
+                        })
                     }
                 }
             })
