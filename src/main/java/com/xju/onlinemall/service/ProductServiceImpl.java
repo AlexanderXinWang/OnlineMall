@@ -17,7 +17,7 @@ public class ProductServiceImpl implements ProductService{
     private ProductMapper productMapper;
 
     @Override
-    public PageInfo<Product> selectByCategory(int pageNo,int pageSize,int categoryId) {
+    public PageInfo<Product> getByCategory(int pageNo,int pageSize,int categoryId) {
         //分页查询
         PageHelper.startPage(pageNo,pageSize);
         ProductExample productExample = new ProductExample();
@@ -26,6 +26,12 @@ public class ProductServiceImpl implements ProductService{
         //得到分页器
         PageInfo<Product> PageInfo = new PageInfo<>(list);
         return PageInfo;
+    }
+
+
+    @Override
+    public List<Product> selectByCategory(Integer categoryId) {
+        return productMapper.selectByCategory(categoryId);
     }
 
     @Override

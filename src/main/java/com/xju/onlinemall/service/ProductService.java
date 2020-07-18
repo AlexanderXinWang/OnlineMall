@@ -6,7 +6,9 @@ import com.xju.onlinemall.common.domain.Product;
 import java.util.List;
 
 public interface ProductService {
-    PageInfo<Product> selectByCategory(int pageNo,int pageSize,int categoryId);
+    PageInfo<Product> getByCategory(int pageNo,int pageSize,int categoryId);
+
+    List<Product> selectByCategory(Integer categoryId);
 
     Product selectByProductId(Integer productId);
 

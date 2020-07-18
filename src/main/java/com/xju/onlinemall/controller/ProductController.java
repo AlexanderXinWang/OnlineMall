@@ -67,10 +67,10 @@ public class ProductController {
      *跳转商品列表页（有分类侧边栏），并传入商品数据
      * */
     @RequestMapping("/product-list.html")
-    public String productList(Model model,HttpServletRequest request,Integer headerCategoryId,Integer categoryId,
+    public String productList(Model model,HttpServletRequest request,Integer categoryId,
                               @RequestParam(defaultValue = "1") int pageNo,
-                              @RequestParam(defaultValue = "5") int pageSize,
-                              @RequestParam("cid") String cid){
+                              @RequestParam(defaultValue = "5") int pageSize/*,
+                              @RequestParam("cid") String cid*/){
         //若为正常访问list页面（未分类）
         if(request.getParameter("cid")==null){
             //分页
@@ -100,7 +100,7 @@ public class ProductController {
         }
         //通过header分类跳转，携带cid（商品类别）
         else{
-            //分页
+            /*//分页
             PageInfo<Product> pageInfo;
 
             //从header传入商品种类id
@@ -112,7 +112,10 @@ public class ProductController {
 
 
             //取出商品列表并注入视图
-            List<Product> productList = pageInfo.getList();
+            List<Product> productList = pageInfo.getList();*/
+
+            categoryId = Integer.parseInt(request.getParameter("cid"));
+            List<Product> productList = productService.selectByCategory(categoryId);
 
             //将对应分类的商品传入页面
             model.addAttribute("productList",productList);
