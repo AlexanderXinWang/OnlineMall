@@ -43,6 +43,8 @@
                                 <tbody>
                                 <!--购物车在此处通过thymeleaf循环输出-->
                                 <tr class="furgan-cart-form__cart-item cart_item" th:if="${#lists.isEmpty(cardProductsList)}">
+                                    <!-- 如果接受的cardProductsList集合为空，则显示一下内容 -->
+                                    <!-- 即考虑购物车为空的情况 -->
                                     <td class="product-remove">
                                     </td>
                                     <td class="product-thumbnail">
@@ -63,7 +65,7 @@
                                 </tr>
                                 <tr class="furgan-cart-form__cart-item cart_item" th:each="pro:${cardProductsList}">
                                     <td class="product-remove">
-                                        <a href="#"
+                                        <a th:href="@{'/deleteFromCart?id='+${pro.productId}}"
                                            class="remove" aria-label="Remove this item" data-product_id="20"
                                            data-product_sku="775E109">×</a></td>
                                     <td class="product-thumbnail">

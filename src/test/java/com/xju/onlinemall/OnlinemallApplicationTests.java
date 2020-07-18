@@ -250,4 +250,12 @@ class OnlinemallApplicationTests {
         List<Product> products = productMapper.selectByCategory(categoryId);
         System.out.println(products);
     }
+
+    //测试根据用户id和商品id逻辑删除购物车中商品
+    @Test
+    public void t16(){
+        cartMapper.logicDelete(1,1);
+        List<Product> products=cartService.getCartListByUserId(1);
+        System.out.println(products);
+    }
 }

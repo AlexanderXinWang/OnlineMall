@@ -158,15 +158,15 @@ public class CommonController {
     }
 
     /**
-     *跳转购物车,并传递用户商品数据
+     *跳转购物车,并传递用户商品数据 ——————————————>> CartController
      * */
-    @RequestMapping("/cart.html")
+    /*@RequestMapping("/cart.html")
     public String cart(HttpSession session, ModelMap modelMap){
         //获取购物车商品内的商品
         List cartProducts = (List)session.getAttribute("cartProducts");
         modelMap.addAttribute("cardProductsList",cartProducts);
         return "views_front/cart";
-    }
+    }*/
 
     /**
      *跳转结算页面
