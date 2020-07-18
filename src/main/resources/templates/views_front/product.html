@@ -88,7 +88,7 @@
                             data-wow-duration="1s" data-wow-delay="0ms" data-wow="fadeInUp" th:each="product : ${productList}">
                             <div class="product-inner tooltip-left">
                                 <div class="product-thumb">
-                                    <a class="thumb-link" href="" th:href="@{javascript:void(0)}" th:onclick=""><!--th:onclick="'javascript:click('+${product.productId}+')'"-->
+                                    <a class="thumb-link" href="" th:href="@{/single-product-simple.html}"><!--th:onclick="'javascript:click('+${product.productId}+')'"-->
                                         <img class="img-responsive"
                                              src="assets/images/apro161-1-600x778.jpg"
                                              alt="Moss Sofa" width="600" height="778" th:src="${product.pimage}">
