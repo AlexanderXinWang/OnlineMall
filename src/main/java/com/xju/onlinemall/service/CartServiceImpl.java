@@ -54,6 +54,9 @@ public class CartServiceImpl implements CartService{
         return list;
     }
 
+    /**
+     * 购物车内添加商品
+     * */
     @Override
     public boolean insertIntoCartByProdcutId(Integer userId, Integer prodectId) {
         if (userId ==null || prodectId == null){
@@ -71,6 +74,9 @@ public class CartServiceImpl implements CartService{
 
     }
 
+    /**
+     * 逻辑删除
+     * */
     @Override
     public String logicDelete(Integer userId, Integer productId) {
         CartExample cartExample = new CartExample();

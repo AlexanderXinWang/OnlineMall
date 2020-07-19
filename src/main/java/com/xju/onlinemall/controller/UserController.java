@@ -89,8 +89,8 @@ public class UserController {
                 modelMap.put("success",true);
 
                 //添加用户的购物车商品列表信息信息进session
-                //List<Product> cartListByUserId = cartService.getCartListByUserId(user.getUserId());
-                //session.setAttribute("cartProducts",cartListByUserId);
+                List<Product> cartListByUserId = cartService.getCartListByUserId(user.getUserId());
+                session.setAttribute("cartProducts",cartListByUserId);
                 //登录成功,请求控制器/,返回主页
                 modelMap.put("msg","/index.html");
                 //把登录信息写入日志表中

@@ -13,4 +13,10 @@ public interface OrderService {
      * List<Order>中的一个order又包含一个List<Product>
      * */
     List<Order> getOrderList(Integer userId);
+
+
+    /**
+     * 确认收货方法
+     * */
+    String takeDeliveryOfProduct(Integer userId, Integer orderId);
 }

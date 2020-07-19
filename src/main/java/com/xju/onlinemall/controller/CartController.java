@@ -19,12 +19,13 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
+    /**
+     * 跳转购物车,并传递用户商品数据
+     * */
     @RequestMapping("/cart.html")
     public String cart(HttpSession session, ModelMap modelMap){
-        //获取当前登录用户信息
-        User user=new User();
-        user=(User) session.getAttribute("user");
-        List<Product> cartProducts = cartService.getCartListByUserId(user.getUserId());
+        //从session中获取当前登录用户购物车商品内的商品
+        List cartProducts = (List)session.getAttribute("cartProducts");
         modelMap.addAttribute("cardProductsList",cartProducts);
         return "views_front/cart";
     }
@@ -97,6 +98,9 @@ public class CartController {
         }
     }
 
+    /**
+     * 购物车内商品的逻辑删除
+     * */
     @RequestMapping("/deleteFromCart")
     public String deleteFromCart(HttpSession session, ModelMap modelMap,
                                  HttpServletRequest request,
@@ -105,13 +109,20 @@ public class CartController {
         User user=new User();
         user=(User) session.getAttribute("user");
         String msg=null;
-        Integer userId = user.getUserId();
+        Integer userId = user.getUserId();//获取用户id
+        //获取要删除的商品id
         productId=Integer.parseInt(request.getParameter("id"));
         System.out.println(productId);
         msg=cartService.logicDelete(userId,productId);
         System.out.println(msg);
+        //获取删除操作后的购物车商品信息
         List<Product> cartListByUserId = cartService.getCartListByUserId(user.getUserId());
+        int cartCount=cartListByUserId.size();
+        //逻辑删除后，更新session中的缓存
+        session.setAttribute("cartProducts",cartListByUserId);
+        //session缓存信息更新在本次跳转后，此次向前台传递新购物车商品信息，做假同步
         modelMap.addAttribute("cardProductsList",cartListByUserId);
+        modelMap.addAttribute("cartCount",cartCount);
         return "views_front/cart";
     }
 
