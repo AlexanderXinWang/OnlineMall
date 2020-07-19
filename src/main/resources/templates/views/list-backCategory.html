@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 <div class="layui-inline">
-                    <label class="layui-form-label">商品分类名称</label>
+                    <label class="layui-form-label">分类名称</label>
                     <div class="layui-input-inline">
                         <input type="text" name="username" placeholder="请输入" autocomplete="off" class="layui-input">
                     </div>
@@ -108,7 +108,22 @@
         table.on('tool(mytable)', function(obj){
             var data = obj.data;
             if(obj.event === 'detail'){
-                layer.msg('ID：'+ data.categoryId + ' 的查看操作');
+
+                var categoryId=data.categoryId;
+                layer.open({
+                    title:"查看分类",
+                    type: 2,
+                    content: '/list/showCategoryDetail?categoryId='+categoryId,
+                    area: ['525px', '320px'],
+                    maxmin: true,
+                    //打开默认全屏
+                    // success: function(layero, index){
+                    //     layer.full(index);
+                    // }
+                });
+
+
+
             } else if(obj.event === 'del'){
                 layer.confirm('真的要删除 --'+data.categoryName+"--商品吗？", function(index){
                     // var proId=data.categoryId;
@@ -132,7 +147,20 @@
                     });
                 });
             } else if(obj.event === 'edit'){
-                layer.alert('编辑行：<br>'+ JSON.stringify(data))
+
+                var categoryId=data.categoryId;
+                layer.open({
+                    title:"编辑分类",
+                    type: 2,
+                    content: '/list/updateCategoryIdToBackPage?categoryId='+categoryId,
+                    area: ['525px', '320px'],
+                    maxmin: true,
+                    //打开默认全屏
+                    // success: function(layero, index){
+                    //     layer.full(index);
+                    // }
+                });
+
             }
         });
 
@@ -188,7 +216,20 @@
                 });
             }
             ,createCategory:function () {
-                alert("新添加商品");
+                layer.open({
+                    title:"添加商品",
+                    type: 2,
+                    content: '/page/views/layer_addCategory',
+                    area: ['525px', '320px'],
+                    maxmin: true,
+                    //打开默认全屏
+                    // success: function(layero, index){
+                    //     layer.full(index);
+                    // }
+                });
+
+
+
             }
         }
 

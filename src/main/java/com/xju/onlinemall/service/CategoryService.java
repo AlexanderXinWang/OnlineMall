@@ -17,4 +17,9 @@ public interface CategoryService {
 
     int removeCategorysByCategoryIds(Integer... categoryIds);
 
+    int addCategory(Category category);
+
+    Category selectByCategoryId(Integer categoryId);
+
+    int updateCategory(Category category);
 }

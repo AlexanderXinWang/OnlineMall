@@ -56,4 +56,33 @@ public class CategoryServiceImpl implements CategoryService{
         return count;
 
     }
+    /**
+    *
+     * 添加分类
+     *
+    * */
+    @Override
+    public int addCategory(Category category) {
+        int insert = categoryMapper.insert(category);
+        return insert;
+    }
+    /**
+     *
+     * 查询分类
+     *
+     * */
+    @Override
+    public Category selectByCategoryId(Integer categoryId) {
+        Category category = categoryMapper.selectByPrimaryKey(categoryId);
+        return category;
+    }
+    /**
+     *
+     * 修改分类
+     *
+     * */
+    @Override
+    public int updateCategory(Category category) {
+        return categoryMapper.updateByPrimaryKeySelective(category);
+    }
 }

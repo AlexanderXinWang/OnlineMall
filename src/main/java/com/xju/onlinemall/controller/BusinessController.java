@@ -79,6 +79,65 @@ public class BusinessController {
 
         return Result.success(i,"操作成功",200);
     }
+    /**
+     *
+     * 添加分类
+     *
+     * */
+    @RequestMapping("/list/addCategory")
+    @ResponseBody
+    public Object addCategory(@RequestBody Category category){
+        //查看后台获取到的数据
+        System.out.println(category);
+        int i=categoryService.addCategory(category);
+        return Result.success(1,"操作成功",200);
+    }
+    /**
+     * 查询分类对象，回显页面
+     *
+     * */
+    @GetMapping("/list/updateCategoryIdToBackPage")
+    public String updateCategoryIdToBackPage(ModelMap modelMap,Integer categoryId){
+//        System.out.println(categoryId);
+        //根据Id查询该商品
+        Category category= categoryService.selectByCategoryId(categoryId);
+        //把商品放入其中进行显示
+//        System.out.println(category);
+        modelMap.put("oldCategory",category);
+
+        return "views/list-backCategoryShowAndUpdate";
+    }
+    /**
+     * 查询对象，回显页面
+     *
+     * */
+    @GetMapping("/list/showCategoryDetail")
+    public String showCategoryDetail(ModelMap modelMap,Integer categoryId){
+//        System.out.println(categoryId);
+        //根据Id查询该商品
+        Category category= categoryService.selectByCategoryId(categoryId);
+        //把商品放入其中进行显示
+        modelMap.put("oldCategory",category);
+
+        return "views/list-backCategoryShowDetail";
+    }
+
+
+    /**
+     *
+     * 修改商品
+     * /list/updateCategory
+     * */
+    @RequestMapping("/list/updateCategory")
+    @ResponseBody
+    public Object updateCategory(@RequestBody Category category){
+
+//        System.out.println("分类修改:"+category);
+        int i = categoryService.updateCategory(category);
+
+        return Result.success(i,"操作成功",200);
+    }
+
 
     /**
      *
@@ -94,7 +153,7 @@ public class BusinessController {
         //查看后台获取到的数据
 //        System.out.println(product);
         int i = productService.addProduct(product);
-        return Result.success(1,"操作成功",200);
+        return Result.success(i,"操作成功",200);
     }
 
     /**
@@ -103,7 +162,7 @@ public class BusinessController {
      * */
     @GetMapping("/list/updateProductToBackPage")
     public String getProduct(ModelMap modelMap,Integer productId){
-        System.out.println(productId);
+//        System.out.println(productId);
         //根据Id查询该商品
         Product product = productService.selectByProductId(productId);
         //把商品放入其中进行显示
@@ -140,7 +199,7 @@ public class BusinessController {
         //查看后台获取到的数据
 //        System.out.println(product);
         int i = productService.updateProduct(product);
-        return Result.success(1,"操作成功",200);
+        return Result.success(i,"操作成功",200);
     }
 
 
