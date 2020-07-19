@@ -20,4 +20,6 @@ public interface CartService {
     boolean insertIntoCartByProdcutId(Integer userId,Integer prodectId);
 
     String logicDelete(Integer userId, Integer productId);
+
+    Object deleteByUserIdAndProductId(Integer userId, Integer productId);
 }

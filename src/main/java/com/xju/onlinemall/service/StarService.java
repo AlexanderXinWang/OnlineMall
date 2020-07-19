@@ -12,4 +12,6 @@ public interface StarService {
     public void deleteStarById(Integer starId);
     void deleteStarsByIds(List<Integer> ids);
     List<Star> getStarByUserId(Integer userId);
+
+    List<Star> getStarByUserIdAndProductId(Integer userId, Integer productId);
 }

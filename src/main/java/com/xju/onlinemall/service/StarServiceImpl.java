@@ -69,4 +69,11 @@ public class StarServiceImpl implements StarService{
         starExample.createCriteria().andUserIdEqualTo(userId);
         return starMapper.selectByExample(starExample);
     }
+
+    @Override
+    public List<Star> getStarByUserIdAndProductId(Integer userId, Integer productId) {
+        StarExample starExample = new StarExample();
+        starExample.createCriteria().andUserIdEqualTo(userId).andProductIdEqualTo(productId);
+        return starMapper.selectByExample(starExample);
+    }
 }

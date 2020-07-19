@@ -87,4 +87,11 @@ public class CartServiceImpl implements CartService{
         return "删除成功！";
     }
 
+    @Override
+    public Object deleteByUserIdAndProductId(Integer userId, Integer productId) {
+        CartExample cartExample = new CartExample();
+        cartExample.createCriteria().andUserIdEqualTo(userId).andProductIdEqualTo(productId);
+        return cartMapper.deleteByExample(cartExample);
+    }
+
 }

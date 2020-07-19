@@ -2,9 +2,11 @@ package com.xju.onlinemall.controller;
 
 import com.xju.onlinemall.common.domain.Product;
 import com.xju.onlinemall.common.domain.User;
+import com.xju.onlinemall.common.utils.Result;
 import com.xju.onlinemall.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
@@ -126,4 +128,24 @@ public class CartController {
         return "views_front/cart";
     }
 
+    //在header的购物车中删除商品
+    @RequestMapping("/deleteFromHeaderCart")
+    public String delStars(HttpServletRequest request, HttpSession session,
+                           Integer userId, Integer productId, ModelMap modelMap){
+        //获取当前登录用户信息
+        User user=new User();
+        user=(User) session.getAttribute("user");
+        userId = user.getUserId();
+        productId =  Integer.parseInt(request.getParameter("productId"));
+        cartService.deleteByUserIdAndProductId(userId,productId);
+        List<Product> cartListByUserId = cartService.getCartListByUserId(user.getUserId());
+        int cartCount=cartListByUserId.size();
+
+        //逻辑删除后，更新session中的缓存
+        session.setAttribute("cartProducts",cartListByUserId);
+        //session缓存信息更新在本次跳转后，此次向前台传递新购物车商品信息，做假同步
+        modelMap.addAttribute("cardProductsList",cartListByUserId);
+        modelMap.addAttribute("cartCount",cartCount);
+        return "index";
+    }
 }

@@ -9,7 +9,10 @@
 <div style="height: 100px;width: 100%"></div>
 <div class="banner-wrapper no_background">
     <div class="banner-wrapper-inner">
-        <nav class="furgan-breadcrumb"><a href="index.html">首页</a><i class="fa fa-angle-right"></i><a href="#">商城</a>
+        <nav class="furgan-breadcrumb">
+            <a href="index.html">首页</a>
+            <i class="fa fa-angle-right"></i>
+            <a href="product.html">商城</a>
             <i class="fa fa-angle-right"></i>单个商品
         </nav>
     </div>
@@ -32,7 +35,7 @@
                                         <figure class="furgan-product-gallery__wrapper">
                                             <div class="furgan-product-gallery__image">
                                                 <img alt="img"
-                                                     src="assets/images/apro131-2.jpg" th:src="${pImage}">
+                                                     src="assets/images/apro131-2.jpg" th:src="${productSingle.pimage}">
                                             </div>
                                             <div class="furgan-product-gallery__image">
                                                 <img src="assets/images/apro134-1.jpg"
@@ -50,9 +53,9 @@
                                     </div>
                                     <ol class="flex-control-nav flex-control-thumbs">
                                         <li><img
-                                                src="assets/images/apro131-2-100x100.jpg" alt="img" th:src="${pImage}">
+                                                src="assets/images/apro131-2-100x100.jpg" alt="img" th:src="${productSingle.pimage}">
                                         </li>
-                                        <li><img
+                                        <!--<li><img
                                                 src="assets/images/apro134-1-100x100.jpg" alt="img">
                                         </li>
                                         <li><img
@@ -60,18 +63,18 @@
                                         </li>
                                         <li><img
                                                 src="assets/images/apro133-1-100x100.jpg" alt="img">
-                                        </li>
+                                        </li>-->
                                     </ol>
                                 </div>
                             </div>
                             <div class="summary entry-summary">
                                 <div class="flash">
                                     <span class="onnew"><span class="text">新款</span></span></div>
-                                <h1 class="product_title entry-title" th:text="${productName}">T-恤&裙子</h1>
+                                <h1 class="product_title entry-title" th:text="${productSingle.productName}">T-恤&裙子</h1>
                                 <p class="price">
                                     <span class="furgan-Price-amount amount">
                                         <span class="furgan-Price-currencySymbol">RMB</span>
-                                        <span th:text="${price}">85.00</span>
+                                        <span th:text="${productSingle.price}">85.00</span>
                                     </span>
                                 </p>
                                 <p class="stock in-stock">
@@ -79,7 +82,7 @@
                                 </p>
                                 <div class="furgan-product-details__short-description">
                                     <!--                                    商品介绍，后续通过model进行动态设置-->
-                                    <p th:text="${context}">商品介绍，后续通过model进行动态设置
+                                    <p th:text="${productSingle.context}">商品介绍，后续通过model进行动态设置
                                         Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac
                                         turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor
                                         sit amet, ante.</p>
@@ -147,7 +150,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <span class="sku_wrapper">SKU: <span class="sku" th:text="${proNo}">885B712</span></span>
+                                    <span class="sku_wrapper">SKU: <span class="sku" th:text="${productSingle.proNo}">885B712</span></span>
                                     <span class="posted_in">分类: <a
                                             href="#"
                                             rel="tag">桌子</a>, <a
@@ -238,10 +241,52 @@
                                     <h2 class="furgan-Reviews-title">评价</h2>
                                     <!--                                    <p class="furgan-noreviews">这里还没有任何评价.</p>-->
                                     <p class="furgan-noreviews">评价之地.</p>
-
                                 </div>
+
                                 <div id="review_form_wrapper">
                                     <div id="review_form">
+                                        <div>
+                                            <div class="page-header">
+                                                <h1>精彩评价</h1>
+                                            </div>
+                                            <table class="table">
+                                                <thead>
+                                                <tr>
+                                                    <th> &nbsp;用&nbsp;户&nbsp;</th>
+                                                    <th>&nbsp;评价内容&nbsp;</th>
+                                                    <th> &nbsp;&nbsp;打&nbsp;分&nbsp;&nbsp;</th>
+                                                    <td style="width: 208px"> &nbsp;评价时间&nbsp;</td>
+                                                </tr>
+                                                </thead>
+                                                <tr th:each="item : ${commentsList}">
+                                                    <td th:text="${item.username}"></td>
+                                                    <td th:text="${item.context}"></td>
+                                                    <td th:text="${item.score}"></td>
+                                                    <!--                                                    <td th:text="${item.commentTime}"></td>-->
+                                                    <td th:text="${#dates.format(item.commentTime,'yyyy-MM-dd HH:mm:ss')}"></td>
+                                                </tr>
+
+                                            </table>
+
+                                            <!--                                            <table class="shop_attributes">-->
+                                            <!--                                                <tbody style="text-align:center">-->
+                                            <!--                                                <tr>-->
+                                            <!--                                                    <th> &nbsp;用&nbsp;户&nbsp;</th>-->
+                                            <!--                                                    <td>&nbsp;评价内容&nbsp;</td>-->
+                                            <!--                                                    <td> &nbsp;&nbsp;打&nbsp;分&nbsp;&nbsp;</td>-->
+                                            <!--                                                    <td style="width: 208px"> &nbsp;评价时间&nbsp;</td>-->
+                                            <!--                                                </tr>-->
+                                            <!--                                                <tr th:each="item : ${commentsList}">-->
+                                            <!--                                                    <td th:text="${item.username}"></td>-->
+                                            <!--                                                    <td th:text="${item.context}"></td>-->
+                                            <!--                                                    <td th:text="${item.score}"></td>-->
+                                            <!--&lt;!&ndash;                                                    <td th:text="${item.commentTime}"></td>&ndash;&gt;-->
+                                            <!--                                                    <td th:text="${#dates.format(item.commentTime,'yyyy-MM-dd HH:mm:ss')}"></td>-->
+                                            <!--                                                </tr>-->
+
+                                            <!--                                                </tbody>-->
+                                            <!--                                            </table>-->
+                                        </div>
                                         <div id="respond" class="comment-respond">
                                             <span id="reply-title" class="comment-reply-title">现在第一个为商品评论</span>
                                             <form id="commentform" class="comment-form">
@@ -300,51 +345,10 @@
                                         </div><!-- #respond -->
                                         <div style="height: 50px;width: 100%">
                                         </div>
-                                        <div>
-                                            <div class="page-header">
-                                                <h1>精彩评价</h1>
-                                            </div>
-                                            <table class="table">
-                                                <thead>
-                                                <tr>
-                                                    <th> &nbsp;用&nbsp;户&nbsp;</th>
-                                                    <th>&nbsp;评价内容&nbsp;</th>
-                                                    <th> &nbsp;&nbsp;打&nbsp;分&nbsp;&nbsp;</th>
-                                                    <td style="width: 208px"> &nbsp;评价时间&nbsp;</td>
-                                                </tr>
-                                                </thead>
-                                                <tr th:each="item : ${commentsList}">
-                                                    <td th:text="${item.username}"></td>
-                                                    <td th:text="${item.context}"></td>
-                                                    <td th:text="${item.score}"></td>
-                                                    <!--                                                    <td th:text="${item.commentTime}"></td>-->
-                                                    <td th:text="${#dates.format(item.commentTime,'yyyy-MM-dd HH:mm:ss')}"></td>
-                                                </tr>
-
-                                            </table>
-
-                                            <!--                                            <table class="shop_attributes">-->
-                                            <!--                                                <tbody style="text-align:center">-->
-                                            <!--                                                <tr>-->
-                                            <!--                                                    <th> &nbsp;用&nbsp;户&nbsp;</th>-->
-                                            <!--                                                    <td>&nbsp;评价内容&nbsp;</td>-->
-                                            <!--                                                    <td> &nbsp;&nbsp;打&nbsp;分&nbsp;&nbsp;</td>-->
-                                            <!--                                                    <td style="width: 208px"> &nbsp;评价时间&nbsp;</td>-->
-                                            <!--                                                </tr>-->
-                                            <!--                                                <tr th:each="item : ${commentsList}">-->
-                                            <!--                                                    <td th:text="${item.username}"></td>-->
-                                            <!--                                                    <td th:text="${item.context}"></td>-->
-                                            <!--                                                    <td th:text="${item.score}"></td>-->
-                                            <!--&lt;!&ndash;                                                    <td th:text="${item.commentTime}"></td>&ndash;&gt;-->
-                                            <!--                                                    <td th:text="${#dates.format(item.commentTime,'yyyy-MM-dd HH:mm:ss')}"></td>-->
-                                            <!--                                                </tr>-->
-
-                                            <!--                                                </tbody>-->
-                                            <!--                                            </table>-->
-                                        </div>
                                     </div>
 
                                 </div>
+
                                 <div class="clear"></div>
                             </div>
                         </div>
@@ -373,7 +377,7 @@
                                 <div class="group-button">
                                     <div class="yith-wcwl-add-to-wishlist">
                                         <div class="yith-wcwl-add-button show">
-                                            <a href="#" th:href="@{'/addStar?productId='+${productId}}" class="add_to_wishlist">添加到收藏夹</a>
+                                            <a href="#" th:href="@{'/addStar?productId='+${productSingle.productId}}" class="add_to_wishlist">添加到收藏夹</a>
                                         </div>
                                     </div>
                                     <div class="furgan product compare-button">

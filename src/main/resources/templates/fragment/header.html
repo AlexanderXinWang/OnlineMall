@@ -146,8 +146,8 @@
                                     </li>
                                     <li id="menu-item-228"
                                         class="menu-item menu-item-type-post_type menu-item-object-megamenu menu-item-228 parent parent-megamenu item-megamenu menu-item-has-children">
-                                        <a class="furgan-menu-item-title" title="商品"
-                                           href="product.html">商品</a>
+                                        <a class="furgan-menu-item-title" title="商城"
+                                           href="product.html">商城</a>
                                         <span class="toggle-submenu"></span>
                                         <div class="submenu megamenu megamenu-shop">
                                             <div class="row">
@@ -605,18 +605,26 @@
                                         <div class="widget furgan widget_shopping_cart">
                                             <div class="widget_shopping_cart_content">
                                                 <ul class="furgan-mini-cart cart_list product_list_widget">
-                                                    <li class="furgan-mini-cart-item mini_cart_item">
-                                                        <a href="#" class="remove remove_from_cart_button">×</a>
-                                                        <a href="#">
-                                                            <img src="assets/images/apro134-1-600x778.jpg"
+                                                    <li class="furgan-mini-cart-item mini_cart_item" th:each="headerCartProduct:${headerCartProductList}">
+                                                        <a href="#" class="remove remove_from_cart_button"
+                                                           th:href="@{'/deleteFromHeaderCart?productId='+${headerCartProduct.productId}}"
+                                                        >×</a>
+                                                        <a href="#" th:href="@{'/single-product-simple.html?id='+${headerCartProduct.productId}}">
+                                                            <img src="assets/images/apro134-1-600x778.jpg" th:src="${headerCartProduct.pimage}"
                                                                  class="attachment-furgan_thumbnail size-furgan_thumbnail"
-                                                                 alt="img" width="600" height="778">T恤搭配裙子—粉色&nbsp;
+                                                                 alt="img" width="600" height="778">
+                                                            <span th:text="${headerCartProduct.productName}">T恤搭配裙子—粉色</span>&nbsp;
                                                         </a>
-                                                        <span class="quantity">1 × <span
-                                                                class="furgan-Price-amount amount"><span
-                                                                class="furgan-Price-currencySymbol">￥</span>150.00</span></span>
+                                                        <span class="quantity">1 ×
+                                                            <span class="furgan-Price-amount amount">
+                                                                <span class="furgan-Price-currencySymbol">
+                                                                    ￥
+                                                                </span>
+                                                                <span th:text="${headerCartProduct.price}">150.00</span>
+                                                            </span>
+                                                        </span>
                                                     </li>
-                                                    <li class="furgan-mini-cart-item mini_cart_item">
+                                                    <!--<li class="furgan-mini-cart-item mini_cart_item">
                                                         <a href="#" class="remove remove_from_cart_button">×</a>
                                                         <a href="#">
                                                             <img src="assets/images/apro1113-600x778.jpg"
@@ -637,7 +645,7 @@
                                                         <span class="quantity">1 × <span
                                                                 class="furgan-Price-amount amount"><span
                                                                 class="furgan-Price-currencySymbol">￥</span>139.00</span></span>
-                                                    </li>
+                                                    </li>-->
                                                 </ul>
                                                 <p class="furgan-mini-cart__total total"><strong>小计:</strong>
                                                     <span class="furgan-Price-amount amount"><span

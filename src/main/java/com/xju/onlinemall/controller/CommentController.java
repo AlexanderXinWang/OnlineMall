@@ -5,6 +5,7 @@ import com.xju.onlinemall.common.domain.*;
 import com.xju.onlinemall.mapper.StarMapper;
 import com.xju.onlinemall.service.CommentService;
 import com.xju.onlinemall.service.ProductService;
+import com.xju.onlinemall.service.StarService;
 import com.xju.onlinemall.service.UserService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,9 @@ public class CommentController {
 
     @Autowired
     ProductService productService;
+
+    @Autowired
+    StarService starService;
 
     @Autowired
     StarMapper starMapper;
@@ -85,14 +89,17 @@ public class CommentController {
         if (productId==null){
             productId=1;
         }
-        StarExample starExample = new StarExample();
-        starExample.createCriteria().andUserIdEqualTo(user.getUserId()).andProductIdEqualTo(productId);
-        List<Star> starList = starMapper.selectByExample(starExample);
+
+        //获取商品收藏列表
+        List<Star> starList = starService.getStarByUserIdAndProductId(user.getUserId(),productId);
         Star star = new Star();
+
+        //若无收藏
         if (starList.size() < 1){
             star.setStarIsDelete(Byte.parseByte("4"));
             star.setUserId(user.getUserId());
             star.setProductId(productId);
+            StarExample starExample = new StarExample();
             starMapper.insertSelective(star);
             starList = starMapper.selectByExample(starExample);
         }
@@ -102,12 +109,13 @@ public class CommentController {
              * 获得用户点击的商品信息
              * */
             Product productSingle =  productService.selectByProductId(productId);
-            modelMap.addAttribute("productName",productSingle.getProductName());
-            modelMap.addAttribute("pImage",productSingle.getPimage());
-            modelMap.addAttribute("context",productSingle.getContext());
-            modelMap.addAttribute("price",productSingle.getPrice());
-            modelMap.addAttribute("proNo",productSingle.getProNo());
-            modelMap.addAttribute("productId",productSingle.getProductId());
+            modelMap.addAttribute("productSingle",productSingle);
+//            modelMap.addAttribute("productName",productSingle.getProductName());
+//            modelMap.addAttribute("pImage",productSingle.getPimage());
+//            modelMap.addAttribute("context",productSingle.getContext());
+//            modelMap.addAttribute("price",productSingle.getPrice());
+//            modelMap.addAttribute("proNo",productSingle.getProNo());
+//            modelMap.addAttribute("productId",productSingle.getProductId());
 
             /**
              *
