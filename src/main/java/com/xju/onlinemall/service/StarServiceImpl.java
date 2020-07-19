@@ -40,6 +40,19 @@ public class StarServiceImpl implements StarService{
     }
 
     @Override
+    public void addStar(Integer productId, Integer userId) {
+//        StarExample example = new StarExample();
+//        example.createCriteria().andProductIdEqualTo(productId).andUserIdEqualTo(userId);
+//        starMapper.insertSelective(example);
+        Star star = new Star();
+        star.setUserId(userId);
+        star.setProductId(productId);
+        star.setStarIsDelete(Byte.parseByte("3"));
+        System.out.println(star);
+        starMapper.insertSelective(star);
+    }
+
+    @Override
     @Transactional
     public void deleteStarById(Integer starId) {
         starMapper.deleteByPrimaryKey(starId);

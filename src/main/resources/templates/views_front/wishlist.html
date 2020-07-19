@@ -28,16 +28,13 @@
                     <form id="yith-wcwl-form" class="furgan">
                         <!-- TITLE -->
                         <!-- WISHLIST TABLE -->
-                        <!--<span style="">[[${USERID}]]</span>-->
-                        <!--<span><%=session.getAttribute("USERID") %></span>-->
                         <div class="box">
-
-                            <div class="box-header">
-                                <div id="toolbar">
-                                    <button class="btn btn-danger remove-batch">批量删除</button>
-                                </div>
-                            </div>
-                            <div class="box-body">
+                            <!--<div class="box-header">-->
+                                <!--<div id="toolbar">-->
+                                    <!--<button class="btn btn-danger remove-batch">批量删除</button>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <div class="box-body" style="display: none;">
                                 <table id="table1" class="table table-bordered table-hover">
                                 </table>
                             </div>
@@ -67,8 +64,11 @@
                             <tr id="yith-wcwl-row-29" data-row-id="29" th:each="starProduct:${starProductList}">
                                 <td class="product-remove">
                                     <div>
-                                        <a href="#" onclick="this.parentNode.parentNode.parentNode.style.display='none'"
-                                           class="remove remove_from_wishlist" title="Remove this product">×</a>
+                                        <span id="productId" style="display: none;" th:text="${starProduct.productId}"></span>
+                                        <a href="#" onclick="this.parentNode.parentNode.parentNode.style.display='none';"
+                                           class="remove remove_from_wishlist xWindow" title="Remove this product"
+                                           th:href="@{'/deleteStar?productId='+${starProduct.productId}}">
+                                            ×</a>
                                     </div>
                                 </td>
                                 <td class="product-thumbnail">
@@ -78,7 +78,7 @@
                                              width="600" height="778"> </a>
                                 </td>
                                 <td class="product-name">
-                                    <a href="#" th:text="${starProduct.productName}"
+                                    <a id="productName" href="#" th:text="${starProduct.productName}"
                                        th:href="@{'/single-product-simple.html?id='+${starProduct.productId}}">Short Sleeve
                                         Loose</a>
                                     <a href="#" class="button yith-wcqv-button" data-product_id="29">查看详情</a></td>
@@ -192,21 +192,10 @@
 <div th:replace="~{fragment/static::script}"></div>
 
 <script language="JavaScript">
-    // // $.ajax({
-    // //     url: ' getUSERID.do',success:function (data) {
-    // //         alert(data);
-    // //         return data;
-    // //     }
-    // // })
-    // // alert(data);
-    // function getMyName(){
-    //     var myName="<%=session.getAttribute('USERID')%>";
-    //     // alert(myName);
-    //     return myName;
-    // }
+
     $(function () {
         window.operateEvents = {
-            // 更改操作的方法
+            // 查看详情页操作的方法
             'click .btn_update': function (e, value, row, index) {
                 var id = row.productId;
                 window.location.href = "/single-product-simple.html?id=" + id;

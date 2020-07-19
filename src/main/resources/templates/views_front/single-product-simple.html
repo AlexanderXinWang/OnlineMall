@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="~{fragment/static::link}"></div>
@@ -78,7 +78,7 @@
                                     能否购买: <span> 当前有货</span>
                                 </p>
                                 <div class="furgan-product-details__short-description">
-<!--                                    商品介绍，后续通过model进行动态设置-->
+                                    <!--                                    商品介绍，后续通过model进行动态设置-->
                                     <p th:text="${context}">商品介绍，后续通过model进行动态设置
                                         Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac
                                         turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor
@@ -114,8 +114,21 @@
                                 <div class="yith-wcwl-add-to-wishlist">
                                     <div class="yith-wcwl-add-button show">
                                         <a href="#" rel="nofollow"
-                                           data-product-id="27" data-product-type="variable" class="add_to_wishlist">
-                                            添加到收藏夹</a>
+                                           data-product-id="27" data-product-type="variable" class="add_to_wishlist"
+                                           th:href="@{'/addStar?productId='+${productId}+'&starId='+${starId}+'&starIsDelete='+${starIsDelete}}">
+                                            <span th:value="${starId}"></span>
+                                            <span th:value="${starIsDelete}"></span>
+                                            <div th:switch="${starIsDelete}">
+                                                <p>
+                                                    <span th:case="4" th:text="添加到收藏夹"></span>
+                                                    <span th:case="3" th:text="已添加到收藏夹"></span>
+                                                    <span th:case="*" th:text="添加到收藏夹"></span>
+                                                </p>
+                                                <!--<p th:case="4" th:text="♡添加到收藏夹"></p>-->
+                                                <!--<p th:case="3" th:text="♥已添加">已添加</p>-->
+                                                <!--<p th:case="*" th:text="♡添加到收藏夹">添加到收藏夹</p>-->
+                                            </div>
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="clear"></div>
@@ -141,7 +154,7 @@
                                             href="#" rel="tag">新货</a>, <a
                                             href="#" rel="tag">台灯</a></span>
                                     <span class="tagged_as">标签: <a href="#"
-                                                                     rel="tag">桌子</a>, <a
+                                                                   rel="tag">桌子</a>, <a
                                             href="#" rel="tag">袜子</a></span>
                                 </div>
                                 <div class="furgan-share-socials">
@@ -223,7 +236,7 @@
                             <div id="reviews" class="furgan-Reviews">
                                 <div id="comments">
                                     <h2 class="furgan-Reviews-title">评价</h2>
-<!--                                    <p class="furgan-noreviews">这里还没有任何评价.</p>-->
+                                    <!--                                    <p class="furgan-noreviews">这里还没有任何评价.</p>-->
                                     <p class="furgan-noreviews">评价之地.</p>
 
                                 </div>
@@ -242,21 +255,21 @@
                                                 </p>
                                                 <p class="comment-form-email">
                                                     <label for="email">邮件&nbsp;
-                                                    <span class="required">*</span></label>
+                                                        <span class="required">*</span></label>
                                                     <input id="email" name="email" value="" size="30" required=""
                                                            type="email">
                                                 </p>
                                                 <div class="comment-form-rating" style="display: block">
                                                     <label for="rating">您对该商品认可的分数<span class="required">*</span></label>
-<!--                                                    <p class="stars" id="gradeStars">-->
-<!--                                                        <span>-->
-<!--                                                        <a class="star-1" href="#">1</a>-->
-<!--                                                        <a class="star-2" href="#">2</a>-->
-<!--                                                        <a class="star-3" href="#">3</a>-->
-<!--                                                        <a class="star-4" href="#">4</a>-->
-<!--                                                        <a class="star-5" href="#">5</a>-->
-<!--                                                        </span>-->
-<!--                                                    </p>-->
+                                                    <!--                                                    <p class="stars" id="gradeStars">-->
+                                                    <!--                                                        <span>-->
+                                                    <!--                                                        <a class="star-1" href="#">1</a>-->
+                                                    <!--                                                        <a class="star-2" href="#">2</a>-->
+                                                    <!--                                                        <a class="star-3" href="#">3</a>-->
+                                                    <!--                                                        <a class="star-4" href="#">4</a>-->
+                                                    <!--                                                        <a class="star-5" href="#">5</a>-->
+                                                    <!--                                                        </span>-->
+                                                    <!--                                                    </p>-->
                                                     <select title="product_cat" name="rating" id="rating" required=""
                                                             style="display: inline;">
                                                         <option value="">分数…</option>
@@ -273,10 +286,10 @@
                                                     </select></div>
                                                 <p class="comment-form-comment"><label for="comment">您的评论&nbsp;<span class="required">*</span></label>
                                                     <textarea
-                                                        id="comment" name="comment" cols="45" rows="8"
-                                                        required=""></textarea>
+                                                            id="comment" name="comment" cols="45" rows="8"
+                                                            required=""></textarea>
                                                 </p><input name="wpml_language_code"
-                                                                                          value="en" type="hidden">
+                                                           value="en" type="hidden">
                                                 <p class="form-submit"><input name="submit" id="submit" class="submit"
                                                                               value="提交评论" type="button"> <input
                                                         name="comment_post_ID" value="27" id="comment_post_ID"
@@ -310,24 +323,24 @@
 
                                             </table>
 
-<!--                                            <table class="shop_attributes">-->
-<!--                                                <tbody style="text-align:center">-->
-<!--                                                <tr>-->
-<!--                                                    <th> &nbsp;用&nbsp;户&nbsp;</th>-->
-<!--                                                    <td>&nbsp;评价内容&nbsp;</td>-->
-<!--                                                    <td> &nbsp;&nbsp;打&nbsp;分&nbsp;&nbsp;</td>-->
-<!--                                                    <td style="width: 208px"> &nbsp;评价时间&nbsp;</td>-->
-<!--                                                </tr>-->
-<!--                                                <tr th:each="item : ${commentsList}">-->
-<!--                                                    <td th:text="${item.username}"></td>-->
-<!--                                                    <td th:text="${item.context}"></td>-->
-<!--                                                    <td th:text="${item.score}"></td>-->
-<!--&lt;!&ndash;                                                    <td th:text="${item.commentTime}"></td>&ndash;&gt;-->
-<!--                                                    <td th:text="${#dates.format(item.commentTime,'yyyy-MM-dd HH:mm:ss')}"></td>-->
-<!--                                                </tr>-->
+                                            <!--                                            <table class="shop_attributes">-->
+                                            <!--                                                <tbody style="text-align:center">-->
+                                            <!--                                                <tr>-->
+                                            <!--                                                    <th> &nbsp;用&nbsp;户&nbsp;</th>-->
+                                            <!--                                                    <td>&nbsp;评价内容&nbsp;</td>-->
+                                            <!--                                                    <td> &nbsp;&nbsp;打&nbsp;分&nbsp;&nbsp;</td>-->
+                                            <!--                                                    <td style="width: 208px"> &nbsp;评价时间&nbsp;</td>-->
+                                            <!--                                                </tr>-->
+                                            <!--                                                <tr th:each="item : ${commentsList}">-->
+                                            <!--                                                    <td th:text="${item.username}"></td>-->
+                                            <!--                                                    <td th:text="${item.context}"></td>-->
+                                            <!--                                                    <td th:text="${item.score}"></td>-->
+                                            <!--&lt;!&ndash;                                                    <td th:text="${item.commentTime}"></td>&ndash;&gt;-->
+                                            <!--                                                    <td th:text="${#dates.format(item.commentTime,'yyyy-MM-dd HH:mm:ss')}"></td>-->
+                                            <!--                                                </tr>-->
 
-<!--                                                </tbody>-->
-<!--                                            </table>-->
+                                            <!--                                                </tbody>-->
+                                            <!--                                            </table>-->
                                         </div>
                                     </div>
 
@@ -845,3 +858,4 @@
 </script>
 </body>
 </html>
+
