@@ -10,7 +10,10 @@
     <tr id="yith-wcwl-row-29" data-row-id="29">
         <td class="product-stock-status">
             <h4 th:align="left">状态</h4>
-            <span class='wishlist-in-stock' th:text="${order.status}">交易状态</span>
+            <p th:align="left">
+                <span>配送：<span class='wishlist-in-stock' th:text="${order.status}">交易状态</span></span><br>
+                <span>地址：<span class='wishlist-in-stock' th:text="${order.address}"></span></span>
+            </p>
         </td>
         <!--<td class="product-thumbnail">
             <a href="#" th:href="@{'/single-product-simple.html?id='+${product.productId}}">
