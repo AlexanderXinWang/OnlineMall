@@ -21,4 +21,6 @@ public interface ProductService {
     int addProduct(Product product);
 
     int updateProduct(Product product);
+
+    PageInfo<Product> selectByPrice(int pageNo, int pageSize, Double min, Double max);
 }

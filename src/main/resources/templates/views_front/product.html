@@ -49,34 +49,31 @@
                     </div>
                     <form class="furgan-ordering" method="get">
                         <select title="product_cat" name="orderby" class="orderby">
-                            <option value="menu_order" selected="selected">Default sorting</option>
-                            <option value="popularity">Sort by popularity</option>
-                            <option value="rating">Sort by average rating</option>
-                            <option value="date">Sort by latest</option>
-                            <option value="price">Sort by price: low to high</option>
-                            <option value="price-desc">Sort by price: high to low</option>
+                            <option value="menu_order" selected="selected">默认排序</option>
+                            <option value="popularity">按人气排序</option>
+                            <option value="rating">按评分排序</option>
+                            <option value="date">按上架时间排序</option>
+                            <option value="price">从低到高价格排序</option>
+                            <option value="price-desc">从高到低价格排序</option>
                         </select>
                     </form>
                     <form class="per-page-form">
                         <label>
                             <select class="option-perpage">
                                 <option value="12" selected="">
-                                    Show 12
+                                    1页 显示 05 件商品
                                 </option>
                                 <option value="5">
-                                    Show 05
+                                    1页 显示 05 件商品
                                 </option>
                                 <option value="10">
-                                    Show 10
+                                    1页 显示 10 件商品
                                 </option>
                                 <option value="12">
-                                    Show 12
+                                    1页 显示 12 件商品
                                 </option>
                                 <option value="15">
-                                    Show 15
-                                </option>
-                                <option value="20">
-                                    Show All
+                                    1页 显示 15 件商品
                                 </option>
                             </select>
                         </label>
@@ -189,7 +186,14 @@
                             下一页
                         </a>
                     </nav>
-                    <p class="furgan-result-count">Showing 1–12 of 20 results</p>
+                    <p class="furgan-result-count">
+                        显示
+                        <span th:text="${pageInfo.getStartRow()}">1</span>–
+                        <span th:text="${pageInfo.getEndRow()}">12</span>
+                        件商品 共
+                        <span th:text="${pageInfo.getTotal()}">20</span>
+                        件商品
+                    </p>
                 </div>
             </div>
         </div>

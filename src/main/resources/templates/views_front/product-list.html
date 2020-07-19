@@ -57,7 +57,7 @@
                             <option value="price-desc">从高到低价格排序</option>
                         </select>
                     </form>
-                    <!--<form class="per-page-form">
+                    <form class="per-page-form">
                         <label>
                             <select class="option-perpage">
                                 <option value="12" selected="">
@@ -75,12 +75,9 @@
                                 <option value="15">
                                     1页 显示 15 件商品
                                 </option>
-                                <option value="20">
-                                    显示 全部商品
-                                </option>
                             </select>
                         </label>
-                    </form>-->
+                    </form>
                 </div>
                 <div class=" auto-clear equal-container better-height furgan-products">
                     <ul class="row products columns-3">
@@ -208,7 +205,14 @@
                             下一页
                         </a>
                     </nav>
-                    <p class="furgan-result-count">显示 1–12 件商品 共 20 件商品</p>
+                    <p class="furgan-result-count">
+                        显示
+                        <span th:text="${pageInfo.getStartRow()}">1</span>–
+                        <span th:text="${pageInfo.getEndRow()}">12</span>
+                        件商品 共
+                        <span th:text="${pageInfo.getTotal()}">20</span>
+                        件商品
+                    </p>
                 </div>
             </div>
             <div class="sidebar col-xl-3 col-lg-4 col-md-4 col-sm-12">
@@ -222,15 +226,17 @@
                     </div>
                     <div id="furgan_price_filter-2" class="widget furgan widget_price_filter"><h2
                             class="widgettitle">按价格筛选<span class="arrow"></span></h2>
-                        <form method="get" action="#">
+                        <form method="post" action="#">
                             <div class="price_slider_wrapper">
-                                <div data-label-reasult="Range:" data-min="0" data-max="1000" data-unit="￥"
-                                     class="price_slider" data-value-min="100" data-value-max="800">
+                                <div data-label-reasult="Range:" data-min="0" data-max="99999" data-unit="￥"
+                                     class="price_slider" data-value-min="0" data-value-max="99999">
                                 </div>
                                 <div class="price_slider_amount">
-                                    <button type="submit" class="button">筛选</button>
+                                    <button id="buttonFilter" type="submit" class="button">筛选</button>
                                     <div class="price_label">
-                                        价格: <span class="from">￥100</span> — <span class="to">￥800</span>
+                                        价格:
+                                        <!--<span class="from" th:case="true" th:text="${min}">￥0</span> — <span class="to" th:text="${max}">￥9999</span>-->
+                                        <span class="from">￥0</span> — <span class="to">￥9999</span>
                                     </div>
                                 </div>
                             </div>
@@ -339,5 +345,32 @@
 <div th:replace="~{fragment/footer::footer_up}"></div>
 
 <div th:replace="~{fragment/static::script}"></div>
+
+<script>
+    $(function () {
+        $("#buttonFilter").click(function () {
+            var min=$(".from").val().trim();
+            var max=$(".to").val().trim();
+            // 可以拿到值
+            alert(min+max);
+            $.ajax({
+                type:"POST",
+                url:"product-list",
+                dataType:"json",
+                data:{"min":min,"max":max},
+                success:function (data) {
+                    if (data["success"]){
+                        //返回值是learn/t1 相对于项目地址
+                        //返回值是/learn/t1 相对于根地址 http://localhost:8080/learn/t1
+
+                    }
+                    else{
+
+                    }
+                }
+            })
+        })
+    })
+</script>
 </body>
 </html>

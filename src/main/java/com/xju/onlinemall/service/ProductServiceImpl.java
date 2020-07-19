@@ -82,4 +82,18 @@ public class ProductServiceImpl implements ProductService{
     public int updateProduct(Product product) {
         return productMapper.updateByPrimaryKeySelective(product);
     }
+
+    @Override
+    public PageInfo<Product> selectByPrice(int pageNo, int pageSize, Double min, Double max) {
+        //分页查询
+        PageHelper.startPage(pageNo,pageSize);
+        ProductExample productExample = new ProductExample();
+        productExample.createCriteria().andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max);
+        List<Product> list = productMapper.selectByExample(productExample);
+        //得到分页器
+        PageInfo<Product> PageInfo = new PageInfo<>(list);
+
+
+        return PageInfo;
+    }
 }
