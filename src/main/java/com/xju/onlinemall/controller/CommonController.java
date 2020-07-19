@@ -177,12 +177,12 @@ public class CommonController {
     }
 
     /**
-     *跳转用户收藏夹
+     *跳转用户收藏夹 ——————————————>> StartController
      * */
-    @RequestMapping("/wishlist.html")
+    /*@RequestMapping("/wishlist.html")
     public String wishlist(){
         return "views_front/wishlist";
-    }
+    }*/
 
     /**
      *跳转用404页面

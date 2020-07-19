@@ -93,6 +93,7 @@ public class CommentController {
         modelMap.addAttribute("context",productSingle.getContext());
         modelMap.addAttribute("price",productSingle.getPrice());
         modelMap.addAttribute("proNo",productSingle.getProNo());
+        modelMap.addAttribute("productId",productId);
 
         /**
          *

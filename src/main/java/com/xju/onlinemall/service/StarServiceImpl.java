@@ -49,4 +49,11 @@ public class StarServiceImpl implements StarService{
     public void deleteStarsByIds(List<Integer> ids) {
         starMapper.deleteStarsByIds(ids);
     }
+
+    @Override
+    public List<Star> getStarByUserId(Integer userId) {
+        StarExample starExample = new StarExample();
+        starExample.createCriteria().andUserIdEqualTo(userId);
+        return starMapper.selectByExample(starExample);
+    }
 }

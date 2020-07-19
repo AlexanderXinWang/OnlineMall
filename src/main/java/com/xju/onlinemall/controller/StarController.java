@@ -10,9 +10,14 @@ import com.xju.onlinemall.service.ProductService;
 import com.xju.onlinemall.service.StarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -23,6 +28,29 @@ public class StarController {
     StarMapper starMapper;
     @Autowired
     ProductService productService;
+
+    @RequestMapping("/wishlist.html")
+    public String wishlist(HttpSession session, Model model, Integer userId){
+        User user = (User)session.getAttribute("user");
+        userId = user.getUserId();
+
+        List<Star> starList = starService.getStarByUserId(userId);
+
+        List<Product> starProductList = new ArrayList<>();
+
+        for (Star star:starList) {
+            Product starProduct = new Product();
+            starProduct = productService.selectByProductId(star.getProductId());
+            starProductList.add(starProduct);
+        }
+
+        System.out.println(starProductList);
+
+        model.addAttribute("starProductList",starProductList);
+
+        return "views_front/wishlist";
+    }
+
 
     @RequestMapping("/getstars")
     @ResponseBody

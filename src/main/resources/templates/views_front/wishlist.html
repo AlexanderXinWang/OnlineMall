@@ -32,11 +32,11 @@
                         <!--<span><%=session.getAttribute("USERID") %></span>-->
                         <div class="box">
 
-                            <!--<div class="box-header">-->
-                                <!--<div id="toolbar">-->
-                                    <!--<button class="btn btn-danger remove-batch">批量删除</button>-->
-                                <!--</div>-->
-                            <!--</div>-->
+                            <div class="box-header">
+                                <div id="toolbar">
+                                    <button class="btn btn-danger remove-batch">批量删除</button>
+                                </div>
+                            </div>
                             <div class="box-body">
                                 <table id="table1" class="table table-bordered table-hover">
                                 </table>
@@ -64,28 +64,33 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr id="yith-wcwl-row-29" data-row-id="29">
+                            <tr id="yith-wcwl-row-29" data-row-id="29" th:each="starProduct:${starProductList}">
                                 <td class="product-remove">
                                     <div>
-                                        <a href="#"  onclick="this.parentNode.parentNode.parentNode.style.display='none'"
+                                        <a href="#" onclick="this.parentNode.parentNode.parentNode.style.display='none'"
                                            class="remove remove_from_wishlist" title="Remove this product">×</a>
                                     </div>
                                 </td>
                                 <td class="product-thumbnail">
-                                    <a href="#">
-                                        <img src="assets/images/apro1113-600x778.jpg"
+                                    <a href="#" th:href="@{'/single-product-simple.html?id='+${starProduct.productId}}">
+                                        <img src="assets/images/apro1113-600x778.jpg" th:src="${starProduct.pimage}"
                                              class="attachment-furgan_thumbnail size-furgan_thumbnail" alt="img"
                                              width="600" height="778"> </a>
                                 </td>
                                 <td class="product-name">
-                                    <a href="#">Short Sleeve
+                                    <a href="#" th:text="${starProduct.productName}"
+                                       th:href="@{'/single-product-simple.html?id='+${starProduct.productId}}">Short Sleeve
                                         Loose</a>
                                     <a href="#" class="button yith-wcqv-button" data-product_id="29">查看详情</a></td>
                                 <td class="product-price">
-                                    <span class="furgan-Price-amount amount"><span
-                                            class="furgan-Price-currencySymbol">￥</span>129.00</span></td>
+                                    <span class="furgan-Price-amount amount">
+                                        <span class="furgan-Price-currencySymbol">￥
+                                        </span>
+                                        <span th:text="${starProduct.price}">129.00</span>
+                                    </span>
+                                </td>
                                 <td class="product-stock-status">
-                                    <span class="wishlist-in-stock">有现货</span></td>
+                                    <span class="wishlist-in-stock" >有现货</span></td>
                                 <td class="product-add-to-cart">
                                     <!-- Date added -->
                                     <!-- Add to cart button -->
@@ -98,7 +103,7 @@
                                     <!-- Remove from wishlist -->
                                 </td>
                             </tr>
-                            <tr id="yith-wcwl-row-25" data-row-id="25">
+                            <!--<tr id="yith-wcwl-row-25" data-row-id="25">
                                 <td class="product-remove">
                                     <div>
                                         <a href="#"  onclick="this.parentNode.parentNode.parentNode.style.display='none'"
@@ -123,15 +128,15 @@
                                 <td class="product-stock-status">
                                     <span class="wishlist-in-stock">有现货</span></td>
                                 <td class="product-add-to-cart">
-                                    <!-- Date added -->
-                                    <!-- Add to cart button -->
+                                    &lt;!&ndash; Date added &ndash;&gt;
+                                    &lt;!&ndash; Add to cart button &ndash;&gt;
                                     <a href="#"
                                        data-quantity="1"
                                        class="button product_type_simple add_to_cart_button ajax_add_to_cart add_to_cart button alt"
                                        data-product_id="25" data-product_sku="018Q711"
                                        aria-label="Add “Office Chair” to your cart" rel="nofollow"> 添加到购物车</a>
-                                    <!-- Change wishlist -->
-                                    <!-- Remove from wishlist -->
+                                    &lt;!&ndash; Change wishlist &ndash;&gt;
+                                    &lt;!&ndash; Remove from wishlist &ndash;&gt;
                                 </td>
                             </tr>
                             <tr id="yith-wcwl-row-22" data-row-id="22">
@@ -164,7 +169,7 @@
                                        aria-label="Add “Wall Lamp” to your cart" rel="nofollow"> 添加到购物车</a>
 
                                 </td>
-                            </tr>
+                            </tr>-->
                             </tbody>
                             <tfoot>
                             <tr>
