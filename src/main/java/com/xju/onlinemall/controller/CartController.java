@@ -148,4 +148,24 @@ public class CartController {
         modelMap.addAttribute("cartCount",cartCount);
         return "index";
     }
+
+    /**
+     * 跳转结算页面，向结算页面传递结算商品信息
+     * */
+    @RequestMapping("/checkout.html")
+    public String checkout(HttpSession session, ModelMap modelMap){
+        //从session中获取当前登录用户购物车商品内的商品
+        List<Product> cartProducts = (List<Product>)session.getAttribute("cartProducts");
+        Double amount=0.00; //结算商品总金额
+        for(Object products : cartProducts){
+            Product product=(Product)products;
+            amount=amount+product.getPrice();
+        }
+        modelMap.addAttribute("productsCheckout",cartProducts);
+        modelMap.addAttribute("amount",amount);
+        return "views_front/checkout";
+    }
+
+
+
 }

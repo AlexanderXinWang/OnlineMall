@@ -11,8 +11,10 @@
     <result column="output_time" jdbcType="TIMESTAMP" property="outputTime" />
     <result column="pay_status" jdbcType="TINYINT" property="payStatus" />
     <result column="is_delete" jdbcType="TINYINT" property="isDelete" />
+    <result column="receiver" jdbcType="VARCHAR" property="receiver" />
+    <result column="receiver_phone" jdbcType="VARCHAR" property="receiverPhone" />
     <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="is_deliver" jdbcType="TINYINT" property="isDeliver" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -74,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List">
     order_id, user_id, product_id, order_number, pay_money, create_time, output_time, 
-    pay_status, is_delete, address, is_deliver
+    pay_status, is_delete, receiver, receiver_phone, address, remarks
   </sql>
   <select id="selectByExample" parameterType="com.xju.onlinemall.common.domain.OrderExample" resultMap="BaseResultMap">
     select
@@ -110,11 +112,13 @@
     insert into tb_order (order_id, user_id, product_id, 
       order_number, pay_money, create_time, 
       output_time, pay_status, is_delete, 
-      address, is_deliver)
+      receiver, receiver_phone, address, 
+      remarks)
     values (#{orderId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, 
       #{orderNumber,jdbcType=INTEGER}, #{payMoney,jdbcType=DOUBLE}, #{createTime,jdbcType=TIMESTAMP}, 
       #{outputTime,jdbcType=TIMESTAMP}, #{payStatus,jdbcType=TINYINT}, #{isDelete,jdbcType=TINYINT}, 
-      #{address,jdbcType=VARCHAR}, #{isDeliver,jdbcType=TINYINT})
+      #{receiver,jdbcType=VARCHAR}, #{receiverPhone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{remarks,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xju.onlinemall.common.domain.Order">
     insert into tb_order
@@ -146,11 +150,17 @@
       <if test="isDelete != null">
         is_delete,
       </if>
+      <if test="receiver != null">
+        receiver,
+      </if>
+      <if test="receiverPhone != null">
+        receiver_phone,
+      </if>
       <if test="address != null">
         address,
       </if>
-      <if test="isDeliver != null">
-        is_deliver,
+      <if test="remarks != null">
+        remarks,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -181,11 +191,17 @@
       <if test="isDelete != null">
         #{isDelete,jdbcType=TINYINT},
       </if>
+      <if test="receiver != null">
+        #{receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPhone != null">
+        #{receiverPhone,jdbcType=VARCHAR},
+      </if>
       <if test="address != null">
         #{address,jdbcType=VARCHAR},
       </if>
-      <if test="isDeliver != null">
-        #{isDeliver,jdbcType=TINYINT},
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -225,11 +241,17 @@
       <if test="record.isDelete != null">
         is_delete = #{record.isDelete,jdbcType=TINYINT},
       </if>
+      <if test="record.receiver != null">
+        receiver = #{record.receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="record.receiverPhone != null">
+        receiver_phone = #{record.receiverPhone,jdbcType=VARCHAR},
+      </if>
       <if test="record.address != null">
         address = #{record.address,jdbcType=VARCHAR},
       </if>
-      <if test="record.isDeliver != null">
-        is_deliver = #{record.isDeliver,jdbcType=TINYINT},
+      <if test="record.remarks != null">
+        remarks = #{record.remarks,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -247,8 +269,10 @@
       output_time = #{record.outputTime,jdbcType=TIMESTAMP},
       pay_status = #{record.payStatus,jdbcType=TINYINT},
       is_delete = #{record.isDelete,jdbcType=TINYINT},
+      receiver = #{record.receiver,jdbcType=VARCHAR},
+      receiver_phone = #{record.receiverPhone,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
-      is_deliver = #{record.isDeliver,jdbcType=TINYINT}
+      remarks = #{record.remarks,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -280,11 +304,17 @@
       <if test="isDelete != null">
         is_delete = #{isDelete,jdbcType=TINYINT},
       </if>
+      <if test="receiver != null">
+        receiver = #{receiver,jdbcType=VARCHAR},
+      </if>
+      <if test="receiverPhone != null">
+        receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
+      </if>
       <if test="address != null">
         address = #{address,jdbcType=VARCHAR},
       </if>
-      <if test="isDeliver != null">
-        is_deliver = #{isDeliver,jdbcType=TINYINT},
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
       </if>
     </set>
     where order_id = #{orderId,jdbcType=INTEGER}
@@ -299,8 +329,10 @@
       output_time = #{outputTime,jdbcType=TIMESTAMP},
       pay_status = #{payStatus,jdbcType=TINYINT},
       is_delete = #{isDelete,jdbcType=TINYINT},
+      receiver = #{receiver,jdbcType=VARCHAR},
+      receiver_phone = #{receiverPhone,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
-      is_deliver = #{isDeliver,jdbcType=TINYINT}
+      remarks = #{remarks,jdbcType=VARCHAR}
     where order_id = #{orderId,jdbcType=INTEGER}
   </update>
 </mapper>
