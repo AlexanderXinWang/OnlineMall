@@ -40,11 +40,11 @@ public class StarController {
     @ResponseBody
     public Object delStar(@RequestBody Product product, HttpSession session){
         User user = (User)session.getAttribute("user");
-
-        System.out.println(product.getProductId());
-        Product product1 = starMapper.selectProductIdAndStarIdByPrimaryKey(product.getProductId(),user.getUserId());
-        System.out.println(product1);
-//        starService.deleteStarById();
+//        System.out.println(product);
+//        System.out.println(product.getProductId());
+        List<Star> starId = starMapper.selectProductIdAndStarIdByPrimaryKey(product.getProductId(),user.getUserId());
+//        System.out.println(starId.get(0).getStarId());
+        starService.deleteStarById(starId.get(0).getStarId());
         return Result.success("删除成功");
     }
     @DeleteMapping("/deleteStars")

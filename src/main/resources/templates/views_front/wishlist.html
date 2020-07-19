@@ -32,11 +32,11 @@
                         <!--<span><%=session.getAttribute("USERID") %></span>-->
                         <div class="box">
 
-                            <div class="box-header">
-                                <div id="toolbar">
-                                    <button class="btn btn-danger remove-batch">批量删除</button>
-                                </div>
-                            </div>
+                            <!--<div class="box-header">-->
+                                <!--<div id="toolbar">-->
+                                    <!--<button class="btn btn-danger remove-batch">批量删除</button>-->
+                                <!--</div>-->
+                            <!--</div>-->
                             <div class="box-body">
                                 <table id="table1" class="table table-bordered table-hover">
                                 </table>
@@ -202,16 +202,13 @@
     $(function () {
         window.operateEvents = {
             // 更改操作的方法
-            // 'click .btn_update': function (e, value, row, index) {
-            //     var id = row.starId;
-            //     window.location.href = "/toupdatebook?id=" + id;
-            // },
+            'click .btn_update': function (e, value, row, index) {
+                var id = row.productId;
+                window.location.href = "/single-product-simple.html?id=" + id;
+            },
             //删除 单行/
             'click .btn_del': function (e, value, row, index) {
                 var productId = row.productId;
-
-                // var userId = // alert(productId);
-
                 layer.confirm("确认删除: " + row.productName + "  ?", {icon: 3, title: '删除操作'}, function (index) {
                     //do something
                     $.ajax({
@@ -233,35 +230,33 @@
                 });
             }
         };
-        //批量删除的按钮操作
-        $(".remove-batch").click(function () {
-            var rows = $('#table1').bootstrapTable('getSelections');//获取选中的行
-            var ids = $.map(rows, function (row) {
-                return row.starId;
-            });
-            if (ids.length > 0) {
-                layer.confirm("确认删除", {icon: 3, title: '删除操作'}, function (index) {
-                    //do something
-                    $.ajax({
-                        type: "delete",
-                        url: "/deleteBooks",
-                        contentType: "application/json",
-                        data: JSON.stringify(ids),
-                        success: function (msg) {
-                            if (msg["success"]) {
-                                $('#table1').bootstrapTable('refresh');
-                                layer.msg("批量操作成功", {time: 700});
-                            }
-                        }
-                    });
-                    layer.close(index);
-                });
-            } else {
-                layer.msg("未选中行", {time: 700});
-            }
-        });
-
-
+        // //批量删除的按钮操作
+        // $(".remove-batch").click(function () {
+        //     var rows = $('#table1').bootstrapTable('getSelections');//获取选中的行
+        //     var ids = $.map(rows, function (row) {
+        //         return row.starId;
+        //     });
+        //     if (ids.length > 0) {
+        //         layer.confirm("确认删除", {icon: 3, title: '删除操作'}, function (index) {
+        //             //do something
+        //             $.ajax({
+        //                 type: "delete",
+        //                 url: "/deleteBooks",
+        //                 contentType: "application/json",
+        //                 data: JSON.stringify(ids),
+        //                 success: function (msg) {
+        //                     if (msg["success"]) {
+        //                         $('#table1').bootstrapTable('refresh');
+        //                         layer.msg("批量操作成功", {time: 700});
+        //                     }
+        //                 }
+        //             });
+        //             layer.close(index);
+        //         });
+        //     } else {
+        //         layer.msg("未选中行", {time: 700});
+        //     }
+        // });
 
         $('#table1').bootstrapTable('destroy').bootstrapTable({
 
@@ -287,18 +282,19 @@
             clickToSelect: true,
             toolbarAlign: 'left',
             buttonsAlign: 'right',
-            toolbar: '#toolbar',
+            // toolbar: '#toolbar',
             showColumns: false,
             paginationLoop: false,
             columns: [
                 {
                     //  title: '全选/反选',
+                    visible:false,
                     checkbox: true
                 },
                 {
                     title: '商品ID',
                     field: 'productId',
-                    visible: true,
+                    visible: false,
                     width: 160
                 },
                 {
@@ -339,7 +335,7 @@
                             '删除',
                             '</button>',
                             ' <button  type="button" class="btn btn-primary btn-xs btn_update">',
-                            '更改',
+                            '查看',
                             '</button>',
                         ].join('')
                     },
