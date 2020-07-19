@@ -7,6 +7,7 @@ import com.xju.onlinemall.mapper.*;
 import com.xju.onlinemall.service.CartService;
 import com.xju.onlinemall.service.CommentServiceImpl;
 import com.xju.onlinemall.service.OrderService;
+import com.xju.onlinemall.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -35,6 +36,8 @@ class OnlinemallApplicationTests {
     ProductMapper productMapper;
     @Autowired
     OrderService orderService;
+    @Autowired
+    UserService userService;
 
     @Test
     public void t1(){
@@ -257,5 +260,14 @@ class OnlinemallApplicationTests {
         cartMapper.logicDelete(1,1);
         List<Product> products=cartService.getCartListByUserId(1);
         System.out.println(products);
+    }
+
+    //测试后台登录
+    @Test
+    public void t17(){
+        List<User> users = userService.selectUserByNameAndPassword("admin1", "123");
+        System.out.println(users);
+
+
     }
 }

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="~{fragment/static::link}"></div>
+    <title>Title</title>
+</head>
+<body>
+<table class="shop_table cart wishlist_table" data-pagination="no" data-per-page="5"
+       data-page="1" data-id="" data-token="">
+    <tr id="yith-wcwl-row-29" data-row-id="29">
+        <td class="product-stock-status">
+            <h4 th:align="left">状态</h4>
+            <p th:align="left">
+                <span>配送：<span class='wishlist-in-stock' th:text="${order.status}">交易状态</span></span><br>
+                <span>地址：<span class='wishlist-in-stock' th:text="${order.address}"></span></span>
+            </p>
+        </td>
+        <!--<td class="product-thumbnail">
+            <a href="#" th:href="@{'/single-product-simple.html?id='+${product.productId}}">
+                <img th:src="${product.pimage}" th:align="left"
+                     class="attachment-furgan_thumbnail size-furgan_thumbnail" alt="img"
+                     width="60" height="40">
+            </a>
+            <a th:text="${product.productName}" th:align="right"
+               th:href="@{'/single-product-simple.html?id='+${product.productId}}">商品名</a><br>
+            <span class="furgan-Price-currencySymbol">¥</span>
+            <span class="furgan-Price-amount amount" th:text="${product.price}">单价</span>
+            <span class="furgan-Price-currencySymbol">×</span>
+            <span class="furgan-Price-amount amount" th:text="${order.orderNumber}">数量</span>
+        </td>-->
+        </td>
+        <td>
+            <h4 th:align="left">订单信息</h4>
+            <p th:align="left">
+                <span>订单编号：<span th:text="${order.orderId}"></span></span><br>
+                <span>创建时间：<span th:text="${order.createTime}"></span></span><br>
+                <span>发货时间：<span th:text="${order.outputTime}"></span></span><br>
+            </p>
+        </td>
+    </tr>
+    <!--<p class="furgan-form-row furgan-form-row&#45;&#45;wide form-row form-row-wide">
+        <label for="username">&nbsp;<span
+                class="required">*</span></label>
+        <input type="text" class="furgan-Input furgan-Input&#45;&#45;text input-text"
+               name="username" id="username" autocomplete="username" value=""></p>
+    <p class="furgan-form-row furgan-form-row&#45;&#45;wide form-row form-row-wide">
+        <label for="password">Password&nbsp;<span class="required">*</span></label>
+        <input class="furgan-Input furgan-Input&#45;&#45;text input-text"
+               type="password" name="password" id="password"
+               autocomplete="current-password">
+    </p>
+    <p class="form-row">
+        <input type="hidden" id="furgan-login-nonce" name="furgan-login-nonce"
+               value="832993cb93"><input type="hidden" name="_wp_http_referer"
+                                         value="/furgan/my-account/">
+        <button type="submit" class="furgan-Button button" name="login"
+                value="Log in">Log in
+        </button>
+        <label class="furgan-form__label furgan-form__label-for-checkbox inline">
+            <input class="furgan-form__input furgan-form__input-checkbox"
+                   name="rememberme" type="checkbox" id="rememberme" value="forever">
+            <span>Remember me</span>
+        </label>
+    </p>-->
+</table>
+
+<div th:replace="~{fragment/static::script}"></div>
+</body>
+</html>

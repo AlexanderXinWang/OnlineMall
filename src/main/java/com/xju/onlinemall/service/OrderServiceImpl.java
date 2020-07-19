@@ -51,4 +51,9 @@ public class OrderServiceImpl implements OrderService {
         orderMapper.takeDeliveryOfProduct(userId,orderId);
         return "确认收货成功1";
     }
+
+    @Override
+    public Order getByOrderId(Integer orderId) {
+        return orderMapper.selectByPrimaryKey(orderId);
+    }
 }

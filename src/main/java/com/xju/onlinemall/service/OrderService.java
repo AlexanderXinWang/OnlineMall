@@ -19,4 +19,6 @@ public interface OrderService {
      * 确认收货方法
      * */
     String takeDeliveryOfProduct(Integer userId, Integer orderId);
+
+    Order getByOrderId(Integer orderId);
 }
