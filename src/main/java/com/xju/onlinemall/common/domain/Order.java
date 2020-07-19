@@ -23,9 +23,13 @@ public class Order extends OrderExtend {
 
     private Byte isDelete;
 
+    private String receiver;
+
+    private String receiverPhone;
+
     private String address;
 
-    private Byte isDeliver;
+    private String remarks;
 
     public Integer getOrderId() {
         return orderId;
@@ -99,6 +103,22 @@ public class Order extends OrderExtend {
         this.isDelete = isDelete;
     }
 
+    public String getReceiver() {
+        return receiver;
+    }
+
+    public void setReceiver(String receiver) {
+        this.receiver = receiver == null ? null : receiver.trim();
+    }
+
+    public String getReceiverPhone() {
+        return receiverPhone;
+    }
+
+    public void setReceiverPhone(String receiverPhone) {
+        this.receiverPhone = receiverPhone == null ? null : receiverPhone.trim();
+    }
+
     public String getAddress() {
         return address;
     }
@@ -107,12 +127,12 @@ public class Order extends OrderExtend {
         this.address = address == null ? null : address.trim();
     }
 
-    public Byte getIsDeliver() {
-        return isDeliver;
+    public String getRemarks() {
+        return remarks;
     }
 
-    public void setIsDeliver(Byte isDeliver) {
-        this.isDeliver = isDeliver;
+    public void setRemarks(String remarks) {
+        this.remarks = remarks == null ? null : remarks.trim();
     }
 
     @Override
@@ -127,8 +147,10 @@ public class Order extends OrderExtend {
                 ", outputTime=" + outputTime +
                 ", payStatus=" + payStatus +
                 ", isDelete=" + isDelete +
+                ", receiver='" + receiver + '\'' +
+                ", receiverPhone='" + receiverPhone + '\'' +
                 ", address='" + address + '\'' +
-                ", isDeliver=" + isDeliver +
+                ", remarks='" + remarks + '\'' +
                 ", product=" + product +
                 '}';
     }

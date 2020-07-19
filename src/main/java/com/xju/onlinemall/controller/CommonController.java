@@ -169,12 +169,12 @@ public class CommonController {
     }*/
 
     /**
-     *跳转结算页面
+     *跳转结算页面 ——————————————————>> CartController
      * */
-    @RequestMapping("/checkout.html")
+    /*@RequestMapping("/checkout.html")
     public String checkout(){
         return "views_front/checkout";
-    }
+    }*/
 
     /**
      *跳转用户收藏夹 ——————————————>> StartController

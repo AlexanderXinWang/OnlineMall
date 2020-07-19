@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -75,5 +76,37 @@ public class OrderController {
         model.addAttribute("product",product);
 
         return "views_front/order-detail";
+    }
+
+    /**
+     * 商品结算,订单信息插入订单表
+     * */
+    @RequestMapping("/saveOrders")
+    public String settleAccounts(HttpServletRequest request, @RequestParam("checkOutList")List<Product> checkOutList){
+        String receiver =String.valueOf(request.getParameter("billing_name"));
+        String billing_country=String.valueOf(request.getParameter("billing_country"));
+        String billing_city=String.valueOf(request.getParameter("billing_city"));
+        String billing_district=String.valueOf(request.getParameter("billing_district"));
+        String billing_adchair=String.valueOf(request.getParameter("billing_adchair"));
+        String billing_postcode=String.valueOf(request.getParameter("billing_postcode"));
+        String billing_company=String.valueOf(request.getParameter("billing_company"));
+        String billing_phone=String.valueOf(request.getParameter("billing_phone"));
+        String order_comments=String.valueOf(request.getParameter("order_comments"));
+        //拼接成地址
+        String address = billing_country.concat(" ").
+                    concat(billing_city).concat(" ").
+                    concat(billing_district).concat(" ").
+                    concat(billing_adchair).concat(" ").
+                    concat(billing_company).concat(" ").
+                    concat("邮编:").
+                    concat(billing_postcode);
+        String phone=billing_phone;
+        String remarks=order_comments;
+       /* System.out.println(receiver);
+        System.out.println(address);
+        System.out.println(phone);
+        System.out.println(remarks);*/
+        System.out.println(checkOutList);
+        return "views_front/checkout";
     }
 }
