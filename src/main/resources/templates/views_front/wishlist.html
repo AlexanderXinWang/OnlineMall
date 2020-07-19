@@ -64,28 +64,33 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr id="yith-wcwl-row-29" data-row-id="29">
+                            <tr id="yith-wcwl-row-29" data-row-id="29" th:each="starProduct:${starProductList}">
                                 <td class="product-remove">
                                     <div>
-                                        <a href="#"  onclick="this.parentNode.parentNode.parentNode.style.display='none'"
+                                        <a href="#" onclick="this.parentNode.parentNode.parentNode.style.display='none'"
                                            class="remove remove_from_wishlist" title="Remove this product">×</a>
                                     </div>
                                 </td>
                                 <td class="product-thumbnail">
-                                    <a href="#">
-                                        <img src="assets/images/apro1113-600x778.jpg"
+                                    <a href="#" th:href="@{'/single-product-simple.html?id='+${starProduct.productId}}">
+                                        <img src="assets/images/apro1113-600x778.jpg" th:src="${starProduct.pimage}"
                                              class="attachment-furgan_thumbnail size-furgan_thumbnail" alt="img"
                                              width="600" height="778"> </a>
                                 </td>
                                 <td class="product-name">
-                                    <a href="#">Short Sleeve
+                                    <a href="#" th:text="${starProduct.productName}"
+                                       th:href="@{'/single-product-simple.html?id='+${starProduct.productId}}">Short Sleeve
                                         Loose</a>
                                     <a href="#" class="button yith-wcqv-button" data-product_id="29">查看详情</a></td>
                                 <td class="product-price">
-                                    <span class="furgan-Price-amount amount"><span
-                                            class="furgan-Price-currencySymbol">￥</span>129.00</span></td>
+                                    <span class="furgan-Price-amount amount">
+                                        <span class="furgan-Price-currencySymbol">￥
+                                        </span>
+                                        <span th:text="${starProduct.price}">129.00</span>
+                                    </span>
+                                </td>
                                 <td class="product-stock-status">
-                                    <span class="wishlist-in-stock">有现货</span></td>
+                                    <span class="wishlist-in-stock" >有现货</span></td>
                                 <td class="product-add-to-cart">
                                     <!-- Date added -->
                                     <!-- Add to cart button -->
@@ -98,7 +103,7 @@
                                     <!-- Remove from wishlist -->
                                 </td>
                             </tr>
-                            <tr id="yith-wcwl-row-25" data-row-id="25">
+                            <!--<tr id="yith-wcwl-row-25" data-row-id="25">
                                 <td class="product-remove">
                                     <div>
                                         <a href="#"  onclick="this.parentNode.parentNode.parentNode.style.display='none'"
@@ -123,15 +128,15 @@
                                 <td class="product-stock-status">
                                     <span class="wishlist-in-stock">有现货</span></td>
                                 <td class="product-add-to-cart">
-                                    <!-- Date added -->
-                                    <!-- Add to cart button -->
+                                    &lt;!&ndash; Date added &ndash;&gt;
+                                    &lt;!&ndash; Add to cart button &ndash;&gt;
                                     <a href="#"
                                        data-quantity="1"
                                        class="button product_type_simple add_to_cart_button ajax_add_to_cart add_to_cart button alt"
                                        data-product_id="25" data-product_sku="018Q711"
                                        aria-label="Add “Office Chair” to your cart" rel="nofollow"> 添加到购物车</a>
-                                    <!-- Change wishlist -->
-                                    <!-- Remove from wishlist -->
+                                    &lt;!&ndash; Change wishlist &ndash;&gt;
+                                    &lt;!&ndash; Remove from wishlist &ndash;&gt;
                                 </td>
                             </tr>
                             <tr id="yith-wcwl-row-22" data-row-id="22">
@@ -164,7 +169,7 @@
                                        aria-label="Add “Wall Lamp” to your cart" rel="nofollow"> 添加到购物车</a>
 
                                 </td>
-                            </tr>
+                            </tr>-->
                             </tbody>
                             <tfoot>
                             <tr>
@@ -202,16 +207,13 @@
     $(function () {
         window.operateEvents = {
             // 更改操作的方法
-            // 'click .btn_update': function (e, value, row, index) {
-            //     var id = row.starId;
-            //     window.location.href = "/toupdatebook?id=" + id;
-            // },
+            'click .btn_update': function (e, value, row, index) {
+                var id = row.productId;
+                window.location.href = "/single-product-simple.html?id=" + id;
+            },
             //删除 单行/
             'click .btn_del': function (e, value, row, index) {
                 var productId = row.productId;
-
-                // var userId = // alert(productId);
-
                 layer.confirm("确认删除: " + row.productName + "  ?", {icon: 3, title: '删除操作'}, function (index) {
                     //do something
                     $.ajax({
@@ -233,35 +235,33 @@
                 });
             }
         };
-        //批量删除的按钮操作
-        $(".remove-batch").click(function () {
-            var rows = $('#table1').bootstrapTable('getSelections');//获取选中的行
-            var ids = $.map(rows, function (row) {
-                return row.starId;
-            });
-            if (ids.length > 0) {
-                layer.confirm("确认删除", {icon: 3, title: '删除操作'}, function (index) {
-                    //do something
-                    $.ajax({
-                        type: "delete",
-                        url: "/deleteBooks",
-                        contentType: "application/json",
-                        data: JSON.stringify(ids),
-                        success: function (msg) {
-                            if (msg["success"]) {
-                                $('#table1').bootstrapTable('refresh');
-                                layer.msg("批量操作成功", {time: 700});
-                            }
-                        }
-                    });
-                    layer.close(index);
-                });
-            } else {
-                layer.msg("未选中行", {time: 700});
-            }
-        });
-
-
+        // //批量删除的按钮操作
+        // $(".remove-batch").click(function () {
+        //     var rows = $('#table1').bootstrapTable('getSelections');//获取选中的行
+        //     var ids = $.map(rows, function (row) {
+        //         return row.starId;
+        //     });
+        //     if (ids.length > 0) {
+        //         layer.confirm("确认删除", {icon: 3, title: '删除操作'}, function (index) {
+        //             //do something
+        //             $.ajax({
+        //                 type: "delete",
+        //                 url: "/deleteBooks",
+        //                 contentType: "application/json",
+        //                 data: JSON.stringify(ids),
+        //                 success: function (msg) {
+        //                     if (msg["success"]) {
+        //                         $('#table1').bootstrapTable('refresh');
+        //                         layer.msg("批量操作成功", {time: 700});
+        //                     }
+        //                 }
+        //             });
+        //             layer.close(index);
+        //         });
+        //     } else {
+        //         layer.msg("未选中行", {time: 700});
+        //     }
+        // });
 
         $('#table1').bootstrapTable('destroy').bootstrapTable({
 
@@ -287,18 +287,19 @@
             clickToSelect: true,
             toolbarAlign: 'left',
             buttonsAlign: 'right',
-            toolbar: '#toolbar',
+            // toolbar: '#toolbar',
             showColumns: false,
             paginationLoop: false,
             columns: [
                 {
                     //  title: '全选/反选',
+                    visible:false,
                     checkbox: true
                 },
                 {
                     title: '商品ID',
                     field: 'productId',
-                    visible: true,
+                    visible: false,
                     width: 160
                 },
                 {
@@ -339,7 +340,7 @@
                             '删除',
                             '</button>',
                             ' <button  type="button" class="btn btn-primary btn-xs btn_update">',
-                            '更改',
+                            '查看',
                             '</button>',
                         ].join('')
                     },

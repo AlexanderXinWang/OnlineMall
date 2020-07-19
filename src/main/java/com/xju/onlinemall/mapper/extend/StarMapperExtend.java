@@ -10,5 +10,5 @@ import java.util.List;
 public interface StarMapperExtend {
     void deleteStarsByIds(@Param("ids") List<Integer> ids);
     List<Star> selectByMultiExample(Integer userId);
-    Product selectProductIdAndStarIdByPrimaryKey(Integer productId, Integer userId);
+    List<Star> selectProductIdAndStarIdByPrimaryKey(Integer productId, Integer userId);
 }

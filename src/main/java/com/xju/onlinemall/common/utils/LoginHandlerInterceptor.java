@@ -20,18 +20,18 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
          * 因为访问每一个页面,都会先来这里,除了登录和注册页面
          * */
         Object user = request.getSession().getAttribute("user");
-        //Object cardProducts = request.getSession().getAttribute("cartProducts");
+        Object cardProducts = request.getSession().getAttribute("cartProducts");
         /**下面两行代码用于head.html中商品分类的类别信息的显示，需要和username一样，
          * 放到session中，避免页面跳转时，丢失商品类别信息
          * */
         Object categors =request.getSession().getAttribute("categoryList");
         request.setAttribute("categoryList",categors);
 
-        /*List cardProductsList =(List)cardProducts;
+        List cardProductsList =(List)cardProducts;
         int cartCount=0;
         if (cardProductsList!=null){
             cartCount=cardProductsList.size();
-        }*/
+        }
         if(user == null) {
             System.out.println("后台提示:1、当前无权限,请先登录");
             request.setAttribute("uname", "未登录");
@@ -50,7 +50,7 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
             //设置当前用户的购物车商品
             //这样做会使得每个人页面访问都会设置一遍，浪费性能
             //request.setAttribute("cartProducts",cardProducts);
-            //request.setAttribute("cartCount",cartCount);
+            request.setAttribute("cartCount",cartCount);
 
 
 

@@ -25,11 +25,12 @@ public class StarServiceImpl implements StarService{
         starExample.createCriteria().andUserIdEqualTo(userId);
         List<Star> stars1 = starMapper.selectByExample(starExample);
 //        System.out.println(stars1);
-        List<Star> stars = starMapper.selectByMultiExample(userId);
+//        stars1.get(i).getProductId();
+//        List<Star> stars = starMapper.selectByMultiExample(userId);
 //        System.out.println(stars);
         List<Product> products = new ArrayList<>();
-        for (int i=0;i<stars.size();i++){
-            Product product = productMapper.selectByPrimaryKey(Integer.parseInt(stars.get(i).toString()));
+        for (int i=0;i<stars1.size();i++){
+            Product product = productMapper.selectByPrimaryKey(Integer.parseInt(stars1.get(i).getProductId().toString()));
 //            System.out.println(product);
             products.add(product);
         }
@@ -47,5 +48,12 @@ public class StarServiceImpl implements StarService{
     @Override
     public void deleteStarsByIds(List<Integer> ids) {
         starMapper.deleteStarsByIds(ids);
+    }
+
+    @Override
+    public List<Star> getStarByUserId(Integer userId) {
+        StarExample starExample = new StarExample();
+        starExample.createCriteria().andUserIdEqualTo(userId);
+        return starMapper.selectByExample(starExample);
     }
 }

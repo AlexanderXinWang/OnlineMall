@@ -45,4 +45,10 @@ public class OrderServiceImpl implements OrderService {
         }
         return orders;
     }
+
+    @Override
+    public String takeDeliveryOfProduct(Integer userId, Integer orderId) {
+        orderMapper.takeDeliveryOfProduct(userId,orderId);
+        return "确认收货成功1";
+    }
 }

@@ -10,4 +10,6 @@ public interface StarService {
     public PageInfo<Product> findStars(int pageNo, int pageSize, Integer userId);
     public void deleteStarById(Integer starId);
     void deleteStarsByIds(List<Integer> ids);
+
+    List<Star> getStarByUserId(Integer userId);
 }
