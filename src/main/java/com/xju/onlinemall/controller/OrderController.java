@@ -2,10 +2,13 @@ package com.xju.onlinemall.controller;
 
 
 import com.xju.onlinemall.common.domain.Order;
+import com.xju.onlinemall.common.domain.Product;
 import com.xju.onlinemall.common.domain.User;
 import com.xju.onlinemall.service.OrderService;
+import com.xju.onlinemall.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,6 +20,8 @@ import java.util.List;
 public class OrderController {
     @Autowired
     OrderService orderService;
+    @Autowired
+    ProductService productService;
     /**
      *获取用户订单数据,并放入modelmap中,并跳转订单页面
      * */
@@ -59,5 +64,16 @@ public class OrderController {
         // 在前端用orderList获取数据
         modelMap.put("orderList",orderList);
         return "views_front/order";
+    }
+
+    @RequestMapping("/order-detail.html")
+    public String orderDetail(HttpServletRequest request, Integer orderId, Model model){
+        orderId = Integer.parseInt(request.getParameter("orderId"));
+        Order order = orderService.getByOrderId(orderId);
+        Product product = productService.selectByProductId(order.getProductId());
+        model.addAttribute("order",order);
+        model.addAttribute("product",product);
+
+        return "views_front/order-detail";
     }
 }
