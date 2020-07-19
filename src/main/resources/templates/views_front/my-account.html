@@ -100,7 +100,10 @@
                     }
                     else{
                         if(data["flag"]){
-                            alert(data["msg"])
+                            // alert(data["msg"])
+                            layer.msg(data["msg"],{time:1600},function () {
+                                layer.close(index);
+                            })
                         }
                         else {
                             // alert("用户名或密码错误！")
