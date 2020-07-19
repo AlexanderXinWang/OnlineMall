@@ -5,4 +5,7 @@
         select remarks_context from tb_remarks
         where remarks_num=#{remarks_num}
     </select>
+    <update id="takeDeliveryOfProduct" parameterType="java.lang.Integer">
+        UPDATE tb_order SET pay_status = 11 WHERE user_id=#{userId} AND order_id=#{orderId};
+    </update>
 </mapper>

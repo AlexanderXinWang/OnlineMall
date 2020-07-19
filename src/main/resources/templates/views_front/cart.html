@@ -74,10 +74,10 @@
                                                 class="attachment-furgan_thumbnail size-furgan_thumbnail"
                                                 alt="img"></a></td>
                                     <td class="product-name" data-title="Product">
-                                        <a href="#" th:text="${pro.productName}"></a></td>
+                                        <a th:href="@{'/single-product-simple.html?id='+${pro.productId}}" th:text="${pro.productName}">商品名</a></td>
                                     <td class="product-price" data-title="Price">
                                         <span class="furgan-Price-currencySymbol">￥</span>
-                                        <span class="furgan-Price-amount amount" th:text="${pro.price}"></span></td>
+                                        <span class="furgan-Price-amount amount" th:text="${pro.price}">单价</span></td>
                                     <td class="product-quantity" data-title="Quantity">
                                         <div class="quantity">
                                             <span class="qty-label">数量:</span>
