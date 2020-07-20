@@ -166,33 +166,33 @@
 
 
         /* 自定义验证规则 */
-        form.verify({
-            proNo: function(value){
-                if(value.length < 5 || value.length>10){
-                    return '商品编号为5至10个字符';
-                }
-            },
-            productName:function (value) {
-                if(value.length <= 0){
-                    return '商品名称不能为空';
-                }
-            },
-            pkey:function (value) {
-                if(value.length <= 0){
-                    return '商品关键字不能为空';
-                }
-            },
-            pimage:function (value) {
-                if(value.length <= 0){
-                    return '商品图片路径不能为空';
-                }
-            },
-            contextV:function (value) {
-                if(value.length <= 0){
-                    return '商品描述不能为空';
-                }
-            }
-        });
+        // form.verify({
+        //     proNo: function(value){
+        //         if(value.length < 5 || value.length>10){
+        //             return '商品编号为5至10个字符';
+        //         }
+        //     },
+        //     productName:function (value) {
+        //         if(value.length <= 0){
+        //             return '商品名称不能为空';
+        //         }
+        //     },
+        //     pkey:function (value) {
+        //         if(value.length <= 0){
+        //             return '商品关键字不能为空';
+        //         }
+        //     },
+        //     pimage:function (value) {
+        //         if(value.length <= 0){
+        //             return '商品图片路径不能为空';
+        //         }
+        //     },
+        //     contextV:function (value) {
+        //         if(value.length <= 0){
+        //             return '商品描述不能为空';
+        //         }
+        //     }
+        // });
 
         /* 监听提交 */
         form.on('submit(layer_showProduct_submit)', function(data){

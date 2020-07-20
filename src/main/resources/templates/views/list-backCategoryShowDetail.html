@@ -71,23 +71,23 @@
 
 
         /* 自定义验证规则 */
-        form.verify({
-            categoryName: function(value){
-                if(value.length < 2 || value.length>10){
-                    return '商品分类为2至10个字符';
-                }
-            },
-            isDelete:function (value) {
-                if(value.length <= 0){
-                    return '删除状态不能为空';
-                }
-                if (value!=3 && value!=4){
-                    return '删除状态只能为3或4'
-                }
-            }
-
-
-        });
+        // form.verify({
+        //     categoryName: function(value){
+        //         if(value.length < 2 || value.length>10){
+        //             return '商品分类为2至10个字符';
+        //         }
+        //     },
+        //     isDelete:function (value) {
+        //         if(value.length <= 0){
+        //             return '删除状态不能为空';
+        //         }
+        //         if (value!=3 && value!=4){
+        //             return '删除状态只能为3或4'
+        //         }
+        //     }
+        //
+        //
+        // });
 
         /* 监听提交 */
         form.on('submit(layer_showCategory_submit)', function(data){
