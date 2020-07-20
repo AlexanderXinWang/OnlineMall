@@ -374,6 +374,15 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    <tr class="cart_item" th:if="${#lists.isEmpty(productsCheckout)}">
+                                        <td class="product-name" >
+                                            <span class="furgan-Price-currencySymbol">暂无需要结算的商品</span>
+                                        </td>
+                                        <td class="product-total">
+                                            <span class="furgan-Price-currencySymbol">——</span>
+
+                                        </td>
+                                    </tr>
                                     <tr class="cart_item" th:each="product:${productsCheckout}">
                                         <td class="product-name" >
                                             <span class="furgan-Price-currencySymbol" th:text="${product.productName}">商品名</span>
@@ -403,7 +412,11 @@
                                     </tr>
                                     </tfoot>
                                 </table>
-
+                                <ul style="display: none;">
+                                    <li th:each="product:${productsCheckout}">
+                                        <input type="text" id="productIdList" name="productIdList" th:value="${product.productId}">
+                                    </li>
+                                </ul>
                                 <input type="hidden" name="lang" value="en">
                                 <div id="payment" class="furgan-checkout-payment">
                                     <h3 style="font-size: 18px;font-weight: 600;letter-spacing: 0.1em;
@@ -513,19 +526,31 @@
 <div th:replace="~{fragment/footer::footer_up}"></div>
 <div th:replace="~{fragment/static::script}"></div>
 <script th:inline="javascript">
-
-    function getProducstList() {
+    /*function postList(){
         //获取要结算的商品的集合
-        var list = '${productsCheckout}';
-        alert(list);
+        var checkOutList = [[${productsCheckout}]];
+        alert(checkOutList);
         $.ajax({
-            type:"get",
-            url:"/saveOrders?checkOutList="+list,
-            success(data){
-                alert("传参成功")
+            type:"POST",
+            url:"saveOrders",
+            dataType:"json",
+            async:false,
+            data:{"checkOutList":checkOutList},
+            success :function (data) {
+                if (data["success"]){
+                    layer.msg("结算成功！赶快去购买别的商品吧！",{time:1700},function () {
+                        layer.close(index);
+                    })
+                    window.location.href=data["msg"];
+                }else{
+                    layer.msg("结算失败！请稍后再试",{time:1600},function () {
+                        layer.close(index);
+                    })
+                }
+
             }
         })
-    }
+    }*/
 </script>
 </body>
 </html>

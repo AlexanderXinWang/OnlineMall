@@ -21,4 +21,9 @@ public interface OrderService {
     String takeDeliveryOfProduct(Integer userId, Integer orderId);
 
     Order getByOrderId(Integer orderId);
+
+    /**
+     * 存储订单
+     * */
+    String saveOrders(List<Order> orderList);
 }

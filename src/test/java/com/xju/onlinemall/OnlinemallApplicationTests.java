@@ -267,7 +267,25 @@ class OnlinemallApplicationTests {
     public void t17(){
         List<User> users = userService.selectUserByNameAndPassword("admin1", "123");
         System.out.println(users);
+    }
 
+    //测试订单存储
+    @Test
+    public void t18(){
 
+        List<Order> orderList =new ArrayList<Order>();
+        for (int i=0;i<3;i++){
+            Order order=new Order();
+            order.setUserId(1);  //下单用户
+            order.setProductId(2+i);  //下单商品id
+            order.setCreateTime(new Date());  //下单时间
+            order.setPayStatus((byte)5);  //订单状态，下单后默认为5（已付款）
+            order.setIsDelete((byte)3);  //逻辑删除，默认为3（未删除）
+            order.setReceiver("菜是原罪");  //收货人姓名
+            order.setAddress("CN 浙江省杭州市 西湖区 余杭塘路886号 浙江大学 邮编:310012");  //收货地址
+            orderList.add(order);
+        }
+        String msg=orderService.saveOrders(orderList);
+        System.out.println(msg);
     }
 }

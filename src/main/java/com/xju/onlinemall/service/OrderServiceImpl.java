@@ -1,6 +1,7 @@
 package com.xju.onlinemall.service;
 
 import com.xju.onlinemall.common.domain.*;
+import com.xju.onlinemall.mapper.CartMapper;
 import com.xju.onlinemall.mapper.OrderMapper;
 import com.xju.onlinemall.mapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ public class OrderServiceImpl implements OrderService {
     OrderMapper orderMapper;
     @Autowired
     ProductMapper productMapper;
+    @Autowired
+    CartMapper cartMapper;
     //注意！该函数返回的是用户的所有订单
     @Override
     public List<Order> getOrderList(Integer userId) {
@@ -49,11 +52,23 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public String takeDeliveryOfProduct(Integer userId, Integer orderId) {
         orderMapper.takeDeliveryOfProduct(userId,orderId);
-        return "确认收货成功1";
+        return "确认收货成功!";
     }
 
     @Override
     public Order getByOrderId(Integer orderId) {
         return orderMapper.selectByPrimaryKey(orderId);
+    }
+
+    @Override
+    public String saveOrders(List<Order> orderList) {
+        for (Object order1:orderList){
+            Order order=(Order)order1;
+            orderMapper.insert(order);
+            //商品下单后对购物车内商品进行逻辑删除
+            cartMapper.logicDelete(order.getUserId(),order.getProductId());
+        }
+
+        return "下单成功！";
     }
 }

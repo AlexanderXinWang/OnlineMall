@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -155,12 +156,16 @@ public class CartController {
     @RequestMapping("/checkout.html")
     public String checkout(HttpSession session, ModelMap modelMap){
         //从session中获取当前登录用户购物车商品内的商品
-        List<Product> cartProducts = (List<Product>)session.getAttribute("cartProducts");
+        List<Product> cartProducts=new ArrayList<Product>();
         Double amount=0.00; //结算商品总金额
-        for(Object products : cartProducts){
-            Product product=(Product)products;
-            amount=amount+product.getPrice();
+        if (session.getAttribute("cartProducts")!=null){
+            cartProducts = (List<Product>)session.getAttribute("cartProducts");
+            for(Object products : cartProducts){
+                Product product=(Product)products;
+                amount=amount+product.getPrice();
+            }
         }
+
         modelMap.addAttribute("productsCheckout",cartProducts);
         modelMap.addAttribute("amount",amount);
         return "views_front/checkout";
