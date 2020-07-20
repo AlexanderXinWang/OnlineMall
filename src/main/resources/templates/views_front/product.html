@@ -59,22 +59,32 @@
                     </form>
                     <form class="per-page-form">
                         <label>
-                            <select class="option-perpage">
-                                <option value="12" selected="">
-                                    1页 显示 05 件商品
-                                </option>
-                                <option value="5">
-                                    1页 显示 05 件商品
-                                </option>
-                                <option value="10">
-                                    1页 显示 10 件商品
-                                </option>
-                                <option value="12">
-                                    1页 显示 12 件商品
-                                </option>
-                                <option value="15">
-                                    1页 显示 15 件商品
-                                </option>
+                            <select class="option-perpage" th:switch="${pageInfo.getPageSize()}">
+                                <p th:case="5">
+                                    <option value="/product.html?pageSize=5" th:selected="selected">1页 显示 5 件商品</option>
+                                    <option value="/product.html?pageSize=10">1页 显示 10 件商品</option>
+                                    <option value="/product.html?pageSize=12">1页 显示 12 件商品</option>
+                                    <option value="/product.html?pageSize=15">1页 显示 15 件商品</option>
+                                </p>
+                                <p th:case="10">
+                                    <option value="/product.html?pageSize=5">1页 显示 5 件商品</option>
+                                    <option value="/product.html?pageSize=10" th:selected="selected">1页 显示 10 件商品</option>
+                                    <option value="/product.html?pageSize=12">1页 显示 12 件商品</option>
+                                    <option value="/product.html?pageSize=15">1页 显示 15 件商品</option>
+                                </p>
+                                <p th:case="12">
+                                    <option value="/product.html?pageSize=5">1页 显示 5 件商品</option>
+                                    <option value="/product.html?pageSize=10">1页 显示 10 件商品</option>
+                                    <option value="/product.html?pageSize=12" th:selected="selected">1页 显示 12 件商品</option>
+                                    <option value="/product.html?pageSize=15">1页 显示 15 件商品</option>
+                                </p>
+                                <p th:case="15">
+                                    <option value="/product.html?pageSize=5">1页 显示 5 件商品</option>
+                                    <option value="/product.html?pageSize=10">1页 显示 10 件商品</option>
+                                    <option value="/product.html?pageSize=12">1页 显示 12 件商品</option>
+                                    <option value="/product.html?pageSize=15" th:selected="selected">1页 显示 15 件商品</option>
+                                </p>
+
                             </select>
                         </label>
                     </form>
@@ -207,17 +217,32 @@
 <div th:replace="~{fragment/static::script}"></div>
 
 <script>
-    /*$(function () {
-        $(".thumb-link").click(function () {
-            var productId=$(this).attr("id");
+    $(function () {
+        /*$(".option-perpage").on("change",function () {
+            var pageSize = $(this).find("option:selected").attr("data");
+            alert(pageSize);
             $.ajax({
-                type:"POST",
-                url:url,
-                dataType:"json",
-                data:{"productId":productId},
+                type: "post",
+                dataType: "json",
+                data:{"pageSize":pageSize},
+                url: "productListByPageSize", // 提交到一般处理程序请求数据
+                success:function (data){
+                    if (data["success"]){
+                        window.location.href=data["msg"];
+                        alert("成功");
+                    }
+                    else {
+                        alert("失败");
+                    }
+
+                }
             })
+        })*/
+        $(".option-perpage").on("change",function () {
+            var url = $(this).find("option:selected").attr("value");
+            window.open(url,'_self');
         })
-    })*/
+    })
 </script>
 </body>
 </html>

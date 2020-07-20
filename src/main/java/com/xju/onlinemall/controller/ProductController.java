@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.PushBuilder;
+import java.security.PublicKey;
 import java.util.Date;
 import java.util.List;
 
@@ -35,8 +37,6 @@ public class ProductController {
     public String commodity(HttpSession session, Model model,
                             @RequestParam(defaultValue = "1") int pageNo,
                             @RequestParam(defaultValue = "12") int pageSize){
-//        List<Product> products = productService.selectAllProduct();
-
         //分页
         PageInfo<Product> pageInfo=null;
         //获取分页信息与商品列表
@@ -57,7 +57,7 @@ public class ProductController {
         }else{
             //将所有商品列表传入页面
             model.addAttribute("productList",productList);
-            System.out.println("商品数"+productList.size());
+            System.out.println("此页商品数"+productList.size());
         }
 
         return "views_front/product";
@@ -69,17 +69,13 @@ public class ProductController {
     @RequestMapping("/product-list.html")
     public String productList(Model model,HttpServletRequest request,Integer categoryId,ModelMap modelMap,
                               @RequestParam(defaultValue = "1") int pageNo,
-                              @RequestParam(defaultValue = "5") int pageSize,
-                              @Param("min") String min,@Param("max") String max
-                              /*@RequestParam("cid") categoryId*/){
+                              @RequestParam(defaultValue = "5") int pageSize){
         //分页
         PageInfo<Product> pageInfo;
 
         //若为正常访问list页面（未分类）
         if(request.getParameter("cid")==null){
-            model.addAttribute("cid",null);
-
-            if(min!=null&&max!=null){
+            /*if(min!=null&&max!=null){
                 Double minPrice = Double.parseDouble(min);
                 Double maxPrice = Double.parseDouble(max);
                 //获取筛选后的分页信息与商品列表
@@ -87,11 +83,10 @@ public class ProductController {
                 modelMap.addAttribute("min",minPrice);
                 modelMap.addAttribute("max",maxPrice);
                 modelMap.put("success", true);
-            }else{
-                //获取分页信息与商品列表
-                pageInfo = productService.getAllProducts(pageNo, pageSize);
-            }
-            modelMap.put("success", false);
+            }else{*/
+
+            //获取分页信息与商品列表
+            pageInfo = productService.getAllProducts(pageNo, pageSize);
         }
 
         //通过header分类跳转，携带cid（商品类别）
@@ -114,9 +109,17 @@ public class ProductController {
             model.addAttribute("productList",productList);
             //分页注入视图
             model.addAttribute("pageInfo",pageInfo);
-            System.out.println("商品数"+productList.size());
+            System.out.println("当前页商品数"+productList.size());
         }
-
         return "views_front/product-list";
     }
+
+    /*@RequestMapping("/productListByPageSize")
+    @ResponseBody
+    public Object productListByPageSize(Model model,@Param("pageSize") String pageSize) {
+        model.addAttribute("success", true);
+        model.addAttribute("msg", "/product.html?pageSize="+pageSize);
+        System.out.println(pageSize);
+        return model;
+    }*/
 }
