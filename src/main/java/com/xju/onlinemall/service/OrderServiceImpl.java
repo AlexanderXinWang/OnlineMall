@@ -23,9 +23,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getOrderList(Integer userId) {
         //获取某个用户的所有订单
-        OrderExample orderExample = new OrderExample();
-        orderExample.createCriteria().andUserIdEqualTo(userId);
-        List<Order> orders = orderMapper.selectByExample(orderExample);
+        List<Order> orders = orderMapper.selectByUserId(userId);
         //注意List中的每一个Order都含有一个商品的List,每次循环下来都会产生一一个完整的订单
         for (Order order:orders){
             //获得该订单的商品id

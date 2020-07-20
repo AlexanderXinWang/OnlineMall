@@ -5,6 +5,9 @@
         select remarks_context from tb_remarks
         where remarks_num=#{remarks_num}
     </select>
+    <select id="selectByUserId" resultMap="BaseResultMap">
+        select * from tb_order where user_id =#{userId} ORDER BY create_time DESC;
+    </select>
     <update id="takeDeliveryOfProduct" parameterType="java.lang.Integer">
         UPDATE tb_order SET pay_status = 11 WHERE user_id=#{userId} AND order_id=#{orderId};
     </update>
