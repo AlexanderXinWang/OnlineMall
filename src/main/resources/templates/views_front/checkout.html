@@ -91,7 +91,7 @@
                             </div>
                         </div>
                         <form name="checkout" method="post" class="checkout furgan-checkout" th:action="@{/saveOrders}"
-                              enctype="multipart/form-data" novalidate="novalidate">
+                              enctype="multipart/form-data" novalidate="novalidate" onsubmit="return chenckForm(this)">
                             <div class="col2-set" id="customer_details">
                                 <div class="col-1">
                                     <div class="furgan-billing-fields">
@@ -488,7 +488,32 @@
                                         </ul>
 
 
-                                    <div class="form-row place-order">
+                                    <div class="form-row place-order" th:if="${#lists.isEmpty(productsCheckout)}">
+                                        <noscript>
+                                            Since your browser does not support JavaScript, or it is disabled, please
+                                            ensure you click the <em>Update Totals</em> button before placing your
+                                            order. You may be charged more than the amount stated above if you fail to
+                                            do so. <br/>
+                                            <button type="submit" class="button alt"
+                                                    name="furgan_checkout_update_totals" value="Update totals">
+                                                Update totals
+                                            </button>
+                                        </noscript>
+                                        <div class="furgan-terms-and-conditions-wrapper">
+                                            <div class="furgan-privacy-policy-text"><p>您的个人数据将会被用于处理您的订单,
+                                                用于帮助提升您在此网站的体验。其他用途请详见
+                                                <a href="#" class="furgan-privacy-policy-link" target="_blank">隐私条例</a>。</p>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="button alt" name="furgan_checkout_place_order"
+                                                id="place_order" value="Place order" data-value="Place order" onclick="">立即下单
+                                        </button>
+                                        <input type="hidden" id="furgan-process-checkout-nonce"
+                                               name="furgan-process-checkout-nonce" value="634590c981"><input
+                                            type="hidden" name="_wp_http_referer"
+                                            value="/furgan/?furgan-ajax=update_order_review">
+                                    </div>
+                                    <div class="form-row place-order" th:if="${not #lists.isEmpty(productsCheckout)}">
                                         <noscript>
                                             Since your browser does not support JavaScript, or it is disabled, please
                                             ensure you click the <em>Update Totals</em> button before placing your
@@ -511,7 +536,8 @@
                                         <input type="hidden" id="furgan-process-checkout-nonce"
                                                name="furgan-process-checkout-nonce" value="634590c981"><input
                                             type="hidden" name="_wp_http_referer"
-                                            value="/furgan/?furgan-ajax=update_order_review"></div>
+                                            value="/furgan/?furgan-ajax=update_order_review">
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -526,6 +552,28 @@
 <div th:replace="~{fragment/footer::footer_up}"></div>
 <div th:replace="~{fragment/static::script}"></div>
 <script th:inline="javascript">
+    function chenckForm(the) {
+        if (the.billing_name.value == ""){
+            alert("收货人姓名 未填写！");
+            return false;
+        }else if (the.billing_city.value == ""){
+            alert("省市/州市 未填写");
+            return false;
+        }else if (the.billing_district.value == ""){
+            alert("区/县»街道/乡镇 未填写");
+            return false;
+        }else if (the.billing_adchair.value == ""){
+            alert("详细地址 未填写");
+            return false;
+        }else if (the.billing_phone.value == ""){
+            alert("收货人手机号 未填写");
+            return false;
+        }
+    }
+    function noProduct() {
+        alert("当前没有结算商品");
+        return false;
+    }
     /*function postList(){
         //获取要结算的商品的集合
         var checkOutList = [[${productsCheckout}]];
