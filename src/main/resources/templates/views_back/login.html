@@ -73,10 +73,12 @@
                     if (data["success"]){
                         //返回值是learn/t1 相对于项目地址
                         //返回值是/learn/t1 相对于根地址 http://localhost:8080/learn/t1
-                        layer.msg("登陆成功！现在为您跳转到后台管理首页",{time:1800},function () {
+                        layer.msg("登陆成功！现在为您跳转到后台管理首页",{time:1400},function () {
+                            window.location.href=data["msg"];
                             layer.close(index);
+
                         })
-                        window.location.href=data["msg"];
+
                     }
                     else{
                         if(data["flag"]){
@@ -106,6 +108,8 @@
                 }
             });
         });
+
+
     });
 
 

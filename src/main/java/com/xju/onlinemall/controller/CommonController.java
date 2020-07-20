@@ -93,7 +93,7 @@ public class CommonController {
      * */
     @RequestMapping("/index.html")
     public String index(){
-        System.out.println("跳转index页面-----------------");
+//        System.out.println("跳转index页面-----------------");
         return "index";
     }
 

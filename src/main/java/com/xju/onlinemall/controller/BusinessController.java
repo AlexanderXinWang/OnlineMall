@@ -4,6 +4,7 @@ package com.xju.onlinemall.controller;
 import com.github.pagehelper.PageInfo;
 import com.xju.onlinemall.common.domain.Category;
 import com.xju.onlinemall.common.domain.Product;
+import com.xju.onlinemall.common.domain.User;
 import com.xju.onlinemall.common.utils.Result;
 import com.xju.onlinemall.service.CategoryService;
 import com.xju.onlinemall.service.ProductService;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 
 @Controller
@@ -31,10 +33,10 @@ public class BusinessController {
      * */
     @RequestMapping("/list/products")
     @ResponseBody
-    public Object productList(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize,Integer pmId){
-
+    public Object productList(HttpSession session,@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize,Integer pmId){
+        User adminUser =(User) session.getAttribute("adminUser");
         PageInfo<Product> pageInfo=null;
-        pageInfo = productService.getAllProducts(pageNo, pageSize);
+        pageInfo = productService.getAllProductsBypmId(pageNo, pageSize,adminUser.getUserId());
         return Result.success(pageInfo);
     }
 
@@ -53,14 +55,14 @@ public class BusinessController {
 
     /**
      *
-     * 获得商品列表信息
+     * 获得对应商户的商品列表信息
      * 以JSON的数据格式传输到前端
      *
      * */
     @RequestMapping("/list/categorys")
     @ResponseBody
-    public Object categorytList(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize,Integer pmId){
-
+    public Object categorytList(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize, Integer pmId){
+//        User adminUser =(User) session.getAttribute("adminUser");
         PageInfo<Category> pageInfo=null;
         pageInfo = categoryService.getAllCategorys(pageNo, pageSize);
         //返回结果

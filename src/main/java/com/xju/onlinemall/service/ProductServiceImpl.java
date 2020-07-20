@@ -59,6 +59,20 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
+    public PageInfo<Product> getAllProductsBypmId(int pageNo,int pageSize,Integer pmId) {
+        //分页查询
+        PageHelper.startPage(pageNo,pageSize);
+        ProductExample productExample = new ProductExample();
+        productExample.createCriteria().andPmIdEqualTo(pmId);
+        List<Product> list = productMapper.selectByExample(productExample);
+        //得到分页器
+        PageInfo<Product> PageInfo = new PageInfo<>(list);
+
+
+        return PageInfo;
+    }
+
+    @Override
     public int removeProudctsByProductIds(Integer... productIds) {
        int count=0;
 

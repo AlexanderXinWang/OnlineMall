@@ -23,4 +23,12 @@ public interface ProductService {
     int updateProduct(Product product);
 
     PageInfo<Product> selectByPrice(int pageNo, int pageSize, Double min, Double max);
-}
+
+    /**
+     *
+     *获取对应商户的商品列表信息
+     * */
+
+    PageInfo<Product> getAllProductsBypmId(int pageNo,int pageSize,Integer pmId);
+
+    }

@@ -22,6 +22,7 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("forward:/index.html");
+//        registry.addViewController("/back").setViewName("forward:/backIndex.html");
         registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
     }
 
@@ -39,7 +40,7 @@ public class MyWebMvcConfigurer implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
 
         registry.addInterceptor(loginHandlerInterceptor).addPathPatterns("/**")
-                .excludePathPatterns("/account.html","/login","/backAdminLogin","/backLayout.html","/register.html","/userRegister")
+                .excludePathPatterns("/account.html","/login","/backAdminLogin","/backLayout.html","/register.html","/userRegister","/backLogout")
                 .excludePathPatterns("/static/**").excludePathPatterns("/page/**","/list/**","/views/**")
         .excludePathPatterns("/assets/**").excludePathPatterns("/layuiadmin/**").excludePathPatterns("/bootstrap-3.3.7-dist/**").excludePathPatterns("/bootstrap-table/**").excludePathPatterns("/layer/**");
 

@@ -9,10 +9,7 @@ import java.util.List;
 public interface CategoryService {
     List<Category> list();
 
-    /**
-     *
-     *
-     * */
+
     PageInfo<Category> getAllCategorys(int pageNo, int pageSize);
 
     int removeCategorysByCategoryIds(Integer... categoryIds);

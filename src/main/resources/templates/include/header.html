@@ -50,13 +50,16 @@
         </li>
         <li class="layui-nav-item" lay-unselect>
             <a href="javascript:;">
-                <cite>贤心</cite>
+<!--                <cite th:text="${adminUser.userName}">用户名</cite>-->
+                <cite th:text="${session.adminUser.userName}">用户名</cite>
             </a>
             <dl class="layui-nav-child">
                 <dd><a lay-href="set/user/info.html">基本资料</a></dd>
                 <dd><a lay-href="set/user/password.html">修改密码</a></dd>
                 <hr>
-                <dd layadmin-event="logout" style="text-align: center;"><a>退出</a></dd>
+<!--                <dd layadmin-event="logout" style="text-align: center;">-->
+                <dd id="logout" style="text-align:center;cursor:pointer;"><a>退出</a></dd>
+<!--                <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-logout-submit">登 出</button>-->
             </dl>
         </li>
 

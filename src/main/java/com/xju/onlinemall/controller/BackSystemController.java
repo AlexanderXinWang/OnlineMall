@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
@@ -49,6 +50,7 @@ public class BackSystemController {
 
                 //加入session
                 session.setAttribute("adminUser",user);
+//                session.setAttribute("user",user);
                 modelMap.put("success",true);
 
                 //登录成功,请求控制器/,返回主页
@@ -56,7 +58,12 @@ public class BackSystemController {
                 //把登录信息写入日志表中
                 SystemLog systemLog = new SystemLog();
                 systemLog.setUserId(user.getUserId());
-                systemLog.setOperation("后台登录操作");
+                if (user.getUserRole()==1) {
+                    systemLog.setOperation("商家登录操作");
+                }
+                else {
+                    systemLog.setOperation("管理员登录操作");
+                }
                 systemLog.setLevel(2);
                 systemLog.setCreateTime(new Date());
                 userService.insertLogByUser(systemLog);
@@ -75,4 +82,40 @@ public class BackSystemController {
             }
         }
     }
+
+    /**
+     * 后台用户登出系统
+     *
+     * */
+    @RequestMapping("/backLogout")
+    public String logout(HttpSession session, SessionStatus sessionStatus){
+        //向数据库插入登出日志
+        User user = (User)session.getAttribute("adminUser");
+        SystemLog systemLog = new SystemLog();
+        systemLog.setUserId(user.getUserId());
+        if (user.getUserRole()==1) {
+            systemLog.setOperation("商家登出操作");
+        }
+        else {
+            systemLog.setOperation("管理员登出操作");
+        }
+        systemLog.setLevel(2);
+        systemLog.setCreateTime(new Date());
+        userService.insertLogByUser(systemLog);
+        //使session无效并清除,保证用户无法再返回
+        session.invalidate();
+        sessionStatus.setComplete();
+        System.out.println("登出成功！========================");
+//        return "redirect:/back";
+        return "views_back/login";
+    }
+    /**
+     *跳转后台首页
+     * */
+    @RequestMapping("/backIndex.html")
+    public String index(){
+        System.out.println("跳转index页面-----------------");
+        return "views_back/login";
+    }
+
 }

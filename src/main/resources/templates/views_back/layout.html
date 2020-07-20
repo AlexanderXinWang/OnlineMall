@@ -34,6 +34,7 @@
 </div>
 
 <script src="../layuiadmin/layui/layui.js" th:src="@{/layuiadmin/layui/layui.js}"></script>
+<script src="../assets/js/jquery-1.12.4.min.js" th:src="@{/assets/js/jquery-1.12.4.min.js}"></script>
 <script>
     layui.config({
         // base: [('"'+@{/layuiadmin/}+'"')]
@@ -41,7 +42,13 @@
         base:'/layuiadmin/'
     }).extend({
         index: 'lib/index' //主入口模块
-    }).use('index');
+    }).use('index',function () {
+        //退出系统
+        $('#logout').click(function() {
+            window.location.href = '/backLogout';
+        });
+    });
+
 </script>
 
 
