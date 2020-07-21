@@ -109,6 +109,19 @@ public class CartController {
             map.put("success",false);
             //return map;
         }
+        List<Product> cartProducts=new ArrayList<Product>();
+        Double amount=0.00; //结算商品总金额
+        if (session.getAttribute("cartProducts")!=null){
+            cartProducts = (List<Product>)session.getAttribute("cartProducts");
+            for(Object products : cartProducts){
+                Product product=(Product)products;
+                amount=amount+product.getPrice();
+            }
+        }
+        int cartCount=cartProducts.size();
+        modelMap.addAttribute("cardProductsList",cartProducts);
+        modelMap.addAttribute("amount",amount);
+        modelMap.addAttribute("cartCount",cartCount);
         return "views_front/cart";
     }
 
