@@ -193,37 +193,37 @@
 
 <script language="JavaScript">
 
-    $(function () {
-        window.operateEvents = {
-            // 查看详情页操作的方法
-            'click .btn_update': function (e, value, row, index) {
-                var id = row.productId;
-                window.location.href = "/single-product-simple.html?id=" + id;
-            },
-            //删除 单行/
-            'click .btn_del': function (e, value, row, index) {
-                var productId = row.productId;
-                layer.confirm("确认删除: " + row.productName + "  ?", {icon: 3, title: '删除操作'}, function (index) {
-                    //do something
-                    $.ajax({
-                        type: "delete",
-                        url: "/deleteStar",
-                        contentType: "application/json",
-                        data: JSON.stringify({"productId": productId}),
-                        success: function (msg) {
-                            if (msg["success"]) {
-                                $('#table1').bootstrapTable('remove', {
-                                    field: 'productId',
-                                    values: [productId]
-                                });
-                                layer.msg("操作成功", {time: 700});
-                            }
-                        }
-                    });
-                    layer.close(index);
-                });
-            }
-        };
+    // $(function () {
+    //     window.operateEvents = {
+    //         // 查看详情页操作的方法
+    //         'click .btn_update': function (e, value, row, index) {
+    //             var id = row.productId;
+    //             window.location.href = "/single-product-simple.html?id=" + id;
+    //         },
+    //         //删除 单行/
+    //         'click .btn_del': function (e, value, row, index) {
+    //             var productId = row.productId;
+    //             layer.confirm("确认删除: " + row.productName + "  ?", {icon: 3, title: '删除操作'}, function (index) {
+    //                 //do something
+    //                 $.ajax({
+    //                     type: "delete",
+    //                     url: "/deleteStar",
+    //                     contentType: "application/json",
+    //                     data: JSON.stringify({"productId": productId}),
+    //                     success: function (msg) {
+    //                         if (msg["success"]) {
+    //                             $('#table1').bootstrapTable('remove', {
+    //                                 field: 'productId',
+    //                                 values: [productId]
+    //                             });
+    //                             layer.msg("操作成功", {time: 700});
+    //                         }
+    //                     }
+    //                 });
+    //                 layer.close(index);
+    //             });
+    //         }
+    //     };
         // //批量删除的按钮操作
         // $(".remove-batch").click(function () {
         //     var rows = $('#table1').bootstrapTable('getSelections');//获取选中的行
@@ -252,96 +252,96 @@
         //     }
         // });
 
-        $('#table1').bootstrapTable('destroy').bootstrapTable({
-
-            method: 'get',
-            url: "/getstars",
-            striped: true,
-            dataField: "list",
-            totalField: "total",
-            pageNumber: 1,
-            pageSize: 10,
-            pagination: true,
-            queryParamsType: 'limit',
-            // search: true,
-            queryParams: function (params) {
-                return {
-                    pageSize: params.limit,
-                    pageNo: params.offset / params.limit + 1
-                }
-            },
-            sidePagination: 'server',
-            pageList: "[10, 25, 50, 100, all]",
-            showRefresh: false,
-            clickToSelect: true,
-            toolbarAlign: 'left',
-            buttonsAlign: 'right',
-            // toolbar: '#toolbar',
-            showColumns: false,
-            paginationLoop: false,
-            columns: [
-                {
-                    //  title: '全选/反选',
-                    visible:false,
-                    checkbox: true
-                },
-                {
-                    title: '商品ID',
-                    field: 'productId',
-                    visible: false,
-                    width: 160
-                },
-                {
-                    title: '商品图片',
-                    field: 'pimage',
-                    visible: false,
-                    width: 160,
-                    align: 'center'
-                },
-                {
-                    title: '商品名',
-                    field: 'productName',
-                    visible: true,
-                    width: 160,
-                    align: 'center'
-                },
-                {
-                    title: '商品价格',
-                    field: 'price',
-                    visible: true,
-                    width: 160,
-                    align: 'center'
-                },
-                {
-                    title: '商品状态',
-                    field: 'status',
-                    width: 160,
-                    align: 'center'
-                },
-
-                {
-                    title: '操作',
-                    width: 160,
-                    align: 'center',
-                    formatter: function (value, row, index) {
-                        return [
-                            '<button  type="button" class="btn btn-danger btn-xs btn_del">',
-                            '删除',
-                            '</button>',
-                            ' <button  type="button" class="btn btn-primary btn-xs btn_update">',
-                            '查看',
-                            '</button>',
-                        ].join('')
-                    },
-                    events: window.operateEvents
-                }
-            ],
-            locale: 'zh-CN',
-            responseHandler: function (res) {
-                return res['data'];
-            }
-        });
-    })
+    //     $('#table1').bootstrapTable('destroy').bootstrapTable({
+    //
+    //         method: 'get',
+    //         url: "/getstars",
+    //         striped: true,
+    //         dataField: "list",
+    //         totalField: "total",
+    //         pageNumber: 1,
+    //         pageSize: 10,
+    //         pagination: true,
+    //         queryParamsType: 'limit',
+    //         // search: true,
+    //         queryParams: function (params) {
+    //             return {
+    //                 pageSize: params.limit,
+    //                 pageNo: params.offset / params.limit + 1
+    //             }
+    //         },
+    //         sidePagination: 'server',
+    //         pageList: "[10, 25, 50, 100, all]",
+    //         showRefresh: false,
+    //         clickToSelect: true,
+    //         toolbarAlign: 'left',
+    //         buttonsAlign: 'right',
+    //         // toolbar: '#toolbar',
+    //         showColumns: false,
+    //         paginationLoop: false,
+    //         columns: [
+    //             {
+    //                 //  title: '全选/反选',
+    //                 visible:false,
+    //                 checkbox: true
+    //             },
+    //             {
+    //                 title: '商品ID',
+    //                 field: 'productId',
+    //                 visible: false,
+    //                 width: 160
+    //             },
+    //             {
+    //                 title: '商品图片',
+    //                 field: 'pimage',
+    //                 visible: false,
+    //                 width: 160,
+    //                 align: 'center'
+    //             },
+    //             {
+    //                 title: '商品名',
+    //                 field: 'productName',
+    //                 visible: true,
+    //                 width: 160,
+    //                 align: 'center'
+    //             },
+    //             {
+    //                 title: '商品价格',
+    //                 field: 'price',
+    //                 visible: true,
+    //                 width: 160,
+    //                 align: 'center'
+    //             },
+    //             {
+    //                 title: '商品状态',
+    //                 field: 'status',
+    //                 width: 160,
+    //                 align: 'center'
+    //             },
+    //
+    //             {
+    //                 title: '操作',
+    //                 width: 160,
+    //                 align: 'center',
+    //                 formatter: function (value, row, index) {
+    //                     return [
+    //                         '<button  type="button" class="btn btn-danger btn-xs btn_del">',
+    //                         '删除',
+    //                         '</button>',
+    //                         ' <button  type="button" class="btn btn-primary btn-xs btn_update">',
+    //                         '查看',
+    //                         '</button>',
+    //                     ].join('')
+    //                 },
+    //                 events: window.operateEvents
+    //             }
+    //         ],
+    //         locale: 'zh-CN',
+    //         responseHandler: function (res) {
+    //             return res['data'];
+    //         }
+    //     });
+    // })
 </script>
 
 </body>

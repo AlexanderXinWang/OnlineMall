@@ -10,7 +10,7 @@
     </resultMap>
 
     <select id="selectByMultiExample" resultMap="MyResultMap">
-    SELECT product_id FROM tb_star WHERE tb_star.`user_id` = #{userId};
+    SELECT product_id FROM tb_star WHERE tb_star.`user_id` = #{userId} and tb_star.star_is_delete=3;
   </select>
     <select id="selectProductIdAndStarIdByPrimaryKey" parameterType="java.lang.Integer" resultMap="MyResultMap">
         SELECT tb_star.star_id

@@ -38,7 +38,7 @@ public class StarController {
         userId = user.getUserId();
 
         List<Star> starList = starService.getStarByUserId(userId);
-
+//        System.out.println(starList);
         List<Product> starProductList = new ArrayList<>();
 
         for (Star star:starList) {
@@ -62,7 +62,8 @@ public class StarController {
         session.setAttribute("USERID",user.getUserId());
         StarExample starExample = new StarExample();
         starExample.createCriteria().andUserIdEqualTo(user.getUserId());
-        List<Star> stars = starMapper.selectByExample(starExample);
+//        List<Star> stars = starMapper.selectByExample(starExample);
+        List<Star> stars = starMapper.selectByMultiExample(user.getUserId());
         return Result.success(starService.findStars(pageNo,pageSize,user.getUserId()),"分页 查询star 对象");
     }
     @RequestMapping("/addStar")

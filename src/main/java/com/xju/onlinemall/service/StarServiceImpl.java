@@ -23,15 +23,16 @@ public class StarServiceImpl implements StarService{
     public PageInfo<Product> findStars(int pageNo, int pageSize,Integer userId) {
         StarExample starExample = new StarExample();
         starExample.createCriteria().andUserIdEqualTo(userId);
-        List<Star> stars1 = starMapper.selectByExample(starExample);
-//        System.out.println(stars1);
+//        List<Star> stars1 = starMapper.selectByExample(starExample);
+//
 //        stars1.get(i).getProductId();
-//        List<Star> stars = starMapper.selectByMultiExample(userId);
+        List<Star> stars1 = starMapper.selectByMultiExample(userId);
 //        System.out.println(stars);
+        System.out.println(stars1);
         List<Product> products = new ArrayList<>();
         for (int i=0;i<stars1.size();i++){
             Product product = productMapper.selectByPrimaryKey(Integer.parseInt(stars1.get(i).getProductId().toString()));
-//            System.out.println(product);
+            System.out.println(product);
             products.add(product);
         }
 //        System.out.println(products);
@@ -65,9 +66,10 @@ public class StarServiceImpl implements StarService{
 
     @Override
     public List<Star> getStarByUserId(Integer userId) {
-        StarExample starExample = new StarExample();
-        starExample.createCriteria().andUserIdEqualTo(userId);
-        return starMapper.selectByExample(starExample);
+//        StarExample starExample = new StarExample();
+//        starExample.createCriteria().andUserIdEqualTo(userId);
+//        return starMapper.selectByExample(starExample);
+        return starMapper.selectByMultiExample(userId);
     }
 
     @Override
@@ -75,5 +77,6 @@ public class StarServiceImpl implements StarService{
         StarExample starExample = new StarExample();
         starExample.createCriteria().andUserIdEqualTo(userId).andProductIdEqualTo(productId);
         return starMapper.selectByExample(starExample);
+//        return starMapper.selectByMultiExample(userId);
     }
 }
