@@ -28,8 +28,18 @@ public class CartController {
     @RequestMapping("/cart.html")
     public String cart(HttpSession session, ModelMap modelMap){
         //从session中获取当前登录用户购物车商品内的商品
-        List cartProducts = (List)session.getAttribute("cartProducts");
+        //从session中获取当前登录用户购物车商品内的商品
+        List<Product> cartProducts=new ArrayList<Product>();
+        Double amount=0.00; //结算商品总金额
+        if (session.getAttribute("cartProducts")!=null){
+            cartProducts = (List<Product>)session.getAttribute("cartProducts");
+            for(Object products : cartProducts){
+                Product product=(Product)products;
+                amount=amount+product.getPrice();
+            }
+        }
         modelMap.addAttribute("cardProductsList",cartProducts);
+        modelMap.addAttribute("amount",amount);
         return "views_front/cart";
     }
     /**
@@ -65,8 +75,8 @@ public class CartController {
      **/
 
     @RequestMapping("/addProductToCart")
-    @ResponseBody
-    public Object addProject(HttpSession session, ModelMap modelMap,
+    //@ResponseBody
+    public String addProject(HttpSession session, ModelMap modelMap,
                              HttpServletRequest request,
                              Integer productId,Integer count){
         //获得当前登录的用户信息
@@ -92,13 +102,27 @@ public class CartController {
             //把该用户的商品存进session中
             List<Product> cartListByUserId = cartService.getCartListByUserId(userId);
             session.setAttribute("cartProducts",cartListByUserId);
-            return map;
+            //return map;
         }
         else {
             System.out.println("添加失败");
             map.put("success",false);
-            return map;
+            //return map;
         }
+        List<Product> cartProducts=new ArrayList<Product>();
+        Double amount=0.00; //结算商品总金额
+        if (session.getAttribute("cartProducts")!=null){
+            cartProducts = (List<Product>)session.getAttribute("cartProducts");
+            for(Object products : cartProducts){
+                Product product=(Product)products;
+                amount=amount+product.getPrice();
+            }
+        }
+        int cartCount=cartProducts.size();
+        modelMap.addAttribute("cardProductsList",cartProducts);
+        modelMap.addAttribute("amount",amount);
+        modelMap.addAttribute("cartCount",cartCount);
+        return "views_front/cart";
     }
 
     /**

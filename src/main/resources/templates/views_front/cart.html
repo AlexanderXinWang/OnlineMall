@@ -121,14 +121,15 @@
                                     <tbody>
                                     <tr class="cart-subtotal">
                                         <th>小计</th>
-                                        <td data-title="Subtotal"><span class="furgan-Price-amount amount"><span
-                                                class="furgan-Price-currencySymbol">￥</span>418.00</span></td>
+                                        <td data-title="Subtotal">
+                                            <span class="furgan-Price-currencySymbol">￥</span>
+                                            <span class="furgan-Price-amount amount" th:text="${amount}">小计</span></td>
                                     </tr>
                                     <tr class="order-total">
                                         <th>总计</th>
-                                        <td data-title="Total"><strong><span
-                                                class="furgan-Price-amount amount"><span
-                                                class="furgan-Price-currencySymbol">￥</span>418.00</span></strong>
+                                        <td data-title="Total"><strong>
+                                            <span class="furgan-Price-currencySymbol">￥</span>
+                                            <span class="furgan-Price-amount amount" th:text="${amount}">418.00</span></strong>
                                         </td>
                                     </tr>
                                     </tbody>
