@@ -83,15 +83,37 @@
 
 <div th:replace="~{fragment/static::script}"></div>
 <script>
-    /*$(function () {
-        $.ajax({
-            type:"GET",
-            url:"showAllProduct",
-            dataType:"json",
-            data:{},
+    $(function () {
+        $("#buttonChangeDetail").click(function () {
+            var name=$("#username").val().trim();
+            var pwd=$("#password").val().trim();
+            var sex=$("#sex").val();
+            // var sex=$("#sex").val();
+            var phone=$("#phone").val().trim();
+            var email = $("#email").val().trim();
+            var password_pay=$("#password_pay").val().trim();
 
+            $.ajax({
+                type:"POST",
+                url:"changeDetail",
+                dataType:"json",
+                data:{"username":name,"password":pwd,"sex":sex,"phone":phone,"email":email,"payPassword":password_pay,},
+                success:function (data) {
+                    if (data["success"]) {
+                        //返回值是learn/t1 相对于项目地址
+                        //返回值是/learn/t1 相对于根地址 http://localhost:8080/learn/t1
+                        alert("修改成功!");
+                        window.location.href = data["msg"];
+                    }
+                    else{
+                        alert("修改失败！");
+                    }
+                }
+
+            })
         })
-    })*/
+    })
+
 </script>
 </body>
 </html>
