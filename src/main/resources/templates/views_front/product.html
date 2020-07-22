@@ -50,35 +50,35 @@
                     <form class="furgan-ordering" method="get">
                         <select title="product_cat" name="orderby" class="orderby" th:switch="${condition}">
                             <p th:case="0">
-                                <option value="menu_order" th:selected="selected">默认排序</option>
+                                <option value="/productFilter?condition=0" th:selected="selected">默认排序</option>
                                 <option value="/productFilter?condition=1">按评分排序</option>
                                 <option value="/productFilter?condition=2">按上架时间排序</option>
                                 <option value="/productFilter?condition=3">从低到高价格排序</option>
                                 <option value="/productFilter?condition=4">从高到低价格排序</option>
                             </p>
                             <p th:case="1">
-                                <option value="menu_order">默认排序</option>
+                                <option value="/productFilter?condition=0">默认排序</option>
                                 <option value="/productFilter?condition=1" th:selected="selected">按评分排序</option>
                                 <option value="/productFilter?condition=2">按上架时间排序</option>
                                 <option value="/productFilter?condition=3">从低到高价格排序</option>
                                 <option value="/productFilter?condition=4">从高到低价格排序</option>
                             </p>
                             <p th:case="2">
-                                <option value="menu_order" selected="selected">默认排序</option>
+                                <option value="/productFilter?condition=0">默认排序</option>
                                 <option value="/productFilter?condition=1">按评分排序</option>
                                 <option value="/productFilter?condition=2" th:selected="selected">按上架时间排序</option>
                                 <option value="/productFilter?condition=3">从低到高价格排序</option>
                                 <option value="/productFilter?condition=4">从高到低价格排序</option>
                             </p>
                             <p th:case="3">
-                                <option value="menu_order" selected="selected">默认排序</option>
+                                <option value="/productFilter?condition=0">默认排序</option>
                                 <option value="/productFilter?condition=1">按评分排序</option>
                                 <option value="/productFilter?condition=2">按上架时间排序</option>
                                 <option value="/productFilter?condition=3" th:selected="selected">从低到高价格排序</option>
                                 <option value="/productFilter?condition=4">从高到低价格排序</option>
                             </p>
                             <p th:case="4">
-                                <option value="menu_order" selected="selected">默认排序</option>
+                                <option value="/productFilter?condition=0">默认排序</option>
                                 <option value="/productFilter?condition=1">按评分排序</option>
                                 <option value="/productFilter?condition=2">按上架时间排序</option>
                                 <option value="/productFilter?condition=3">从低到高价格排序</option>
@@ -269,11 +269,15 @@
                 }
             })
         })*/
-        $(".option-perpage").on("change",function () {
+
+        //条件筛选
+        $(".orderby").on("change",function () {
             var url = $(this).find("option:selected").attr("value");
             window.open(url,'_self');
         })
-        $(".orderby").on("change",function () {
+
+        //页面显示商品数
+        $(".option-perpage").on("change",function () {
             var url = $(this).find("option:selected").attr("value");
             window.open(url,'_self');
         })
