@@ -155,7 +155,9 @@ public class CartController {
         return "views_front/cart";
     }
 
-    //在header的购物车中删除商品
+    /**
+     * 在header的购物车中删除商品
+     */
     @RequestMapping("/deleteFromHeaderCart")
     public String delStars(HttpServletRequest request, HttpSession session,
                            Integer userId, Integer productId, ModelMap modelMap){
@@ -174,7 +176,7 @@ public class CartController {
         modelMap.addAttribute("cardProductsList",cartListByUserId);
         modelMap.addAttribute("headerCartProductList",cartListByUserId);
         modelMap.addAttribute("cartCount",cartCount);
-        return "index";
+        return "views_front/cart";
     }
 
     /**

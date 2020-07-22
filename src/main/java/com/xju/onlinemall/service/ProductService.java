@@ -36,4 +36,8 @@ public interface ProductService {
      * */
 
     PageInfo<Product> getAllProductsBypmIdAndSearchInfo(int pageNo, int pageSize, Integer pmId, Product product);
+
+    PageInfo<Product> getAllProductsByPriceASC(int pageNo, int pageSize);
+
+    PageInfo<Product> getAllProductsByPriceDESC(int pageNo, int pageSize);
 }

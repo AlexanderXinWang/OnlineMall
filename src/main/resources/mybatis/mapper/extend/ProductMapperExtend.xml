@@ -15,4 +15,10 @@
     <select id="selectAllProduct" resultMap="BaseResultMap">
         select * from tb_product;
     </select>
+    <select id="selectByPriceASC" resultMap="BaseResultMap">
+        select * from tb_product order by price asc;
+    </select>
+    <select id="selectByPriceDESC" resultMap="BaseResultMap">
+        select * from tb_product order by price desc;
+    </select>
 </mapper>

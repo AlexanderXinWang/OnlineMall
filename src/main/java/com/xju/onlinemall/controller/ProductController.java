@@ -114,12 +114,60 @@ public class ProductController {
         return "views_front/product-list";
     }
 
-    /*@RequestMapping("/productListByPageSize")
-    @ResponseBody
-    public Object productListByPageSize(Model model,@Param("pageSize") String pageSize) {
-        model.addAttribute("success", true);
-        model.addAttribute("msg", "/product.html?pageSize="+pageSize);
-        System.out.println(pageSize);
-        return model;
-    }*/
+    /**
+     *
+     */
+    @RequestMapping("/productFilter")
+    public String productListByPageSize(Model model, HttpServletRequest request,
+                                        @RequestParam(defaultValue = "0") int condition,
+                                        @RequestParam(defaultValue = "1") int pageNo,
+                                        @RequestParam(defaultValue = "12") int pageSize) {
+        //分页
+        PageInfo<Product> pageInfo=null;
+        //若只传条件筛选（即没有设置每页显示多少件商品）
+        if (request.getParameter("pageSize")==null) {
+            //根据req的值判断按照什么条件筛选
+            /**
+             * 0-默认
+             * 1-按评分排序
+             * 2-按上架时间排序
+             * 3-从低到高价格排序
+             * 4-从高到低价格排序
+             */
+//            condition = Integer.parseInt(request.getParameter("condition"));
+            switch (condition) {
+                default:
+                    //获取分页信息与商品列表
+                    pageInfo = productService.getAllProducts(pageNo, pageSize);
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    pageInfo = productService.getAllProductsByPriceASC(pageNo,pageSize);
+                    break;
+                case 4:
+                    pageInfo = productService.getAllProductsByPriceDESC(pageNo,pageSize);
+                    break;
+            }
+            model.addAttribute("condition",condition);
+        }else {
+            System.out.println("还没做");
+        }
+
+        //取出商品列表并注入视图
+        List<Product> productList = pageInfo.getList();
+        //分页注入视图
+        model.addAttribute("pageInfo", pageInfo);
+
+        if (productList.size()==0) {
+            System.out.println("当前数据库中无商品！");
+        }else{
+            //将所有商品列表传入页面
+            model.addAttribute("productList",productList);
+            System.out.println("此页商品数"+productList.size());
+        }
+        return "views_front/product";
+    }
 }

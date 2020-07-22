@@ -1,5 +1,6 @@
 package com.xju.onlinemall.mapper.extend;
 
+import com.github.pagehelper.PageInfo;
 import com.xju.onlinemall.common.domain.Product;
 import org.apache.ibatis.annotations.Param;
 
@@ -12,4 +13,8 @@ public interface ProductMapperExtend {
     List<Product> selectByProductIdList(@Param("productIdLists") List<Integer> productIdLists);
 
     List<Product> selectAllProduct();
+
+    List<Product> selectByPriceASC();
+
+    List<Product> selectByPriceDESC();
 }
