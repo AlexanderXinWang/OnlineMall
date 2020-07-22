@@ -30,5 +30,10 @@ public interface ProductService {
      * */
 
     PageInfo<Product> getAllProductsBypmId(int pageNo,int pageSize,Integer pmId);
+    /**
+     *
+     *根据搜索框条件获得商品信息
+     * */
 
-    }
+    PageInfo<Product> getAllProductsBypmIdAndSearchInfo(int pageNo, int pageSize, Integer pmId, Product product);
+}

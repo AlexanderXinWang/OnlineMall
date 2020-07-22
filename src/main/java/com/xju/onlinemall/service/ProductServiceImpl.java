@@ -57,6 +57,10 @@ public class ProductServiceImpl implements ProductService{
 
         return PageInfo;
     }
+    /**
+     *
+     *获取对应商户的商品列表信息
+     * */
 
     @Override
     public PageInfo<Product> getAllProductsBypmId(int pageNo,int pageSize,Integer pmId) {
@@ -69,6 +73,39 @@ public class ProductServiceImpl implements ProductService{
         PageInfo<Product> PageInfo = new PageInfo<>(list);
 
 
+        return PageInfo;
+    }
+    /**
+     *
+     *根据搜索框条件获得商品信息
+     * */
+    @Override
+    public PageInfo<Product> getAllProductsBypmIdAndSearchInfo(int pageNo, int pageSize, Integer pmId, Product product) {
+        //分页查询
+        PageHelper.startPage(pageNo,pageSize);
+        ProductExample productExample = new ProductExample();
+        //设置为查询登录用户的商品
+        ProductExample.Criteria criteria = productExample.createCriteria();
+        criteria.andPmIdEqualTo(pmId);
+        //查看商品是否为空，商品为空则直接跳过，说明不是搜索栏触发的
+        //不为空则是搜索栏触发的
+        if (product!=null){
+            //如果商品id不为空，添加商品id条件
+            if (product.getProductId()!=null){
+                criteria.andProductIdEqualTo(product.getProductId());
+            }
+            //如果商品名不为空，添加商品名条件，进行模糊查询
+            if (product.getProductName()!=null && product.getProductName().trim().length()>0){
+                criteria.andProductNameLike("%"+product.getProductName()+"%");
+            }
+            //如果商品分类不为空，添加商品分类条件
+            if (product.getCategoryId()!=null){
+                criteria.andCategoryIdEqualTo(product.getCategoryId());
+            }
+        }
+        List<Product> list = productMapper.selectByExample(productExample);
+        //得到分页器
+        PageInfo<Product> PageInfo = new PageInfo<>(list);
         return PageInfo;
     }
 

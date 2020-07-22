@@ -25,11 +25,30 @@ public class BusinessController {
     private CategoryService categoryService;
 
 
+
+    /**
+     *
+     * 商品搜索功能
+     * 搜索框  获得商品列表信息
+     * 以JSON的数据格式传输到前端
+     *
+     * */
+    @RequestMapping("/list/searchProducts")
+    @ResponseBody
+    public Object productListBySearch(Product product,HttpSession session,@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize){
+        User adminUser =(User) session.getAttribute("adminUser");
+        PageInfo<Product> pageInfo=null;
+        pageInfo = productService.getAllProductsBypmIdAndSearchInfo(pageNo, pageSize,adminUser.getUserId(),product);
+        return Result.success(pageInfo);
+    }
+
+
+
     /**
      *
      * 获得商品列表信息
      * 以JSON的数据格式传输到前端
-     *
+     * 目前废弃，已经整合到上面的productListBySearch方法中
      * */
     @RequestMapping("/list/products")
     @ResponseBody
