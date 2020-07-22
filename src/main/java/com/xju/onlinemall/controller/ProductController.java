@@ -134,12 +134,13 @@ public class ProductController {
 //            condition = Integer.parseInt(request.getParameter("condition"));
             switch (condition) {
                 default:
-
                     //获取分页信息与商品列表
                     pageInfo = productService.getAllProducts(pageNo, pageSize);
                     break;
                 case 1:
+                    //TO-DO
                     pageInfo = productService.getAllProductsByRate(pageNo,pageSize);
+                    System.out.println("TO-DO");
                     break;
                 case 2:
                     pageInfo = productService.getAllProductsByTime(pageNo,pageSize);
@@ -196,13 +197,13 @@ public class ProductController {
 //            condition = Integer.parseInt(request.getParameter("condition"));
             switch (condition) {
                 default:
-
                     //获取分页信息与商品列表
                     pageInfo = productService.getAllProducts(pageNo, pageSize);
                     break;
                 case 1:
+                    //TO-DO
                     pageInfo = productService.getAllProductsByRate(pageNo,pageSize);
-                    break;
+                    System.out.println("TO-DO");
                 case 2:
                     pageInfo = productService.getAllProductsByTime(pageNo,pageSize);
                     break;
