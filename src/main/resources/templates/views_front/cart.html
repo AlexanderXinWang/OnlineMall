@@ -69,7 +69,7 @@
                                            class="remove" aria-label="Remove this item" data-product_id="20"
                                            data-product_sku="775E109">×</a></td>
                                     <td class="product-thumbnail">
-                                        <a href="#"><img
+                                        <a href="javascript:;" class="pname"><img
                                                 th:src="${pro.pimage}"
                                                 class="attachment-furgan_thumbnail size-furgan_thumbnail"
                                                 alt="img"></a></td>
@@ -77,20 +77,22 @@
                                         <a th:href="@{'/single-product-simple.html?id='+${pro.productId}}" th:text="${pro.productName}">商品名</a></td>
                                     <td class="product-price" data-title="Price">
                                         <span class="furgan-Price-currencySymbol">￥</span>
-                                        <span class="furgan-Price-amount amount" th:text="${pro.price}">单价</span></td>
+                                        <span class="furgan-Price-amount price1" th:text="${pro.price}">单价</span>
+                                    </td>
                                     <td class="product-quantity" data-title="Quantity">
                                         <div class="quantity">
                                             <span class="qty-label">数量:</span>
                                             <div class="control">
-                                                <a class="btn-number qtyminus quantity-minus" href="#">-</a>
+                                                <a class="btn-number qtyminus quantity-minus" href="javascript:;">-</a>
                                                 <input type="text" data-step="1" min="1" max="" name="quantity[25]" value="1" title="Qty" class="input-qty input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
-                                                <a class="btn-number qtyplus quantity-plus" href="#">+</a>
+                                                <a class="btn-number qtyplus quantity-plus" href="javascript:;">+</a>
                                             </div>
                                         </div>
                                     </td>
                                     <td class="product-subtotal" data-title="Total">
-                                        <span class="furgan-Price-amount amount"><span
-                                                class="furgan-Price-currencySymbol">￥</span>总额</span></td>
+                                        <span class="furgan-Price-currencySymbol">￥</span>
+
+                                        <span class="furgan-Price-amount amount1" th:text="${pro.price}">总价</span></td>
                                 </tr>
                                 <tr>
                                     <td colspan="6" class="actions">
@@ -123,13 +125,13 @@
                                         <th>小计</th>
                                         <td data-title="Subtotal">
                                             <span class="furgan-Price-currencySymbol">￥</span>
-                                            <span class="furgan-Price-amount amount" th:text="${amount}">小计</span></td>
+                                            <span class="furgan-Price-amount amount2" th:text="${amount}">0.00</span></td>
                                     </tr>
                                     <tr class="order-total">
                                         <th>总计</th>
                                         <td data-title="Total"><strong>
                                             <span class="furgan-Price-currencySymbol">￥</span>
-                                            <span class="furgan-Price-amount amount" th:text="${amount}">418.00</span></strong>
+                                            <span class="furgan-Price-amount amount3" th:text="${amount}">0.00</span></strong>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -309,5 +311,97 @@
 <div th:replace="~{fragment/footer::footer_mobile}"></div>
 <div th:replace="~{fragment/footer::footer_up}"></div>
 <div th:replace="~{fragment/static::script}"></div>
+<script type="text/javascript">
+    /*$(function () {
+        //加号
+        var price1=parseFloat($('#productPrice').text());
+        var num = parseInt($('input[name="quantity[25]"]').attr('value'));
+        $('.btn-number.qtyplus').click(function () {
+            num++;
+            $('input[name="quantity[25]"]').attr('value',num);
+            var amount1 = num * price1;
+            $('#productsAmount').html(amount1.toFixed(2));
+        });
+        //减号
+        $('.btn-number.qtyminus').click(function () {
+            if (num>1){
+                num--;
+                $('input[name="quantity[25]"]').attr('value',num);
+                console.log(num);
+                var amount2=num*price1;
+                $('#productsAmount').html(amount2.toFixed(2));
+            }
+        });
+    });*/
+    window.onload = function()
+    {
+        var aLi = document.getElementsByClassName("pname");
+        var plus =document.getElementsByClassName("btn-number qtyplus quantity-plus");  //加号
+        var minus=document.getElementsByClassName("btn-number qtyminus quantity-minus");  //减号
+        var inputQty=document.getElementsByClassName("input-qty input-text qty text");  //数量
+        var price=document.getElementsByClassName("furgan-Price-amount price1"); //单价
+        var amount1=document.getElementsByClassName("furgan-Price-amount amount1"); //总价
+        var amount2=document.getElementsByClassName("furgan-Price-amount amount2");  //小计
+        var amount3=document.getElementsByClassName("furgan-Price-amount amount3");  //总计
+        var amount = 0.00;
+        for(var i = 0; i < aLi.length; i++)
+        {
+            var a = function(k)
+            {
+                aLi[k].onclick = function()//用于测试 各标签数据获取
+                {
+                    alert("单价："+price[k].textContent);
+                    alert("单价标签类名："+price[k].className);
+                    alert("加号类名："+plus[k].className);
+                    alert("减号类名："+minus[k].className);
+                    alert("input的name："+inputQty[k].name);
+                    // var price1=parseFloat($('#productPrice').text());
+                    // var num = parseInt($('input[name="quantity[25]"]').attr('value'));
+                    var price1=parseFloat($(price[k]).text());
+                    var num = parseInt($(inputQty[k]).val());
+                    alert("num："+num+","+"price1："+price1)
+                    //alert(parseInt($(inputQty[k]).attr('value')));
+                }
+                var Aprice=parseFloat($(amount1[k]).text());
+                alert(Aprice);
+                amount=amount+Aprice;
+                $(amount2).html(amount.toFixed(2));
+                $(amount3).html(amount.toFixed(2));
+                //加号
+                $(plus[k]).click(function () {
+                    var price1=parseFloat($(price[k]).text());
+                    var num = parseInt($(inputQty[k]).val());
+                    //alert("一："+num);
+                    num++;
+                    //alert("二："+num);
+                    $(inputQty[k]).attr('value',num);
+                    console.log(num);
+                    var amountPlus = num * price1;
+                    amount=amount+price1;
+                    $(amount1[k]).html(amountPlus.toFixed(2));
+                    $(amount2).html(amount.toFixed(2));
+                    $(amount3).html(amount.toFixed(2));
+                });
+                //减号
+                $(minus[k]).click(function () {
+                    var price1=parseFloat($(price[k]).text());
+                    var num = parseInt($(inputQty[k]).val());
+                    if (num>1){
+                        num--;
+                        $(inputQty[k]).attr('value',num);
+                        console.log(num);
+                        var amountMinus=num*price1;
+                        amount=amount-price1;
+                        $(amount1[k]).html(amountMinus.toFixed(2));
+                        $(amount2).html(amount.toFixed(2));
+                        $(amount3).html(amount.toFixed(2));
+                    }
+                });
+
+            }
+            a(i);
+        }
+    }
+</script>
 </body>
 </html>
