@@ -120,6 +120,7 @@ public class CartController {
         }
         int cartCount=cartProducts.size();
         modelMap.addAttribute("cardProductsList",cartProducts);
+        modelMap.addAttribute("headerCartProductList",cartProducts);
         modelMap.addAttribute("amount",amount);
         modelMap.addAttribute("cartCount",cartCount);
         return "views_front/cart";
@@ -149,6 +150,7 @@ public class CartController {
         session.setAttribute("cartProducts",cartListByUserId);
         //session缓存信息更新在本次跳转后，此次向前台传递新购物车商品信息，做假同步
         modelMap.addAttribute("cardProductsList",cartListByUserId);
+        modelMap.addAttribute("headerCartProductList",cartListByUserId);
         modelMap.addAttribute("cartCount",cartCount);
         return "views_front/cart";
     }
@@ -170,6 +172,7 @@ public class CartController {
         session.setAttribute("cartProducts",cartListByUserId);
         //session缓存信息更新在本次跳转后，此次向前台传递新购物车商品信息，做假同步
         modelMap.addAttribute("cardProductsList",cartListByUserId);
+        modelMap.addAttribute("headerCartProductList",cartListByUserId);
         modelMap.addAttribute("cartCount",cartCount);
         return "index";
     }
