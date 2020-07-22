@@ -17,4 +17,8 @@ public interface ProductMapperExtend {
     List<Product> selectByPriceASC();
 
     List<Product> selectByPriceDESC();
+
+    List<Product> selectByRate();
+
+    List<Product> selectByTime();
 }

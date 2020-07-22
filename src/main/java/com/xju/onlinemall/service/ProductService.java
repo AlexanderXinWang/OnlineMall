@@ -40,4 +40,8 @@ public interface ProductService {
     PageInfo<Product> getAllProductsByPriceASC(int pageNo, int pageSize);
 
     PageInfo<Product> getAllProductsByPriceDESC(int pageNo, int pageSize);
+
+    PageInfo<Product> getAllProductsByRate(int pageNo, int pageSize);
+
+    PageInfo<Product> getAllProductsByTime(int pageNo, int pageSize);
 }

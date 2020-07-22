@@ -16,9 +16,15 @@
         select * from tb_product;
     </select>
     <select id="selectByPriceASC" resultMap="BaseResultMap">
-        select * from tb_product order by price asc;
+        select * from tb_product order by price asc
     </select>
     <select id="selectByPriceDESC" resultMap="BaseResultMap">
-        select * from tb_product order by price desc;
+        select * from tb_product order by price desc
+    </select>
+    <select id="selectByRate" resultMap="BaseResultMap">
+        select * from tb_product
+    </select>
+    <select id="selectByTime" resultMap="BaseResultMap">
+        select * from tb_product order by add_time desc
     </select>
 </mapper>

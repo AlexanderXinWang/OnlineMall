@@ -41,10 +41,8 @@ public class ProductController {
         PageInfo<Product> pageInfo=null;
         //获取分页信息与商品列表
         pageInfo = productService.getAllProducts(pageNo, pageSize);
-
         //取出商品列表并注入视图
         List<Product> productList = pageInfo.getList();
-
         //分页注入视图
         model.addAttribute("pageInfo",pageInfo);
 
@@ -58,6 +56,8 @@ public class ProductController {
             //将所有商品列表传入页面
             model.addAttribute("productList",productList);
             System.out.println("此页商品数"+productList.size());
+            //设置页面默认条件筛选方式
+            model.addAttribute("condition",0);
         }
 
         return "views_front/product";
@@ -137,12 +137,15 @@ public class ProductController {
 //            condition = Integer.parseInt(request.getParameter("condition"));
             switch (condition) {
                 default:
+
                     //获取分页信息与商品列表
                     pageInfo = productService.getAllProducts(pageNo, pageSize);
                     break;
                 case 1:
+                    pageInfo = productService.getAllProductsByRate(pageNo,pageSize);
                     break;
                 case 2:
+                    pageInfo = productService.getAllProductsByTime(pageNo,pageSize);
                     break;
                 case 3:
                     pageInfo = productService.getAllProductsByPriceASC(pageNo,pageSize);
@@ -152,7 +155,11 @@ public class ProductController {
                     break;
             }
             model.addAttribute("condition",condition);
-        }else {
+        }
+        //只有pageSize值在product的controller中处理
+        //既有condition值又有pageSize值时
+        else {
+
             System.out.println("还没做");
         }
 

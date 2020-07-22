@@ -126,6 +126,22 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
+    public PageInfo<Product> getAllProductsByRate(int pageNo, int pageSize) {
+        PageHelper.startPage(pageNo,pageSize);
+        List<Product> list = productMapper.selectByRate();
+        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        return PageInfo;
+    }
+
+    @Override
+    public PageInfo<Product> getAllProductsByTime(int pageNo, int pageSize) {
+        PageHelper.startPage(pageNo,pageSize);
+        List<Product> list = productMapper.selectByTime();
+        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        return PageInfo;
+    }
+
+    @Override
     public int removeProudctsByProductIds(Integer... productIds) {
        int count=0;
 
