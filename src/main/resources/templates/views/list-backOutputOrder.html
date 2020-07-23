@@ -44,7 +44,7 @@
         </div>
         <div class="layui-card-body">
             <div style="padding-bottom: 10px;">
-                <button class="layui-btn layuiadmin-btn-comm layui-btn-danger" data-type="createCategory" id="btn_create">添加分类</button>
+                <button class="layui-btn layuiadmin-btn-comm layui-btn-danger" data-type="createCategory" id="btn_create">添加出货单</button>
                 <button class="layui-btn layuiadmin-btn-comm layui-btn-danger" data-type="batchdel" id="btn_batchdel">批量删除</button>
             </div>
             <!--  lay-filter 想当于 layui框架自定义 的id 属性-->
@@ -83,11 +83,11 @@
             ,page: true
             ,cols: [     [
                 {type: 'checkbox', fixed: 'left'}
-                ,{field: 'categoryId', title: '出货id',sort: true}
-                ,{field: 'categoryName', title: '出货单号'}
-                ,{field: 'categoryName', title: '商品名'}
-                ,{field: 'isDelete', title: '出货时间'}
-                ,{field: 'isDelete', title: '出货状态'}
+                ,{field: 'outId', title: '出货id',sort: true}
+                ,{field: 'outNumber', title: '出货单号'}
+                ,{field: 'productName', title: '商品名'}
+                ,{field: 'outDate', title: '出货时间'}
+                ,{field: 'outStatus', title: '出货状态'}
                 ,{fixed: 'right', title: '备注',  align:'center', toolbar: '#toolbar-Mytable',width:180}
 
             ]   ]

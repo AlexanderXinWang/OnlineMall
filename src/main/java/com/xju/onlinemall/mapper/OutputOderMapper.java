@@ -3,11 +3,13 @@ package com.xju.onlinemall.mapper;
 import com.xju.onlinemall.common.domain.OutputOder;
 import com.xju.onlinemall.common.domain.OutputOderExample;
 import java.util.List;
+
+import com.xju.onlinemall.mapper.extend.OutputOderMapperExtend;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface OutputOderMapper {
+public interface OutputOderMapper extends OutputOderMapperExtend {
     long countByExample(OutputOderExample example);
 
     int deleteByExample(OutputOderExample example);
