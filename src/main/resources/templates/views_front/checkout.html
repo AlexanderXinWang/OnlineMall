@@ -385,12 +385,21 @@
                                     </tr>
                                     <tr class="cart_item" th:each="product:${productsCheckout}">
                                         <td class="product-name" >
-                                            <span class="furgan-Price-currencySymbol" th:text="${product.productName}">商品名</span>
-                                            <strong class="product-quantity">&nbsp;×1</strong>
-                                        </td>
-                                        <td class="product-total">
+                                            <strong>
+                                                <span class="furgan-Price-currencySymbol" th:text="${product.productName}">商品名</span>
+                                            </strong>
+                                            <br>
                                             <span class="furgan-Price-currencySymbol">￥</span>
                                             <span class="furgan-Price-amount amount" th:text="${product.price}">单价</span>
+                                            <strong class="product-quantity">&nbsp;×</strong>
+                                            <strong class="product-quantity" th:text="${product.productNumber}">数量</strong>
+                                        </td>
+                                        <td class="product-total">
+                                            <strong>
+                                                <br>
+                                                <span class="furgan-Price-currencySymbol">￥</span>
+                                                <span class="furgan-Price-amount amount" th:text="${product.payMoney}">总价</span>
+                                            </strong>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -399,14 +408,14 @@
                                         <th>小计</th>
                                         <td>
                                             <span class="furgan-Price-currencySymbol">￥</span>
-                                            <span class="furgan-Price-amount amount" th:text="${amount}">小计</span>
+                                            <span class="furgan-Price-amount amount" th:text="${amount2}">小计</span>
                                         </td>
                                     </tr>
                                     <tr class="order-total">
                                         <th>总计</th>
                                         <td><strong>
                                             <span class="furgan-Price-currencySymbol">￥</span>
-                                            <span class="furgan-Price-amount amount" th:text="${amount}">总计</span>
+                                            <span class="furgan-Price-amount amount" th:text="${amount3}">总计</span>
                                         </strong>
                                         </td>
                                     </tr>
@@ -415,6 +424,8 @@
                                 <ul style="display: none;">
                                     <li th:each="product:${productsCheckout}">
                                         <input type="text" id="productIdList" name="productIdList" th:value="${product.productId}">
+                                        <input type="text" name="input_productNumber" th:value="${product.productNumber}">
+                                        <input type="text" name="input_payMoney" th:value="${product.payMoney}">
                                     </li>
                                 </ul>
                                 <input type="hidden" name="lang" value="en">
@@ -506,9 +517,9 @@
                                             </div>
                                         </div>
                                         <button type="submit" class="button alt" name="furgan_checkout_place_order"
-                                                id="place_order" value="Place order" data-value="Place order" onclick="">立即下单
+                                                id="place_order 1" value="Place order" data-value="Place order" onclick="noProduct()">暂无结算商品
                                         </button>
-                                        <input type="hidden" id="furgan-process-checkout-nonce"
+                                        <input type="hidden" id="furgan-process-checkout-nonce 1"
                                                name="furgan-process-checkout-nonce" value="634590c981"><input
                                             type="hidden" name="_wp_http_referer"
                                             value="/furgan/?furgan-ajax=update_order_review">
@@ -531,7 +542,8 @@
                                             </div>
                                         </div>
                                         <button type="submit" class="button alt" name="furgan_checkout_place_order"
-                                                id="place_order" value="Place order" data-value="Place order">立即下单
+                                                id="place_order" value="Place order" data-value="Place order"
+                                                style="cursor: pointer;">立即下单
                                         </button>
                                         <input type="hidden" id="furgan-process-checkout-nonce"
                                                name="furgan-process-checkout-nonce" value="634590c981"><input

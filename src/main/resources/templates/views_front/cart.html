@@ -116,33 +116,50 @@
                                 </tbody>
                             </table>
                         </form>
-                        <div class="cart-collaterals">
-                            <div class="cart_totals ">
-                                <h2>购物车总价</h2>
-                                <table class="shop_table shop_table_responsive" cellspacing="0">
-                                    <tbody>
-                                    <tr class="cart-subtotal">
-                                        <th>小计</th>
-                                        <td data-title="Subtotal">
-                                            <span class="furgan-Price-currencySymbol">￥</span>
-                                            <span class="furgan-Price-amount amount2" th:text="${amount}">0.00</span></td>
-                                    </tr>
-                                    <tr class="order-total">
-                                        <th>总计</th>
-                                        <td data-title="Total"><strong>
-                                            <span class="furgan-Price-currencySymbol">￥</span>
-                                            <span class="furgan-Price-amount amount3" th:text="${amount}">0.00</span></strong>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                                <div class="furgan-proceed-to-checkout">
-                                    <a th:href="@{/checkout.html}"
-                                       class="checkout-button button alt furgan-forward">
-                                        去结算</a>
+                        <form name="goTocheckout" method="post" th:action="@{/checkout.html}"
+                        class="form_goTocheckout">
+                            <!--需要form提交的↓-->
+                            <div style="display: none;">
+                                <ul>
+                                    <li th:each="pro:${cardProductsList}">
+                                        <input type="text" name="input_productId" th:value="${pro.productId}">
+                                        <input type="text" name="input_productNumber" value="" class="input_productNumber">
+                                        <input type="text" name="input_payMoney" value="" class="input_payMoney">
+                                    </li>
+                                </ul>
+                                <input type="text" value="" name="input_amount2" class="input_amount2" id="input_amount2"><!--小计-->
+                                <input type="text" value="" name="input_amount3" class="input_amount3" id="input_amount3"><!--总计-->
+                            </div>
+
+                            <!--需要form提交的↑-->
+                            <div class="cart-collaterals">
+                                <div class="cart_totals ">
+                                    <h2>购物车总价</h2>
+                                    <table class="shop_table shop_table_responsive" cellspacing="0">
+                                        <tbody>
+                                        <tr class="cart-subtotal">
+                                            <th>小计</th>
+                                            <td data-title="Subtotal">
+                                                <span class="furgan-Price-currencySymbol">￥</span>
+                                                <span class="furgan-Price-amount amount2" th:text="${amount}">0.00</span></td>
+                                        </tr>
+                                        <tr class="order-total">
+                                            <th>总计</th>
+                                            <td data-title="Total"><strong>
+                                                <span class="furgan-Price-currencySymbol">￥</span>
+                                                <span class="furgan-Price-amount amount3" th:text="${amount}">0.00</span></strong>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="furgan-proceed-to-checkout" style="width: 100%;">
+                                        <button class="checkout-button button alt furgan-forward"
+                                                style="width: 100%;cursor: pointer" type="submit">
+                                            去结算</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                         <div class="col-md-12 col-sm-12 dreaming_crosssell-product">
                             <div class="block-title">
                                 <h2 class="product-grid-title">
@@ -343,10 +360,12 @@
         var amount1=document.getElementsByClassName("furgan-Price-amount amount1"); //总价
         var amount2=document.getElementsByClassName("furgan-Price-amount amount2");  //小计
         var amount3=document.getElementsByClassName("furgan-Price-amount amount3");  //总计
+        var productNumber=document.getElementsByClassName("input_productNumber");
+        var payMoney=document.getElementsByClassName("input_payMoney");
         var amount = 0.00;
         for(var i = 0; i < aLi.length; i++)
         {
-            var a = function(k)
+            var a = function(k)//闭包
             {
                 aLi[k].onclick = function()//用于测试 各标签数据获取
                 {
@@ -362,39 +381,57 @@
                     //alert("num："+num+","+"price1："+price1)
                     //alert(parseInt($(inputQty[k]).attr('value')));
                 }
+
                 var Aprice=parseFloat($(amount1[k]).text());
+                var num1 = parseInt($(inputQty[k]).val());
+                $(productNumber[k]).attr('value',num1);
+                $(payMoney[k]).attr('value',Aprice);
+                /*alert("productNumber["+k+"]："+parseInt($(productNumber[k]).val())
+                    +"，payMoney["+k+"]："+parseFloat($(payMoney[k]).val()));*/
                 //alert(Aprice);
                 amount=amount+Aprice;
                 $(amount2).html(amount.toFixed(2));
                 $(amount3).html(amount.toFixed(2));
+                $('#input_amount2').attr('value',amount.toFixed(2));//小计
+                $('#input_amount3').attr('value',amount.toFixed(2));//总计
+
+
                 //加号
                 $(plus[k]).click(function () {
                     var price1=parseFloat($(price[k]).text());
-                    var num = parseInt($(inputQty[k]).val());
+                    var num2 = parseInt($(inputQty[k]).val());
                     //alert("一："+num);
-                    num++;
+                    num2++;
                     //alert("二："+num);
-                    $(inputQty[k]).attr('value',num);
-                    console.log(num);
-                    var amountPlus = num * price1;
+                    $(inputQty[k]).attr('value',num2);
+                    console.log(num2);
+                    var amountPlus = num2 * price1;
                     amount=amount+price1;
                     $(amount1[k]).html(amountPlus.toFixed(2));
                     $(amount2).html(amount.toFixed(2));
                     $(amount3).html(amount.toFixed(2));
+                    $(productNumber[k]).attr('value',num2);//商品数量
+                    $(payMoney[k]).attr('value',amountPlus);//商品总价
+                    $('#input_amount2').attr('value',amount.toFixed(2));//小计
+                    $('#input_amount3').attr('value',amount.toFixed(2));//总计
                 });
                 //减号
                 $(minus[k]).click(function () {
                     var price1=parseFloat($(price[k]).text());
-                    var num = parseInt($(inputQty[k]).val());
-                    if (num>1){
-                        num--;
-                        $(inputQty[k]).attr('value',num);
-                        console.log(num);
-                        var amountMinus=num*price1;
+                    var num3 = parseInt($(inputQty[k]).val());
+                    if (num3>1){
+                        num3--;
+                        $(inputQty[k]).attr('value',num3);
+                        console.log(num3);
+                        var amountMinus=num3 *price1;
                         amount=amount-price1;
                         $(amount1[k]).html(amountMinus.toFixed(2));
                         $(amount2).html(amount.toFixed(2));
                         $(amount3).html(amount.toFixed(2));
+                        $(productNumber[k]).attr('value',num3);//商品数量
+                        $(payMoney[k]).attr('value',amountMinus);//商品总价
+                        $('#input_amount2').attr('value',amount.toFixed(2));//小计
+                        $('#input_amount3').attr('value',amount.toFixed(2));//总计
                     }
                 });
 

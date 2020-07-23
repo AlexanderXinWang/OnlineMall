@@ -115,6 +115,10 @@ public class OrderController {
         String remarks=String.valueOf(request.getParameter("order_comments"));
         //获取结算商品id数组
         String[] productIds=request.getParameterValues("productIdList");
+        //获取商品数量
+        String[] productNumber=request.getParameterValues("input_productNumber");
+        //获取商品总价(实付款)
+        String[] payMoney=request.getParameterValues("input_payMoney");
         //初始化商品id
         Integer productId = 0;
         //拼接成地址
@@ -128,7 +132,7 @@ public class OrderController {
         //商品数量
         int number = 1; //（暂时默认为1）
         //商品实付款
-        Double payMoney=0.00;
+        Double Money=0.00;
         //下单时间
         Date date=new Date();
         //订单列表
@@ -148,14 +152,15 @@ public class OrderController {
             for(Object products : cartProducts){
                 Product product=(Product)products;
                 if (productId==product.getProductId()){
-                    payMoney=number*product.getPrice();
+                    number=Integer.valueOf(productNumber[i]);
+                    Money=Double.parseDouble(payMoney[i]);
                 }
             }
             Order order=new Order();
             order.setUserId(userId);  //下单用户
             order.setProductId(productId);  //下单商品id
             order.setOrderNumber(number);  //商品数量
-            order.setPayMoney(payMoney);  //实付款
+            order.setPayMoney(Money);  //实付款
             order.setCreateTime(date);  //下单时间
             order.setPayStatus((byte)5);  //订单状态，下单后默认为5（已付款）
             order.setIsDelete((byte)3);  //逻辑删除，默认为3（未删除）
@@ -181,6 +186,7 @@ public class OrderController {
         }
         //逻辑删除后，更新session中的缓存
         session.setAttribute("cartProducts",cartListByUserId);
+        modelMap.addAttribute("headerCartProductList",cartListByUserId);
         modelMap.addAttribute("cartCount",cartCount);
         return "views_front/checkout";
     }

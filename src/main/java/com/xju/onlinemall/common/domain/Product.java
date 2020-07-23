@@ -1,8 +1,10 @@
 package com.xju.onlinemall.common.domain;
 
+import com.xju.onlinemall.common.domain.extend.ProductExtend;
+
 import java.util.Date;
 
-public class Product {
+public class Product extends ProductExtend {
     private Integer productId;
 
     private Integer categoryId;

@@ -5855,7 +5855,6 @@ body.admin-bar #yith-quick-view-modal {
 }
 .product-name {
 	font-size: 16px;
-	font-weight: 600;
 	margin-top: 0;
 	margin-bottom: 6px;
 }
@@ -8690,6 +8689,11 @@ body.furgan-cart .shop_table tr th.product-subtotal {
 }
 .furgan-proceed-to-checkout .checkout-button:hover {
 	background-color: #9cc25d;
+}
+.furgan-proceed-to-checkout .checkout-button:active {
+	background-color: #7EA736;
+	box-shadow: 0 2px #7EA736;
+	transform: translateY(2px);
 }
 body.furgan-cart .no-sidebar .furgan-cart-form {
 	float: left;

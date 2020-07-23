@@ -34,7 +34,6 @@ public class OrderServiceImpl implements OrderService {
              * 把该订单的商品写入该订单对象的商品列表
              * */
             order.setProduct(product);
-            order.setProduct(product);
             //获取订单状态标记
             Byte status_num =order.getPayStatus();
             //获得订单对应状态

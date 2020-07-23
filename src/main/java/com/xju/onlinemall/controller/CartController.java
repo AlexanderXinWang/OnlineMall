@@ -1,5 +1,6 @@
 package com.xju.onlinemall.controller;
 
+import com.sun.deploy.panel.ITreeNode;
 import com.xju.onlinemall.common.domain.Product;
 import com.xju.onlinemall.common.domain.User;
 import com.xju.onlinemall.common.utils.Result;
@@ -180,10 +181,44 @@ public class CartController {
     }
 
     /**
-     * 跳转结算页面，向结算页面传递结算商品信息
+     * 跳转结算页面，向结算页面传递结算商品信息，
      * */
     @RequestMapping("/checkout.html")
-    public String checkout(HttpSession session, ModelMap modelMap){
+    public String checkout(HttpSession session, HttpServletRequest request,ModelMap modelMap){
+        String[] productIds=request.getParameterValues("input_productId");
+        String[] productNumber=request.getParameterValues("input_productNumber");
+        String[] payMoney=request.getParameterValues("input_payMoney");
+        String input_amount2=request.getParameter("input_amount2");
+        String input_amount3=request.getParameter("input_amount3");
+        //从session中获取当前登录用户购物车商品内的商品
+        List<Product> cartProducts=new ArrayList<Product>();
+        if (session.getAttribute("cartProducts")!=null){
+            cartProducts = (List<Product>)session.getAttribute("cartProducts");
+            for(Object products : cartProducts){
+                Product product=(Product)products;
+                for (int i =0;i<productIds.length;i++){
+                    Integer pId=Integer.valueOf(productIds[i]);
+                    if (product.getProductId()==pId){
+                        product.setProductNumber(Integer.valueOf(productNumber[i]));
+                        product.setPayMoney(Double.parseDouble(payMoney[i]));
+                    }
+                }
+
+            }
+        }
+        Double amount2=Double.parseDouble(input_amount2);
+        Double amount3=Double.parseDouble(input_amount3);
+        modelMap.addAttribute("productsCheckout",cartProducts);
+        modelMap.addAttribute("amount2",amount2);
+        modelMap.addAttribute("amount3",amount3);
+        return "views_front/checkout";
+    }
+
+    /**
+     * 从header结算按钮跳转结算页面，向结算页面传递结算商品信息，
+     * */
+    @RequestMapping("/headerCheckout.html")
+    public String headerCheckout(HttpSession session, HttpServletRequest request,ModelMap modelMap){
         //从session中获取当前登录用户购物车商品内的商品
         List<Product> cartProducts=new ArrayList<Product>();
         Double amount=0.00; //结算商品总金额
@@ -191,12 +226,15 @@ public class CartController {
             cartProducts = (List<Product>)session.getAttribute("cartProducts");
             for(Object products : cartProducts){
                 Product product=(Product)products;
+                product.setPayMoney(product.getPrice());
+                product.setProductNumber(1);
                 amount=amount+product.getPrice();
             }
         }
 
         modelMap.addAttribute("productsCheckout",cartProducts);
-        modelMap.addAttribute("amount",amount);
+        modelMap.addAttribute("amount2",amount);
+        modelMap.addAttribute("amount3",amount);
         return "views_front/checkout";
     }
 
