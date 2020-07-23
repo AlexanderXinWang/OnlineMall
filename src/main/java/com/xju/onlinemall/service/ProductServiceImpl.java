@@ -142,6 +142,26 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
+    public PageInfo<Product> getByCategoryAndRate(int pageNo, int pageSize, int cid) {
+        return null;
+    }
+
+    @Override
+    public PageInfo<Product> getByCategoryAndTime(int pageNo, int pageSize, int cid) {
+        return null;
+    }
+
+    @Override
+    public PageInfo<Product> getByCategoryAndPriceASC(int pageNo, int pageSize, int cid) {
+        return null;
+    }
+
+    @Override
+    public PageInfo<Product> getByCategoryAndPriceDESC(int pageNo, int pageSize, int cid) {
+        return null;
+    }
+
+    @Override
     public int removeProudctsByProductIds(Integer... productIds) {
        int count=0;
 

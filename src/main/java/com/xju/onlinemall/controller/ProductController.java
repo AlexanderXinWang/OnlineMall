@@ -35,12 +35,38 @@ public class ProductController {
      * */
     @RequestMapping("/product.html")
     public String commodity(HttpSession session, Model model,
+                            @RequestParam(defaultValue = "0") int condition,
                             @RequestParam(defaultValue = "1") int pageNo,
                             @RequestParam(defaultValue = "12") int pageSize){
         //分页
         PageInfo<Product> pageInfo=null;
-        //获取分页信息与商品列表
-        pageInfo = productService.getAllProducts(pageNo, pageSize);
+        /**
+         * 0-默认
+         * 1-按评分排序
+         * 2-按上架时间排序
+         * 3-从低到高价格排序
+         * 4-从高到低价格排序
+         */
+        switch (condition) {
+            default:
+                //获取分页信息与商品列表
+                pageInfo = productService.getAllProducts(pageNo, pageSize);
+                break;
+            case 1:
+                //TO-DO
+                pageInfo = productService.getAllProductsByRate(pageNo,pageSize);
+                System.out.println("TO-DO");
+                break;
+            case 2:
+                pageInfo = productService.getAllProductsByTime(pageNo,pageSize);
+                break;
+            case 3:
+                pageInfo = productService.getAllProductsByPriceASC(pageNo,pageSize);
+                break;
+            case 4:
+                pageInfo = productService.getAllProductsByPriceDESC(pageNo,pageSize);
+                break;
+        }
 
         if (pageInfo.getList()==null) {
             System.out.println("当前数据库中无商品！");
@@ -53,8 +79,8 @@ public class ProductController {
             model.addAttribute("pageInfo", pageInfo);
             //将所有商品列表传入页面
             model.addAttribute("productList",productList);
-            //设置页面默认筛选方式
-            model.addAttribute("condition",0);
+            //设置页面筛选方式
+            model.addAttribute("condition",condition);
             System.out.println("此页商品数"+productList.size());
         }
 
@@ -66,13 +92,15 @@ public class ProductController {
      * */
     @RequestMapping("/product-list.html")
     public String productList(Model model,HttpServletRequest request,ModelMap modelMap,
+                              @RequestParam(defaultValue = "5") int cid,
+                              @RequestParam(defaultValue = "0") int condition,
                               @RequestParam(defaultValue = "1") int pageNo,
                               @RequestParam(defaultValue = "5") int pageSize){
         //分页
         PageInfo<Product> pageInfo;
 
         //若为正常访问list页面（未分类）
-        if(request.getParameter("cid")==null){
+        if(cid==5){
             /*if(min!=null&&max!=null){
                 Double minPrice = Double.parseDouble(min);
                 Double maxPrice = Double.parseDouble(max);
@@ -82,16 +110,65 @@ public class ProductController {
                 modelMap.addAttribute("max",maxPrice);
                 modelMap.put("success", true);
             }else{*/
-
-            //获取分页信息与商品列表
-            pageInfo = productService.getAllProducts(pageNo, pageSize);
+            System.out.println(pageSize);
+            /**
+             * 0-默认
+             * 1-按评分排序
+             * 2-按上架时间排序
+             * 3-从低到高价格排序
+             * 4-从高到低价格排序
+             */
+            switch (condition) {
+                default:
+                    //获取分页信息与商品列表
+                    pageInfo = productService.getAllProducts(pageNo, pageSize);
+                    break;
+                case 1:
+                    //TO-DO
+                    pageInfo = productService.getAllProductsByRate(pageNo,pageSize);
+                    System.out.println("TO-DO");
+                case 2:
+                    pageInfo = productService.getAllProductsByTime(pageNo,pageSize);
+                    break;
+                case 3:
+                    pageInfo = productService.getAllProductsByPriceASC(pageNo,pageSize);
+                    break;
+                case 4:
+                    pageInfo = productService.getAllProductsByPriceDESC(pageNo,pageSize);
+                    break;
+            }
         }
 
-        //通过header分类跳转，携带cid（商品类别）
+        /**
+         * 通过header分类跳转或页面筛选，携带cid（商品类别）
+         * 1-数码
+         * 2-家具电器
+         * 3-食品
+         * 4-服饰
+         * 5-全部分类
+         */
         else{
-            Integer categoryId = Integer.parseInt(request.getParameter("cid"));
-            model.addAttribute("cid",categoryId);
-            pageInfo = productService.getByCategory(pageNo, pageSize,categoryId);
+            switch (condition) {
+                default:
+                    //获取分页信息与商品列表
+                    pageInfo = productService.getByCategory(pageNo,pageSize,cid);
+                    break;
+                case 1:
+                    //TO-DO
+                    pageInfo = productService.getByCategoryAndRate(pageNo,pageSize,cid);
+                    System.out.println("TO-DO");
+                case 2:
+                    pageInfo = productService.getByCategoryAndTime(pageNo,pageSize,cid);
+                    break;
+                case 3:
+                    pageInfo = productService.getByCategoryAndPriceASC(pageNo,pageSize,cid);
+                    System.out.println("TO-DO");
+                    break;
+                case 4:
+                    pageInfo = productService.getByCategoryAndPriceDESC(pageNo,pageSize,cid);
+                    System.out.println("TO-DO");
+                    break;
+            }
         }
 
         if (pageInfo.getList()==null) {
@@ -104,17 +181,20 @@ public class ProductController {
             model.addAttribute("pageInfo", pageInfo);
             //将所有商品列表传入页面
             model.addAttribute("productList",productList);
-            //设置页面默认筛选方式
-            model.addAttribute("condition",0);
+            //设置页面筛选方式
+            model.addAttribute("condition",condition);
+            model.addAttribute("cid",cid);
+
+            System.out.println(pageInfo);
             System.out.println("此页商品数"+productList.size());
         }
         return "views_front/product-list";
     }
 
     /**
-     *
+     *合并至————>/product.html
      */
-    @RequestMapping("/productFilter")
+    /*@RequestMapping("/productFilter")
     public String productFilterByPageSize(Model model, HttpServletRequest request,
                                         @RequestParam(defaultValue = "0") int condition,
                                         @RequestParam(defaultValue = "1") int pageNo,
@@ -124,13 +204,13 @@ public class ProductController {
         //若只传条件筛选（即没有设置每页显示多少件商品）
         if (request.getParameter("pageSize")==null) {
             //根据req的值判断按照什么条件筛选
-            /**
+            *//**
              * 0-默认
              * 1-按评分排序
              * 2-按上架时间排序
              * 3-从低到高价格排序
              * 4-从高到低价格排序
-             */
+             *//*
 //            condition = Integer.parseInt(request.getParameter("condition"));
             switch (condition) {
                 default:
@@ -175,9 +255,12 @@ public class ProductController {
             System.out.println("此页商品数"+productList.size());
         }
         return "views_front/product";
-    }
+    }*/
 
-    @RequestMapping("/product-listFilter")
+    /**
+     *合并至————>/product-list.html
+     */
+    /*@RequestMapping("/product-listFilter")
     public String productListFilterByPageSize(Model model, HttpServletRequest request,
                                         @RequestParam(defaultValue = "0") int condition,
                                         @RequestParam(defaultValue = "1") int pageNo,
@@ -187,13 +270,13 @@ public class ProductController {
         //若只传条件筛选（即没有设置每页显示多少件商品）
         if (request.getParameter("pageSize")==null) {
             //根据req的值判断按照什么条件筛选
-            /**
+            *//**
              * 0-默认
              * 1-按评分排序
              * 2-按上架时间排序
              * 3-从低到高价格排序
              * 4-从高到低价格排序
-             */
+             *//*
 //            condition = Integer.parseInt(request.getParameter("condition"));
             switch (condition) {
                 default:
@@ -236,5 +319,5 @@ public class ProductController {
             System.out.println("此页商品数"+productList.size());
         }
         return "views_front/product-list";
-    }
+    }*/
 }
