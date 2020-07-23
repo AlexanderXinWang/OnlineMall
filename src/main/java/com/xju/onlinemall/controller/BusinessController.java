@@ -78,6 +78,22 @@ public class BusinessController {
      * 以JSON的数据格式传输到前端
      *
      * */
+    @RequestMapping("/list/searchCategorys")
+    @ResponseBody
+    public Object searchCategorys(Category category,@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize, Integer pmId){
+//        User adminUser =(User) session.getAttribute("adminUser");
+        PageInfo<Category> pageInfo=null;
+        pageInfo = categoryService.getAllCategorysBySerchInfo(pageNo, pageSize,category);
+        //返回结果
+        return Result.success(pageInfo);
+    }
+
+    /**
+     *
+     * 获得对应商户的商品列表信息
+     * 以JSON的数据格式传输到前端
+     *
+     * */
     @RequestMapping("/list/categorys")
     @ResponseBody
     public Object categorytList(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize, Integer pmId){

@@ -19,4 +19,10 @@ public interface CategoryService {
     Category selectByCategoryId(Integer categoryId);
 
     int updateCategory(Category category);
+     /**
+     *
+     * 根据搜索信息获取分类列表
+     *
+     * */
+    PageInfo<Category> getAllCategorysBySerchInfo(int pageNo, int pageSize, Category category);
 }

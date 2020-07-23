@@ -85,4 +85,27 @@ public class CategoryServiceImpl implements CategoryService{
     public int updateCategory(Category category) {
         return categoryMapper.updateByPrimaryKeySelective(category);
     }
+
+    @Override
+    public PageInfo<Category> getAllCategorysBySerchInfo(int pageNo, int pageSize, Category category) {
+        //分页查询
+        PageHelper.startPage(pageNo,pageSize);
+        CategoryExample categoryExample = new CategoryExample();
+        CategoryExample.Criteria criteria = categoryExample.createCriteria();
+        if (category.getCategoryId()!=null){
+            //如果用户填了分类id，则添加该条件
+            criteria.andCategoryIdEqualTo(category.getCategoryId());
+        }
+        if (category.getCategoryName()!=null){
+            //如果用户填了分类id，则添加该条件, 进行模糊查询
+            criteria.andCategoryNameLike("%"+category.getCategoryName()+"%");
+        }
+
+        List<Category> list = categoryMapper.selectByExample(categoryExample);
+
+        //得到分页器
+        PageInfo<Category> PageInfo = new PageInfo<>(list);
+
+        return PageInfo;
+    }
 }

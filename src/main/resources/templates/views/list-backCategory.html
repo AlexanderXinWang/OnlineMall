@@ -20,13 +20,13 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">商品分类id</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="cid" placeholder="请输入" autocomplete="off" class="layui-input">
+                        <input type="text" name="categoryId" lay-verify="number" placeholder="请输入分类id" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">分类名称</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="username" placeholder="请输入" autocomplete="off" class="layui-input">
+                        <input type="text" name="categoryName" placeholder="请输入商品名称" autocomplete="off" class="layui-input">
                     </div>
                 </div>
 <!--                <div class="layui-inline">-->
@@ -78,7 +78,7 @@
         table.render({
             elem: '#mytable'
             ,method:"get"
-            ,url: '/list/categorys'
+            ,url: '/list/searchCategorys'
 
             ,page: true
             ,cols: [     [
@@ -86,7 +86,7 @@
                 ,{field: 'categoryId', title: '商品分类id',sort: true}
                 ,{field: 'categoryName', title: '商品分类名称'}
                 ,{field: 'isDelete', title: '删除状态'}
-                ,{fixed: 'right', title: '备注',  align:'center', toolbar: '#toolbar-Mytable',width:180}
+                ,{fixed: 'right', title: '操作',  align:'center', toolbar: '#toolbar-Mytable',width:180}
 
             ]   ]
             ,parseData: function(res){ //res 即为原始返回的数据
@@ -166,14 +166,14 @@
 
 
         //监听搜索
-       /* form.on('submit(LAY-app-contcomm-search)', function(data){
+        form.on('submit(LAY-app-contcomm-search)', function(data){
             var field = data.field;
-
+            // alert(JSON.stringify(field))
             //执行重载
-            table.reload('LAY-app-content-comm', {
+            table.reload('mytable', {
                 where: field
             });
-        });*/
+        });
 
       //点击 批量删除 事件
         var active = {
