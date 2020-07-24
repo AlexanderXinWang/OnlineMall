@@ -23,17 +23,11 @@ public class OutputOrderServiceImpl implements OutputOrderService{
     @Override
     public PageInfo<OutputOder> getAllOutputOrders(int pageNo, int pageSize, Integer userId) {
         PageHelper.startPage(pageNo,pageSize);
-//        List<OutputOder> list = outputOderMapper.selectOutputOrdersByUserId(userId);
-//        //ArrayList list = outputOderMapper.selectOutputOrdersByUserId(userId);
-//        System.out.println(list);
-
         ProductManageExample productManageExample = new ProductManageExample();
         productManageExample.createCriteria().andUserIdEqualTo(userId);
-
         OutputOderExample outputOderExample = new OutputOderExample();
         outputOderExample.createCriteria().andPmIdEqualTo(productManageMapper.selectByExample(productManageExample).get(0).getPmId());
         List<OutputOder> outputOderList = outputOderMapper.selectByExample(outputOderExample);
-//        System.out.println(outputOderList);
         for (OutputOder outputOder:outputOderList){
             //获得该订单的商品id
             int productId=outputOder.getProductId();
@@ -42,12 +36,16 @@ public class OutputOrderServiceImpl implements OutputOrderService{
             product.setSeller(productMapper.selectSellerByProductId(productId));
             outputOder.setProductName(product.getProductName());
             outputOder.setProduct(product);
-//            System.out.println(outputOder.getProduct());
         }
-//        System.out.println(outputOderList);
-
         PageInfo<OutputOder> PageInfo = new PageInfo<>(outputOderList);
-//        System.out.println(PageInfo);
         return PageInfo;
+    }
+
+    @Override
+    public OutputOder selectOneOutputOrderByOutId(Integer outId) {
+        OutputOder outputOder = outputOderMapper.selectByPrimaryKey(outId);
+        outputOder.setProductName(productMapper.selectByPrimaryKey(outputOder.getProductId()).getProductName());
+        outputOder.setProduct(productMapper.selectByPrimaryKey(outputOder.getProductId()));
+        return outputOder;
     }
 }

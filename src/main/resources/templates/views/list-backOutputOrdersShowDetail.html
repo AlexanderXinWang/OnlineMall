@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="utf-8">
+    <title>添加出货单</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all" th:href="@{/layuiadmin/layui/css/layui.css}" >
+    <link rel="stylesheet"  href="../../../layuiadmin/style/admin.css" media="all" th:href="@{/layuiadmin/style/admin.css}" >
+</head>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body" style="padding: 15px;">
+            <form class="layui-form" action="" lay-filter="form1" style="margin-right: 35px">
+                <div class="layui-form-item" style="margin-top: 60px">
+                    <label class="layui-form-label">出货单ID</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="outId" lay-verify="outId" disabled autocomplete="off" class="layui-input" th:value="${outputOder.outId}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">出货单号</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="outNumber" lay-verify="outNumber" disabled autocomplete="off" class="layui-input" th:value="${outputOder.outNumber}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">商品名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="productName" lay-verify="productName" disabled autocomplete="off" placeholder="商品名称" class="layui-input" th:value="${outputOder.productName}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">出货时间</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="outDate" lay-verify="outDate" disabled autocomplete="off" placeholder="出货时间" class="layui-input" th:value="${outputOder.outDate}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">出货状态</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="outStatus" lay-verify="outStatus" disabled autocomplete="off" placeholder="6是为未发货7是已发货" class="layui-input" th:value="${outputOder.outStatus}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">删除状态</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="outIsDelete" lay-verify="outIsDelete" autocomplete="off" disabled placeholder="3是为删除4是已删除" class="layui-input" th:value="${outputOder.outIsDelete}">
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-layout-admin">
+                    <div class="layui-input-block">
+                        <div class="layui-footer" style="left: 0;">
+                            <button class="layui-btn" lay-submit="" lay-filter="layer_showCategory_submit">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="../../../layuiadmin/layui/layui.js" th:src="@{/layuiadmin/layui/layui.js}"></script>
+<script>
+    layui.config({
+        base:'/layuiadmin/'
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'laydate'], function(){
+        var $ = layui.$
+            ,admin = layui.admin
+            ,element = layui.element
+            ,layer = layui.layer
+            ,laydate = layui.laydate
+            ,form = layui.form;
+        form.render(null, 'form1');
+        /* 监听提交 */
+        form.on('submit(layer_showCategory_submit)', function(data){
+            var layer = parent.layer;
+            layer.closeAll();
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

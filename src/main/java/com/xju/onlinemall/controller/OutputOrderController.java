@@ -8,6 +8,7 @@ import com.xju.onlinemall.service.OutputOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -34,13 +35,17 @@ public class OutputOrderController {
     public Object categorytList(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize, Integer pmId, HttpSession session){
         User adminUser =(User) session.getAttribute("adminUser");
         PageInfo<OutputOder> pageInfo=null;
-//        System.out.println(adminUser.getUserId());
         pageInfo = outputOrderService.getAllOutputOrders(pageNo, pageSize, adminUser.getUserId());
-//        System.out.println(pageInfo);
         return Result.success(pageInfo);
     }
 
-//    SELECT out_id,out_number,product_name,out_status,out_date FROM tb_output_order,tb_product WHERE tb_output_order.`pm_id` = (SELECT pm_id FROM tb_product_manage WHERE tb_product_manage.`user_id` = 2) AND tb_product.`product_id` = tb_output_order.`product_id`;
-
+    @GetMapping("/list/showOutputOrderDetail")
+    public String showCategoryDetail(ModelMap modelMap,Integer outId){
+        //根据Id查询该商品
+        OutputOder outputOder= outputOrderService.selectOneOutputOrderByOutId(outId);
+        //把商品放入其中进行显示
+        modelMap.put("outputOder",outputOder);
+        return "views/list-backOutputOrdersShowDetail";
+    }
 
 }
