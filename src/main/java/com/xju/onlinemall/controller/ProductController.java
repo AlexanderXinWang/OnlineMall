@@ -92,6 +92,8 @@ public class ProductController {
      * */
     @RequestMapping("/product-list.html")
     public String productList(Model model,HttpServletRequest request,ModelMap modelMap,
+                              @RequestParam(defaultValue = "0") double min,
+                              @RequestParam(defaultValue = "9999") double max,
                               @RequestParam(defaultValue = "5") int cid,
                               @RequestParam(defaultValue = "0") int condition,
                               @RequestParam(defaultValue = "1") int pageNo,
@@ -121,20 +123,21 @@ public class ProductController {
             switch (condition) {
                 default:
                     //获取分页信息与商品列表
-                    pageInfo = productService.getAllProducts(pageNo, pageSize);
+                    pageInfo = productService.getProductsByPriceRange(pageNo, pageSize,min, max);
                     break;
                 case 1:
                     //TO-DO
-                    pageInfo = productService.getAllProductsByRate(pageNo,pageSize);
+                    pageInfo = productService.getProductsByPriceRangeAndRate(pageNo,pageSize,min,max);
                     System.out.println("TO-DO");
+                    break;
                 case 2:
-                    pageInfo = productService.getAllProductsByTime(pageNo,pageSize);
+                    pageInfo = productService.getProductsByPriceRangeAndTime(pageNo,pageSize,min,max);
                     break;
                 case 3:
-                    pageInfo = productService.getAllProductsByPriceASC(pageNo,pageSize);
+                    pageInfo = productService.getProductsByPriceRangeAndPriceASC(pageNo,pageSize,min,max);
                     break;
                 case 4:
-                    pageInfo = productService.getAllProductsByPriceDESC(pageNo,pageSize);
+                    pageInfo = productService.getProductsByPriceRangeAndPriceDESC(pageNo,pageSize,min,max);
                     break;
             }
         }
@@ -151,22 +154,20 @@ public class ProductController {
             switch (condition) {
                 default:
                     //获取分页信息与商品列表
-                    pageInfo = productService.getByCategory(pageNo,pageSize,cid);
+                    pageInfo = productService.getProductsByCategoryAndPriceRange(pageNo,pageSize,cid,min,max);
                     break;
                 case 1:
-                    //TO-DO
-                    pageInfo = productService.getByCategoryAndRate(pageNo,pageSize,cid);
                     System.out.println("TO-DO");
+                    pageInfo = productService.getProductsByCategoryAndPriceRangeAndRate(pageNo,pageSize,cid,min,max);
+                    break;
                 case 2:
-                    pageInfo = productService.getByCategoryAndTime(pageNo,pageSize,cid);
+                    pageInfo = productService.getProductsByCategoryAndPriceRangeAndTime(pageNo,pageSize,cid,min,max);
                     break;
                 case 3:
-                    pageInfo = productService.getByCategoryAndPriceASC(pageNo,pageSize,cid);
-                    System.out.println("TO-DO");
+                    pageInfo = productService.getProductsByCategoryAndPriceRangeAndPriceASC(pageNo,pageSize,cid,min,max);
                     break;
                 case 4:
-                    pageInfo = productService.getByCategoryAndPriceDESC(pageNo,pageSize,cid);
-                    System.out.println("TO-DO");
+                    pageInfo = productService.getProductsByCategoryAndPriceRangeAndPriceDESC(pageNo,pageSize,cid,min,max);
                     break;
             }
         }
@@ -184,11 +185,30 @@ public class ProductController {
             //设置页面筛选方式
             model.addAttribute("condition",condition);
             model.addAttribute("cid",cid);
+            //将价格区间上下限注入页面
+            model.addAttribute("min",min);
+            model.addAttribute("max",max);
 
             System.out.println(pageInfo);
             System.out.println("此页商品数"+productList.size());
         }
         return "views_front/product-list";
+    }
+
+
+    /**
+     *     处理价格区间筛选请求
+     */
+    @RequestMapping("/priceRangeFilter")
+    @ResponseBody
+    public Object priceRangeFilter(Model model,HttpServletRequest request,
+                                   @Param("min") int min,@Param("max") int max) {
+        String url = request.getRequestURI();
+        System.out.println(url);
+        url.replace(url,url+"?min="+min+"?max="+max);
+        model.addAttribute("success",true);
+        model.addAttribute("msg",url);
+        return model;
     }
 
     /**

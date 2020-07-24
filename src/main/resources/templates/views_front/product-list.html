@@ -217,29 +217,16 @@
                         </li>
                        </ul>
                 </div>
-                <div class="shop-control shop-after-control" th:switch="${cid==null}">
-                    <nav class="furgan-pagination" th:case="true">
-                        <span  th:each="pageNo:${#numbers.sequence(1,pageInfo.getPages())}">
-                            <a class="page-numbers current" href="#"  th:text="${pageNo}"
-                               th:href="@{'/product-list.html?pageNo='+${pageNo}+'&pageSize='+${pageInfo.getPageSize()}}">
-                            </a>
-                        </span>
-
-                        <a class="next page-numbers" href="#"
-                           th:href="@{'/product-list.html?pageNo='+${pageInfo.getNextPage()}+'&pageSize='+${pageInfo.getPageSize()}}">
-                            下一页
-                        </a>
-                    </nav>
-
-                    <nav class="furgan-pagination" th:case="false">
+                <div class="shop-control shop-after-control">
+                    <nav class="furgan-pagination">
                         <span th:each="pageNo:${#numbers.sequence(1,pageInfo.getPages())}">
                             <a class="page-numbers current" href="#"  th:text="${pageNo}"
-                               th:href="@{'/product-list.html?pageNo='+${pageNo}+'&pageSize='+${pageInfo.getPageSize()}+'&cid='+${cid}}">
+                               th:href="@{'/product-list.html?pageNo='+${pageNo}+'&pageSize='+${pageInfo.getPageSize()}+'&condition='+${condition}+'&cid='+${cid}}">
                             </a>
                         </span>
 
                         <a class="next page-numbers" href="#"
-                           th:href="@{'/product-list.html?pageNo='+${pageInfo.getNextPage()}+'&pageSize='+${pageInfo.getPageSize()}+'&cid='+${cid}}">
+                           th:href="@{'/product-list.html?pageNo='+${pageInfo.getNextPage()}+'&pageSize='+${pageInfo.getPageSize()}+'&condition='+${condition}+'&cid='+${cid}}">
                             下一页
                         </a>
                     </nav>
@@ -266,15 +253,17 @@
                             class="widgettitle">按价格筛选<span class="arrow"></span></h2>
                         <form method="post" action="#">
                             <div class="price_slider_wrapper">
-                                <div data-label-reasult="Range:" data-min="0" data-max="99999" data-unit="￥"
-                                     class="price_slider" data-value-min="0" data-value-max="99999">
+                                <div data-label-reasult="Range:" data-min="0" data-max="9999" data-unit="￥"
+                                     class="price_slider" data-value-min="0" data-value-max="9999">
                                 </div>
                                 <div class="price_slider_amount">
                                     <button id="buttonFilter" type="submit" class="button">筛选</button>
                                     <div class="price_label">
                                         价格:
                                         <!--<span class="from" th:case="true" th:text="${min}">￥0</span> — <span class="to" th:text="${max}">￥9999</span>-->
-                                        <span class="from">￥0</span> — <span class="to">￥9999</span>
+                                        <span class="from" th:text="${min}">0</span>
+                                        —
+                                        <span class="to" th:text="${max}">9999</span>
                                     </div>
                                 </div>
                             </div>
@@ -386,6 +375,7 @@
 
 <script>
     $(function () {
+        //价格筛选
         $("#buttonFilter").click(function () {
             var min=$(".from").val().trim();
             var max=$(".to").val().trim();
@@ -393,17 +383,18 @@
             alert(min+max);
             $.ajax({
                 type:"POST",
-                url:"/product-list.html",
+                url:"/priceRangeFilter",
                 dataType:"json",
                 data:{"min":min,"max":max},
                 success:function (data) {
                     if (data["success"]){
                         //返回值是learn/t1 相对于项目地址
                         //返回值是/learn/t1 相对于根地址 http://localhost:8080/learn/t1
-
+                        layer.msg("查询成功！跳转中···",{time:1700});
+                        window.location.href=data["msg"];
                     }
                     else{
-
+                        layer.msg("查询失败！请稍后再试。",{time:1600});
                     }
                 }
             })
