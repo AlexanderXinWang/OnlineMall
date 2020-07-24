@@ -1,8 +1,10 @@
 package com.xju.onlinemall.common.domain;
 
+import com.xju.onlinemall.common.domain.extend.OutputOderExtend;
+
 import java.util.Date;
 
-public class OutputOder {
+public class OutputOder extends OutputOderExtend {
     private Integer outId;
 
     private Integer pmId;
@@ -94,6 +96,7 @@ public class OutputOder {
                 ", outIsDelete=" + outIsDelete +
                 ", outKeepField='" + outKeepField + '\'' +
                 ", productId=" + productId +
+                ", product=" + product +
                 '}';
     }
 }

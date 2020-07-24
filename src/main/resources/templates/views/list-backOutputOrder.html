@@ -78,7 +78,7 @@
         table.render({
             elem: '#mytable'
             ,method:"get"
-            ,url: '/list/categorys'
+            ,url: '/list/outputOrders'
 
             ,page: true
             ,cols: [     [
@@ -111,7 +111,7 @@
             var data = obj.data;
             if(obj.event === 'detail'){
 
-                var categoryId=data.categoryId;
+                var out_id=data.out_id;
                 layer.open({
                     title:"查看分类",
                     type: 2,
@@ -127,7 +127,7 @@
 
 
             } else if(obj.event === 'del'){
-                layer.confirm('真的要删除 --'+data.categoryName+"--商品吗？", function(index){
+                layer.confirm('真的要删除 --'+data.productName+"--商品吗？", function(index){
                     // var proId=data.categoryId;
                     var categoryIds=[];
                     categoryIds.push(data.categoryId)
