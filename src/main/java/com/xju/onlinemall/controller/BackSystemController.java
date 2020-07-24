@@ -1,5 +1,6 @@
 package com.xju.onlinemall.controller;
 
+import com.xju.onlinemall.common.domain.Product;
 import com.xju.onlinemall.common.domain.SystemLog;
 import com.xju.onlinemall.common.domain.User;
 import com.xju.onlinemall.common.utils.Result;
@@ -7,11 +8,14 @@ import com.xju.onlinemall.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpSession;
+import java.time.chrono.IsoEra;
 import java.util.Date;
 import java.util.List;
 
@@ -118,4 +122,63 @@ public class BackSystemController {
         return "views_back/login";
     }
 
+
+
+    /**
+     *
+     * 查询后台用户对象，回显到个人资料页面
+     *
+     * */
+    @RequestMapping("/list/updateUserInfoToPage")
+    public String updateUserInfoToPage(ModelMap modelMap,HttpSession session){
+
+        User adminUser =(User) session.getAttribute("adminUser");
+
+        if (adminUser==null){
+            return "views_back/login";
+        }
+        else {
+
+            Integer userId = adminUser.getUserId();
+
+            //根据Id查询该user
+            User user=userService.getBackInfoById(userId);
+            //把用户信息入其中进行显示
+            if (user.getUserRole()==1){
+                modelMap.put("role","商家");
+            }
+            else {
+                modelMap.put("role","管理员");
+            }
+
+            modelMap.put("oldUser",user);
+
+            return "views/backUserInfo";
+
+
+        }
+
+
+    }
+
+    /**
+     *
+     * 变更用户信息
+     *
+     * */
+    @RequestMapping("/list/updateUserInfo")
+    @ResponseBody
+    public Object updateUserInfo(@RequestBody User user){
+        //查看后台获取到的数据
+//        System.out.println(user);
+        int i=userService.updateBackUserInfo(user);
+
+        return Result.success(i,"操作成功",200);
+    }
+
+    /**
+     *
+     * 变更用户密码
+     *
+     * */
 }

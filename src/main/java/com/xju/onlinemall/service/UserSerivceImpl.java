@@ -63,5 +63,29 @@ public class UserSerivceImpl implements UserService{
         return users;
     }
 
+    /**
+     *
+     * 获取后台用户信息，用于回显页面
+     *
+     * */
+    @Override
+    public User getBackInfoById(Integer userId) {
 
+        User user = userMapper.selectByPrimaryKey(userId);
+
+        return user;
+    }
+    /**
+     *
+     * 更新后台用户信息的实际操作
+     *
+     * */
+
+    @Override
+    public int updateBackUserInfo(User user) {
+
+        int i = userMapper.updateByPrimaryKeySelective(user);
+
+        return  i;
+    }
 }
