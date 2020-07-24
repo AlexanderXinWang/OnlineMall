@@ -20,4 +20,17 @@ public interface UserService {
     void changeAccountDetail(User user);
 
     List<User> selectUserById(Integer userId);
+
+    /**
+     * 获取后台用户信息，信息唯一
+     *
+     * */
+    User getBackInfoById(Integer userId);
+
+    /**
+     *
+     * 更新后台用户信息
+     *
+     * */
+    int updateBackUserInfo(User user);
 }
