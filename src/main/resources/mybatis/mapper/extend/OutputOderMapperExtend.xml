@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xju.onlinemall.mapper.OutputOderMapper">
+    <resultMap id="MyResultMap" type="com.xju.onlinemall.common.domain.OutputOder" extends="BaseResultMap">
+        <id column="out_id" jdbcType="INTEGER" property="outId" />
+        <result column="pm_id" jdbcType="INTEGER" property="pmId" />
+        <result column="out_number" jdbcType="INTEGER" property="outNumber" />
+        <result column="out_date" jdbcType="TIMESTAMP" property="outDate" />
+        <result column="out_status" jdbcType="INTEGER" property="outStatus" />
+        <result column="out_is_delete" jdbcType="TINYINT" property="outIsDelete" />
+        <result column="out_keep_field" jdbcType="VARCHAR" property="outKeepField" />
+        <result column="product_id" jdbcType="INTEGER" property="productId" />
+    </resultMap>
+
+    <select id="selectOutputOrdersByUserId" parameterType="java.lang.Integer" resultMap="MyResultMap">
+        SELECT out_id,out_number,product_name,out_status,out_date
+        FROM tb_output_order,tb_product
+        WHERE tb_output_order.`pm_id` in
+            (SELECT pm_id FROM tb_product_manage WHERE tb_product_manage.`user_id` = #{userId,jdbcType=INTEGER} )
+        AND tb_product.`product_id` = tb_output_order.`product_id`
+    </select>
+</mapper>
