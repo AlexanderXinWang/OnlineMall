@@ -30,6 +30,7 @@ public class OrderServiceImpl implements OrderService {
             int productId=order.getProductId();
             //获得该订单的对应商品
             Product product=productMapper.selectByPrimaryKey(productId);
+            product.setSeller(productMapper.selectSellerByProductId(productId));
             /**
              * 把该订单的商品写入该订单对象的商品列表
              * */
@@ -47,14 +48,33 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public String takeDeliveryOfProduct(Integer userId, Integer orderId) {
-        orderMapper.takeDeliveryOfProduct(userId,orderId);
-        return "确认收货成功!";
+    public Order getByOrderId(Integer orderId) {
+        Order order=orderMapper.selectByPrimaryKey(orderId);
+        //获得该订单的商品id
+        int productId=order.getProductId();
+        //获得该订单的对应商品
+        Product product=productMapper.selectByPrimaryKey(productId);
+        if (productMapper.selectSellerByProductId(productId)!=null){
+            product.setSeller(productMapper.selectSellerByProductId(productId));
+        }
+        /**
+         * 把该订单的商品写入该订单对象的商品列表
+         * */
+        order.setProduct(product);
+        //获取订单状态标记
+        Byte status_num =order.getPayStatus();
+        //获得订单对应状态
+        String orderStatus=orderMapper.selectStatusByNum(status_num);
+        //将订单状态写入订单对象
+        order.setStatus(orderStatus);
+
+        return order;
     }
 
     @Override
-    public Order getByOrderId(Integer orderId) {
-        return orderMapper.selectByPrimaryKey(orderId);
+    public String takeDeliveryOfProduct(Integer userId, Integer orderId) {
+        orderMapper.takeDeliveryOfProduct(userId,orderId);
+        return "确认收货成功!";
     }
 
     @Override

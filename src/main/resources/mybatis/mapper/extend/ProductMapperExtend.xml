@@ -27,4 +27,11 @@
     <select id="selectByTime" resultMap="BaseResultMap">
         select * from tb_product order by add_time desc
     </select>
+    <select id="selectSellerByProductId" resultType="java.lang.String">
+        SELECT u.user_name FROM tb_user u
+        LEFT JOIN tb_product_manage pm
+        ON pm.user_id=u.user_id
+        WHERE pm.pm_id=
+        (SELECT p.pm_id FROM tb_product p WHERE p.product_id=#{productId})
+    </select>
 </mapper>

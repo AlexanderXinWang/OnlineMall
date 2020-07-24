@@ -21,4 +21,6 @@ public interface ProductMapperExtend {
     List<Product> selectByRate();
 
     List<Product> selectByTime();
+
+    String selectSellerByProductId(@Param("productId") int productId);
 }
