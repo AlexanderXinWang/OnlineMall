@@ -251,92 +251,35 @@
                     </div>
                     <div id="furgan_price_filter-2" class="widget furgan widget_price_filter"><h2
                             class="widgettitle">按价格筛选<span class="arrow"></span></h2>
-                        <form method="post" action="#">
+                        <form method="post">
+                            <input th:class="from" th:value="${min}" th:placeholder="最低价">
+                            <input th:class="to" th:value="${max}" th:placeholder="最高价">
+                            <button id="buttonFilter" type="submit" class="button">筛选</button>
+                        </form>
+                        <!--<form method="post">
                             <div class="price_slider_wrapper">
-                                <div data-label-reasult="Range:" data-min="0" data-max="9999" data-unit="￥"
+                                &lt;!&ndash;<div data-label-reasult="Range:" data-min="0" data-max="9999" data-unit="￥"
                                      class="price_slider" data-value-min="0" data-value-max="9999">
-                                </div>
+                                </div>&ndash;&gt;
                                 <div class="price_slider_amount">
-                                    <button id="buttonFilter" type="submit" class="button">筛选</button>
                                     <div class="price_label">
+                                        <button id="buttonFilter" type="submit" class="button">筛选</button>
                                         价格:
-                                        <!--<span class="from" th:case="true" th:text="${min}">￥0</span> — <span class="to" th:text="${max}">￥9999</span>-->
-                                        <span class="from" th:text="${min}">0</span>
+                                        &lt;!&ndash;<span class="from" th:case="true" th:text="${min}">￥0</span> — <span class="to" th:text="${max}">￥9999</span>&ndash;&gt;
+                                        &lt;!&ndash;<span>
+                                            ￥
+                                            <span class="from" th:text="${min}">0</span>
+                                        </span>
                                         —
-                                        <span class="to" th:text="${max}">9999</span>
+                                        <span>
+                                            ￥
+                                            <span class="to" th:text="${max}">9999</span>
+                                        </span>&ndash;&gt;
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </form>-->
                     </div>
-                    <!--<div id="furgan_furgan_layered_nav-4"
-                         class="widget furgan_widget_layered_nav widget_layered_nav">
-                        <h2 class="widgettitle">按颜色筛选<span class="arrow"></span></h2>
-                        <div class="color-group">
-                            <a class="term-color " href="#">
-                                <i style="color: #000000"></i>
-                                <span class="term-name">黑色</span>
-                                <span class="count">(4)</span> </a>
-                            <a class="term-color " href="#">
-                                <i style="color: #3155e2"></i>
-                                <span class="term-name">蓝色</span>
-                                <span class="count">(3)</span> </a>
-                            <a class="term-color " href="#">
-                                <i style="color: #49aa51"></i>
-                                <span class="term-name">绿色</span>
-                                <span class="count">(1)</span> </a>
-                            <a class="term-color " href="#">
-                                <i style="color: #ff63cb"></i>
-                                <span class="term-name">粉色</span>
-                                <span class="count">(3)</span> </a>
-                            <a class="term-color " href="#">
-                                <i style="color: #a825ea"></i>
-                                <span class="term-name">紫色</span>
-                                <span class="count">(1)</span> </a>
-                            <a class="term-color " href="#">
-                                <i style="color: #db2b00"></i>
-                                <span class="term-name">红色</span>
-                                <span class="count">(5)</span> </a>
-                            <a class="term-color " href="#">
-                                <i style="color: #FFFFFF"></i>
-                                <span class="term-name">白色</span>
-                                <span class="count">(2)</span> </a>
-                            <a class="term-color " href="#s">
-                                <i style="color: #e8e120"></i>
-                                <span class="term-name">黄色</span>
-                                <span class="count">(2)</span> </a>
-                        </div>
-                    </div>-->
-                    <!--<div id="furgan_layered_nav-6"
-                         class="widget furgan widget_layered_nav furgan-widget-layered-nav"><h2
-                            class="widgettitle">按尺码筛选<span class="arrow"></span></h2>
-                        <ul class="furgan-widget-layered-nav-list">
-                            <li class="furgan-widget-layered-nav-list__item furgan-layered-nav-term ">
-                                <a rel="nofollow" href="#">XS</a>
-                                <span class="count">(1)</span></li>
-                            <li class="furgan-widget-layered-nav-list__item furgan-layered-nav-term ">
-                                <a rel="nofollow" href="#">S</a>
-                                <span class="count">(4)</span></li>
-                            <li class="furgan-widget-layered-nav-list__item furgan-layered-nav-term ">
-                                <a rel="nofollow" href="#">M</a>
-                                <span class="count">(2)</span></li>
-                            <li class="furgan-widget-layered-nav-list__item furgan-layered-nav-term ">
-                                <a rel="nofollow" href="#">L</a>
-                                <span class="count">(3)</span></li>
-                            <li class="furgan-widget-layered-nav-list__item furgan-layered-nav-term ">
-                                <a rel="nofollow" href="#">XL</a>
-                                <span class="count">(1)</span></li>
-                            <li class="furgan-widget-layered-nav-list__item furgan-layered-nav-term ">
-                                <a rel="nofollow" href="#">XXL</a>
-                                <span class="count">(4)</span></li>
-                            <li class="furgan-widget-layered-nav-list__item furgan-layered-nav-term ">
-                                <a rel="nofollow" href="#">3XL</a>
-                                <span class="count">(4)</span></li>
-                            <li class="furgan-widget-layered-nav-list__item furgan-layered-nav-term ">
-                                <a rel="nofollow" href="#">4XL</a>
-                                <span class="count">(3)</span></li>
-                        </ul>
-                    </div>-->
                     <div id="furgan_product_categories-3" class="widget furgan widget_product_categories"><h2
                             class="widgettitle">商品分类<span class="arrow"></span></h2>
                         <ul class="product-categories" th:each="category:${categoryList}">
@@ -347,18 +290,6 @@
                                 </div>
 
                             </li>
-                            <!--<li class="cat-item cat-item-16"><a href="#">Chair</a>
-                                <span class="count">(9)</span></li>
-                            <li class="cat-item cat-item-24"><a href="#">Table</a>
-                                <span class="count">(6)</span></li>
-                            <li class="cat-item cat-item-27"><a href="#">Bed</a> <span
-                                    class="count">(6)</span></li>
-                            <li class="cat-item cat-item-17"><a href="#">Lamp</a>
-                                <span class="count">(6)</span></li>
-                            <li class="cat-item cat-item-26"><a href="#">Specials</a> <span
-                                    class="count">(4)</span></li>
-                            <li class="cat-item cat-item-18"><a href="#">Sofas</a> <span
-                                    class="count">(6)</span></li>-->
                         </ul>
                     </div>
                 </div><!-- .widget-area -->

@@ -143,7 +143,8 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public PageInfo<Product> getProductsByPriceRangeAndRate(int pageNo, int pageSize, double min, double max) {
         PageHelper.startPage(pageNo,pageSize);
-        PageInfo<Product> PageInfo = new PageInfo<>();
+        List<Product> list = productMapper.selectByPriceRangeAndRate(min,max);
+        PageInfo<Product> PageInfo = new PageInfo<>(list);
         return PageInfo;
     }
 
@@ -200,8 +201,8 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public PageInfo<Product> getProductsByCategoryAndPriceRangeAndRate(int pageNo, int pageSize, int cid, double min, double max) {
         PageHelper.startPage(pageNo,pageSize);
-        //TO-DO
-        PageInfo<Product> PageInfo = new PageInfo<>();
+        List<Product> list = productMapper.selectByCategoryAndPriceRangeAndRate(cid,min,max);
+        PageInfo<Product> PageInfo = new PageInfo<>(list);
         return PageInfo;
     }
 
@@ -248,7 +249,7 @@ public class ProductServiceImpl implements ProductService{
     ///////////////////////////////////////////////////////////////////////////
 
     @Override
-    public int removeProudctsByProductIds(Integer... productIds) {
+    public int removeProductsByProductIds(Integer... productIds) {
        int count=0;
 
         if (productIds!=null && productIds.length>0){

@@ -11,7 +11,7 @@ public interface ProductService {
 
     Product selectByProductId(Integer productId);
 
-    int removeProudctsByProductIds(Integer... productIds);
+    int removeProductsByProductIds(Integer... productIds);
 
     int addProduct(Product product);
 
