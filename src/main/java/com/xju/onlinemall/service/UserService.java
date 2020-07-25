@@ -9,11 +9,11 @@ public interface UserService {
     /**
      * 根据用户名和密码查询用户
      * */
-    public List<User> selectUserByNameAndPassword(String userName, String password);
+     List<User> selectUserByNameAndPassword(String userName, String password);
     /**
      * 根据用户的操作向后台写入登录信息,注意事项看实现类
      * */
-    public void insertLogByUser(SystemLog log);
+     void insertLogByUser(SystemLog log);
 
     void register(User user);
 
@@ -33,4 +33,11 @@ public interface UserService {
      *
      * */
     int updateBackUserInfo(User user);
+
+    /**
+     *
+     * 修改用户密码
+     *
+     * */
+    int updateBackUserPassword(User adminUser);
 }

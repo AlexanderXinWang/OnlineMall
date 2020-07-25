@@ -113,4 +113,21 @@ public class User {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl == null ? null : imageUrl.trim();
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", userRole=" + userRole +
+                ", sex=" + sex +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", payPassword='" + payPassword + '\'' +
+                ", registerTime=" + registerTime +
+                ", isDelete=" + isDelete +
+                ", imageUrl='" + imageUrl + '\'' +
+                '}';
+    }
 }
