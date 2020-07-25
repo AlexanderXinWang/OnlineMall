@@ -66,8 +66,8 @@ public class BusinessController {
      * */
     @RequestMapping("/list/deleteProducts")
     @ResponseBody
-    public Object deleteProudcts(@RequestBody Integer[] productIds){
-        int i = productService.removeProudctsByProductIds(productIds);
+    public Object deleteProducts(@RequestBody Integer[] productIds){
+        int i = productService.removeProductsByProductIds(productIds);
 
         return Result.success(i,"操作成功",200);
     }

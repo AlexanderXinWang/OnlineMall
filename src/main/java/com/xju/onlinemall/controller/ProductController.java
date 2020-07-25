@@ -53,9 +53,7 @@ public class ProductController {
                 pageInfo = productService.getAllProducts(pageNo, pageSize);
                 break;
             case 1:
-                //TO-DO
                 pageInfo = productService.getAllProductsByRate(pageNo,pageSize);
-                System.out.println("TO-DO");
                 break;
             case 2:
                 pageInfo = productService.getAllProductsByTime(pageNo,pageSize);
