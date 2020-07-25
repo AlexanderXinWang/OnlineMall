@@ -52,4 +52,15 @@ public class SystemLog {
     public void setLevel(Integer level) {
         this.level = level;
     }
+
+    @Override
+    public String toString() {
+        return "SystemLog{" +
+                "logId=" + logId +
+                ", userId=" + userId +
+                ", createTime=" + createTime +
+                ", operation='" + operation + '\'' +
+                ", level=" + level +
+                '}';
+    }
 }
