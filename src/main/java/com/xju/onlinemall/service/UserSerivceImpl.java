@@ -1,8 +1,8 @@
 package com.xju.onlinemall.service;
 
-import com.xju.onlinemall.common.domain.SystemLog;
-import com.xju.onlinemall.common.domain.User;
-import com.xju.onlinemall.common.domain.UserExample;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.xju.onlinemall.common.domain.*;
 import com.xju.onlinemall.mapper.SystemLogMapper;
 import com.xju.onlinemall.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,5 +105,35 @@ public class UserSerivceImpl implements UserService{
 //        return i;
 
         return userMapper.updateByPrimaryKeySelective(adminUser);
+    }
+
+    @Override
+    public PageInfo<User> getAllBackUsersBySearchInfo(int pageNo, int pageSize, User user) {
+        //分页查询
+        PageHelper.startPage(pageNo,pageSize);
+        UserExample userExample = new UserExample();
+        UserExample.Criteria criteria = userExample.createCriteria();
+
+
+        //查看用户是否为空，用户为空则直接跳过，说明不是搜索栏触发的
+        //不为空则是搜索栏触发的
+        if (user!=null){
+            //如果商品id不为空，添加商品id条件
+            if (user.getUserId()!=null){
+                criteria.andUserIdEqualTo(user.getUserId());
+            }
+            //如果商品名不为空，添加商品名条件，进行模糊查询
+            if (user.getUserName()!=null && user.getUserName().trim().length()>0){
+                criteria.andUserNameLike("%"+user.getUserName()+"%");
+            }
+            //如果商品分类不为空，添加商品分类条件
+            if (user.getUserRole()!=null){
+                criteria.andUserRoleEqualTo(user.getUserRole());
+            }
+        }
+        List<User> users = userMapper.selectByExample(userExample);
+        //得到分页器
+        PageInfo<User> PageInfo = new PageInfo<>(users);
+        return PageInfo;
     }
 }

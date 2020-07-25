@@ -1,5 +1,6 @@
 package com.xju.onlinemall.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.xju.onlinemall.common.domain.Product;
 import com.xju.onlinemall.common.domain.SystemLog;
 import com.xju.onlinemall.common.domain.User;
@@ -8,10 +9,7 @@ import com.xju.onlinemall.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpSession;
@@ -39,7 +37,7 @@ public class BackSystemController {
         List<User> users = userService.selectUserByNameAndPassword(username, password);
         //如果查询不到用户信息
         if (users.size()==0){
-            System.out.println("查询到的用户数量为0");
+
             //查询结果返回前端
             modelMap.put("success",false);
             modelMap.put("flag",false);
@@ -220,4 +218,28 @@ public class BackSystemController {
         }
 
     }
+
+
+    /**
+     *
+     * 商品搜索功能
+     * 搜索框  获得商品列表信息
+     * 以JSON的数据格式传输到前端
+     *
+     * */
+    @RequestMapping("/list/searchBackUserInfo")
+    @ResponseBody
+    public Object searchBackUserInfo(User user, HttpSession session, @RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize){
+
+        User adminUser =(User) session.getAttribute("adminUser");
+
+        //如果是商家,则无权搜索到用户信息
+        if (adminUser.getUserRole()!=2){
+            return Result.fail("您无权搜索到用户信息",200);
+        }
+
+        PageInfo<User> pageInfo = userService.getAllBackUsersBySearchInfo(pageNo, pageSize,user);
+        return Result.success(pageInfo);
+    }
+
 }

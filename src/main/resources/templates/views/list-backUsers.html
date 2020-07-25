@@ -18,21 +18,21 @@
         <div class="layui-form layui-card-header layuiadmin-card-header-auto">
             <div class="layui-form-item">
                 <div class="layui-inline">
-                    <label class="layui-form-label">商品id</label>
+                    <label class="layui-form-label">用户id</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="productId" lay-verify="number" placeholder="请输入商品id" autocomplete="off" class="layui-input">
+                        <input type="text" name="userId" lay-verify="number" placeholder="请输入用户id" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
-                    <label class="layui-form-label">商品名称</label>
+                    <label class="layui-form-label">用户名</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="productName" placeholder="请输入商品名称" autocomplete="off" class="layui-input">
+                        <input type="text" name="userName" placeholder="请输入用户名" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
-                    <label class="layui-form-label">商品分类</label>
+                    <label class="layui-form-label">角色</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="categoryId" lay-verify="number" placeholder="请输入商品分类id" autocomplete="off" class="layui-input">
+                        <input type="text" name="userRole" lay-verify="number" placeholder="请输入角色id" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
@@ -71,7 +71,7 @@
         base:'/layuiadmin/'
     }).extend({
         index: 'lib/index' //主入口模块
-    }).use(['index', 'table','layer'], function(){
+    }).use(['index', 'table','layer','util'], function(){
         var $ = layui.$
             ,form = layui.form
             ,table = layui.table
@@ -79,23 +79,20 @@
         table.render({
             elem: '#mytable'
             ,method:"get"
-            // ,url: '/list/products'
-            ,url:'/list/searchProducts'
+            ,url:'/list/searchBackUserInfo'
             ,page: true
             ,cols: [     [
                 {type: 'checkbox', fixed: 'left'}
-                ,{field: 'productId', title: '商品id',sort: true}
-                ,{field: 'categoryId', title: '商品分类id'}
-                ,{field: 'proNo', title: '商品编号'}
-                ,{field: 'productName', title: '商品名称'}
-                ,{field: 'pkey', title: '商品关键字'}
-                ,{field: 'count', title: '商品数量'}
-                ,{field: 'price', title: '商品价格'}
-                ,{field: 'pimage', title: '商品图片路径'}
-                ,{field: 'context', title: '商品描述'}
-                ,{field: 'addTime', title: '商品添加时间',templet:'<div>{{ layui.util.toDateString(d.pressTime, "yyyy-MM-dd HH:mm:ss") }}</div>'}
-                ,{field: 'status', title: '商品状态'}
-                ,{field: 'pmId', title: '商家管理id'}
+                ,{field: 'userId', title: '用户Id',sort: true}
+                ,{field: 'userName', title: '用户名'}
+                ,{field: 'password', title: '密码'}
+                ,{field: 'userRole', title: '角色'}
+                ,{field: 'sex', title: '性别'}
+                ,{field: 'phone', title: '电话'}
+                ,{field: 'email', title: '邮件'}
+                ,{field: 'registerTime', title: '注册时间',templet:'<div>{{ layui.util.toDateString(d.registerTime, "yyyy-MM-dd HH:mm:ss") }}</div>'}
+                ,{field: 'imageUrl', title: '图片路径'}
+                ,{field: 'payPassword', title: '支付密码'}
                 ,{fixed: 'right', title: '备注',  align:'center', toolbar: '#toolbar-Mytable',width:180}
 
             ]   ]

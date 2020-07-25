@@ -9,23 +9,44 @@
         </div>
         <!--  li 通过  layui-nav-itemed 判断菜单是否展开 ，  layui-this 激活子菜单-->
         <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
-            <li data-name="clazz" class="layui-nav-item layui-nav-itemed">
-                <a href="javascript:;" lay-tips="班级管理" lay-direction="2">
+
+<!--            只有商家才能看到该页面-->
+            <p th:if="${session.adminUser.userRole eq 1}">
+                <li data-name="clazz" class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:;" lay-tips="商家管理" lay-direction="2">
+                        <i class="layui-icon layui-icon-user"></i>
+                        <cite>商家管理</cite>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a lay-href="page/views/list-backProducts">商品管理</a>
+                        </dd>
+                        <dd>
+                            <a lay-href="page/views/list-backCategory">商品分类管理</a>
+                        </dd>
+                        <dd>
+                            <a lay-href="page/views/list-backOutputOrder">出货管理</a>
+                        </dd>
+                    </dl>
+                </li>
+
+
+            </p>
+<!--            只有管理员才能看到该选项-->
+            <p th:if="${session.adminUser.userRole eq 2}">
+              <li data-name="clazz" class="layui-nav-item">
+                <a href="javascript:;" lay-tips="系统管理" lay-direction="2">
                     <i class="layui-icon layui-icon-user"></i>
-                    <cite>商家管理</cite>
+                    <cite>系统管理</cite>
                 </a>
                 <dl class="layui-nav-child">
                     <dd>
-                        <a lay-href="page/views/list-backProducts">商品管理</a>
-                    </dd>
-                    <dd>
-                        <a lay-href="page/views/list-backCategory">商品分类管理</a>
-                    </dd>
-                    <dd>
-                        <a lay-href="page/views/list-backOutputOrder">出货管理</a>
+                        <a lay-href="page/views/list-backUsers">用户管理</a>
                     </dd>
                 </dl>
             </li>
+
+            </p>
 
 
         </ul>

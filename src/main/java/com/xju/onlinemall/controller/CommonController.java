@@ -22,34 +22,19 @@ public class CommonController {
     @Autowired
     CategoryService categoryService;
 
+
     /**
-     * 初次访问，判断是否登录，如果没有登录，就跳转登录页面，登录成功时会再次访问此页面设置头部信息
      *
-     * 该代码已停用！！！！！！！！！！！！！！！！！！
+     * 该处跳转是后台业务的跳转,后台业务均以list开始请求
+     *
      * */
-//    @RequestMapping("/dddddd")
-//    public String index(HttpSession session, Model model){
-//        User user =(User) session.getAttribute("user");
-//        List cartProducts = (List)session.getAttribute("cartProducts");
-//        //如果未登录，跳转登录注册页面
-//        if (user==null){
-//            //如果当前没有用户登录,设置属性为未登录
-//            model.addAttribute("uname","未登录");
-//            model.addAttribute("cartProducts","未登录,无法获取到购物车商品信息");
-//            return "views_front/my-account";
-//        }
-//        //如果当前用户存在，跳转首页,设置属性
-//        else {
-//            String userName = user.getUserName();
-//            //如果当前没有用户登录,设置属性为用户名
-//            model.addAttribute("uname",userName);
-//            model.addAttribute("cartProducts",cartProducts);
-//            return "index";
-//        }
-//        return "index";
-//    }
     @GetMapping("/page/{views}/{path}")
-    public String toPage2(@PathVariable("views") String view,@PathVariable("path") String path){
+    public String toPage2(@PathVariable("views") String view,@PathVariable("path") String path,HttpSession session){
+
+        User adminUser = (User)session.getAttribute("adminUser");
+        if (adminUser==null){
+            return "views_back/login";
+        }
 
         return view+"/"+path;
 
@@ -230,13 +215,16 @@ public class CommonController {
     @RequestMapping("/backAdminLogin")
     public String adminLogin(){
 
-        System.out.println("跳转到后台登录页面");
         return "views_back/login";
     }
     //访问后台主页
 
     @RequestMapping("/backLayout.html")
-    public String backindex(){
+    public String backindex(HttpSession session){
+        User adminUser = (User)session.getAttribute("adminUser");
+        if (adminUser==null){
+            return "views_back/login";
+        }
         return "views_back/layout";
     }
 
