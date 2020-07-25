@@ -83,11 +83,11 @@
             ,page: true
             ,cols: [     [
                 {type: 'checkbox', fixed: 'left'}
-                ,{field: 'outId', title: '出货id',sort: true}
-                ,{field: 'outNumber', title: '出货单号'}
-                ,{field: 'productName', title: '商品名'}
-                ,{field: 'outDate', title: '出货时间'}
-                ,{field: 'outStatus', title: '出货状态'}
+                ,{field: 'outId', title: '出货id',sort: true,  align:'center'}
+                ,{field: 'outNumber', title: '出货单号',  align:'center'}
+                ,{field: 'productName', title: '商品名',  align:'center'}
+                ,{field: 'outDate', title: '出货时间',  align:'center'}
+                ,{field: 'outStatus', title: '出货状态',  align:'center'}
                 ,{fixed: 'right', title: '备注',  align:'center', toolbar: '#toolbar-Mytable',width:180}
 
             ]   ]
@@ -111,12 +111,12 @@
             var data = obj.data;
             if(obj.event === 'detail'){
 
-                var out_id=data.out_id;
+                var outId=data.outId;
                 layer.open({
                     title:"查看分类",
                     type: 2,
-                    content: '/list/showCategoryDetail?categoryId='+categoryId,
-                    area: ['525px', '320px'],
+                    content: '/list/showOutputOrderDetail?outId='+outId,
+                    area: ['525px', '600px'],
                     maxmin: true,
                     //打开默认全屏
                     // success: function(layero, index){

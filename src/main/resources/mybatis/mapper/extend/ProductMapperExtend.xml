@@ -13,7 +13,7 @@
         </foreach>
     </select>
     <select id="selectAllProduct" resultMap="BaseResultMap">
-        select * from tb_product;
+        select * from tb_product
     </select>
     <select id="selectByPriceASC" resultMap="BaseResultMap">
         select * from tb_product order by price asc

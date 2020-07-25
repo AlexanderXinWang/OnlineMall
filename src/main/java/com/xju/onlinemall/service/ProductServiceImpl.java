@@ -9,25 +9,13 @@ import com.xju.onlinemall.mapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.nio.channels.ScatteringByteChannel;
 import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService{
     @Autowired
     private ProductMapper productMapper;
-
-    @Override
-    public PageInfo<Product> getByCategory(int pageNo,int pageSize,int categoryId) {
-        //分页查询
-        PageHelper.startPage(pageNo,pageSize);
-        ProductExample productExample = new ProductExample();
-        productExample.createCriteria().andCategoryIdEqualTo(categoryId);
-        List<Product> list = productMapper.selectByExample(productExample);
-        //得到分页器
-        PageInfo<Product> PageInfo = new PageInfo<>(list);
-        return PageInfo;
-    }
-
 
     @Override
     public List<Product> selectByCategory(Integer categoryId) {
@@ -40,23 +28,7 @@ public class ProductServiceImpl implements ProductService{
         return  product;
     }
 
-    @Override
-    public List<Product> selectAllProduct() {
-        return productMapper.selectAllProduct();
-    }
 
-    @Override
-    public PageInfo<Product> getAllProducts(int pageNo,int pageSize) {
-        //分页查询
-        PageHelper.startPage(pageNo,pageSize);
-        ProductExample productExample = new ProductExample();
-        List<Product> list = productMapper.selectByExample(productExample);
-        //得到分页器
-        PageInfo<Product> PageInfo = new PageInfo<>(list);
-
-
-        return PageInfo;
-    }
     /**
      *
      *获取对应商户的商品列表信息
@@ -109,6 +81,20 @@ public class ProductServiceImpl implements ProductService{
         return PageInfo;
     }
 
+
+    /**
+     * 商品展示条件筛选方法
+     */
+    ///////////////////////////////////////////////////////////////////////////
+    //  product.html页面方法
+    @Override
+    public PageInfo<Product> getAllProducts(int pageNo, int pageSize) {
+        PageHelper.startPage(pageNo,pageSize);
+        List<Product> list = productMapper.selectAllProduct();
+        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        return PageInfo;
+    }
+
     @Override
     public PageInfo<Product> getAllProductsByPriceASC(int pageNo, int pageSize) {
         PageHelper.startPage(pageNo,pageSize);
@@ -141,25 +127,125 @@ public class ProductServiceImpl implements ProductService{
         return PageInfo;
     }
 
+    ///////////////////////////////////////////////////////////////////////////
+    //  product-list无cid筛选方法
     @Override
-    public PageInfo<Product> getByCategoryAndRate(int pageNo, int pageSize, int cid) {
-        return null;
+    public PageInfo<Product> getProductsByPriceRange(int pageNo,int pageSize,double min, double max) {
+        //分页查询
+        PageHelper.startPage(pageNo,pageSize);
+        ProductExample productExample = new ProductExample();
+        List<Product> list = productMapper.selectByExample(productExample);
+        //得到分页器
+        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        return PageInfo;
     }
 
     @Override
-    public PageInfo<Product> getByCategoryAndTime(int pageNo, int pageSize, int cid) {
-        return null;
+    public PageInfo<Product> getProductsByPriceRangeAndRate(int pageNo, int pageSize, double min, double max) {
+        PageHelper.startPage(pageNo,pageSize);
+        PageInfo<Product> PageInfo = new PageInfo<>();
+        return PageInfo;
     }
 
     @Override
-    public PageInfo<Product> getByCategoryAndPriceASC(int pageNo, int pageSize, int cid) {
-        return null;
+    public PageInfo<Product> getProductsByPriceRangeAndTime(int pageNo, int pageSize, double min, double max) {
+        PageHelper.startPage(pageNo,pageSize);
+        ProductExample productExample = new ProductExample();
+        productExample.createCriteria().andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max);
+        productExample.setOrderByClause("add_time desc");
+        List<Product> list = productMapper.selectByExample(productExample);
+
+        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        return PageInfo;
     }
 
     @Override
-    public PageInfo<Product> getByCategoryAndPriceDESC(int pageNo, int pageSize, int cid) {
-        return null;
+    public PageInfo<Product> getProductsByPriceRangeAndPriceASC(int pageNo, int pageSize, double min, double max) {
+        PageHelper.startPage(pageNo,pageSize);
+        ProductExample productExample = new ProductExample();
+        productExample.createCriteria().andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max);
+        productExample.setOrderByClause("price asc");
+        List<Product> list = productMapper.selectByExample(productExample);
+
+        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        return PageInfo;
     }
+
+    @Override
+    public PageInfo<Product> getProductsByPriceRangeAndPriceDESC(int pageNo, int pageSize, double min, double max) {
+        PageHelper.startPage(pageNo,pageSize);
+        ProductExample productExample = new ProductExample();
+        productExample.createCriteria().andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max);
+        productExample.setOrderByClause("price desc");
+        List<Product> list = productMapper.selectByExample(productExample);
+
+        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        return PageInfo;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    //  product-list有cid筛选方法
+    @Override
+    public PageInfo<Product> getProductsByCategoryAndPriceRange(int pageNo,int pageSize,int categoryId,double min, double max) {
+        //分页查询
+        PageHelper.startPage(pageNo,pageSize);
+        ProductExample productExample = new ProductExample();
+        productExample.createCriteria().andCategoryIdEqualTo(categoryId).andCategoryIdEqualTo(categoryId);
+        List<Product> list = productMapper.selectByExample(productExample);
+        //得到分页器
+        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        return PageInfo;
+    }
+
+    @Override
+    public PageInfo<Product> getProductsByCategoryAndPriceRangeAndRate(int pageNo, int pageSize, int cid, double min, double max) {
+        PageHelper.startPage(pageNo,pageSize);
+        //TO-DO
+        PageInfo<Product> PageInfo = new PageInfo<>();
+        return PageInfo;
+    }
+
+    @Override
+    public PageInfo<Product> getProductsByCategoryAndPriceRangeAndTime(int pageNo, int pageSize, int cid, double min, double max) {
+        PageHelper.startPage(pageNo,pageSize);
+        ProductExample productExample = new ProductExample();
+        productExample.createCriteria().andPriceGreaterThanOrEqualTo(min)
+                .andPriceLessThanOrEqualTo(max).andCategoryIdEqualTo(cid);
+        productExample.setOrderByClause("add_time desc");
+        List<Product> list = productMapper.selectByExample(productExample);
+
+        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        return PageInfo;
+    }
+
+    @Override
+    public PageInfo<Product> getProductsByCategoryAndPriceRangeAndPriceASC(int pageNo, int pageSize, int cid, double min, double max) {
+        PageHelper.startPage(pageNo,pageSize);
+        ProductExample productExample = new ProductExample();
+        productExample.createCriteria().andPriceGreaterThanOrEqualTo(min)
+                .andPriceLessThanOrEqualTo(max).andCategoryIdEqualTo(cid);
+
+        productExample.setOrderByClause("price asc");
+        List<Product> list = productMapper.selectByExample(productExample);
+
+        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        return PageInfo;
+    }
+
+    @Override
+    public PageInfo<Product> getProductsByCategoryAndPriceRangeAndPriceDESC(int pageNo, int pageSize, int cid, double min, double max) {
+        PageHelper.startPage(pageNo,pageSize);
+        ProductExample productExample = new ProductExample();
+        productExample.createCriteria().andPriceGreaterThanOrEqualTo(min)
+                .andPriceLessThanOrEqualTo(max).andCategoryIdEqualTo(cid);
+        productExample.setOrderByClause("price desc");
+        List<Product> list = productMapper.selectByExample(productExample);
+
+        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        return PageInfo;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
 
     @Override
     public int removeProudctsByProductIds(Integer... productIds) {
@@ -186,17 +272,4 @@ public class ProductServiceImpl implements ProductService{
         return productMapper.updateByPrimaryKeySelective(product);
     }
 
-    @Override
-    public PageInfo<Product> selectByPrice(int pageNo, int pageSize, Double min, Double max) {
-        //分页查询
-        PageHelper.startPage(pageNo,pageSize);
-        ProductExample productExample = new ProductExample();
-        productExample.createCriteria().andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max);
-        List<Product> list = productMapper.selectByExample(productExample);
-        //得到分页器
-        PageInfo<Product> PageInfo = new PageInfo<>(list);
-
-
-        return PageInfo;
-    }
 }

@@ -216,13 +216,13 @@
                         </a>-->
                         <span th:each="pageNo:${#numbers.sequence(1,pageInfo.getPages())}">
                             <a class="page-numbers current" href="#"
-                               th:href="@{'/product.html?pageNo='+${pageNo}+'&pageSize='+${pageInfo.getPageSize()}}"
+                               th:href="@{'/product.html?pageNo='+${pageNo}+'&pageSize='+${pageInfo.getPageSize()}+'&condition='+${condition}}"
                                th:text="${pageNo}">
                             </a>
                         </span>
 
                         <a class="next page-numbers" href="#"
-                           th:href="@{'/product.html?page='+${pageInfo.getNextPage()}+'&pageSize='+${pageInfo.getPageSize()}}">
+                           th:href="@{'/product.html?page='+${pageInfo.getNextPage()}+'&pageSize='+${pageInfo.getPageSize()}+'&condition='+${condition}}">
                             下一页
                         </a>
                     </nav>
