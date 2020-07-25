@@ -144,14 +144,19 @@ public class BackSystemController {
             //根据Id查询该user
             User user=userService.getBackInfoById(userId);
             //把用户信息入其中进行显示
+            //如果role==1，则是商家，传入角色商家
             if (user.getUserRole()==1){
                 modelMap.put("role","商家");
             }
+            //如果role==2，测是管理员，传入管理员
             else {
                 modelMap.put("role","管理员");
             }
+            //把对象放入modelMap用于回显
 
             modelMap.put("oldUser",user);
+
+//            System.out.println(user);
 
             return "views/backUserInfo";
 
@@ -170,7 +175,8 @@ public class BackSystemController {
     @ResponseBody
     public Object updateUserInfo(@RequestBody User user){
         //查看后台获取到的数据
-//        System.out.println(user);
+        System.out.println(user);
+
         int i=userService.updateBackUserInfo(user);
 
         return Result.success(i,"操作成功",200);
@@ -181,4 +187,37 @@ public class BackSystemController {
      * 变更用户密码
      *
      * */
+    @RequestMapping("/list/updateUserPassword")
+    @ResponseBody
+    public Object updateUserPassword(String oldPassword,String password,HttpSession session){
+        //查看后台获取到的数据
+        System.out.println(oldPassword+"  "+password);
+
+        User adminUser =(User) session.getAttribute("adminUser");
+
+        if (oldPassword==null || password==null){
+
+            return Result.fail("操作失败",200);
+
+        }
+
+        //如果旧密码和用户的原密码相同
+        if (adminUser.getPassword().equals(oldPassword.trim())){
+
+            adminUser.setPassword(password.trim());
+
+            int i=userService.updateBackUserPassword(adminUser);
+
+            return Result.success(i,"操作成功",200);
+
+        }
+
+        //如果用户密码和旧密码不同，则修改密码失败
+        else {
+
+            return Result.fail("操作失败",200);
+
+        }
+
+    }
 }

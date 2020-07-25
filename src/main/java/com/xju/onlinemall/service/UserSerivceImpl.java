@@ -22,8 +22,8 @@ public class UserSerivceImpl implements UserService{
     public List<User> selectUserByNameAndPassword(String userName,String password) {
         UserExample userExample = new UserExample();
         userExample.createCriteria().andUserNameEqualTo(userName).andPasswordEqualTo(password);
-        List<User> users = userMapper.selectByExample(userExample);
-        return users;
+//        List<User> users = userMapper.selectByExample(userExample);
+        return userMapper.selectByExample(userExample);
     }
     /**
      * 向数据库写入日志信息,注意,用户id是用户表的外键,插入前确保用户id已经在用户表创建!!！
@@ -59,8 +59,9 @@ public class UserSerivceImpl implements UserService{
     public List<User> selectUserById(Integer userId) {
         UserExample userExample = new UserExample();
         userExample.createCriteria().andUserIdEqualTo(userId);
-        List<User> users = userMapper.selectByExample(userExample);
-        return users;
+//        List<User> users = userMapper.selectByExample(userExample);
+//        return users;
+        return userMapper.selectByExample(userExample);
     }
 
     /**
@@ -71,9 +72,9 @@ public class UserSerivceImpl implements UserService{
     @Override
     public User getBackInfoById(Integer userId) {
 
-        User user = userMapper.selectByPrimaryKey(userId);
-
-        return user;
+//        User user = userMapper.selectByPrimaryKey(userId);
+//        return user;
+        return userMapper.selectByPrimaryKey(userId);
     }
     /**
      *
@@ -84,8 +85,25 @@ public class UserSerivceImpl implements UserService{
     @Override
     public int updateBackUserInfo(User user) {
 
-        int i = userMapper.updateByPrimaryKeySelective(user);
+//        int i = userMapper.updateByPrimaryKeySelective(user);
+//
+//        return  i;
 
-        return  i;
+        return userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    /**
+     *
+     * 修改用户密码
+     *
+     * */
+    @Override
+    public int updateBackUserPassword(User adminUser) {
+
+//        int i = userMapper.updateByPrimaryKeySelective(adminUser);
+//
+//        return i;
+
+        return userMapper.updateByPrimaryKeySelective(adminUser);
     }
 }
