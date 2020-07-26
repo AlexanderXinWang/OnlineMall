@@ -3,11 +3,13 @@ package com.xju.onlinemall.mapper;
 import com.xju.onlinemall.common.domain.SystemLog;
 import com.xju.onlinemall.common.domain.SystemLogExample;
 import java.util.List;
+
+import com.xju.onlinemall.mapper.extend.SystemLogMapperExtend;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SystemLogMapper {
+public interface SystemLogMapper extends SystemLogMapperExtend {
     long countByExample(SystemLogExample example);
 
     int deleteByExample(SystemLogExample example);

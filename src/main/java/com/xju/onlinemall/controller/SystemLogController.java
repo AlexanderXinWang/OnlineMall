@@ -20,15 +20,14 @@ public class SystemLogController {
     SystemLogService systemLogService;
 
 
-    @RequestMapping("/systemLogController/systemLogSearch")
+    @RequestMapping("/list/systemLogSearch")
     @ResponseBody
-    public Object productListBySearch(HttpSession session, @RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize){
-        User adminUser =(User) session.getAttribute("adminUser");
+    public Object productListBySearch(SystemLog systemLog, @RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize){
         PageInfo<SystemLog> pageInfo=null;
 
         //把方法改一下吧，系统日志获取的是所有的日志信息，不是管理员一个人的日志信息
 
-        pageInfo = systemLogService.getSystemLogByUserIdAndSearchInfo(pageNo, pageSize,adminUser.getUserId());
+        pageInfo = systemLogService.getSystemLogAndSearchInfo(pageNo, pageSize,systemLog);
         return Result.success(pageInfo);
     }
 }
