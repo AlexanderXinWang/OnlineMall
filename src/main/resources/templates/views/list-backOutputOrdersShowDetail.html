@@ -44,12 +44,14 @@
                     <label class="layui-form-label">出货状态</label>
                     <div class="layui-input-block">
                         <input type="text" name="outStatus" lay-verify="outStatus" disabled autocomplete="off" placeholder="6是为未发货7是已发货" class="layui-input" th:value="${outputOder.outStatus}">
+                        <span class="layui-a-tips">提示：6是为未发货7是已发货</span>
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">删除状态</label>
                     <div class="layui-input-block">
                         <input type="text" name="outIsDelete" lay-verify="outIsDelete" autocomplete="off" disabled placeholder="3是为删除4是已删除" class="layui-input" th:value="${outputOder.outIsDelete}">
+                        <span class="layui-a-tips">提示：3是为未删除4是已删除</span>
                     </div>
                 </div>
 

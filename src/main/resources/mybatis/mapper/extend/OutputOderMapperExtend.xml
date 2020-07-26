@@ -18,5 +18,12 @@
         WHERE tb_output_order.`pm_id` in
             (SELECT pm_id FROM tb_product_manage WHERE tb_product_manage.`user_id` = #{userId,jdbcType=INTEGER} )
         AND tb_product.`product_id` = tb_output_order.`product_id`
+        and tb_output_order.out_is_delete != 4
     </select>
+    <update id="removeOutputOrdersLogicallyByoutIds" parameterType="java.lang.Integer">
+        UPDATE tb_output_order
+        SET out_is_delete = #{deleteStatus,jdbcType=INTEGER}
+        WHERE out_id = #{outIds,jdbcType=INTEGER}
+    </update>
+
 </mapper>

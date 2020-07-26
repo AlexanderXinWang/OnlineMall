@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface OutputOderMapperExtend {
     List<OutputOder> selectOutputOrdersByUserId(Integer userId);
+
+    int removeOutputOrdersLogicallyByoutIds(Integer outIds, Integer deleteStatus);
+
+    Integer selectPmIdByUserId(Integer userId);
 }

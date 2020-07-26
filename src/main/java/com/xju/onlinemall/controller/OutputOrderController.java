@@ -8,12 +8,10 @@ import com.xju.onlinemall.service.OutputOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -32,10 +30,20 @@ public class OutputOrderController {
 //    }
     @RequestMapping("/list/outputOrders")
     @ResponseBody
-    public Object categorytList(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize, Integer pmId, HttpSession session){
+    public Object ShowOutputOrderList(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize, Integer pmId, HttpSession session){
         User adminUser =(User) session.getAttribute("adminUser");
         PageInfo<OutputOder> pageInfo=null;
-        pageInfo = outputOrderService.getAllOutputOrders(pageNo, pageSize, adminUser.getUserId());
+        boolean isRemoved = false;
+        pageInfo = outputOrderService.getAllOutputOrders(pageNo, pageSize, adminUser.getUserId(), isRemoved);
+        return Result.success(pageInfo);
+    }
+    @RequestMapping("/list/removedoutputOrders")
+    @ResponseBody
+    public Object ShowRemovedOutputOrderList(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize, Integer pmId, HttpSession session){
+        User adminUser =(User) session.getAttribute("adminUser");
+        PageInfo<OutputOder> pageInfo=null;
+        boolean isRemoved = true;
+        pageInfo = outputOrderService.getAllOutputOrders(pageNo, pageSize, adminUser.getUserId(), isRemoved);
         return Result.success(pageInfo);
     }
 
@@ -46,6 +54,46 @@ public class OutputOrderController {
         //把商品放入其中进行显示
         modelMap.put("outputOder",outputOder);
         return "views/list-backOutputOrdersShowDetail";
+    }
+
+    @RequestMapping("/list/deleteOutputOrders")
+    @ResponseBody
+    public Object deleteOutputOrders(@RequestBody Integer[] outIds){
+        int i = outputOrderService.removeOutputOrdersLogicallyByoutIds(outIds);
+
+        return Result.success(i,"操作成功",200);
+    }
+
+    @GetMapping("/list/updateOutputOrderInfoByoutId")
+    public String updateOutputOrderInfoByoutId(ModelMap modelMap,Integer outId){
+        OutputOder outputOder = outputOrderService.selectOneOutputOrderByOutId(outId);
+        modelMap.put("outputOrderInfo",outputOder);
+        return "views/list-backOutputOrderShowAndUpdate";
+    }
+
+    @RequestMapping("/list/updateOutputOrder")
+    @ResponseBody
+    public Object updateCategory(@RequestBody OutputOder outputOder){
+        int i = outputOrderService.updateOutputOrder(outputOder);
+        return Result.success(i,"操作成功",200);
+    }
+
+    @RequestMapping("/list/addOutputOrder")
+    @ResponseBody
+    public Object addOutputOrder(@RequestBody OutputOder outputOder, HttpSession session){
+        //设置添加的时间
+        Date date = new Date();
+        outputOder.setOutDate(date);
+        User adminUser =(User) session.getAttribute("adminUser");
+        Integer pmId = outputOrderService.getPmIdByUserId(adminUser.getUserId());
+        outputOder.setPmId(pmId);
+        System.out.println(outputOder);
+        int i = outputOrderService.addOutputOrder(outputOder);
+        //查看后台获取到的数据
+//        System.out.println(product);
+//        int i = productService.addProduct(product);
+        return Result.success(i,"操作成功",200);
+//        return Result.success(1,"操作成功",200);
     }
 
 }

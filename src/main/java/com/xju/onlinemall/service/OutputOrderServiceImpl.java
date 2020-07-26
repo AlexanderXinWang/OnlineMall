@@ -21,12 +21,16 @@ public class OutputOrderServiceImpl implements OutputOrderService{
     private ProductMapper productMapper;
 
     @Override
-    public PageInfo<OutputOder> getAllOutputOrders(int pageNo, int pageSize, Integer userId) {
+    public PageInfo<OutputOder> getAllOutputOrders(int pageNo, int pageSize, Integer userId, boolean isRemoved) {
         PageHelper.startPage(pageNo,pageSize);
         ProductManageExample productManageExample = new ProductManageExample();
         productManageExample.createCriteria().andUserIdEqualTo(userId);
         OutputOderExample outputOderExample = new OutputOderExample();
-        outputOderExample.createCriteria().andPmIdEqualTo(productManageMapper.selectByExample(productManageExample).get(0).getPmId());
+        if (isRemoved){
+            outputOderExample.createCriteria().andPmIdEqualTo(productManageMapper.selectByExample(productManageExample).get(0).getPmId()).andOutIsDeleteEqualTo(Byte.parseByte("4"));
+        }else {
+            outputOderExample.createCriteria().andPmIdEqualTo(productManageMapper.selectByExample(productManageExample).get(0).getPmId()).andOutIsDeleteEqualTo(Byte.parseByte("3"));
+        }
         List<OutputOder> outputOderList = outputOderMapper.selectByExample(outputOderExample);
         for (OutputOder outputOder:outputOderList){
             //获得该订单的商品id
@@ -47,5 +51,50 @@ public class OutputOrderServiceImpl implements OutputOrderService{
         outputOder.setProductName(productMapper.selectByPrimaryKey(outputOder.getProductId()).getProductName());
         outputOder.setProduct(productMapper.selectByPrimaryKey(outputOder.getProductId()));
         return outputOder;
+    }
+
+    @Override
+    public int removeOutputOrdersLogicallyByoutIds(Integer... outIds) {
+        int count=0;
+        int i = 0;
+        Integer IS_NOT_DELETE = 3;
+        Integer IS_DELETE = 4;
+//        System.out.println();
+        if (outIds!=null && outIds.length>0){
+            for(Integer outId:outIds){
+                OutputOder outputOder = outputOderMapper.selectByPrimaryKey(outId);
+//                System.out.println(outputOder);
+//                OutputOderExample example = new OutputOderExample();
+                if (outputOder.getOutIsDelete() == 3){ //逻辑删除
+//                    example.createCriteria().andOutIdEqualTo(outputOder.getOutId()).andPmIdEqualTo(outputOder.getPmId()).andOutNumberEqualTo(outputOder.getOutNumber()).andOutDateEqualTo(outputOder.getOutDate()).andProductIdEqualTo(outputOder.getProductId()).andOutStatusEqualTo(outputOder.getOutStatus()).andOutIsDeleteEqualTo(Byte.parseByte(IS_DELETE.toString()));
+//                    System.out.println(example);
+//                    i = outputOderMapper.updateByExampleSelective(outputOder,example);
+//                    System.out.println(i);
+                    i = outputOderMapper.removeOutputOrdersLogicallyByoutIds(outId, IS_DELETE);
+                    System.out.println(i);
+                }else if (outputOder.getOutIsDelete() == 4){ //逻辑恢复
+                    i = outputOderMapper.removeOutputOrdersLogicallyByoutIds(outId, IS_NOT_DELETE);
+                    System.out.println(i);
+                }
+                count=count+i;
+            }
+        }
+        return count;
+    }
+
+    @Override
+    public int updateOutputOrder(OutputOder outputOder) {
+        return outputOderMapper.updateByPrimaryKeySelective(outputOder);
+    }
+
+    @Override
+    public int addOutputOrder(OutputOder outputOder) {
+        return outputOderMapper.insertSelective(outputOder);
+    }
+
+    @Override
+    public Integer getPmIdByUserId(Integer userId) {
+
+        return productManageMapper.selectPmIdByUserId(userId).getPmId();
     }
 }

@@ -3,11 +3,13 @@ package com.xju.onlinemall.mapper;
 import com.xju.onlinemall.common.domain.ProductManage;
 import com.xju.onlinemall.common.domain.ProductManageExample;
 import java.util.List;
+
+import com.xju.onlinemall.mapper.extend.ProductManageMapperExtend;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProductManageMapper {
+public interface ProductManageMapper extends ProductManageMapperExtend {
     long countByExample(ProductManageExample example);
 
     int deleteByExample(ProductManageExample example);
