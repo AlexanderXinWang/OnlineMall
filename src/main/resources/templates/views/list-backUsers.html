@@ -44,7 +44,7 @@
         </div>
         <div class="layui-card-body">
             <div style="padding-bottom: 10px;">
-                <button class="layui-btn layuiadmin-btn-comm layui-btn-danger" data-type="createProdcut" id="btn_create">添加商品</button>
+                <button class="layui-btn layuiadmin-btn-comm layui-btn-danger" data-type="createProdcut" id="btn_create">添加用户</button>
                 <button class="layui-btn layuiadmin-btn-comm layui-btn-danger" data-type="batchdel" id="btn_batchdel">批量删除</button>
             </div>
             <!--  lay-filter 想当于 layui框架自定义 的id 属性-->
@@ -111,20 +111,6 @@
             ,limits:[10,20,30,60]
         });
 
-        /* 自定义验证规则 */
-        // form.verify({
-        //     proNo: function(value){
-        //         if(value.length < 5 || value.length>10){
-        //             return '商品编号为5至10个字符';
-        //         }
-        //     },
-        //     productName:function (value) {
-        //         if(value.length <= 0){
-        //             return '商品名称不能为空';
-        //         }
-        //     }
-        // });
-
         //监听表格的工具：行的删除、编辑、查看
         table.on('tool(mytable)', function(obj){
             var data = obj.data;
@@ -132,11 +118,11 @@
             //查看操作
             if(obj.event === 'detail'){
                 // layer.msg('ID：'+ data.productId + ' 的查看操作');
-                var productId=data.productId;
+                var userId=data.userId;
                 layer.open({
                     title:"查看商品",
                     type: 2,
-                    content: '/list/showProductDetail?productId='+productId,
+                    content: '/list/showUserDetail?userId='+userId,
                     area: ['725px', '560px'],
                     maxmin: true,
                     //打开默认全屏
@@ -146,17 +132,16 @@
                 });
 
 
-
+            //删除操作
             }
             else if(obj.event === 'del'){
-                layer.confirm('真的要删除 --'+data.productName+"--商品吗？", function(index){
-                    // var proId=data.productId;
+                layer.confirm('真的要删除 --'+data.userName+"--吗？请慎重！", function(index){
                     var proIds=[];
-                    proIds.push(data.productId)
+                    proIds.push(data.userId)
                     $.ajax({
                         type:"POST",
                         contentType:"application/json",
-                        url:"/list/deleteProducts",
+                        url:"/list/deleteUsersInfo",
                         data:JSON.stringify(proIds),
                         success:function (msg) {
                             if(msg["success"]){
@@ -174,11 +159,11 @@
             //编辑操作
             else if(obj.event === 'edit'){
                 // layer.alert('编辑行：<br>'+ JSON.stringify(data))
-                var productId=data.productId;
+                var userId=data.userId;
                 layer.open({
                     title:"编辑商品",
                     type: 2,
-                    content: '/list/updateProductToBackPage?productId='+productId,
+                    content: '/list/updateUserToBackPage?userId='+userId,
                     area: ['725px', '560px'],
                     maxmin: true,
                     //打开默认全屏
@@ -215,20 +200,19 @@
                     return layer.msg('请选择数据');
                 }
                 layer.confirm('确定删除吗？', function(index) {
-                    // var proId=data.productId;
 
-                    var proIds=[];
+                    var userIds=[];
 
                     for (var i=0;i<checkData.length;i++){
 
-                        proIds.push( checkData[i].productId);
+                        userIds.push( checkData[i].userId);
                     }
 
                     $.ajax({
                         type:"POST",
                         contentType:"application/json",
-                        url:"/list/deleteProducts",
-                        data:JSON.stringify(proIds),
+                        url:"/list/deleteUsersInfo",
+                        data:JSON.stringify(userIds),
 
                         success:function (msg) {
                             if(msg["success"]){
@@ -250,7 +234,7 @@
                 layer.open({
                     title:"添加商品",
                     type: 2,
-                    content: '/page/views/layer_addProduct',
+                    content: '/page/views/layer_addUser',
                     area: ['725px', '560px'],
                     maxmin: true,
                     //打开默认全屏

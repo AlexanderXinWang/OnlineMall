@@ -20,7 +20,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">商家ID</label>
                     <div class="layui-input-block">
-                        <input type="text" name="pmId" disabled autocomplete="off" value="1" class="layui-input">
+                        <input type="text" name="pmId" disabled autocomplete="off" class="layui-input" th:value="${session.adminUser.userId}">
                     </div>
                 </div>
 <!--             商品编号   商品名称-->
@@ -103,7 +103,7 @@
                 <div class="layui-form-item layui-form-text">
                     <label class="layui-form-label">商品描述</label>
                     <div class="layui-input-block">
-                        <textarea name="contextV"  lay-verify="contextV" placeholder="请输入商品描述信息" class="layui-textarea"></textarea>
+                        <textarea name="context"  lay-verify="contextV" placeholder="请输入商品描述信息" class="layui-textarea"></textarea>
                     </div>
                 </div>
 
@@ -186,6 +186,8 @@
                         var layer = parent.layer;
                         layer.msg("添加成功",{time:900},function () {
                             layer.closeAll();
+                            parent.location.reload();
+
                         });
                     }
                 },

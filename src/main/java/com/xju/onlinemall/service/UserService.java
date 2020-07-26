@@ -49,4 +49,29 @@ public interface UserService {
      *
      * */
     PageInfo<User> getAllBackUsersBySearchInfo(int pageNo, int pageSize, User user);
+
+    /**
+     *
+     * 后台删除用户数据
+     *
+     * */
+    int removeUserInfosByUserIds(Integer[] userIds);
+
+    /**
+     *
+     * 后台添加用户数据
+     *
+     * */
+    int addBackUserInfo(User user);
+
+    /**
+     *
+     * 查询用户，判断是否已经存在该用户
+     *
+     * */
+    boolean selectUserByName(String userName);
+
+    User selectUserByUserId(Integer userId);
+
+    int updateBackListUserInfo(User user);
 }

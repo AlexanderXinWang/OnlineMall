@@ -136,4 +136,61 @@ public class UserSerivceImpl implements UserService{
         PageInfo<User> PageInfo = new PageInfo<>(users);
         return PageInfo;
     }
+
+    /**
+     *
+     * 后台删除用户信息
+     *
+     * */
+    @Override
+    public int removeUserInfosByUserIds(Integer[] userIds) {
+        int count=0;
+
+        if (userIds!=null && userIds.length>0){
+            for(Integer id:userIds){
+                int i = userMapper.deleteByPrimaryKey(id);
+                count=count+i;
+            }
+        }
+        return count;
+    }
+    /**
+     *
+     * 后台添加用户数据
+     *
+     * */
+    @Override
+    public int addBackUserInfo(User user) {
+        return userMapper.insert(user);
+    }
+    /**
+     *
+     * 查询用户，判断是否已经存在该用户
+     *
+     * */
+    @Override
+    public boolean selectUserByName(String userName) {
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andUserNameEqualTo(userName.trim());
+        List<User> users = userMapper.selectByExample(userExample);
+
+        //说明不能添加
+        if (users.size()!=0){
+            return false;
+        }
+        else {
+            return true;
+        }
+
+    }
+
+    @Override
+    public User selectUserByUserId(Integer userId) {
+        return userMapper.selectByPrimaryKey(userId);
+    }
+
+    @Override
+    public int updateBackListUserInfo(User user) {
+        return userMapper.updateByPrimaryKeySelective(user);
+    }
 }

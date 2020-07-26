@@ -38,7 +38,7 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
             //这样做会使得每个人页面访问都会设置一遍，浪费性能
             request.setAttribute("cartProducts", "用户未登录,无法获得购物车商品！！！");
             // 获取request返回页面到登录页
-            System.out.println("后台提示:2、该语句检测是否多次跳转，如果跳转页面正常，但是多次显示该语句，原因可能是静态资源缺少或被拦截,标志位 0");
+//            System.out.println("后台提示:2、该语句检测是否多次跳转，如果跳转页面正常，但是多次显示该语句，原因可能是静态资源缺少或被拦截,标志位 0");
             request.getRequestDispatcher("/account.html").forward(request, response);
             return false;
         }
@@ -51,7 +51,7 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
             //这样做会使得每个人页面访问都会设置一遍，浪费性能
             request.setAttribute("headerCartProductList",cartProductsList);
             request.setAttribute("cartCount",cartCount);
-
+            return true;
 
 
             /**
@@ -76,7 +76,6 @@ public class LoginHandlerInterceptor implements HandlerInterceptor{
              *
              * */
 
-            return true;
         }
 
     }

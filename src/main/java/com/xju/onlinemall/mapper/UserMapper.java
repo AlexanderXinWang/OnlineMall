@@ -3,11 +3,13 @@ package com.xju.onlinemall.mapper;
 import com.xju.onlinemall.common.domain.User;
 import com.xju.onlinemall.common.domain.UserExample;
 import java.util.List;
+
+import com.xju.onlinemall.mapper.extend.UserMapperExtend;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserMapper {
+public interface UserMapper extends UserMapperExtend {
     long countByExample(UserExample example);
 
     int deleteByExample(UserExample example);

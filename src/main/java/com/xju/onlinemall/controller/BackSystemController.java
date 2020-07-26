@@ -173,7 +173,7 @@ public class BackSystemController {
     @ResponseBody
     public Object updateUserInfo(@RequestBody User user){
         //查看后台获取到的数据
-        System.out.println(user);
+//        System.out.println(user);
 
         int i=userService.updateBackUserInfo(user);
 
@@ -240,6 +240,89 @@ public class BackSystemController {
 
         PageInfo<User> pageInfo = userService.getAllBackUsersBySearchInfo(pageNo, pageSize,user);
         return Result.success(pageInfo);
+    }
+    /**
+     *
+     * 后台删除用户信息
+     *
+     * */
+    @RequestMapping("/list/deleteUsersInfo")
+    @ResponseBody
+    public Object deleteUsersInfo(@RequestBody Integer[] userIds){
+        int i= userService.removeUserInfosByUserIds(userIds);
+
+        return Result.success(i,"操作成功",200);
+    }
+    /**
+     *
+     * 后台添加用户
+     *
+     * */
+    @RequestMapping("/list/backAddUser")
+    @ResponseBody
+    public Object backAddUser(@RequestBody User user){
+//        System.out.println(user.getUserName());
+        //先判断数据库中是否已经有了该用户
+        boolean userByName=userService.selectUserByName(user.getUserName());
+
+        //如果数据库中不存在此用户
+        if (userByName){
+            //设置注册的时间
+            Date date = new Date();
+            user.setRegisterTime(date);
+            user.setIsDelete(Byte.valueOf("3"));
+            //查看后台获取到的数据
+//        System.out.println(user);
+            int i=userService.addBackUserInfo(user);
+            return Result.success(i,"操作成功",200);
+
+        }
+        //数据库中存在此用户
+        else {
+
+            return Result.fail("操作失败",200);
+        }
+
+    }
+
+    /**
+     * 查询对象，回显页面
+     *
+     * */
+    @GetMapping("/list/updateUserToBackPage")
+    public String getProduct(ModelMap modelMap,Integer userId){
+        //根据Id查询该用户
+        User user=userService.selectUserByUserId(userId);
+        //把商品放入其中进行显示
+        modelMap.put("oldUser",user);
+
+        return "views/list_backUserInfoShowAndUpdate";
+    }
+
+    /**
+     * 查询对象，回显页面
+     *
+     * */
+    @GetMapping("/list/showUserDetail")
+    public String showProductDetail(ModelMap modelMap,Integer userId){
+        //根据Id查询该用户
+        User user=userService.selectUserByUserId(userId);
+        //把商品放入其中进行显示
+        modelMap.put("oldUser",user);
+
+        return "views/list_backUserInfoShowDetail";
+    }
+    /**
+     * 更新用户
+     *
+     * */
+    @RequestMapping("/list/updateUser")
+    @ResponseBody
+    public Object updateUser(@RequestBody User user){
+
+        System.out.println(user);
+        int i=userService.updateBackUserInfo(user);
+        return Result.success(i,"操作成功",200);
     }
 
 }

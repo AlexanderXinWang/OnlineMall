@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="utf-8">
+    <title>修改用户</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all" th:href="@{/layuiadmin/layui/css/layui.css}" >
+    <link rel="stylesheet"  href="../../../layuiadmin/style/admin.css" media="all" th:href="@{/layuiadmin/style/admin.css}" >
+</head>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body" style="padding: 15px;">
+            <form class="layui-form" action="" lay-filter="form1">
+<!--                用户主键-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户ID</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="userId" disabled autocomplete="off" class="layui-input" th:value="${oldUser.userId}">
+                    </div>
+                </div>
+<!--             用户名   密码-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">用户名</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="userName" placeholder="请输入用户名" lay-verify="required" autocomplete="off" class="layui-input" th:value="${oldUser.userName}">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">密码</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="password" placeholder="请输入用户密码" lay-verify="password" autocomplete="off" class="layui-input" th:value="${oldUser.password}">
+                        </div>
+                    </div>
+                </div>
+<!--                角色-->
+<!--                性别-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">角色</label>
+                        <div class="layui-input-inline">
+                            <select name="userRole" lay-verify="required" lay-search="">
+                                <option value="">请选择用户角色</option>
+<!--                                <option value="0">普通用户</option>-->
+<!--                                <option value="1">商家</option>-->
+<!--                                <option value="2">管理员</option>-->
+                                <p th:if="${oldUser.userRole eq 0}">
+                                    <option value="0" selected>普通用户</option>
+                                    <option value="1" >商家</option>
+                                    <option value="2">管理员</option>
+                                </p>
+                                <p th:if="${oldUser.userRole eq 1}">
+                                    <option value="0">普通用户</option>
+                                    <option value="1" selected>商家</option>
+                                    <option value="2">管理员</option>
+                                </p>
+                                <p th:if="${oldUser.userRole eq 2}">
+                                    <option value="0">普通用户</option>
+                                    <option value="1">商家</option>
+                                    <option value="2" selected>管理员</option>
+                                </p>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">性别</label>
+                        <div class="layui-input-inline">
+                            <select name="sex" lay-verify="required" lay-search="">
+                                <option value="">请选择性别</option>
+                                <p th:if="${oldUser.sex eq 0}">
+                                    <option value="0" selected>男</option>
+                                    <option value="1">女</option>
+                                </p>
+                                <p th:if="${oldUser.sex eq 1}">
+                                    <option value="0">男</option>
+                                    <option value="1" selected>女</option>
+                                </p>
+                                <p th:if="${oldUser.sex != 1 && oldUser.sex != 2}">
+                                    <option value="0">男</option>
+                                    <option value="1">女</option>
+                                </p>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+<!--                电话-->
+<!--                邮件-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">手机</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="phone" placeholder="请输入手机号码" lay-verify="phone" autocomplete="off" class="layui-input" th:value="${oldUser.phone}">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">邮件</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="email" placeholder="请输入电子邮箱" lay-verify="email" autocomplete="off" class="layui-input" th:value="${oldUser.email}">
+                        </div>
+                    </div>
+                </div>
+<!--                头像图片路径-->
+<!--                支付密码-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">图片路径</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="imageUrl" placeholder="请输入图片路径" lay-verify="pimage" autocomplete="off" class="layui-input" th:value="${oldUser.imageUrl}">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">支付密码</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="payPassword" placeholder="请输入支付密码" lay-verify="required" autocomplete="off" class="layui-input" th:value="${oldUser.payPassword}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-layout-admin">
+                    <div class="layui-input-block">
+                        <div class="layui-footer" style="left: 0;">
+                            <button class="layui-btn" lay-submit="" lay-filter="layer_updateUser_submit">修改</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../../layuiadmin/layui/layui.js" th:src="@{/layuiadmin/layui/layui.js}"></script>
+<script>
+    layui.config({
+        // base: [('"'+@{/layuiadmin/}+'"')]
+        base:'/layuiadmin/'
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'laydate'], function(){
+        var $ = layui.$
+            ,admin = layui.admin
+            ,element = layui.element
+            ,layer = layui.layer
+            ,laydate = layui.laydate
+            ,form = layui.form;
+
+        form.render(null, 'form1');
+
+
+
+        /* 自定义验证规则 */
+        form.verify({
+            pimage:function (value) {
+                if(value.length <= 0){
+                    return '图片路径不能为空';
+                }
+            },
+            password:function (value) {
+                if(value.length <= 0){
+                    return '密码不能为空';
+                }
+                if (value.length<6 || value.length>16){
+                    return '密码长度在6-16位之间'
+                }
+            }
+        });
+
+        /* 监听提交 */
+        form.on('submit(layer_updateUser_submit)', function(data){
+
+
+            //添加请求
+            $.ajax({
+                type: "POST",
+                contentType:"application/json",
+                url: "/list/updateUser",
+                data: JSON.stringify(data.field),
+                success: function(msg){
+                    if(msg["success"]){
+                        var layer = parent.layer;
+                        layer.msg("用户修改成功",{time:900},function () {
+                            layer.closeAll();
+                            parent.location.reload();
+
+                        });
+                    }
+                    else{
+                        var layer = parent.layer;
+                        layer.msg("修改失败",{time:900},function () {
+                            // layer.closeAll();
+
+                        });
+
+                    }
+                },
+                dataType:"json"
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>
