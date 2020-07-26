@@ -19,18 +19,15 @@ public class SystemLogController {
     @Autowired
     SystemLogService systemLogService;
 
-    /**
-     *
-     * 商品搜索功能
-     * 搜索框  获得商品列表信息
-     * 以JSON的数据格式传输到前端
-     *
-     * */
+
     @RequestMapping("/systemLogController/systemLogSearch")
     @ResponseBody
     public Object productListBySearch(HttpSession session, @RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize){
         User adminUser =(User) session.getAttribute("adminUser");
         PageInfo<SystemLog> pageInfo=null;
+
+        //把方法改一下，系统日志获取的是所有的日志信息，不是管理员一个人的日志信息
+
         pageInfo = systemLogService.getSystemLogByUserIdAndSearchInfo(pageNo, pageSize,adminUser.getUserId());
         return Result.success(pageInfo);
     }
