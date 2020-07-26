@@ -26,7 +26,7 @@ public class SystemLogController {
         User adminUser =(User) session.getAttribute("adminUser");
         PageInfo<SystemLog> pageInfo=null;
 
-        //把方法改一下，系统日志获取的是所有的日志信息，不是管理员一个人的日志信息
+        //把方法改一下吧，系统日志获取的是所有的日志信息，不是管理员一个人的日志信息
 
         pageInfo = systemLogService.getSystemLogByUserIdAndSearchInfo(pageNo, pageSize,adminUser.getUserId());
         return Result.success(pageInfo);
