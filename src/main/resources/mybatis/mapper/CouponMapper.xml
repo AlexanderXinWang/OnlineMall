@@ -4,14 +4,14 @@
   <resultMap id="BaseResultMap" type="com.xju.onlinemall.common.domain.Coupon">
     <id column="coupon_id" jdbcType="INTEGER" property="couponId" />
     <result column="coupon_name" jdbcType="VARCHAR" property="couponName" />
-    <result column="coupon_info" jdbcType="VARCHAR" property="couponInfo" />
-    <result column="coupon_is_used" jdbcType="TINYINT" property="couponIsUsed" />
-    <result column="coupon_is_delete" jdbcType="TINYINT" property="couponIsDelete" />
-    <result column="coupon_keep_field_" jdbcType="VARCHAR" property="couponKeepField" />
+    <result column="min_amount" jdbcType="DOUBLE" property="minAmount" />
+    <result column="coupon_amount" jdbcType="DOUBLE" property="couponAmount" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="category_id" jdbcType="INTEGER" property="categoryId" />
     <result column="product_id" jdbcType="INTEGER" property="productId" />
-    <result column="expire_time" jdbcType="TIMESTAMP" property="expireTime" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="expire_time" jdbcType="TIMESTAMP" property="expireTime" />
+    <result column="coupon_is_delete" jdbcType="TINYINT" property="couponIsDelete" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -72,8 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    coupon_id, coupon_name, coupon_info, coupon_is_used, coupon_is_delete, coupon_keep_field_, 
-    category_id, product_id, expire_time, create_time
+    coupon_id, coupon_name, min_amount, coupon_amount, user_id, category_id, product_id, 
+    create_time, expire_time, coupon_is_delete
   </sql>
   <select id="selectByExample" parameterType="com.xju.onlinemall.common.domain.CouponExample" resultMap="BaseResultMap">
     select
@@ -106,14 +106,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.xju.onlinemall.common.domain.Coupon">
-    insert into tb_coupon (coupon_id, coupon_name, coupon_info, 
-      coupon_is_used, coupon_is_delete, coupon_keep_field_, 
-      category_id, product_id, expire_time, 
-      create_time)
-    values (#{couponId,jdbcType=INTEGER}, #{couponName,jdbcType=VARCHAR}, #{couponInfo,jdbcType=VARCHAR}, 
-      #{couponIsUsed,jdbcType=TINYINT}, #{couponIsDelete,jdbcType=TINYINT}, #{couponKeepField,jdbcType=VARCHAR}, 
-      #{categoryId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{expireTime,jdbcType=TIMESTAMP}, 
-      #{createTime,jdbcType=TIMESTAMP})
+    insert into tb_coupon (coupon_id, coupon_name, min_amount, 
+      coupon_amount, user_id, category_id, 
+      product_id, create_time, expire_time, 
+      coupon_is_delete)
+    values (#{couponId,jdbcType=INTEGER}, #{couponName,jdbcType=VARCHAR}, #{minAmount,jdbcType=DOUBLE}, 
+      #{couponAmount,jdbcType=DOUBLE}, #{userId,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, 
+      #{productId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{expireTime,jdbcType=TIMESTAMP}, 
+      #{couponIsDelete,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.xju.onlinemall.common.domain.Coupon">
     insert into tb_coupon
@@ -124,17 +124,14 @@
       <if test="couponName != null">
         coupon_name,
       </if>
-      <if test="couponInfo != null">
-        coupon_info,
+      <if test="minAmount != null">
+        min_amount,
       </if>
-      <if test="couponIsUsed != null">
-        coupon_is_used,
+      <if test="couponAmount != null">
+        coupon_amount,
       </if>
-      <if test="couponIsDelete != null">
-        coupon_is_delete,
-      </if>
-      <if test="couponKeepField != null">
-        coupon_keep_field_,
+      <if test="userId != null">
+        user_id,
       </if>
       <if test="categoryId != null">
         category_id,
@@ -142,11 +139,14 @@
       <if test="productId != null">
         product_id,
       </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
       <if test="expireTime != null">
         expire_time,
       </if>
-      <if test="createTime != null">
-        create_time,
+      <if test="couponIsDelete != null">
+        coupon_is_delete,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -156,17 +156,14 @@
       <if test="couponName != null">
         #{couponName,jdbcType=VARCHAR},
       </if>
-      <if test="couponInfo != null">
-        #{couponInfo,jdbcType=VARCHAR},
+      <if test="minAmount != null">
+        #{minAmount,jdbcType=DOUBLE},
       </if>
-      <if test="couponIsUsed != null">
-        #{couponIsUsed,jdbcType=TINYINT},
+      <if test="couponAmount != null">
+        #{couponAmount,jdbcType=DOUBLE},
       </if>
-      <if test="couponIsDelete != null">
-        #{couponIsDelete,jdbcType=TINYINT},
-      </if>
-      <if test="couponKeepField != null">
-        #{couponKeepField,jdbcType=VARCHAR},
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
       </if>
       <if test="categoryId != null">
         #{categoryId,jdbcType=INTEGER},
@@ -174,11 +171,14 @@
       <if test="productId != null">
         #{productId,jdbcType=INTEGER},
       </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="expireTime != null">
         #{expireTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
+      <if test="couponIsDelete != null">
+        #{couponIsDelete,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
@@ -197,17 +197,14 @@
       <if test="record.couponName != null">
         coupon_name = #{record.couponName,jdbcType=VARCHAR},
       </if>
-      <if test="record.couponInfo != null">
-        coupon_info = #{record.couponInfo,jdbcType=VARCHAR},
+      <if test="record.minAmount != null">
+        min_amount = #{record.minAmount,jdbcType=DOUBLE},
       </if>
-      <if test="record.couponIsUsed != null">
-        coupon_is_used = #{record.couponIsUsed,jdbcType=TINYINT},
+      <if test="record.couponAmount != null">
+        coupon_amount = #{record.couponAmount,jdbcType=DOUBLE},
       </if>
-      <if test="record.couponIsDelete != null">
-        coupon_is_delete = #{record.couponIsDelete,jdbcType=TINYINT},
-      </if>
-      <if test="record.couponKeepField != null">
-        coupon_keep_field_ = #{record.couponKeepField,jdbcType=VARCHAR},
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
       </if>
       <if test="record.categoryId != null">
         category_id = #{record.categoryId,jdbcType=INTEGER},
@@ -215,11 +212,14 @@
       <if test="record.productId != null">
         product_id = #{record.productId,jdbcType=INTEGER},
       </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="record.expireTime != null">
         expire_time = #{record.expireTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      <if test="record.couponIsDelete != null">
+        coupon_is_delete = #{record.couponIsDelete,jdbcType=TINYINT},
       </if>
     </set>
     <if test="_parameter != null">
@@ -230,14 +230,14 @@
     update tb_coupon
     set coupon_id = #{record.couponId,jdbcType=INTEGER},
       coupon_name = #{record.couponName,jdbcType=VARCHAR},
-      coupon_info = #{record.couponInfo,jdbcType=VARCHAR},
-      coupon_is_used = #{record.couponIsUsed,jdbcType=TINYINT},
-      coupon_is_delete = #{record.couponIsDelete,jdbcType=TINYINT},
-      coupon_keep_field_ = #{record.couponKeepField,jdbcType=VARCHAR},
+      min_amount = #{record.minAmount,jdbcType=DOUBLE},
+      coupon_amount = #{record.couponAmount,jdbcType=DOUBLE},
+      user_id = #{record.userId,jdbcType=INTEGER},
       category_id = #{record.categoryId,jdbcType=INTEGER},
       product_id = #{record.productId,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
       expire_time = #{record.expireTime,jdbcType=TIMESTAMP},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+      coupon_is_delete = #{record.couponIsDelete,jdbcType=TINYINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -248,17 +248,14 @@
       <if test="couponName != null">
         coupon_name = #{couponName,jdbcType=VARCHAR},
       </if>
-      <if test="couponInfo != null">
-        coupon_info = #{couponInfo,jdbcType=VARCHAR},
+      <if test="minAmount != null">
+        min_amount = #{minAmount,jdbcType=DOUBLE},
       </if>
-      <if test="couponIsUsed != null">
-        coupon_is_used = #{couponIsUsed,jdbcType=TINYINT},
+      <if test="couponAmount != null">
+        coupon_amount = #{couponAmount,jdbcType=DOUBLE},
       </if>
-      <if test="couponIsDelete != null">
-        coupon_is_delete = #{couponIsDelete,jdbcType=TINYINT},
-      </if>
-      <if test="couponKeepField != null">
-        coupon_keep_field_ = #{couponKeepField,jdbcType=VARCHAR},
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="categoryId != null">
         category_id = #{categoryId,jdbcType=INTEGER},
@@ -266,11 +263,14 @@
       <if test="productId != null">
         product_id = #{productId,jdbcType=INTEGER},
       </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="expireTime != null">
         expire_time = #{expireTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+      <if test="couponIsDelete != null">
+        coupon_is_delete = #{couponIsDelete,jdbcType=TINYINT},
       </if>
     </set>
     where coupon_id = #{couponId,jdbcType=INTEGER}
@@ -278,14 +278,14 @@
   <update id="updateByPrimaryKey" parameterType="com.xju.onlinemall.common.domain.Coupon">
     update tb_coupon
     set coupon_name = #{couponName,jdbcType=VARCHAR},
-      coupon_info = #{couponInfo,jdbcType=VARCHAR},
-      coupon_is_used = #{couponIsUsed,jdbcType=TINYINT},
-      coupon_is_delete = #{couponIsDelete,jdbcType=TINYINT},
-      coupon_keep_field_ = #{couponKeepField,jdbcType=VARCHAR},
+      min_amount = #{minAmount,jdbcType=DOUBLE},
+      coupon_amount = #{couponAmount,jdbcType=DOUBLE},
+      user_id = #{userId,jdbcType=INTEGER},
       category_id = #{categoryId,jdbcType=INTEGER},
       product_id = #{productId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
       expire_time = #{expireTime,jdbcType=TIMESTAMP},
-      create_time = #{createTime,jdbcType=TIMESTAMP}
+      coupon_is_delete = #{couponIsDelete,jdbcType=TINYINT}
     where coupon_id = #{couponId,jdbcType=INTEGER}
   </update>
 </mapper>

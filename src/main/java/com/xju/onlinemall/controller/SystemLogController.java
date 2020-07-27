@@ -21,7 +21,7 @@ public class SystemLogController {
 
     @RequestMapping("/list/systemLogSearch")
     @ResponseBody
-    public Object productListBySearch(SystemLog systemLog, String logTime,@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize){
+    public Object systemLogListBySearch(SystemLog systemLog, String logTime,@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize){
         PageInfo<SystemLog> pageInfo=null;
 
         //把方法改一下吧，系统日志获取的是所有的日志信息，不是管理员一个人的日志信息
@@ -35,7 +35,7 @@ public class SystemLogController {
      *
      * */
     @GetMapping("/list/showSystemLogDetail")
-    public String showProductDetail(ModelMap modelMap, Integer logId){
+    public String showSystemLogDetail(ModelMap modelMap, Integer logId){
         System.out.println(logId);
         //根据Id查询该商品
         SystemLog systemLog = systemLogService.selectByLogId(logId);
@@ -55,7 +55,7 @@ public class SystemLogController {
      * */
     @RequestMapping("/list/deleteSystemLogs")
     @ResponseBody
-    public Object deleteProducts(@RequestBody Integer[] logIds){
+    public Object deleteSystemLogs(@RequestBody Integer[] logIds){
         //System.out.println(logIds[0]);
         //System.out.println(logIds[1]);
         int i = systemLogService.deleteSystemLogsBylogIds(logIds);

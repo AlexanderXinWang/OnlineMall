@@ -235,263 +235,183 @@ public class CouponExample {
             return (Criteria) this;
         }
 
-        public Criteria andCouponInfoIsNull() {
-            addCriterion("coupon_info is null");
+        public Criteria andMinAmountIsNull() {
+            addCriterion("min_amount is null");
             return (Criteria) this;
         }
 
-        public Criteria andCouponInfoIsNotNull() {
-            addCriterion("coupon_info is not null");
+        public Criteria andMinAmountIsNotNull() {
+            addCriterion("min_amount is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCouponInfoEqualTo(String value) {
-            addCriterion("coupon_info =", value, "couponInfo");
+        public Criteria andMinAmountEqualTo(Double value) {
+            addCriterion("min_amount =", value, "minAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCouponInfoNotEqualTo(String value) {
-            addCriterion("coupon_info <>", value, "couponInfo");
+        public Criteria andMinAmountNotEqualTo(Double value) {
+            addCriterion("min_amount <>", value, "minAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCouponInfoGreaterThan(String value) {
-            addCriterion("coupon_info >", value, "couponInfo");
+        public Criteria andMinAmountGreaterThan(Double value) {
+            addCriterion("min_amount >", value, "minAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCouponInfoGreaterThanOrEqualTo(String value) {
-            addCriterion("coupon_info >=", value, "couponInfo");
+        public Criteria andMinAmountGreaterThanOrEqualTo(Double value) {
+            addCriterion("min_amount >=", value, "minAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCouponInfoLessThan(String value) {
-            addCriterion("coupon_info <", value, "couponInfo");
+        public Criteria andMinAmountLessThan(Double value) {
+            addCriterion("min_amount <", value, "minAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCouponInfoLessThanOrEqualTo(String value) {
-            addCriterion("coupon_info <=", value, "couponInfo");
+        public Criteria andMinAmountLessThanOrEqualTo(Double value) {
+            addCriterion("min_amount <=", value, "minAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCouponInfoLike(String value) {
-            addCriterion("coupon_info like", value, "couponInfo");
+        public Criteria andMinAmountIn(List<Double> values) {
+            addCriterion("min_amount in", values, "minAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCouponInfoNotLike(String value) {
-            addCriterion("coupon_info not like", value, "couponInfo");
+        public Criteria andMinAmountNotIn(List<Double> values) {
+            addCriterion("min_amount not in", values, "minAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCouponInfoIn(List<String> values) {
-            addCriterion("coupon_info in", values, "couponInfo");
+        public Criteria andMinAmountBetween(Double value1, Double value2) {
+            addCriterion("min_amount between", value1, value2, "minAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCouponInfoNotIn(List<String> values) {
-            addCriterion("coupon_info not in", values, "couponInfo");
+        public Criteria andMinAmountNotBetween(Double value1, Double value2) {
+            addCriterion("min_amount not between", value1, value2, "minAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCouponInfoBetween(String value1, String value2) {
-            addCriterion("coupon_info between", value1, value2, "couponInfo");
+        public Criteria andCouponAmountIsNull() {
+            addCriterion("coupon_amount is null");
             return (Criteria) this;
         }
 
-        public Criteria andCouponInfoNotBetween(String value1, String value2) {
-            addCriterion("coupon_info not between", value1, value2, "couponInfo");
+        public Criteria andCouponAmountIsNotNull() {
+            addCriterion("coupon_amount is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIsUsedIsNull() {
-            addCriterion("coupon_is_used is null");
+        public Criteria andCouponAmountEqualTo(Double value) {
+            addCriterion("coupon_amount =", value, "couponAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIsUsedIsNotNull() {
-            addCriterion("coupon_is_used is not null");
+        public Criteria andCouponAmountNotEqualTo(Double value) {
+            addCriterion("coupon_amount <>", value, "couponAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIsUsedEqualTo(Byte value) {
-            addCriterion("coupon_is_used =", value, "couponIsUsed");
+        public Criteria andCouponAmountGreaterThan(Double value) {
+            addCriterion("coupon_amount >", value, "couponAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIsUsedNotEqualTo(Byte value) {
-            addCriterion("coupon_is_used <>", value, "couponIsUsed");
+        public Criteria andCouponAmountGreaterThanOrEqualTo(Double value) {
+            addCriterion("coupon_amount >=", value, "couponAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIsUsedGreaterThan(Byte value) {
-            addCriterion("coupon_is_used >", value, "couponIsUsed");
+        public Criteria andCouponAmountLessThan(Double value) {
+            addCriterion("coupon_amount <", value, "couponAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIsUsedGreaterThanOrEqualTo(Byte value) {
-            addCriterion("coupon_is_used >=", value, "couponIsUsed");
+        public Criteria andCouponAmountLessThanOrEqualTo(Double value) {
+            addCriterion("coupon_amount <=", value, "couponAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIsUsedLessThan(Byte value) {
-            addCriterion("coupon_is_used <", value, "couponIsUsed");
+        public Criteria andCouponAmountIn(List<Double> values) {
+            addCriterion("coupon_amount in", values, "couponAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIsUsedLessThanOrEqualTo(Byte value) {
-            addCriterion("coupon_is_used <=", value, "couponIsUsed");
+        public Criteria andCouponAmountNotIn(List<Double> values) {
+            addCriterion("coupon_amount not in", values, "couponAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIsUsedIn(List<Byte> values) {
-            addCriterion("coupon_is_used in", values, "couponIsUsed");
+        public Criteria andCouponAmountBetween(Double value1, Double value2) {
+            addCriterion("coupon_amount between", value1, value2, "couponAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIsUsedNotIn(List<Byte> values) {
-            addCriterion("coupon_is_used not in", values, "couponIsUsed");
+        public Criteria andCouponAmountNotBetween(Double value1, Double value2) {
+            addCriterion("coupon_amount not between", value1, value2, "couponAmount");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIsUsedBetween(Byte value1, Byte value2) {
-            addCriterion("coupon_is_used between", value1, value2, "couponIsUsed");
+        public Criteria andUserIdIsNull() {
+            addCriterion("user_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIsUsedNotBetween(Byte value1, Byte value2) {
-            addCriterion("coupon_is_used not between", value1, value2, "couponIsUsed");
+        public Criteria andUserIdIsNotNull() {
+            addCriterion("user_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIsDeleteIsNull() {
-            addCriterion("coupon_is_delete is null");
+        public Criteria andUserIdEqualTo(Integer value) {
+            addCriterion("user_id =", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIsDeleteIsNotNull() {
-            addCriterion("coupon_is_delete is not null");
+        public Criteria andUserIdNotEqualTo(Integer value) {
+            addCriterion("user_id <>", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIsDeleteEqualTo(Byte value) {
-            addCriterion("coupon_is_delete =", value, "couponIsDelete");
+        public Criteria andUserIdGreaterThan(Integer value) {
+            addCriterion("user_id >", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIsDeleteNotEqualTo(Byte value) {
-            addCriterion("coupon_is_delete <>", value, "couponIsDelete");
+        public Criteria andUserIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("user_id >=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIsDeleteGreaterThan(Byte value) {
-            addCriterion("coupon_is_delete >", value, "couponIsDelete");
+        public Criteria andUserIdLessThan(Integer value) {
+            addCriterion("user_id <", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIsDeleteGreaterThanOrEqualTo(Byte value) {
-            addCriterion("coupon_is_delete >=", value, "couponIsDelete");
+        public Criteria andUserIdLessThanOrEqualTo(Integer value) {
+            addCriterion("user_id <=", value, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIsDeleteLessThan(Byte value) {
-            addCriterion("coupon_is_delete <", value, "couponIsDelete");
+        public Criteria andUserIdIn(List<Integer> values) {
+            addCriterion("user_id in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIsDeleteLessThanOrEqualTo(Byte value) {
-            addCriterion("coupon_is_delete <=", value, "couponIsDelete");
+        public Criteria andUserIdNotIn(List<Integer> values) {
+            addCriterion("user_id not in", values, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIsDeleteIn(List<Byte> values) {
-            addCriterion("coupon_is_delete in", values, "couponIsDelete");
+        public Criteria andUserIdBetween(Integer value1, Integer value2) {
+            addCriterion("user_id between", value1, value2, "userId");
             return (Criteria) this;
         }
 
-        public Criteria andCouponIsDeleteNotIn(List<Byte> values) {
-            addCriterion("coupon_is_delete not in", values, "couponIsDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponIsDeleteBetween(Byte value1, Byte value2) {
-            addCriterion("coupon_is_delete between", value1, value2, "couponIsDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponIsDeleteNotBetween(Byte value1, Byte value2) {
-            addCriterion("coupon_is_delete not between", value1, value2, "couponIsDelete");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponKeepFieldIsNull() {
-            addCriterion("coupon_keep_field_ is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponKeepFieldIsNotNull() {
-            addCriterion("coupon_keep_field_ is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponKeepFieldEqualTo(String value) {
-            addCriterion("coupon_keep_field_ =", value, "couponKeepField");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponKeepFieldNotEqualTo(String value) {
-            addCriterion("coupon_keep_field_ <>", value, "couponKeepField");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponKeepFieldGreaterThan(String value) {
-            addCriterion("coupon_keep_field_ >", value, "couponKeepField");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponKeepFieldGreaterThanOrEqualTo(String value) {
-            addCriterion("coupon_keep_field_ >=", value, "couponKeepField");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponKeepFieldLessThan(String value) {
-            addCriterion("coupon_keep_field_ <", value, "couponKeepField");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponKeepFieldLessThanOrEqualTo(String value) {
-            addCriterion("coupon_keep_field_ <=", value, "couponKeepField");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponKeepFieldLike(String value) {
-            addCriterion("coupon_keep_field_ like", value, "couponKeepField");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponKeepFieldNotLike(String value) {
-            addCriterion("coupon_keep_field_ not like", value, "couponKeepField");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponKeepFieldIn(List<String> values) {
-            addCriterion("coupon_keep_field_ in", values, "couponKeepField");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponKeepFieldNotIn(List<String> values) {
-            addCriterion("coupon_keep_field_ not in", values, "couponKeepField");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponKeepFieldBetween(String value1, String value2) {
-            addCriterion("coupon_keep_field_ between", value1, value2, "couponKeepField");
-            return (Criteria) this;
-        }
-
-        public Criteria andCouponKeepFieldNotBetween(String value1, String value2) {
-            addCriterion("coupon_keep_field_ not between", value1, value2, "couponKeepField");
+        public Criteria andUserIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("user_id not between", value1, value2, "userId");
             return (Criteria) this;
         }
 
@@ -615,6 +535,66 @@ public class CouponExample {
             return (Criteria) this;
         }
 
+        public Criteria andCreateTimeIsNull() {
+            addCriterion("create_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeIsNotNull() {
+            addCriterion("create_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeEqualTo(Date value) {
+            addCriterion("create_time =", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeNotEqualTo(Date value) {
+            addCriterion("create_time <>", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeGreaterThan(Date value) {
+            addCriterion("create_time >", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("create_time >=", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeLessThan(Date value) {
+            addCriterion("create_time <", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
+            addCriterion("create_time <=", value, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeIn(List<Date> values) {
+            addCriterion("create_time in", values, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeNotIn(List<Date> values) {
+            addCriterion("create_time not in", values, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeBetween(Date value1, Date value2) {
+            addCriterion("create_time between", value1, value2, "createTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
+            addCriterion("create_time not between", value1, value2, "createTime");
+            return (Criteria) this;
+        }
+
         public Criteria andExpireTimeIsNull() {
             addCriterion("expire_time is null");
             return (Criteria) this;
@@ -675,63 +655,63 @@ public class CouponExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIsNull() {
-            addCriterion("create_time is null");
+        public Criteria andCouponIsDeleteIsNull() {
+            addCriterion("coupon_is_delete is null");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIsNotNull() {
-            addCriterion("create_time is not null");
+        public Criteria andCouponIsDeleteIsNotNull() {
+            addCriterion("coupon_is_delete is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeEqualTo(Date value) {
-            addCriterion("create_time =", value, "createTime");
+        public Criteria andCouponIsDeleteEqualTo(Byte value) {
+            addCriterion("coupon_is_delete =", value, "couponIsDelete");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotEqualTo(Date value) {
-            addCriterion("create_time <>", value, "createTime");
+        public Criteria andCouponIsDeleteNotEqualTo(Byte value) {
+            addCriterion("coupon_is_delete <>", value, "couponIsDelete");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThan(Date value) {
-            addCriterion("create_time >", value, "createTime");
+        public Criteria andCouponIsDeleteGreaterThan(Byte value) {
+            addCriterion("coupon_is_delete >", value, "couponIsDelete");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("create_time >=", value, "createTime");
+        public Criteria andCouponIsDeleteGreaterThanOrEqualTo(Byte value) {
+            addCriterion("coupon_is_delete >=", value, "couponIsDelete");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThan(Date value) {
-            addCriterion("create_time <", value, "createTime");
+        public Criteria andCouponIsDeleteLessThan(Byte value) {
+            addCriterion("coupon_is_delete <", value, "couponIsDelete");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeLessThanOrEqualTo(Date value) {
-            addCriterion("create_time <=", value, "createTime");
+        public Criteria andCouponIsDeleteLessThanOrEqualTo(Byte value) {
+            addCriterion("coupon_is_delete <=", value, "couponIsDelete");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeIn(List<Date> values) {
-            addCriterion("create_time in", values, "createTime");
+        public Criteria andCouponIsDeleteIn(List<Byte> values) {
+            addCriterion("coupon_is_delete in", values, "couponIsDelete");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotIn(List<Date> values) {
-            addCriterion("create_time not in", values, "createTime");
+        public Criteria andCouponIsDeleteNotIn(List<Byte> values) {
+            addCriterion("coupon_is_delete not in", values, "couponIsDelete");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeBetween(Date value1, Date value2) {
-            addCriterion("create_time between", value1, value2, "createTime");
+        public Criteria andCouponIsDeleteBetween(Byte value1, Byte value2) {
+            addCriterion("coupon_is_delete between", value1, value2, "couponIsDelete");
             return (Criteria) this;
         }
 
-        public Criteria andCreateTimeNotBetween(Date value1, Date value2) {
-            addCriterion("create_time not between", value1, value2, "createTime");
+        public Criteria andCouponIsDeleteNotBetween(Byte value1, Byte value2) {
+            addCriterion("coupon_is_delete not between", value1, value2, "couponIsDelete");
             return (Criteria) this;
         }
     }
