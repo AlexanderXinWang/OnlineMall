@@ -58,7 +58,7 @@
                             </p>
                             <p th:case="1">
                                 <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=0&cid='+${cid}+'&min='+${min}+'&max='+${max}">默认排序</option>
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=1&cid='+${cid+'&min='+${min}+'&max='+${max}}" th:selected="selected">按评分排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=1&cid='+${cid}+'&min='+${min}+'&max='+${max}" th:selected="selected">按评分排序</option>
                                 <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=2&cid='+${cid}+'&min='+${min}+'&max='+${max}">按上架时间排序</option>
                                 <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=3&cid='+${cid}+'&min='+${min}+'&max='+${max}">从低到高价格排序</option>
                                 <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=4&cid='+${cid}+'&min='+${min}+'&max='+${max}">从高到低价格排序</option>
@@ -378,6 +378,26 @@
 
 
         $("#buttonFilter").click(function () {
+            /*if (("#from").attr("placeholder")==null){
+                var min=$("#from").val().trim();
+            }else {
+                var min=$("#from").attr("placeholder");
+            }
+            if (("#to").attr("placeholder")==null){
+                var max=$("#to").val().trim();
+            }else {
+                var max=$("#to").attr("placeholder");
+            }*/
+            /*if (("#from").val().trim()==null){
+                var min=$("#from").attr("placeholder");
+            }else {
+                var min=$("#from").val().trim();
+            }
+            if (("#to").attr("placeholder")==null){
+                var max=$("#to").val().trim();
+            }else {
+                var max=$("#to").attr("placeholder");
+            }*/
             var min=$("#from").val().trim();
             var max=$("#to").val().trim();
             alert(min+"|"+max);
@@ -388,11 +408,15 @@
                 data:{"min":min,"max":max},
                 success:function (data) {
                     if (data["success"]){
-                        alert("查询成功！跳转中···");
+                        layer.msg("查询成功！跳转中···",{time:1700},function () {
+                            layer.close(index);
+                        })
                         window.location.href=data["msg"];
                     }
                     else{
-                        alert("查询失败！请稍后再试。");
+                        layer.msg("查询失败！请稍后再试。",{time:1700},function () {
+                            layer.close(index);
+                        })
                     }
                 }
             })
