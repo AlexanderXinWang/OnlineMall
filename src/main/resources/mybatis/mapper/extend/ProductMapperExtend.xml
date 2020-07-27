@@ -38,6 +38,18 @@
         WHERE p.`category_id` = #{cid} AND p.price BETWEEN #{min} AND #{max}
         GROUP BY p.product_id ORDER BY AVG(c.score) DESC
     </select>
+    <select id="selectBySearchAndRate" resultMap="BaseResultMap">
+        SELECT p.* ,AVG(c.score) FROM tb_product p
+        LEFT JOIN tb_comment c ON c.`product_id`=p.`product_id`
+        WHERE p.`product_name` LIKE '%['+#{s}+']%'
+        GROUP BY p.product_id ORDER BY AVG(c.score) DESC
+    </select>
+    <select id="selectBySearchAndCategoryAndRate" resultMap="BaseResultMap">
+        SELECT p.* ,AVG(c.score) FROM tb_product p
+        LEFT JOIN tb_comment c ON c.`product_id`=p.`product_id`
+        WHERE p.`category_id` = #{cid} AND p.`product_name` LIKE '%['+#{s}+']%'
+        GROUP BY p.product_id ORDER BY AVG(c.score) DESC
+    </select>
     <select id="selectByTime" resultMap="BaseResultMap">
         select * from tb_product order by add_time desc
     </select>

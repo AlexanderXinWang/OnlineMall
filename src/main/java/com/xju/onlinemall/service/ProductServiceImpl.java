@@ -245,6 +245,88 @@ public class ProductServiceImpl implements ProductService{
         return PageInfo;
     }
 
+
+    ///////////////////////////////////////////////////////////////////////////
+    //  header搜索功能
+    @Override
+    public PageInfo<Product> searchProductsByCategory(int pageNo, int pageSize, int cid, String s) {
+        PageHelper.startPage(pageNo,pageSize);
+        ProductExample productExample = new ProductExample();
+        if (cid==5) {
+            productExample.createCriteria().andProductNameLike("%"+s+"%");
+        }
+        else {
+            productExample.createCriteria().andCategoryIdEqualTo(cid).andProductNameLike("%"+s+"%");
+        }
+        List<Product> list = productMapper.selectByExample(productExample);
+        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        return PageInfo;
+    }
+
+    @Override
+    public PageInfo<Product> searchProductsByCategoryAndRate(int pageNo, int pageSize, int cid, String s) {
+        PageHelper.startPage(pageNo,pageSize);
+        //5为全部分类，即查询所有商品
+        if (cid==5) {
+            List<Product> list = productMapper.selectBySearchAndRate(s);
+            PageInfo<Product> PageInfo = new PageInfo<>(list);
+            return PageInfo;
+        }
+        else {
+            List<Product> list = productMapper.selectBySearchAndCategoryAndRate(cid,s);
+            PageInfo<Product> PageInfo = new PageInfo<>(list);
+            return PageInfo;
+        }
+    }
+
+    @Override
+    public PageInfo<Product> searchProductsByCategoryAndTime(int pageNo, int pageSize, int cid, String s) {
+        PageHelper.startPage(pageNo,pageSize);
+        ProductExample productExample = new ProductExample();
+        if (cid==5) {
+            productExample.createCriteria().andProductNameLike("%"+s+"%");
+        }
+        else {
+            productExample.createCriteria().andCategoryIdEqualTo(cid).andProductNameLike("%"+s+"%");
+        }
+        productExample.setOrderByClause("add_time desc");
+        List<Product> list = productMapper.selectByExample(productExample);
+        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        return PageInfo;
+    }
+
+    @Override
+    public PageInfo<Product> searchProductsByCategoryAndPriceASC(int pageNo, int pageSize, int cid, String s) {
+        PageHelper.startPage(pageNo,pageSize);
+        ProductExample productExample = new ProductExample();
+        if (cid==5) {
+            productExample.createCriteria().andProductNameLike("%"+s+"%");
+        }
+        else {
+            productExample.createCriteria().andCategoryIdEqualTo(cid).andProductNameLike("%"+s+"%");
+        }
+        productExample.setOrderByClause("price asc");
+        List<Product> list = productMapper.selectByExample(productExample);
+        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        return PageInfo;
+    }
+
+    @Override
+    public PageInfo<Product> searchProductsByCategoryAndPriceDESC(int pageNo, int pageSize, int cid, String s) {
+        PageHelper.startPage(pageNo,pageSize);
+        ProductExample productExample = new ProductExample();
+        if (cid==5) {
+            productExample.createCriteria().andProductNameLike("%"+s+"%");
+        }
+        else {
+            productExample.createCriteria().andCategoryIdEqualTo(cid).andProductNameLike("%"+s+"%");
+        }
+        productExample.setOrderByClause("price desc");
+        List<Product> list = productMapper.selectByExample(productExample);
+        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        return PageInfo;
+    }
+
     ///////////////////////////////////////////////////////////////////////////
 
     @Override

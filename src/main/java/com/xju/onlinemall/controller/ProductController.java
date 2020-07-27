@@ -35,36 +35,70 @@ public class ProductController {
      * */
     @RequestMapping("/product.html")
     public String commodity(HttpSession session, Model model,
+                            @RequestParam(required = false) String s,
+                            @RequestParam(defaultValue = "5") int product_cat,
                             @RequestParam(defaultValue = "0") int condition,
                             @RequestParam(defaultValue = "1") int pageNo,
                             @RequestParam(defaultValue = "12") int pageSize){
         //分页
         PageInfo<Product> pageInfo=null;
-        /**
-         * 0-默认
-         * 1-按评分排序
-         * 2-按上架时间排序
-         * 3-从低到高价格排序
-         * 4-从高到低价格排序
-         */
-        switch (condition) {
-            default:
-                //获取分页信息与商品列表
-                pageInfo = productService.getAllProducts(pageNo, pageSize);
-                break;
-            case 1:
-                pageInfo = productService.getAllProductsByRate(pageNo,pageSize);
-                break;
-            case 2:
-                pageInfo = productService.getAllProductsByTime(pageNo,pageSize);
-                break;
-            case 3:
-                pageInfo = productService.getAllProductsByPriceASC(pageNo,pageSize);
-                break;
-            case 4:
-                pageInfo = productService.getAllProductsByPriceDESC(pageNo,pageSize);
-                break;
+        //搜索框搜索
+        if (s==null) {
+            /**
+             * 0-默认
+             * 1-按评分排序
+             * 2-按上架时间排序
+             * 3-从低到高价格排序
+             * 4-从高到低价格排序
+             */
+            switch (condition) {
+                default:
+                    //获取分页信息与商品列表
+                    pageInfo = productService.getAllProducts(pageNo, pageSize);
+                    break;
+                case 1:
+                    pageInfo = productService.getAllProductsByRate(pageNo,pageSize);
+                    break;
+                case 2:
+                    pageInfo = productService.getAllProductsByTime(pageNo,pageSize);
+                    break;
+                case 3:
+                    pageInfo = productService.getAllProductsByPriceASC(pageNo,pageSize);
+                    break;
+                case 4:
+                    pageInfo = productService.getAllProductsByPriceDESC(pageNo,pageSize);
+                    break;
+            }
         }
+        //未进行搜索
+        else {
+            /**
+             * 0-默认
+             * 1-按评分排序
+             * 2-按上架时间排序
+             * 3-从低到高价格排序
+             * 4-从高到低价格排序
+             */
+            switch (condition) {
+                default:
+                    //获取分页信息与商品列表
+                    pageInfo = productService.searchProductsByCategory(pageNo, pageSize,product_cat,s);
+                    break;
+                case 1:
+                    pageInfo = productService.searchProductsByCategoryAndRate(pageNo, pageSize,product_cat,s);
+                    break;
+                case 2:
+                    pageInfo = productService.searchProductsByCategoryAndTime(pageNo, pageSize,product_cat,s);
+                    break;
+                case 3:
+                    pageInfo = productService.searchProductsByCategoryAndPriceASC(pageNo, pageSize,product_cat,s);
+                    break;
+                case 4:
+                    pageInfo = productService.searchProductsByCategoryAndPriceDESC(pageNo, pageSize,product_cat,s);
+                    break;
+            }
+        }
+
 
         if (pageInfo.getList()==null) {
             System.out.println("当前数据库中无商品！");
@@ -79,6 +113,9 @@ public class ProductController {
             model.addAttribute("productList",productList);
             //设置页面筛选方式
             model.addAttribute("condition",condition);
+            //搜索条件与商品种类置入页面
+            model.addAttribute("cid",product_cat);
+            model.addAttribute("s",s);
             System.out.println("此页商品数"+productList.size());
         }
 

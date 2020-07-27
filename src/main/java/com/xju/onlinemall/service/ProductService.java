@@ -31,10 +31,10 @@ public interface ProductService {
 
     PageInfo<Product> getAllProductsBypmIdAndSearchInfo(int pageNo, int pageSize, Integer pmId, Product product);
 
+
     /**
      * 商品展示条件筛选方法
      */
-
     ///////////////////////////////////////////////////////////////////////////
     //  product.html页面方法
     PageInfo<Product> getAllProducts(int pageNo, int pageSize);
@@ -70,4 +70,16 @@ public interface ProductService {
     PageInfo<Product> getProductsByCategoryAndPriceRangeAndPriceASC(int pageNo, int pageSize, int cid, double min, double max);
 
     PageInfo<Product> getProductsByCategoryAndPriceRangeAndPriceDESC(int pageNo, int pageSize, int cid, double min, double max);
+
+    ///////////////////////////////////////////////////////////////////////////
+    //  搜索框方法
+    PageInfo<Product> searchProductsByCategory(int pageNo, int pageSize, int cid, String s);
+
+    PageInfo<Product> searchProductsByCategoryAndRate(int pageNo, int pageSize, int cid, String s);
+
+    PageInfo<Product> searchProductsByCategoryAndTime(int pageNo, int pageSize, int cid, String s);
+
+    PageInfo<Product> searchProductsByCategoryAndPriceASC(int pageNo, int pageSize, int cid, String s);
+
+    PageInfo<Product> searchProductsByCategoryAndPriceDESC(int pageNo, int pageSize, int cid, String s);
 }

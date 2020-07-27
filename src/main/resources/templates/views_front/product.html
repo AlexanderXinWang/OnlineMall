@@ -50,39 +50,39 @@
                     <form class="furgan-ordering" method="get">
                         <select title="product_cat" name="orderby" class="orderby" th:switch="${condition}">
                             <p th:case="0">
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=0'" th:selected="selected">默认排序</option>
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=1'">按评分排序</option>
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=2'">按上架时间排序</option>
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=3'">从低到高价格排序</option>
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=4'">从高到低价格排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=0&product_cat='+${cid}+'&s='+${s}" th:selected="selected">默认排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=1&product_cat='+${cid}+'&s='+${s}">按评分排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=2&product_cat='+${cid}+'&s='+${s}">按上架时间排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=3&product_cat='+${cid}+'&s='+${s}">从低到高价格排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=4&product_cat='+${cid}+'&s='+${s}">从高到低价格排序</option>
                             </p>
                             <p th:case="1">
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=0'">默认排序</option>
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=1'" th:selected="selected">按评分排序</option>
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=2'">按上架时间排序</option>
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=3'">从低到高价格排序</option>
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=4'">从高到低价格排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=0&product_cat='+${cid}+'&s='+${s}">默认排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=1&product_cat='+${cid}+'&s='+${s}" th:selected="selected">按评分排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=2&product_cat='+${cid}+'&s='+${s}">按上架时间排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=3&product_cat='+${cid}+'&s='+${s}">从低到高价格排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=4&product_cat='+${cid}+'&s='+${s}">从高到低价格排序</option>
                             </p>
                             <p th:case="2">
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=0'">默认排序</option>
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=1'">按评分排序</option>
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=2'" th:selected="selected">按上架时间排序</option>
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=3'">从低到高价格排序</option>
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=4'">从高到低价格排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=0&product_cat='+${cid}+'&s='+${s}">默认排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=1&product_cat='+${cid}+'&s='+${s}">按评分排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=2&product_cat='+${cid}+'&s='+${s}" th:selected="selected">按上架时间排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=3&product_cat='+${cid}+'&s='+${s}">从低到高价格排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=4&product_cat='+${cid}+'&s'+${s}">从高到低价格排序</option>
                             </p>
                             <p th:case="3">
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=0'">默认排序</option>
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=1'">按评分排序</option>
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=2'">按上架时间排序</option>
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=3'" th:selected="selected">从低到高价格排序</option>
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=4'">从高到低价格排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=0&product_cat='+${cid}+'&s='+${s}">默认排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=1&product_cat='+${cid}+'&s='+${s}">按评分排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=2&product_cat='+${cid}+'&s='+${s}">按上架时间排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=3&product_cat='+${cid}+'&s='+${s}" th:selected="selected">从低到高价格排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=4&product_cat='+${cid}+'&s='+${s}">从高到低价格排序</option>
                             </p>
                             <p th:case="4">
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=0'">默认排序</option>
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=1'">按评分排序</option>
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=2'">按上架时间排序</option>
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=3'">从低到高价格排序</option>
-                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=4'" th:selected="selected">从高到低价格排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=0&product_cat='+${cid}+'&s='+${s}">默认排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=1&product_cat='+${cid}+'&s='+${s}">按评分排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=2&product_cat='+${cid}+'&s='+${s}">按上架时间排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=3&product_cat='+${cid}+'&s='+${s}">从低到高价格排序</option>
+                                <option th:value="'/product.html?pageSize='+${pageInfo.getPageSize()}+'&condition=4&product_cat='+${cid}+'&s='+${s}" th:selected="selected">从高到低价格排序</option>
                             </p>
                         </select>
                     </form>
@@ -90,28 +90,28 @@
                         <label>
                             <select class="option-perpage" th:switch="${pageInfo.getPageSize()}">
                                 <p th:case="5">
-                                    <option th:value="'/product.html?pageSize=5&condition='+${condition}" th:selected="selected">1页 显示 5 件商品</option>
-                                    <option th:value="'/product.html?pageSize=10&condition='+${condition}">1页 显示 10 件商品</option>
-                                    <option th:value="'/product.html?pageSize=12&condition='+${condition}">1页 显示 12 件商品</option>
-                                    <option th:value="'/product.html?pageSize=15&condition='+${condition}">1页 显示 15 件商品</option>
+                                    <option th:value="'/product.html?pageSize=5&condition='+${condition}+'&product_cat='+${cid}+'&s='+${s}" th:selected="selected">1页 显示 5 件商品</option>
+                                    <option th:value="'/product.html?pageSize=10&condition='+${condition}+'&product_cat='+${cid}+'&s='+${s}">1页 显示 10 件商品</option>
+                                    <option th:value="'/product.html?pageSize=12&condition='+${condition}+'&product_cat='+${cid}+'&s='+${s}">1页 显示 12 件商品</option>
+                                    <option th:value="'/product.html?pageSize=15&condition='+${condition}+'&product_cat='+${cid}+'&s='+${s}">1页 显示 15 件商品</option>
                                 </p>
                                 <p th:case="10">
-                                    <option th:value="'/product.html?pageSize=5&condition='+${condition}">1页 显示 5 件商品</option>
-                                    <option th:value="'/product.html?pageSize=10&condition='+${condition}" th:selected="selected">1页 显示 10 件商品</option>
-                                    <option th:value="'/product.html?pageSize=12&condition='+${condition}">1页 显示 12 件商品</option>
-                                    <option th:value="'/product.html?pageSize=15&condition='+${condition}">1页 显示 15 件商品</option>
+                                    <option th:value="'/product.html?pageSize=5&condition='+${condition}+'&product_cat='+${cid}+'&s='+${s}">1页 显示 5 件商品</option>
+                                    <option th:value="'/product.html?pageSize=10&condition='+${condition}+'&product_cat='+${cid}+'&s='+${s}" th:selected="selected">1页 显示 10 件商品</option>
+                                    <option th:value="'/product.html?pageSize=12&condition='+${condition}+'&product_cat='+${cid}+'&s='+${s}">1页 显示 12 件商品</option>
+                                    <option th:value="'/product.html?pageSize=15&condition='+${condition}+'&product_cat='+${cid}+'&s='+${s}">1页 显示 15 件商品</option>
                                 </p>
                                 <p th:case="12">
-                                    <option th:value="'/product.html?pageSize=5&condition='+${condition}">1页 显示 5 件商品</option>
-                                    <option th:value="'/product.html?pageSize=10&condition='+${condition}">1页 显示 10 件商品</option>
-                                    <option th:value="'/product.html?pageSize=12&condition='+${condition}" th:selected="selected">1页 显示 12 件商品</option>
-                                    <option th:value="'/product.html?pageSize=15&condition='+${condition}">1页 显示 15 件商品</option>
+                                    <option th:value="'/product.html?pageSize=5&condition='+${condition}+'&product_cat='+${cid}+'&s='+${s}">1页 显示 5 件商品</option>
+                                    <option th:value="'/product.html?pageSize=10&condition='+${condition}+'&product_cat='+${cid}+'&s='+${s}">1页 显示 10 件商品</option>
+                                    <option th:value="'/product.html?pageSize=12&condition='+${condition}+'&product_cat='+${cid}+'&s='+${s}" th:selected="selected">1页 显示 12 件商品</option>
+                                    <option th:value="'/product.html?pageSize=15&condition='+${condition}+'&product_cat='+${cid}+'&s='+${s}">1页 显示 15 件商品</option>
                                 </p>
                                 <p th:case="15">
-                                    <option th:value="'/product.html?pageSize=5&condition='+${condition}">1页 显示 5 件商品</option>
-                                    <option th:value="'/product.html?pageSize=10&condition='+${condition}">1页 显示 10 件商品</option>
-                                    <option th:value="'/product.html?pageSize=12&condition='+${condition}">1页 显示 12 件商品</option>
-                                    <option th:value="'/product.html?pageSize=15&condition='+${condition}" th:selected="selected">1页 显示 15 件商品</option>
+                                    <option th:value="'/product.html?pageSize=5&condition='+${condition}+'&product_cat='+${cid}+'&s='+${s}">1页 显示 5 件商品</option>
+                                    <option th:value="'/product.html?pageSize=10&condition='+${condition}+'&product_cat='+${cid}+'&s='+${s}">1页 显示 10 件商品</option>
+                                    <option th:value="'/product.html?pageSize=12&condition='+${condition}+'&product_cat='+${cid}+'&s='+${s}">1页 显示 12 件商品</option>
+                                    <option th:value="'/product.html?pageSize=15&condition='+${condition}+'&product_cat='+${cid}+'&s='+${s}" th:selected="selected">1页 显示 15 件商品</option>
                                 </p>
 
                             </select>
@@ -134,47 +134,6 @@
                                             <span class="text">新品</span>
                                         </span>
                                     </div>
-                                    <!--<form class="variations_form cart">
-                                        <table class="variations">
-                                            <tbody>
-                                            <tr>
-                                                <td class="value">
-                                                    <select title="box_style" data-attributetype="box_style"
-                                                            data-id="pa_color"
-                                                            class="attribute-select " name="attribute_pa_color"
-                                                            data-attribute_name="attribute_pa_color"
-                                                            data-show_option_none="yes">
-                                                        <option data-type="" data-pa_color="" value="">Choose an
-                                                            option
-                                                        </option>
-                                                        <option data-width="30" data-height="30" data-type="color"
-                                                                data-pa_color="#3155e2" value="blue"
-                                                                class="attached enabled">Blue
-                                                        </option>
-                                                        <option data-width="30" data-height="30" data-type="color"
-                                                                data-pa_color="#49aa51" value="green"
-                                                                class="attached enabled">Green
-                                                        </option>
-                                                        <option data-width="30" data-height="30" data-type="color"
-                                                                data-pa_color="#ff63cb" value="pink"
-                                                                class="attached enabled">Pink
-                                                        </option>
-                                                    </select>
-                                                    <div class="data-val attribute-pa_color"
-                                                         data-attributetype="box_style"><a class="change-value color"
-                                                                                           href="#"
-                                                                                           style="background: #3155e2;"
-                                                                                           data-value="blue"></a><a
-                                                            class="change-value color" href="#"
-                                                            style="background: #49aa51;" data-value="green"></a><a
-                                                            class="change-value color" href="#"
-                                                            style="background: #ff63cb;" data-value="pink"></a></div>
-                                                    <a class="reset_variations" href="#" style="visibility: hidden;">Clear</a>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </form>-->
                                     <div class="group-button">
                                         <div class="yith-wcwl-add-to-wishlist">
                                             <div class="yith-wcwl-add-button show">

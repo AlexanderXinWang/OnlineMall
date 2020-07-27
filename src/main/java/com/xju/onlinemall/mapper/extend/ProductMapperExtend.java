@@ -27,4 +27,8 @@ public interface ProductMapperExtend {
     List<Product> selectByPriceRangeAndRate(@Param("min")double min, @Param("max")double max);
 
     List<Product> selectByCategoryAndPriceRangeAndRate(@Param("cid") int cid, @Param("min")double min, @Param("max")double max);
+
+    List<Product> selectBySearchAndRate(String s);
+
+    List<Product> selectBySearchAndCategoryAndRate(int cid, String s);
 }
