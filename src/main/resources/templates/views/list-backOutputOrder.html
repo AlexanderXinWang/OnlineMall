@@ -60,6 +60,7 @@
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="send">发货</a>
 </script>
 
 <script src="../../../layuiadmin/layui/layui.js" th:src="@{/layuiadmin/layui/layui.js}"></script>
@@ -82,12 +83,12 @@
             ,page: true
             ,cols: [     [
                 {type: 'checkbox', fixed: 'left'}
-                ,{field: 'outId', title: '出货id',sort: true,  align:'center'}
-                ,{field: 'outNumber', title: '出货单号',  align:'center'}
+                ,{field: 'outId', title: '出货id',sort: true,  align:'center',width:140}
+                ,{field: 'outNumber', title: '出货单号',  align:'center',width:140}
                 ,{field: 'productName', title: '商品名',  align:'center'}
                 ,{field: 'outDate', title: '出货时间',  align:'center'}
-                ,{field: 'outStatus', title: '出货状态',  align:'center'}
-                ,{fixed: 'right', title: '备注',  align:'center', toolbar: '#toolbar-Mytable',width:180}
+                ,{field: 'outStatus', title: '出货状态',  align:'center',width:160}
+                ,{fixed: 'right', title: '备注',  align:'center', toolbar: '#toolbar-Mytable',width:220}
 
             ]   ]
             ,parseData: function(res){ //res 即为原始返回的数据
@@ -162,6 +163,28 @@
                     // }
                 });
 
+            } else if(obj.event === 'send'){
+                layer.confirm(data.outNumber+" 单 确定发货吗？", function(index){
+                    // var outIds=[];
+                    var outId=data.outId;
+                    // outIds.push(data.outId)
+                    $.ajax({
+                        type:"POST",
+                        contentType:"application/json",
+                        url:"/list/sendOutputOrder",
+                        data:JSON.stringify(outId),
+                        success:function (msg) {
+                            if(msg["success"]){
+                                obj.del();
+                                layer.msg("操作执行成功~"+msg["data"]+"单已发货~",{time:900},function () {
+                                    layer.close(index);
+                                    table.reload('mytable');
+                                })
+                            }
+                        },
+                        dataType:"json"
+                    });
+                });
             }
         });
 
