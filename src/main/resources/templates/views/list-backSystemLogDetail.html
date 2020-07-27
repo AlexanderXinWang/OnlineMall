@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="utf-8">
+    <title>查看日志详情</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all" th:href="@{/layuiadmin/layui/css/layui.css}" >
+    <link rel="stylesheet"  href="../../../layuiadmin/style/admin.css" media="all" th:href="@{/layuiadmin/style/admin.css}" >
+</head>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body" style="padding: 15px;">
+            <form class="layui-form" action="" lay-filter="form1">
+                <!--                商家主键-->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">日志ID</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="logId"  lay-verify="logId" autocomplete="off" class="layui-input" th:value="${systemLog.logId}" style="width: 260px">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户ID</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="userId"  lay-verify="userId" autocomplete="off" class="layui-input" th:value="${systemLog.userId}" style="width: 260px">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="userName"  lay-verify="userName" autocomplete="off" class="layui-input" th:value="${userName}" style="width: 260px">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">用户操作</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="operation" lay-verify="operation" autocomplete="off" class="layui-input" th:value="${systemLog.operation}" style="width: 260px">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">操作时间</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="createTime" lay-verify="createTime" autocomplete="off" class="layui-input" th:value="${systemLog.createTime}" style="width: 260px">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">操作等级</label>
+                    <div class="layui-input-inline">
+                        <input type="tel" name="level" lay-verify="level" autocomplete="off" class="layui-input" th:value="${systemLog.level}" style="width: 260px">
+                    </div>
+                </div>
+
+
+                <div class="layui-form-item layui-layout-admin">
+                    <div class="layui-input-block">
+                        <div class="layui-footer" style="left: 0;">
+                            <button class="layui-btn" lay-submit="" lay-filter="layer_showProduct_submit">关闭</button>
+<!--                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>-->
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../../layuiadmin/layui/layui.js" th:src="@{/layuiadmin/layui/layui.js}"></script>
+<script src="../../../assets/js/jquery-1.12.4.min.js" th:src="@{/assets/js/jquery-1.12.4.min.js}"></script>
+
+<script>
+    layui.config({
+        // base: [('"'+@{/layuiadmin/}+'"')]
+        base:'/layuiadmin/'
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'laydate'], function(){
+        var $ = layui.$
+            ,admin = layui.admin
+            ,element = layui.element
+            ,layer = layui.layer
+            ,laydate = layui.laydate
+            ,form = layui.form;
+
+        form.render(null, 'form1');
+
+
+
+        /* 自定义验证规则 */
+        // form.verify({
+        //     proNo: function(value){
+        //         if(value.length < 5 || value.length>10){
+        //             return '商品编号为5至10个字符';
+        //         }
+        //     },
+        //     productName:function (value) {
+        //         if(value.length <= 0){
+        //             return '商品名称不能为空';
+        //         }
+        //     },
+        //     pkey:function (value) {
+        //         if(value.length <= 0){
+        //             return '商品关键字不能为空';
+        //         }
+        //     },
+        //     pimage:function (value) {
+        //         if(value.length <= 0){
+        //             return '商品图片路径不能为空';
+        //         }
+        //     },
+        //     contextV:function (value) {
+        //         if(value.length <= 0){
+        //             return '商品描述不能为空';
+        //         }
+        //     }
+        // });
+
+        /* 监听提交 */
+        form.on('submit(layer_showProduct_submit)', function(data){
+            var layer = parent.layer;
+            layer.closeAll();
+            // $.ajax({
+            //     type: "POST",
+            //     contentType:"application/json",
+            //     url: "/list/updateProduct",
+            //     data: JSON.stringify(data.field),
+            //     success: function(msg){
+            //         if(msg["success"]){
+            //
+            //             layer.msg("修改成功",{time:1000},function () {
+            //                 layer.closeAll();
+            //                 parent.location.reload();
+            //             });
+            //
+            //         }
+            //     },
+            //     dataType:"json"
+            // });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

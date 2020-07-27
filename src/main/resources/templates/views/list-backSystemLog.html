@@ -32,7 +32,7 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">操作时间</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="createTime" lay-verify="number" placeholder="请输入操作时间" autocomplete="off" class="layui-input">
+                        <input type="text" name="logTime" placeholder="YYYY-MM-dd HH:mm:ss" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
@@ -130,13 +130,13 @@
 
             //查看操作
             if(obj.event === 'detail'){
-                // layer.msg('ID：'+ data.productId + ' 的查看操作');
-                var productId=data.productId;
+                var logId=data.logId;
+                alert(logId)
                 layer.open({
                     title:"查看商品",
                     type: 2,
-                    content: '/list/showProductDetail?productId='+productId,
-                    area: ['725px', '560px'],
+                    content: '/list/showSystemLogDetail?logId='+logId,
+                    area: ['485px', '488px'],
                     maxmin: true,
                     //打开默认全屏
                     // success: function(layero, index){
@@ -148,15 +148,14 @@
 
             }
             else if(obj.event === 'del'){
-                layer.confirm('真的要删除 --'+data.productName+"--商品吗？", function(index){
-                    // var proId=data.productId;
-                    var proIds=[];
-                    proIds.push(data.productId)
+                layer.confirm('真的要删除 --logId = '+data.logId+"--这条日志吗？", function(index){
+                    var logIds=[];
+                    logIds.push(data.logId)
                     $.ajax({
                         type:"POST",
                         contentType:"application/json",
-                        url:"/list/deleteProducts",
-                        data:JSON.stringify(proIds),
+                        url:"/list/deleteSystemLogs",
+                        data:JSON.stringify(logIds),
                         success:function (msg) {
                             if(msg["success"]){
                                 obj.del();
@@ -209,25 +208,24 @@
             batchdel: function(){
                 var checkStatus = table.checkStatus('mytable')
                     ,checkData = checkStatus.data; //得到选中的数据
+                //alert(checkData);
 
                 if(checkData.length === 0){
                     return layer.msg('请选择数据');
                 }
                 layer.confirm('确定删除吗？', function(index) {
-                    // var proId=data.productId;
-
-                    var proIds=[];
+                    var logIds=[];
 
                     for (var i=0;i<checkData.length;i++){
-
-                        proIds.push( checkData[i].productId);
+                        logIds.push( checkData[i].logId);
+                        //alert(checkData[i].logId);
                     }
 
                     $.ajax({
                         type:"POST",
                         contentType:"application/json",
-                        url:"/list/deleteProducts",
-                        data:JSON.stringify(proIds),
+                        url:"/list/deleteSystemLogs",
+                        data:JSON.stringify(logIds),
 
                         success:function (msg) {
                             if(msg["success"]){
@@ -241,21 +239,6 @@
                         dataType:"json"
 
                     });
-                });
-            }
-
-            //添加商品
-            ,createProdcut:function () {
-                layer.open({
-                    title:"添加商品",
-                    type: 2,
-                    content: '/page/views/layer_addProduct',
-                    area: ['725px', '560px'],
-                    maxmin: true,
-                    //打开默认全屏
-                    // success: function(layero, index){
-                    //     layer.full(index);
-                    // }
                 });
             }
         }

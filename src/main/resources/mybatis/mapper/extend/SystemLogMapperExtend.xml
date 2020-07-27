@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xju.onlinemall.mapper.SystemLogMapper">
-    <select id="selectByMyExample" parameterType="com.xju.onlinemall.common.domain.SystemLogExample" resultMap="BaseResultMap">
-        select
-        <if test="distinct">
-            distinct
+    <select id="selectUserNameByLogId" resultType="java.lang.String">
+        select u.user_name from tb_user u
+        left join tb_system_log s on u.user_id=s.user_id
+        where s.log_id = #{logId}
+    </select>
+    <select id="selectByMyExample" resultMap="BaseResultMap">
+        SELECT * FROM tb_system_log
+        WHERE 1=1
+        <if test="logId != null">
+            and log_Id = #{logId}
         </if>
-        <include refid="Base_Column_List" />
-        from tb_system_log
-        <if test="_parameter != null">
-            <include refid="Example_Where_Clause" />
+        <if test="userId != null">
+            and user_Id = #{userId}
+        </if>
+        <if test="time != null and time !=''">
+            and CONVERT(create_time,DATETIME) LIKE #{time}
         </if>
         order by create_time desc
-    </select>
-    <select id="selectSystemLogOrderByCreateTime" resultMap="BaseResultMap">
-        select * from tb_system_log order by create_time desc
     </select>
 </mapper>
