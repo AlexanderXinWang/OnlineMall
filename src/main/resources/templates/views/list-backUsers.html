@@ -136,13 +136,13 @@
             }
             else if(obj.event === 'del'){
                 layer.confirm('真的要删除 --'+data.userName+"--吗？请慎重！", function(index){
-                    var proIds=[];
-                    proIds.push(data.userId)
+                    var userId=[];
+                    userId.push(data.userId)
                     $.ajax({
                         type:"POST",
                         contentType:"application/json",
                         url:"/list/deleteUsersInfo",
-                        data:JSON.stringify(proIds),
+                        data:JSON.stringify(userId),
                         success:function (msg) {
                             if(msg["success"]){
                                 obj.del();

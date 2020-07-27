@@ -4,10 +4,12 @@ package com.xju.onlinemall.controller;
 import com.github.pagehelper.PageInfo;
 import com.xju.onlinemall.common.domain.Category;
 import com.xju.onlinemall.common.domain.Product;
+import com.xju.onlinemall.common.domain.SystemLog;
 import com.xju.onlinemall.common.domain.User;
 import com.xju.onlinemall.common.utils.Result;
 import com.xju.onlinemall.service.CategoryService;
 import com.xju.onlinemall.service.ProductService;
+import com.xju.onlinemall.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,7 +26,8 @@ public class BusinessController {
     @Autowired
     private CategoryService categoryService;
 
-
+    @Autowired
+    UserService userService;
 
     /**
      *
@@ -37,8 +40,15 @@ public class BusinessController {
     @ResponseBody
     public Object productListBySearch(Product product,HttpSession session,@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize){
         User adminUser =(User) session.getAttribute("adminUser");
-        PageInfo<Product> pageInfo=null;
-        pageInfo = productService.getAllProductsBypmIdAndSearchInfo(pageNo, pageSize,adminUser.getUserId(),product);
+
+        SystemLog systemLog = new SystemLog();
+        systemLog.setUserId(adminUser.getUserId());
+        systemLog.setOperation("搜索和获取商品信息操作");
+        systemLog.setLevel(2);
+        systemLog.setCreateTime(new Date());
+        userService.insertLogByUser(systemLog);
+
+        PageInfo<Product> pageInfo = productService.getAllProductsBypmIdAndSearchInfo(pageNo, pageSize,adminUser.getUserId(),product);
         return Result.success(pageInfo);
     }
 
@@ -54,8 +64,7 @@ public class BusinessController {
     @ResponseBody
     public Object productList(HttpSession session,@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize,Integer pmId){
         User adminUser =(User) session.getAttribute("adminUser");
-        PageInfo<Product> pageInfo=null;
-        pageInfo = productService.getAllProductsBypmId(pageNo, pageSize,adminUser.getUserId());
+        PageInfo<Product> pageInfo=productService.getAllProductsBypmId(pageNo, pageSize,adminUser.getUserId());
         return Result.success(pageInfo);
     }
 
@@ -66,8 +75,19 @@ public class BusinessController {
      * */
     @RequestMapping("/list/deleteProducts")
     @ResponseBody
-    public Object deleteProducts(@RequestBody Integer[] productIds){
+    public Object deleteProducts(@RequestBody Integer[] productIds,HttpSession session){
+        User adminUser =(User) session.getAttribute("adminUser");
+
+
         int i = productService.removeProductsByProductIds(productIds);
+
+        SystemLog systemLog = new SystemLog();
+        systemLog.setUserId(adminUser.getUserId());
+        systemLog.setOperation("删除商品操作");
+        systemLog.setLevel(2);
+        systemLog.setCreateTime(new Date());
+        userService.insertLogByUser(systemLog);
+
 
         return Result.success(i,"操作成功",200);
     }
@@ -80,10 +100,18 @@ public class BusinessController {
      * */
     @RequestMapping("/list/searchCategorys")
     @ResponseBody
-    public Object searchCategorys(Category category,@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize, Integer pmId){
-//        User adminUser =(User) session.getAttribute("adminUser");
-        PageInfo<Category> pageInfo=null;
-        pageInfo = categoryService.getAllCategorysBySerchInfo(pageNo, pageSize,category);
+    public Object searchCategorys(HttpSession session,Category category,@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize, Integer pmId){
+
+        User adminUser =(User) session.getAttribute("adminUser");
+        SystemLog systemLog = new SystemLog();
+        systemLog.setUserId(adminUser.getUserId());
+        systemLog.setOperation("搜索和获取商品分类信息操作");
+        systemLog.setLevel(2);
+        systemLog.setCreateTime(new Date());
+        userService.insertLogByUser(systemLog);
+
+
+        PageInfo<Category> pageInfo = categoryService.getAllCategorysBySerchInfo(pageNo, pageSize,category);
         //返回结果
         return Result.success(pageInfo);
     }
@@ -98,8 +126,7 @@ public class BusinessController {
     @ResponseBody
     public Object categorytList(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize, Integer pmId){
 //        User adminUser =(User) session.getAttribute("adminUser");
-        PageInfo<Category> pageInfo=null;
-        pageInfo = categoryService.getAllCategorys(pageNo, pageSize);
+        PageInfo<Category> pageInfo= categoryService.getAllCategorys(pageNo, pageSize);
         //返回结果
         return Result.success(pageInfo);
     }
@@ -111,8 +138,16 @@ public class BusinessController {
      * */
     @RequestMapping("/list/deleteCategorys")
     @ResponseBody
-    public Object deleteCategorys(@RequestBody Integer[] categoryIds){
+    public Object deleteCategorys(@RequestBody Integer[] categoryIds,HttpSession session){
         int i = categoryService.removeCategorysByCategoryIds(categoryIds);
+
+        User adminUser =(User) session.getAttribute("adminUser");
+        SystemLog systemLog = new SystemLog();
+        systemLog.setUserId(adminUser.getUserId());
+        systemLog.setOperation("删除商品分类信息操作");
+        systemLog.setLevel(2);
+        systemLog.setCreateTime(new Date());
+        userService.insertLogByUser(systemLog);
 
         return Result.success(i,"操作成功",200);
     }
@@ -123,11 +158,20 @@ public class BusinessController {
      * */
     @RequestMapping("/list/addCategory")
     @ResponseBody
-    public Object addCategory(@RequestBody Category category){
+    public Object addCategory(@RequestBody Category category,HttpSession session){
         //查看后台获取到的数据
-        System.out.println(category);
+//        System.out.println(category);
         int i=categoryService.addCategory(category);
-        return Result.success(1,"操作成功",200);
+
+        User adminUser =(User) session.getAttribute("adminUser");
+        SystemLog systemLog = new SystemLog();
+        systemLog.setUserId(adminUser.getUserId());
+        systemLog.setOperation("添加商品分类信息操作");
+        systemLog.setLevel(2);
+        systemLog.setCreateTime(new Date());
+        userService.insertLogByUser(systemLog);
+
+        return Result.success(i,"操作成功",200);
     }
     /**
      * 查询分类对象，回显页面
@@ -149,12 +193,22 @@ public class BusinessController {
      *
      * */
     @GetMapping("/list/showCategoryDetail")
-    public String showCategoryDetail(ModelMap modelMap,Integer categoryId){
+    public String showCategoryDetail(ModelMap modelMap,Integer categoryId,HttpSession session){
 //        System.out.println(categoryId);
         //根据Id查询该商品
         Category category= categoryService.selectByCategoryId(categoryId);
         //把商品放入其中进行显示
         modelMap.put("oldCategory",category);
+
+
+        User adminUser =(User) session.getAttribute("adminUser");
+        SystemLog systemLog = new SystemLog();
+        systemLog.setUserId(adminUser.getUserId());
+        systemLog.setOperation("查看分类详细信息操作");
+        systemLog.setLevel(2);
+        systemLog.setCreateTime(new Date());
+        userService.insertLogByUser(systemLog);
+
 
         return "views/list-backCategoryShowDetail";
     }
@@ -167,10 +221,18 @@ public class BusinessController {
      * */
     @RequestMapping("/list/updateCategory")
     @ResponseBody
-    public Object updateCategory(@RequestBody Category category){
+    public Object updateCategory(@RequestBody Category category,HttpSession session){
 
 //        System.out.println("分类修改:"+category);
         int i = categoryService.updateCategory(category);
+
+        User adminUser =(User) session.getAttribute("adminUser");
+        SystemLog systemLog = new SystemLog();
+        systemLog.setUserId(adminUser.getUserId());
+        systemLog.setOperation("更新商品分类信息操作");
+        systemLog.setLevel(2);
+        systemLog.setCreateTime(new Date());
+        userService.insertLogByUser(systemLog);
 
         return Result.success(i,"操作成功",200);
     }
@@ -183,13 +245,25 @@ public class BusinessController {
      * */
     @RequestMapping("/list/addProduct")
     @ResponseBody
-    public Object addProduct(@RequestBody Product product){
+    public Object addProduct(@RequestBody Product product,HttpSession session){
+        User adminUser =(User) session.getAttribute("adminUser");
+        SystemLog systemLog = new SystemLog();
+        systemLog.setUserId(adminUser.getUserId());
+        systemLog.setOperation("添加商品操作");
+        systemLog.setLevel(2);
+        systemLog.setCreateTime(new Date());
+        userService.insertLogByUser(systemLog);
+
+
         //设置添加的时间
         Date date = new Date();
         product.setAddTime(date);
         //查看后台获取到的数据
 //        System.out.println(product);
         int i = productService.addProduct(product);
+
+
+
         return Result.success(i,"操作成功",200);
     }
 
@@ -199,6 +273,8 @@ public class BusinessController {
      * */
     @GetMapping("/list/updateProductToBackPage")
     public String getProduct(ModelMap modelMap,Integer productId){
+
+
 //        System.out.println(productId);
         //根据Id查询该商品
         Product product = productService.selectByProductId(productId);
@@ -213,8 +289,16 @@ public class BusinessController {
      *
      * */
     @GetMapping("/list/showProductDetail")
-    public String showProductDetail(ModelMap modelMap,Integer productId){
-        System.out.println(productId);
+    public String showProductDetail(ModelMap modelMap,Integer productId,HttpSession session){
+
+        User adminUser =(User) session.getAttribute("adminUser");
+        SystemLog systemLog = new SystemLog();
+        systemLog.setUserId(adminUser.getUserId());
+        systemLog.setOperation("查看商品详细信息操作");
+        systemLog.setLevel(2);
+        systemLog.setCreateTime(new Date());
+        userService.insertLogByUser(systemLog);
+//        System.out.println(productId);
         //根据Id查询该商品
         Product product = productService.selectByProductId(productId);
         //把商品放入其中进行显示
@@ -229,7 +313,15 @@ public class BusinessController {
      * */
     @RequestMapping("/list/updateProduct")
     @ResponseBody
-    public Object updateProduct(@RequestBody Product product){
+    public Object updateProduct(@RequestBody Product product,HttpSession session){
+        User adminUser =(User) session.getAttribute("adminUser");
+        SystemLog systemLog = new SystemLog();
+        systemLog.setUserId(adminUser.getUserId());
+        systemLog.setOperation("更新商品信息操作");
+        systemLog.setLevel(2);
+        systemLog.setCreateTime(new Date());
+        userService.insertLogByUser(systemLog);
+
         //设置添加的时间
         Date date = new Date();
         product.setAddTime(date);

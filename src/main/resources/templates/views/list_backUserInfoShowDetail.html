@@ -28,13 +28,13 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">用户名</label>
                         <div class="layui-input-inline">
-                            <input type="tel" name="userName" disabled placeholder="请输入用户名" lay-verify="required" autocomplete="off" class="layui-input" th:value="${oldUser.userName}">
+                            <input type="tel" name="userName" disabled placeholder="请输入用户名" autocomplete="off" class="layui-input" th:value="${oldUser.userName}">
                         </div>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">密码</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="password" disabled placeholder="请输入用户密码" lay-verify="password" autocomplete="off" class="layui-input" th:value="${oldUser.password}">
+                            <input type="text" name="password" disabled placeholder="请输入用户密码"  autocomplete="off" class="layui-input" th:value="${oldUser.password}">
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">角色</label>
                         <div class="layui-input-inline">
-                            <select name="userRole" disabled lay-verify="required" lay-search="">
+                            <select name="userRole" disabled  lay-search="">
                                 <option value="" disabled>请选择用户角色</option>
 <!--                                <option value="0">普通用户</option>-->
 <!--                                <option value="1">商家</option>-->
@@ -70,7 +70,7 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">性别</label>
                         <div class="layui-input-inline">
-                            <select name="sex" disabled lay-verify="required" lay-search="">
+                            <select name="sex" disabled  lay-search="">
                                 <option value="" disabled>请选择性别</option>
                                 <p th:if="${oldUser.sex eq 0}">
                                     <option value="0" selected>男</option>
@@ -95,13 +95,13 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">手机</label>
                         <div class="layui-input-inline">
-                            <input type="tel" name="phone" disabled placeholder="请输入手机号码" lay-verify="phone" autocomplete="off" class="layui-input" th:value="${oldUser.phone}">
+                            <input type="tel" name="phone" disabled placeholder="请输入手机号码"  autocomplete="off" class="layui-input" th:value="${oldUser.phone}">
                         </div>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">邮件</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="email" disabled placeholder="请输入电子邮箱" lay-verify="email" autocomplete="off" class="layui-input" th:value="${oldUser.email}">
+                            <input type="text" name="email" disabled placeholder="请输入电子邮箱"  autocomplete="off" class="layui-input" th:value="${oldUser.email}">
                         </div>
                     </div>
                 </div>
@@ -111,13 +111,13 @@
                     <div class="layui-inline">
                         <label class="layui-form-label">图片路径</label>
                         <div class="layui-input-inline">
-                            <input type="tel" name="imageUrl" disabled placeholder="请输入图片路径" lay-verify="pimage" autocomplete="off" class="layui-input" th:value="${oldUser.imageUrl}">
+                            <input type="tel" name="imageUrl" disabled placeholder="请输入图片路径"  autocomplete="off" class="layui-input" th:value="${oldUser.imageUrl}">
                         </div>
                     </div>
                     <div class="layui-inline">
                         <label class="layui-form-label">支付密码</label>
                         <div class="layui-input-inline">
-                            <input type="tel" name="payPassword" disabled placeholder="请输入支付密码" lay-verify="required" autocomplete="off" class="layui-input" th:value="${oldUser.payPassword}">
+                            <input type="tel" name="payPassword" disabled placeholder="请输入支付密码"  autocomplete="off" class="layui-input" th:value="${oldUser.payPassword}">
                         </div>
                     </div>
                 </div>
@@ -153,31 +153,10 @@
 
         form.render(null, 'form1');
 
-
-
-        /* 自定义验证规则 */
-        // form.verify({
-        //     pimage:function (value) {
-        //         if(value.length <= 0){
-        //             return '图片路径不能为空';
-        //         }
-        //     },
-        //     password:function (value) {
-        //         if(value.length <= 0){
-        //             return '密码不能为空';
-        //         }
-        //         if (value.length<6 || value.length>16){
-        //             return '密码长度在6-16位之间'
-        //         }
-        //     }
-        // });
-
         /* 监听提交 */
         form.on('submit(layer_showUser_submit)', function(data){
             var layer = parent.layer;
             layer.closeAll();
-            //添加请求
-            //添加请求
 
             return false;
         });

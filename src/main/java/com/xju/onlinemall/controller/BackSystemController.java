@@ -107,7 +107,7 @@ public class BackSystemController {
         //使session无效并清除,保证用户无法再返回
         session.invalidate();
         sessionStatus.setComplete();
-        System.out.println("登出成功！========================");
+//        System.out.println("登出成功！========================");
 //        return "redirect:/back";
         return "views_back/login";
     }
@@ -116,7 +116,7 @@ public class BackSystemController {
      * */
     @RequestMapping("/backIndex.html")
     public String index(){
-        System.out.println("跳转index页面-----------------");
+//        System.out.println("跳转index页面-----------------");
         return "views_back/login";
     }
 
@@ -154,7 +154,12 @@ public class BackSystemController {
 
             modelMap.put("oldUser",user);
 
-//            System.out.println(user);
+            SystemLog systemLog = new SystemLog();
+            systemLog.setUserId(adminUser.getUserId());
+            systemLog.setOperation("查看个人资料操作");
+            systemLog.setLevel(1);
+            systemLog.setCreateTime(new Date());
+            userService.insertLogByUser(systemLog);
 
             return "views/backUserInfo";
 
@@ -171,11 +176,20 @@ public class BackSystemController {
      * */
     @RequestMapping("/list/updateUserInfo")
     @ResponseBody
-    public Object updateUserInfo(@RequestBody User user){
+    public Object updateUserInfo(@RequestBody User user,HttpSession session){
+        User adminUser =(User) session.getAttribute("adminUser");
+
         //查看后台获取到的数据
 //        System.out.println(user);
 
         int i=userService.updateBackUserInfo(user);
+        SystemLog systemLog = new SystemLog();
+        systemLog.setUserId(adminUser.getUserId());
+        systemLog.setOperation("修改个人资料操作");
+        systemLog.setLevel(1);
+        systemLog.setCreateTime(new Date());
+        userService.insertLogByUser(systemLog);
+
 
         return Result.success(i,"操作成功",200);
     }
@@ -189,15 +203,25 @@ public class BackSystemController {
     @ResponseBody
     public Object updateUserPassword(String oldPassword,String password,HttpSession session){
         //查看后台获取到的数据
-        System.out.println(oldPassword+"  "+password);
+//        System.out.println(oldPassword+"  "+password);
 
         User adminUser =(User) session.getAttribute("adminUser");
 
+        SystemLog systemLog = new SystemLog();
+        systemLog.setUserId(adminUser.getUserId());
+
+
         if (oldPassword==null || password==null){
+            systemLog.setOperation("修改密码操作失败,输入原密码为空");
+            systemLog.setLevel(2);
+            systemLog.setCreateTime(new Date());
+            userService.insertLogByUser(systemLog);
 
             return Result.fail("操作失败",200);
 
         }
+
+
 
         //如果旧密码和用户的原密码相同
         if (adminUser.getPassword().equals(oldPassword.trim())){
@@ -205,6 +229,10 @@ public class BackSystemController {
             adminUser.setPassword(password.trim());
 
             int i=userService.updateBackUserPassword(adminUser);
+            systemLog.setOperation("修改密码操作成功");
+            systemLog.setLevel(2);
+            systemLog.setCreateTime(new Date());
+            userService.insertLogByUser(systemLog);
 
             return Result.success(i,"操作成功",200);
 
@@ -212,6 +240,10 @@ public class BackSystemController {
 
         //如果用户密码和旧密码不同，则修改密码失败
         else {
+            systemLog.setOperation("修改密码操作失败,原密码和旧密码不同");
+            systemLog.setLevel(2);
+            systemLog.setCreateTime(new Date());
+            userService.insertLogByUser(systemLog);
 
             return Result.fail("操作失败",200);
 
@@ -222,8 +254,8 @@ public class BackSystemController {
 
     /**
      *
-     * 商品搜索功能
-     * 搜索框  获得商品列表信息
+     * 用户搜索功能
+     * 搜索框  获得用户列表信息
      * 以JSON的数据格式传输到前端
      *
      * */
@@ -233,12 +265,22 @@ public class BackSystemController {
 
         User adminUser =(User) session.getAttribute("adminUser");
 
+        SystemLog systemLog = new SystemLog();
+        systemLog.setUserId(adminUser.getUserId());
+        systemLog.setOperation("获取和搜索用户列表操作");
+        systemLog.setLevel(2);
+        systemLog.setCreateTime(new Date());
+        userService.insertLogByUser(systemLog);
+
         //如果是商家,则无权搜索到用户信息
         if (adminUser.getUserRole()!=2){
             return Result.fail("您无权搜索到用户信息",200);
         }
 
         PageInfo<User> pageInfo = userService.getAllBackUsersBySearchInfo(pageNo, pageSize,user);
+
+
+
         return Result.success(pageInfo);
     }
     /**
@@ -248,8 +290,17 @@ public class BackSystemController {
      * */
     @RequestMapping("/list/deleteUsersInfo")
     @ResponseBody
-    public Object deleteUsersInfo(@RequestBody Integer[] userIds){
+    public Object deleteUsersInfo(@RequestBody Integer[] userIds,HttpSession session){
+        User adminUser =(User) session.getAttribute("adminUser");
+
+
         int i= userService.removeUserInfosByUserIds(userIds);
+        SystemLog systemLog = new SystemLog();
+        systemLog.setUserId(adminUser.getUserId());
+        systemLog.setOperation("删除用户信息操作");
+        systemLog.setLevel(4);
+        systemLog.setCreateTime(new Date());
+        userService.insertLogByUser(systemLog);
 
         return Result.success(i,"操作成功",200);
     }
@@ -260,7 +311,10 @@ public class BackSystemController {
      * */
     @RequestMapping("/list/backAddUser")
     @ResponseBody
-    public Object backAddUser(@RequestBody User user){
+    public Object backAddUser(@RequestBody User user,HttpSession session){
+
+        User adminUser =(User) session.getAttribute("adminUser");
+
 //        System.out.println(user.getUserName());
         //先判断数据库中是否已经有了该用户
         boolean userByName=userService.selectUserByName(user.getUserName());
@@ -274,6 +328,15 @@ public class BackSystemController {
             //查看后台获取到的数据
 //        System.out.println(user);
             int i=userService.addBackUserInfo(user);
+
+            SystemLog systemLog = new SystemLog();
+            systemLog.setUserId(adminUser.getUserId());
+            systemLog.setOperation("添加用户操作");
+            systemLog.setLevel(4);
+            systemLog.setCreateTime(new Date());
+            userService.insertLogByUser(systemLog);
+
+
             return Result.success(i,"操作成功",200);
 
         }
@@ -293,7 +356,7 @@ public class BackSystemController {
     public String getProduct(ModelMap modelMap,Integer userId){
         //根据Id查询该用户
         User user=userService.selectUserByUserId(userId);
-        //把商品放入其中进行显示
+        //把用户放入其中进行显示
         modelMap.put("oldUser",user);
 
         return "views/list_backUserInfoShowAndUpdate";
@@ -304,10 +367,19 @@ public class BackSystemController {
      *
      * */
     @GetMapping("/list/showUserDetail")
-    public String showProductDetail(ModelMap modelMap,Integer userId){
+    public String showProductDetail(ModelMap modelMap,Integer userId,HttpSession session){
+        User adminUser =(User) session.getAttribute("adminUser");
+
+        SystemLog systemLog = new SystemLog();
+        systemLog.setUserId(adminUser.getUserId());
+        systemLog.setOperation("查看用户详细信息操作");
+        systemLog.setLevel(2);
+        systemLog.setCreateTime(new Date());
+        userService.insertLogByUser(systemLog);
+
         //根据Id查询该用户
         User user=userService.selectUserByUserId(userId);
-        //把商品放入其中进行显示
+        //把用户放入其中进行显示
         modelMap.put("oldUser",user);
 
         return "views/list_backUserInfoShowDetail";
@@ -318,10 +390,20 @@ public class BackSystemController {
      * */
     @RequestMapping("/list/updateUser")
     @ResponseBody
-    public Object updateUser(@RequestBody User user){
+    public Object updateUser(@RequestBody User user,HttpSession session){
+        User adminUser =(User) session.getAttribute("adminUser");
 
-        System.out.println(user);
+//        System.out.println(user);
         int i=userService.updateBackUserInfo(user);
+
+        SystemLog systemLog = new SystemLog();
+        systemLog.setUserId(adminUser.getUserId());
+        systemLog.setOperation("更新用户信息操作");
+        systemLog.setLevel(2);
+        systemLog.setCreateTime(new Date());
+        userService.insertLogByUser(systemLog);
+
+
         return Result.success(i,"操作成功",200);
     }
 

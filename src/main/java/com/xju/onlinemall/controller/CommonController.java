@@ -61,7 +61,7 @@ public class CommonController {
         List<Category> list=categoryService.list();
         session.setAttribute("categoryList",list);
 //        System.out.println(list);
-        System.out.println("跳转account页面---------------------");
+//        System.out.println("跳转account页面---------------------");
         return "views_front/my-account";
     }
 
