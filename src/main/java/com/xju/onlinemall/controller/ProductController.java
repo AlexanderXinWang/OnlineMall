@@ -199,15 +199,22 @@ public class ProductController {
      */
     @RequestMapping("/priceRangeFilter")
     @ResponseBody
-    public Object priceRangeFilter(Model model,HttpServletRequest request,
-                                   @Param("min") int min,@Param("max") int max) {
-        String url = request.getRequestURI();
-        System.out.println(url);
-        url.replace(url,url+"?min="+min+"?max="+max);
-        model.addAttribute("success",true);
-        model.addAttribute("msg",url);
-        return model;
+    public Object priceRangeFilter(HttpServletRequest request, String min, String max) {
+        ModelMap modelMap = new ModelMap();
+        if (min!=null & max!=null){
+            modelMap.put("min",min);
+            modelMap.put("max",max);
+            modelMap.put("success",true);
+            modelMap.put("msg","/product-list.html?min="+min+"&max="+max);
+        }
+        else {
+            modelMap.put("success",false);
+            modelMap.put("msg","/product-list.html");
+        }
+
+        return modelMap;
     }
+
 
     /**
      *合并至————>/product.html

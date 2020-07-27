@@ -50,39 +50,39 @@
                     <form class="furgan-ordering" method="get">
                         <select title="product_cat" name="orderby" class="orderby" th:switch="${condition}">
                             <p th:case="0">
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=0&cid='+${cid}" th:selected="selected">默认排序</option>
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=1&cid='+${cid}">按评分排序</option>
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=2&cid='+${cid}">按上架时间排序</option>
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=3&cid='+${cid}">从低到高价格排序</option>
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=4&cid='+${cid}">从高到低价格排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=0&cid='+${cid}+'&min='+${min}+'&max='+${max}" th:selected="selected">默认排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=1&cid='+${cid}+'&min='+${min}+'&max='+${max}">按评分排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=2&cid='+${cid}+'&min='+${min}+'&max='+${max}">按上架时间排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=3&cid='+${cid}+'&min='+${min}+'&max='+${max}">从低到高价格排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=4&cid='+${cid}+'&min='+${min}+'&max='+${max}">从高到低价格排序</option>
                             </p>
                             <p th:case="1">
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=0&cid='+${cid}">默认排序</option>
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=1&cid='+${cid}" th:selected="selected">按评分排序</option>
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=2&cid='+${cid}">按上架时间排序</option>
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=3&cid='+${cid}">从低到高价格排序</option>
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=4&cid='+${cid}">从高到低价格排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=0&cid='+${cid}+'&min='+${min}+'&max='+${max}">默认排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=1&cid='+${cid+'&min='+${min}+'&max='+${max}}" th:selected="selected">按评分排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=2&cid='+${cid}+'&min='+${min}+'&max='+${max}">按上架时间排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=3&cid='+${cid}+'&min='+${min}+'&max='+${max}">从低到高价格排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=4&cid='+${cid}+'&min='+${min}+'&max='+${max}">从高到低价格排序</option>
                             </p>
                             <p th:case="2">
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=0&cid='+${cid}">默认排序</option>
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=1&cid='+${cid}">按评分排序</option>
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=2&cid='+${cid}" th:selected="selected">按上架时间排序</option>
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=3&cid='+${cid}">从低到高价格排序</option>
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=4&cid='+${cid}">从高到低价格排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=0&cid='+${cid}+'&min='+${min}+'&max='+${max}">默认排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=1&cid='+${cid}+'&min='+${min}+'&max='+${max}">按评分排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=2&cid='+${cid}+'&min='+${min}+'&max='+${max}" th:selected="selected">按上架时间排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=3&cid='+${cid}+'&min='+${min}+'&max='+${max}">从低到高价格排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=4&cid='+${cid}+'&min='+${min}+'&max='+${max}">从高到低价格排序</option>
                             </p>
                             <p th:case="3">
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=0&cid='+${cid}">默认排序</option>
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=1&cid='+${cid}">按评分排序</option>
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=2&cid='+${cid}">按上架时间排序</option>
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=3&cid='+${cid}" th:selected="selected">从低到高价格排序</option>
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=4&cid='+${cid}">从高到低价格排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=0&cid='+${cid}+'&min='+${min}+'&max='+${max}">默认排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=1&cid='+${cid}+'&min='+${min}+'&max='+${max}">按评分排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=2&cid='+${cid}+'&min='+${min}+'&max='+${max}">按上架时间排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=3&cid='+${cid}+'&min='+${min}+'&max='+${max}" th:selected="selected">从低到高价格排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=4&cid='+${cid}+'&min='+${min}+'&max='+${max}">从高到低价格排序</option>
                             </p>
                             <p th:case="4">
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=0&cid='+${cid}">默认排序</option>
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=1&cid='+${cid}">按评分排序</option>
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=2&cid='+${cid}">按上架时间排序</option>
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=3&cid='+${cid}">从低到高价格排序</option>
-                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=4&cid='+${cid}" th:selected="selected">从高到低价格排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=0&cid='+${cid}+'&min='+${min}+'&max='+${max}">默认排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=1&cid='+${cid}+'&min='+${min}+'&max='+${max}">按评分排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=2&cid='+${cid}+'&min='+${min}+'&max='+${max}">按上架时间排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=3&cid='+${cid}+'&min='+${min}+'&max='+${max}">从低到高价格排序</option>
+                                <option th:value="'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition=4&cid='+${cid}+'&min='+${min}+'&max='+${max}" th:selected="selected">从高到低价格排序</option>
                             </p>
                         </select>
                     </form>
@@ -90,28 +90,28 @@
                         <label>
                             <select class="option-perpage" th:switch="${pageInfo.getPageSize()}">
                                 <p th:case="5">
-                                    <option th:value="'/product-list.html?pageSize=5&condition='+${condition}+'&cid='+${cid}" th:selected="selected">1页 显示 5 件商品</option>
-                                    <option th:value="'/product-list.html?pageSize=10&condition='+${condition}+'&cid='+${cid}">1页 显示 10 件商品</option>
-                                    <option th:value="'/product-list.html?pageSize=12&condition='+${condition}+'&cid='+${cid}">1页 显示 12 件商品</option>
-                                    <option th:value="'/product-list.html?pageSize=15&condition='+${condition}+'&cid='+${cid}">1页 显示 15 件商品</option>
+                                    <option th:value="'/product-list.html?pageSize=5&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}" th:selected="selected">1页 显示 5 件商品</option>
+                                    <option th:value="'/product-list.html?pageSize=10&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}">1页 显示 10 件商品</option>
+                                    <option th:value="'/product-list.html?pageSize=12&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}">1页 显示 12 件商品</option>
+                                    <option th:value="'/product-list.html?pageSize=15&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}">1页 显示 15 件商品</option>
                                 </p>
                                 <p th:case="10">
-                                    <option th:value="'/product-list.html?pageSize=5&condition='+${condition}+'&cid='+${cid}">1页 显示 5 件商品</option>
-                                    <option th:value="'/product-list.html?pageSize=10&condition='+${condition}+'&cid='+${cid}" th:selected="selected">1页 显示 10 件商品</option>
-                                    <option th:value="'/product-list.html?pageSize=12&condition='+${condition}+'&cid='+${cid}">1页 显示 12 件商品</option>
-                                    <option th:value="'/product-list.html?pageSize=15&condition='+${condition}+'&cid='+${cid}">1页 显示 15 件商品</option>
+                                    <option th:value="'/product-list.html?pageSize=5&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}">1页 显示 5 件商品</option>
+                                    <option th:value="'/product-list.html?pageSize=10&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}" th:selected="selected">1页 显示 10 件商品</option>
+                                    <option th:value="'/product-list.html?pageSize=12&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}">1页 显示 12 件商品</option>
+                                    <option th:value="'/product-list.html?pageSize=15&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}">1页 显示 15 件商品</option>
                                 </p>
                                 <p th:case="12">
-                                    <option th:value="'/product-list.html?pageSize=5&condition='+${condition}+'&cid='+${cid}">1页 显示 5 件商品</option>
-                                    <option th:value="'/product-list.html?pageSize=10&condition='+${condition}+'&cid='+${cid}">1页 显示 10 件商品</option>
-                                    <option th:value="'/product-list.html?pageSize=12&condition='+${condition}+'&cid='+${cid}" th:selected="selected">1页 显示 12 件商品</option>
-                                    <option th:value="'/product-list.html?pageSize=15&condition='+${condition}+'&cid='+${cid}">1页 显示 15 件商品</option>
+                                    <option th:value="'/product-list.html?pageSize=5&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}">1页 显示 5 件商品</option>
+                                    <option th:value="'/product-list.html?pageSize=10&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}">1页 显示 10 件商品</option>
+                                    <option th:value="'/product-list.html?pageSize=12&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}" th:selected="selected">1页 显示 12 件商品</option>
+                                    <option th:value="'/product-list.html?pageSize=15&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}">1页 显示 15 件商品</option>
                                 </p>
                                 <p th:case="15">
-                                    <option th:value="'/product-list.html?pageSize=5&condition='+${condition}+'&cid='+${cid}">1页 显示 5 件商品</option>
-                                    <option th:value="'/product-list.html?pageSize=10&condition='+${condition}+'&cid='+${cid}">1页 显示 10 件商品</option>
-                                    <option th:value="'/product-list.html?pageSize=12&condition='+${condition}+'&cid='+${cid}">1页 显示 12 件商品</option>
-                                    <option th:value="'/product-list.html?pageSize=15&condition='+${condition}+'&cid='+${cid}" th:selected="selected">1页 显示 15 件商品</option>
+                                    <option th:value="'/product-list.html?pageSize=5&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}">1页 显示 5 件商品</option>
+                                    <option th:value="'/product-list.html?pageSize=10&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}">1页 显示 10 件商品</option>
+                                    <option th:value="'/product-list.html?pageSize=12&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}">1页 显示 12 件商品</option>
+                                    <option th:value="'/product-list.html?pageSize=15&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}" th:selected="selected">1页 显示 15 件商品</option>
                                 </p>
                             </select>
                         </label>
@@ -221,12 +221,14 @@
                     <nav class="furgan-pagination">
                         <span th:each="pageNo:${#numbers.sequence(1,pageInfo.getPages())}">
                             <a class="page-numbers current" href="#"  th:text="${pageNo}"
-                               th:href="@{'/product-list.html?pageNo='+${pageNo}+'&pageSize='+${pageInfo.getPageSize()}+'&condition='+${condition}+'&cid='+${cid}}">
+                               th:href="@{'/product-list.html?pageNo='+${pageNo}+'&pageSize='+${pageInfo.getPageSize()}
+                               +'&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}}">
                             </a>
                         </span>
 
                         <a class="next page-numbers" href="#"
-                           th:href="@{'/product-list.html?pageNo='+${pageInfo.getNextPage()}+'&pageSize='+${pageInfo.getPageSize()}+'&condition='+${condition}+'&cid='+${cid}}">
+                           th:href="@{'/product-list.html?pageNo='+${pageInfo.getNextPage()}+'&pageSize='+${pageInfo.getPageSize()}
+                           +'&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}}">
                             下一页
                         </a>
                     </nav>
@@ -249,12 +251,22 @@
                             <button type="submit" value="Search">搜索</button>
                         </form>
                     </div>
-                    <div id="furgan_price_filter-2" class="widget furgan widget_price_filter"><h2
-                            class="widgettitle">按价格筛选<span class="arrow"></span></h2>
+                    <div id="furgan_price_filter-2" class="widget furgan widget_price_filter">
+                        <h2 class="widgettitle">按价格筛选<span class="arrow"></span></h2>
                         <form method="post">
-                            <input th:class="from" th:value="${min}" th:placeholder="最低价">
-                            <input th:class="to" th:value="${max}" th:placeholder="最高价">
-                            <button id="buttonFilter" type="submit" class="button">筛选</button>
+                            <p class="furgan-form-row furgan-form-row--wide form-row form-row-wide">
+                                <label for="from">最低价&nbsp</label>
+                                <input type="text"
+                                       name="min" id="from" autocomplete="10" value="" th:placeholder="${min}"></p>
+                            <p class="furgan-form-row furgan-form-row--wide form-row form-row-wide">
+                                <label for="to">最高价&nbsp</label>
+                                <input type="text"
+                                       name="max" id="to" autocomplete="999" value="" th:placeholder="${max}"></p>
+                            <p class="form-row">
+                                <button id="buttonFilter" type="button" class="furgan-Button button"
+                                        name="filterButton" value="">筛选
+                                </button>
+                            </p>
                         </form>
                         <!--<form method="post">
                             <div class="price_slider_wrapper">
@@ -280,12 +292,14 @@
                             </div>
                         </form>-->
                     </div>
+                    <p th:height="20px"></p>
                     <div id="furgan_product_categories-3" class="widget furgan widget_product_categories"><h2
                             class="widgettitle">商品分类<span class="arrow"></span></h2>
                         <ul class="product-categories" th:each="category:${categoryList}">
                             <li class="cat-item cat-item-22">
                                 <div th:swith="${category.categoryId==null}">
-                                    <a href="#" th:href="@{'/product-list.html?pageSize='+${pageInfo.getPageSize()}+'&condition='+${condition}+'&cid='+${category.categoryId}}"
+                                    <a href="#" th:href="@{'/product-list.html?pageSize='+${pageInfo.getPageSize()}
+                                    +'&condition='+${condition}+'&cid='+${category.categoryId}+'&min='+${min}+'&max='+${max}}"
                                        th:text="${category.categoryName}">Light</a>
                                 </div>
 
@@ -306,26 +320,79 @@
 
 <script>
     $(function () {
+        /*
+        var href = window.location.href;
+        var search = window.location.search;
+        alert(href);
+        // 可以拿到值
+        $.ajax({
+            type:"POST",
+            url:"priceRangeFilter",
+            dataType:"json",
+            data:{"min":min,"max":max,"href":href,"search":search},
+            success:function (data) {
+                if (data["success"]){
+                    layer.msg("查询成功！跳转中···",{time:1700});
+                }
+                else{
+                    layer.msg("查询失败！请稍后再试。",{time:1600});
+                }
+            }
+        })*/
         //价格筛选
-        $("#buttonFilter").click(function () {
-            var min=$(".from").val().trim();
-            var max=$(".to").val().trim();
-            // 可以拿到值
-            alert(min+max);
+        /*$("#from").bind('input propertychange',function () {
+            var min = $("#from").val().trim();
+            alert(max);
             $.ajax({
                 type:"POST",
-                url:"/priceRangeFilter",
+                url:"priceRangeFilter",
+                dataType:"json",
+                data:{"min":min},
+                success:function (data) {
+                    if (data["success"]){
+                        alert("查询成功！跳转中···");
+                    }
+                    else{
+                        alert("查询失败！请稍后再试。");
+                    }
+                }
+            })
+        })
+        $("#to").bind('input propertychange',function () {
+            var max = $("#from").val().trim();
+            alert(max);
+            $.ajax({
+                type: "POST",
+                url: "priceRangeFilter",
+                dataType: "json",
+                data: {"max": max},
+                success: function (data) {
+                    if (data["success"]) {
+                        alert("查询成功！跳转中···");
+                    } else {
+                        alert("查询失败！请稍后再试。");
+                    }
+                }
+            })
+        })*/
+
+
+        $("#buttonFilter").click(function () {
+            var min=$("#from").val().trim();
+            var max=$("#to").val().trim();
+            alert(min+"|"+max);
+            $.ajax({
+                type:"POST",
+                url:"priceRangeFilter",
                 dataType:"json",
                 data:{"min":min,"max":max},
                 success:function (data) {
                     if (data["success"]){
-                        //返回值是learn/t1 相对于项目地址
-                        //返回值是/learn/t1 相对于根地址 http://localhost:8080/learn/t1
-                        layer.msg("查询成功！跳转中···",{time:1700});
+                        alert("查询成功！跳转中···");
                         window.location.href=data["msg"];
                     }
                     else{
-                        layer.msg("查询失败！请稍后再试。",{time:1600});
+                        alert("查询失败！请稍后再试。");
                     }
                 }
             })
