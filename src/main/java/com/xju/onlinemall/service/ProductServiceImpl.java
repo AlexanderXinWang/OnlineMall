@@ -131,11 +131,10 @@ public class ProductServiceImpl implements ProductService{
     //  product-list无cid筛选方法
     @Override
     public PageInfo<Product> getProductsByPriceRange(int pageNo,int pageSize,double min, double max) {
-        //分页查询
         PageHelper.startPage(pageNo,pageSize);
         ProductExample productExample = new ProductExample();
+        productExample.createCriteria().andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max);
         List<Product> list = productMapper.selectByExample(productExample);
-        //得到分页器
         PageInfo<Product> PageInfo = new PageInfo<>(list);
         return PageInfo;
     }

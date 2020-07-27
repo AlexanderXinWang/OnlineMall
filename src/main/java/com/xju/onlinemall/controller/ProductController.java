@@ -124,9 +124,7 @@ public class ProductController {
                     pageInfo = productService.getProductsByPriceRange(pageNo, pageSize,min, max);
                     break;
                 case 1:
-                    //TO-DO
                     pageInfo = productService.getProductsByPriceRangeAndRate(pageNo,pageSize,min,max);
-                    System.out.println("TO-DO");
                     break;
                 case 2:
                     pageInfo = productService.getProductsByPriceRangeAndTime(pageNo,pageSize,min,max);
@@ -155,7 +153,6 @@ public class ProductController {
                     pageInfo = productService.getProductsByCategoryAndPriceRange(pageNo,pageSize,cid,min,max);
                     break;
                 case 1:
-                    System.out.println("TO-DO");
                     pageInfo = productService.getProductsByCategoryAndPriceRangeAndRate(pageNo,pageSize,cid,min,max);
                     break;
                 case 2:
@@ -199,17 +196,42 @@ public class ProductController {
      */
     @RequestMapping("/priceRangeFilter")
     @ResponseBody
-    public Object priceRangeFilter(HttpServletRequest request, String min, String max) {
+    public Object priceRangeFilter(String min, String max) {
         ModelMap modelMap = new ModelMap();
-        if (min!=null & max!=null){
+        /*if (min==null & max==null){
+            modelMap.put("success",false);
+            modelMap.put("msg","/product-list.html");
+        }
+        else {
+            modelMap.put("min",min);
+            modelMap.put("max",max);
+            modelMap.put("success",true);
+            //若min为空max不为空
+            if (min==null) {
+                modelMap.put("msg","/product-list.html?max="+max);
+            }
+            else {
+                //若min不为空max为空
+                if (max==null) {
+                    modelMap.put("msg","/product-list.html?min="+min);
+                }
+                //若min不为空max不为空
+                else {
+                    modelMap.put("msg","/product-list.html?min="+min+"&max="+max);
+                }
+            }
+        }*/
+        Double minDouble = Double.parseDouble(min);
+        Double maxDouble = Double.parseDouble(max);
+        if (minDouble>=maxDouble || maxDouble<=minDouble) {
+            modelMap.put("success",false);
+            modelMap.put("msg","/product-list.html");
+        }
+        else {
             modelMap.put("min",min);
             modelMap.put("max",max);
             modelMap.put("success",true);
             modelMap.put("msg","/product-list.html?min="+min+"&max="+max);
-        }
-        else {
-            modelMap.put("success",false);
-            modelMap.put("msg","/product-list.html");
         }
 
         return modelMap;
