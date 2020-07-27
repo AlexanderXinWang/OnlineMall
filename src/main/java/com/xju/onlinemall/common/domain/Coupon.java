@@ -7,21 +7,21 @@ public class Coupon {
 
     private String couponName;
 
-    private String couponInfo;
+    private Double minAmount;
 
-    private Byte couponIsUsed;
+    private Double couponAmount;
 
-    private Byte couponIsDelete;
-
-    private String couponKeepField;
+    private Integer userId;
 
     private Integer categoryId;
 
     private Integer productId;
 
+    private Date createTime;
+
     private Date expireTime;
 
-    private Date createTime;
+    private Byte couponIsDelete;
 
     public Integer getCouponId() {
         return couponId;
@@ -39,36 +39,28 @@ public class Coupon {
         this.couponName = couponName == null ? null : couponName.trim();
     }
 
-    public String getCouponInfo() {
-        return couponInfo;
+    public Double getMinAmount() {
+        return minAmount;
     }
 
-    public void setCouponInfo(String couponInfo) {
-        this.couponInfo = couponInfo == null ? null : couponInfo.trim();
+    public void setMinAmount(Double minAmount) {
+        this.minAmount = minAmount;
     }
 
-    public Byte getCouponIsUsed() {
-        return couponIsUsed;
+    public Double getCouponAmount() {
+        return couponAmount;
     }
 
-    public void setCouponIsUsed(Byte couponIsUsed) {
-        this.couponIsUsed = couponIsUsed;
+    public void setCouponAmount(Double couponAmount) {
+        this.couponAmount = couponAmount;
     }
 
-    public Byte getCouponIsDelete() {
-        return couponIsDelete;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setCouponIsDelete(Byte couponIsDelete) {
-        this.couponIsDelete = couponIsDelete;
-    }
-
-    public String getCouponKeepField() {
-        return couponKeepField;
-    }
-
-    public void setCouponKeepField(String couponKeepField) {
-        this.couponKeepField = couponKeepField == null ? null : couponKeepField.trim();
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public Integer getCategoryId() {
@@ -87,14 +79,6 @@ public class Coupon {
         this.productId = productId;
     }
 
-    public Date getExpireTime() {
-        return expireTime;
-    }
-
-    public void setExpireTime(Date expireTime) {
-        this.expireTime = expireTime;
-    }
-
     public Date getCreateTime() {
         return createTime;
     }
@@ -103,19 +87,19 @@ public class Coupon {
         this.createTime = createTime;
     }
 
-    @Override
-    public String toString() {
-        return "Coupon{" +
-                "couponId=" + couponId +
-                ", couponName='" + couponName + '\'' +
-                ", couponInfo='" + couponInfo + '\'' +
-                ", couponIsUsed=" + couponIsUsed +
-                ", couponIsDelete=" + couponIsDelete +
-                ", couponKeepField='" + couponKeepField + '\'' +
-                ", categoryId=" + categoryId +
-                ", productId=" + productId +
-                ", expireTime=" + expireTime +
-                ", createTime=" + createTime +
-                '}';
+    public Date getExpireTime() {
+        return expireTime;
+    }
+
+    public void setExpireTime(Date expireTime) {
+        this.expireTime = expireTime;
+    }
+
+    public Byte getCouponIsDelete() {
+        return couponIsDelete;
+    }
+
+    public void setCouponIsDelete(Byte couponIsDelete) {
+        this.couponIsDelete = couponIsDelete;
     }
 }

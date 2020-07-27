@@ -3,9 +3,13 @@ package com.xju.onlinemall.mapper;
 import com.xju.onlinemall.common.domain.Coupon;
 import com.xju.onlinemall.common.domain.CouponExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
-public interface CouponMapper {
+import com.xju.onlinemall.mapper.extend.CouponMapperExtend;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface CouponMapper extends CouponMapperExtend {
     long countByExample(CouponExample example);
 
     int deleteByExample(CouponExample example);

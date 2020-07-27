@@ -288,4 +288,19 @@ class OnlinemallApplicationTests {
         String msg=orderService.saveOrders(orderList);
         System.out.println(msg);
     }
+
+    //系统日志时间模糊查询
+    @Test
+    public void t19(){
+        Integer logId = null;
+        Integer userId = null;
+        String time = null;
+        String time2 = null;
+        time = "2020-07-27 16:3";
+        time = time.concat("%");
+        System.out.println(time);
+        List<SystemLog> systemLogs = systemLogMapper.selectByMyExample(logId,userId,time2);
+        System.out.println(systemLogs);
+    }
+
 }
