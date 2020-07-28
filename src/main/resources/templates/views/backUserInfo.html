@@ -76,7 +76,7 @@
                     <input type="radio" name="sex" value="0" title="男">
                     <input type="radio" name="sex" value="1" checked title="女">
                   </p>
-                    <p th:if="${oldUser.sex != 1 || oldUser.sex != 2}">
+                    <p th:if="${oldUser.sex != 0 && oldUser.sex != 1}">
                         <input type="radio" name="sex" value="0" title="男">
                         <input type="radio" name="sex" value="1" title="女">
                     </p>
