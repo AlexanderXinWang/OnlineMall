@@ -15,4 +15,6 @@ public interface OutputOrderService {
     int addOutputOrder(OutputOder outputOder);
 
     Integer getPmIdByUserId(Integer userId);
+
+    int sendOutputOrderByoutId(Integer outId);
 }

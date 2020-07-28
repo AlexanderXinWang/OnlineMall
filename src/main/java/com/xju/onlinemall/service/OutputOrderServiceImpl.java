@@ -3,6 +3,7 @@ package com.xju.onlinemall.service;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xju.onlinemall.common.domain.*;
+import com.xju.onlinemall.mapper.OrderMapper;
 import com.xju.onlinemall.mapper.OutputOderMapper;
 import com.xju.onlinemall.mapper.ProductManageMapper;
 import com.xju.onlinemall.mapper.ProductMapper;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 @Service
 public class OutputOrderServiceImpl implements OutputOrderService{
@@ -19,6 +21,8 @@ public class OutputOrderServiceImpl implements OutputOrderService{
     private ProductManageMapper productManageMapper;
     @Autowired
     private ProductMapper productMapper;
+    @Autowired
+    private OrderMapper orderMapper;
 
     @Override
     public PageInfo<OutputOder> getAllOutputOrders(int pageNo, int pageSize, Integer userId, boolean isRemoved) {
@@ -59,17 +63,10 @@ public class OutputOrderServiceImpl implements OutputOrderService{
         int i = 0;
         Integer IS_NOT_DELETE = 3;
         Integer IS_DELETE = 4;
-//        System.out.println();
         if (outIds!=null && outIds.length>0){
             for(Integer outId:outIds){
                 OutputOder outputOder = outputOderMapper.selectByPrimaryKey(outId);
-//                System.out.println(outputOder);
-//                OutputOderExample example = new OutputOderExample();
                 if (outputOder.getOutIsDelete() == 3){ //逻辑删除
-//                    example.createCriteria().andOutIdEqualTo(outputOder.getOutId()).andPmIdEqualTo(outputOder.getPmId()).andOutNumberEqualTo(outputOder.getOutNumber()).andOutDateEqualTo(outputOder.getOutDate()).andProductIdEqualTo(outputOder.getProductId()).andOutStatusEqualTo(outputOder.getOutStatus()).andOutIsDeleteEqualTo(Byte.parseByte(IS_DELETE.toString()));
-//                    System.out.println(example);
-//                    i = outputOderMapper.updateByExampleSelective(outputOder,example);
-//                    System.out.println(i);
                     i = outputOderMapper.removeOutputOrdersLogicallyByoutIds(outId, IS_DELETE);
                     System.out.println(i);
                 }else if (outputOder.getOutIsDelete() == 4){ //逻辑恢复
@@ -94,7 +91,26 @@ public class OutputOrderServiceImpl implements OutputOrderService{
 
     @Override
     public Integer getPmIdByUserId(Integer userId) {
-
         return productManageMapper.selectPmIdByUserId(userId).getPmId();
+    }
+
+    @Override
+    public int sendOutputOrderByoutId(Integer outId) {
+//        出货状态outStatus->7
+//        tb_order.output_time添加时间
+//        tb_order.status->7
+        OutputOder outputOder = outputOderMapper.selectByPrimaryKey(outId);
+        outputOder.setOutStatus(7);
+        int j = outputOderMapper.updateByPrimaryKeySelective(outputOder);
+        Date date = new Date();
+        Order order = orderMapper.selectByPrimaryKey(outputOder.getOutNumber());
+        order.setOutputTime(date);
+        order.setPayStatus(Byte.parseByte("7"));
+        int i = orderMapper.updateByPrimaryKeySelective(order);
+//        return 0;
+        if (i==1&&j==1)
+            return i;
+        else
+            return 0;
     }
 }

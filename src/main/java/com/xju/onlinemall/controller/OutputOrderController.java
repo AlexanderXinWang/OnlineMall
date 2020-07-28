@@ -19,15 +19,6 @@ public class OutputOrderController {
     @Autowired
     private OutputOrderService outputOrderService;
 
-//    @RequestMapping("/list")
-//    @ResponseBody
-//    public List<Category> list(ModelMap modelMap){  //查询商品类
-
-//        List<Category> list=categoryService.list();
-//        modelMap.addAttribute("categoryList",list);
-////        System.out.println(list);
-//        return list;
-//    }
     @RequestMapping("/list/outputOrders")
     @ResponseBody
     public Object ShowOutputOrderList(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize, Integer pmId, HttpSession session){
@@ -60,7 +51,6 @@ public class OutputOrderController {
     @ResponseBody
     public Object deleteOutputOrders(@RequestBody Integer[] outIds){
         int i = outputOrderService.removeOutputOrdersLogicallyByoutIds(outIds);
-
         return Result.success(i,"操作成功",200);
     }
 
@@ -89,11 +79,17 @@ public class OutputOrderController {
         outputOder.setPmId(pmId);
         System.out.println(outputOder);
         int i = outputOrderService.addOutputOrder(outputOder);
-        //查看后台获取到的数据
-//        System.out.println(product);
-//        int i = productService.addProduct(product);
         return Result.success(i,"操作成功",200);
-//        return Result.success(1,"操作成功",200);
     }
 
+    @RequestMapping("/list/sendOutputOrder")
+    @ResponseBody
+    public Object sendOutputOrder(@RequestBody Integer outId){
+        int i = outputOrderService.sendOutputOrderByoutId(outId);
+        String msg;
+        if (i==1)
+            msg = "操作成功";
+        else msg = "操作失败";
+        return Result.success(i,msg,200);
+    }
 }
