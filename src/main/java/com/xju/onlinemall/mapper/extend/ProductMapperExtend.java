@@ -31,4 +31,8 @@ public interface ProductMapperExtend {
     List<Product> selectBySearchAndRate(String s);
 
     List<Product> selectBySearchAndCategoryAndRate(int cid, String s);
+
+    List<Product> selectBySearchAndPriceRangeAndRate(String s, double min, double max);
+
+    List<Product> selectBySearchAndCategoryAndPriceRangeAndRate(int cid, String s, double min, double max);
 }

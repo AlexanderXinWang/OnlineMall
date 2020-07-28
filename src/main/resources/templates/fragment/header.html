@@ -232,8 +232,8 @@
                                                         <option class="level-0" value="lamp">台灯</option>
                                                         <option class="level-0" value="specials">特色商品</option>
                                                         <option class="level-0" value="sofas">沙发</option>-->
+                                                        <option value="5">全部类别</option>
                                                         <p th:each="category:${categoryList}">
-                                                            <option value="5">全部类别</option>
                                                             <option class="level-0" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
                                                         </p>
 

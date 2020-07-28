@@ -42,8 +42,8 @@ public class ProductController {
                             @RequestParam(defaultValue = "12") int pageSize){
         //分页
         PageInfo<Product> pageInfo=null;
-        //搜索框搜索
-        if (s==null) {
+        //未进行搜索
+        if (s==null || s.equals("null")) {
             /**
              * 0-默认
              * 1-按评分排序
@@ -70,7 +70,7 @@ public class ProductController {
                     break;
             }
         }
-        //未进行搜索
+        //搜索框搜索
         else {
             /**
              * 0-默认
@@ -126,7 +126,8 @@ public class ProductController {
      *跳转商品列表页（有分类侧边栏），并传入商品数据
      * */
     @RequestMapping("/product-list.html")
-    public String productList(Model model,HttpServletRequest request,ModelMap modelMap,
+    public String productList(Model model,HttpServletRequest request,
+                              @RequestParam(required = false) String s,
                               @RequestParam(defaultValue = "0") double min,
                               @RequestParam(defaultValue = "9999") double max,
                               @RequestParam(defaultValue = "5") int cid,
@@ -136,54 +137,16 @@ public class ProductController {
         //分页
         PageInfo<Product> pageInfo;
 
-        //若为正常访问list页面（未分类）
-        if(cid==5){
-            /*if(min!=null&&max!=null){
-                Double minPrice = Double.parseDouble(min);
-                Double maxPrice = Double.parseDouble(max);
-                //获取筛选后的分页信息与商品列表
-                pageInfo = productService.selectByPrice(pageNo,pageSize,minPrice,maxPrice);
-                modelMap.addAttribute("min",minPrice);
-                modelMap.addAttribute("max",maxPrice);
-                modelMap.put("success", true);
-            }else{*/
-            System.out.println(pageSize);
+        //若未进行搜索
+        if(s==null){
             /**
-             * 0-默认
-             * 1-按评分排序
-             * 2-按上架时间排序
-             * 3-从低到高价格排序
-             * 4-从高到低价格排序
+             * 通过header分类跳转或页面筛选，携带cid（商品类别）
+             * 1-数码
+             * 2-家具电器
+             * 3-食品
+             * 4-服饰
+             * 5-全部分类
              */
-            switch (condition) {
-                default:
-                    //获取分页信息与商品列表
-                    pageInfo = productService.getProductsByPriceRange(pageNo, pageSize,min, max);
-                    break;
-                case 1:
-                    pageInfo = productService.getProductsByPriceRangeAndRate(pageNo,pageSize,min,max);
-                    break;
-                case 2:
-                    pageInfo = productService.getProductsByPriceRangeAndTime(pageNo,pageSize,min,max);
-                    break;
-                case 3:
-                    pageInfo = productService.getProductsByPriceRangeAndPriceASC(pageNo,pageSize,min,max);
-                    break;
-                case 4:
-                    pageInfo = productService.getProductsByPriceRangeAndPriceDESC(pageNo,pageSize,min,max);
-                    break;
-            }
-        }
-
-        /**
-         * 通过header分类跳转或页面筛选，携带cid（商品类别）
-         * 1-数码
-         * 2-家具电器
-         * 3-食品
-         * 4-服饰
-         * 5-全部分类
-         */
-        else{
             switch (condition) {
                 default:
                     //获取分页信息与商品列表
@@ -200,6 +163,27 @@ public class ProductController {
                     break;
                 case 4:
                     pageInfo = productService.getProductsByCategoryAndPriceRangeAndPriceDESC(pageNo,pageSize,cid,min,max);
+                    break;
+            }
+        }
+        //进行搜索
+        else{
+            switch (condition) {
+                default:
+                    //获取分页信息与商品列表
+                    pageInfo = productService.searchProductsByCategoryAndPriceRange(pageNo,pageSize,cid,min,max,s);
+                    break;
+                case 1:
+                    pageInfo = productService.searchProductsByCategoryAndPriceRangeAndRate(pageNo,pageSize,cid,min,max,s);
+                    break;
+                case 2:
+                    pageInfo = productService.searchProductsByCategoryAndPriceRangeAndTime(pageNo,pageSize,cid,min,max,s);
+                    break;
+                case 3:
+                    pageInfo = productService.searchProductsByCategoryAndPriceRangeAndPriceASC(pageNo,pageSize,cid,min,max,s);
+                    break;
+                case 4:
+                    pageInfo = productService.searchProductsByCategoryAndPriceRangeAndPriceDESC(pageNo,pageSize,cid,min,max,s);
                     break;
             }
         }
@@ -220,6 +204,8 @@ public class ProductController {
             //将价格区间上下限注入页面
             model.addAttribute("min",min);
             model.addAttribute("max",max);
+            //搜索内容注入页面
+            model.addAttribute("s",s);
 
             System.out.println(pageInfo);
             System.out.println("此页商品数"+productList.size());
