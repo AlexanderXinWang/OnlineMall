@@ -1,8 +1,10 @@
 package com.xju.onlinemall.common.domain;
 
+import com.xju.onlinemall.common.domain.extend.CouponExtend;
+
 import java.util.Date;
 
-public class Coupon {
+public class Coupon extends CouponExtend {
     private Integer couponId;
 
     private String couponName;

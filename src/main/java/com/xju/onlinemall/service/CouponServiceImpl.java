@@ -4,8 +4,6 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xju.onlinemall.common.domain.Coupon;
 import com.xju.onlinemall.common.domain.CouponExample;
-import com.xju.onlinemall.common.domain.Product;
-import com.xju.onlinemall.common.domain.ProductExample;
 import com.xju.onlinemall.mapper.CouponMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -63,5 +61,22 @@ public class CouponServiceImpl implements CouponService{
             }
         }
         return count;
+    }
+
+    @Override
+    public int addCoupons(Coupon coupon) {
+        int insert = couponMapper.insert(coupon);
+        return insert;
+    }
+
+    @Override
+    public Coupon selectByCouponId(Integer couponId) {
+        Coupon coupon = couponMapper.selectByPrimaryKey(couponId);
+        return coupon;
+    }
+
+    @Override
+    public int updateCoupon(Coupon coupon) {
+        return couponMapper.updateByPrimaryKeySelective(coupon);
     }
 }

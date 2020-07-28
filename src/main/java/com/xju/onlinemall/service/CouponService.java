@@ -8,4 +8,10 @@ public interface CouponService {
     PageInfo<Coupon> getAllCouponByUserIdAndSearchInfo(int pageNo, int pageSize, Integer userId, Coupon coupon);
 
     int removeCouponsByCouponIds(Integer... couponIds);
+
+    int addCoupons(Coupon coupon);
+
+    Coupon selectByCouponId(Integer couponId);
+
+    int updateCoupon(Coupon coupon);
 }

@@ -136,13 +136,12 @@
 
             //查看操作
             if(obj.event === 'detail'){
-                // layer.msg('ID：'+ data.productId + ' 的查看操作');
-                var productId=data.productId;
+                var couponId=data.couponId;
                 layer.open({
                     title:"查看商品",
                     type: 2,
-                    content: '/list/showProductDetail?productId='+productId,
-                    area: ['725px', '560px'],
+                    content: '/list/showCouponDetail?couponId='+couponId,
+                    area: ['780px', '530px'],
                     maxmin: true,
                     //打开默认全屏
                     // success: function(layero, index){
@@ -153,15 +152,16 @@
 
 
             }
+            //删除
             else if(obj.event === 'del'){
-                layer.confirm('真的要删除 --'+data.productName+"--商品吗？", function(index){
-                    var proIds=[];
-                    proIds.push(data.productId)
+                layer.confirm('真的要删除 --'+data.couponName+"--吗？", function(index){
+                    var couponIds=[];
+                    couponIds.push(data.couponId)
                     $.ajax({
                         type:"POST",
                         contentType:"application/json",
-                        url:"/list/deleteProducts",
-                        data:JSON.stringify(proIds),
+                        url:"/list/deleteCoupons",
+                        data:JSON.stringify(couponIds),
                         success:function (msg) {
                             if(msg["success"]){
                                 obj.del();
@@ -178,12 +178,12 @@
             //编辑操作
             else if(obj.event === 'edit'){
                 // layer.alert('编辑行：<br>'+ JSON.stringify(data))
-                var productId=data.productId;
+                var couponId=data.couponId;
                 layer.open({
                     title:"编辑商品",
                     type: 2,
-                    content: '/list/updateProductToBackPage?productId='+productId,
-                    area: ['725px', '560px'],
+                    content: '/list/updateCouponToBackPage?couponId='+couponId,
+                    area: ['780px', '530px'],
                     maxmin: true,
                     //打开默认全屏
                     // success: function(layero, index){
@@ -252,8 +252,8 @@
                 layer.open({
                     title:"添加商品",
                     type: 2,
-                    content: '/page/views/layer_addProduct',
-                    area: ['725px', '560px'],
+                        content: '/page/views/layer_addCoupon',
+                    area: ['750px', '500px'],
                     maxmin: true,
                     //打开默认全屏
                     // success: function(layero, index){

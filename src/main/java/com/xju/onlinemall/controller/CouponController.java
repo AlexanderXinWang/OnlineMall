@@ -8,14 +8,17 @@ import com.xju.onlinemall.common.domain.User;
 import com.xju.onlinemall.common.utils.Result;
 import com.xju.onlinemall.service.CouponService;
 import com.xju.onlinemall.service.UserService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
@@ -70,5 +73,92 @@ public class CouponController {
 
 
         return Result.success(i,"操作成功",200);
+    }
+
+    /**
+     *
+     * 添加优惠券
+     *
+     * */
+    @RequestMapping("/list/addCoupons")
+    @ResponseBody
+    public Object addCoupons(@RequestBody Coupon coupon,HttpSession session) throws ParseException {
+        User adminUser =(User) session.getAttribute("adminUser");
+        //转换的时间,插入到coupon
+        //System.out.println(coupon.getcTime()+","+coupon.geteTime());
+        DateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        coupon.setCreateTime(DateFormat.parse(coupon.getcTime()));
+        coupon.setExpireTime(DateFormat.parse(coupon.geteTime()));
+        coupon.setCouponIsDelete((byte)3);
+        int i = couponService.addCoupons(coupon);
+
+        // 将 添加优惠券操作 录入系统日志
+        SystemLog systemLog = new SystemLog();
+        systemLog.setUserId(adminUser.getUserId());
+        systemLog.setOperation("添加优惠券操作");
+        systemLog.setLevel(2);
+        systemLog.setCreateTime(new Date());
+        userService.insertLogByUser(systemLog);
+        return Result.success(i,"操作成功",200);
+    }
+    /**
+     * 查询对象，回显页面
+     *
+     * */
+    @GetMapping("/list/showCouponDetail")
+    public String showCouponDetail(ModelMap modelMap, Integer couponId, HttpSession session){
+        User adminUser =(User) session.getAttribute("adminUser");
+        //根据Id查询该优惠券
+        Coupon coupon = couponService.selectByCouponId(couponId);
+        //把优惠券放入其中进行显示
+        modelMap.put("oldCoupon",coupon);
+        //插入日志
+        SystemLog systemLog = new SystemLog();
+        systemLog.setUserId(adminUser.getUserId());
+        systemLog.setOperation("查看优惠券详细信息操作");
+        systemLog.setLevel(2);
+        systemLog.setCreateTime(new Date());
+        userService.insertLogByUser(systemLog);
+
+        return "views/list-backCouponShowDetail";
+    }
+
+    /**
+     * 查询对象，回显编辑页面
+     *
+     * */
+    @GetMapping("/list/updateCouponToBackPage")
+    public String getCoupon(ModelMap modelMap,Integer couponId){
+        ///根据Id查询该优惠券
+        Coupon coupon = couponService.selectByCouponId(couponId);
+        //把优惠券放入其中进行显示
+        modelMap.put("oldCoupon",coupon);
+
+        return "views/list-backCouponShowAndUpdate";
+    }
+
+    /**
+     * 更新商品信息
+     *
+     * */
+    @RequestMapping("/list/updateCoupon")
+    @ResponseBody
+    public Object updateCoupon(@RequestBody Coupon coupon, HttpSession session) throws ParseException {
+        User adminUser =(User) session.getAttribute("adminUser");
+        //转换的时间,插入到coupon
+        //System.out.println(coupon.getcTime()+","+coupon.geteTime());
+        DateFormat DateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        coupon.setCreateTime(DateFormat.parse(coupon.getcTime()));
+        coupon.setExpireTime(DateFormat.parse(coupon.geteTime()));
+        int i = couponService.updateCoupon(coupon);
+
+        //将 更新优惠券信息操作 录入系统日志
+        SystemLog systemLog = new SystemLog();
+        systemLog.setUserId(adminUser.getUserId());
+        systemLog.setOperation("更新优惠券信息操作");
+        systemLog.setLevel(2);
+        systemLog.setCreateTime(new Date());
+        userService.insertLogByUser(systemLog);
+        return Result.success(1,"操作成功",200);
     }
 }

@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="utf-8">
+    <title>更改商品</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all" th:href="@{/layuiadmin/layui/css/layui.css}" >
+    <link rel="stylesheet"  href="../../../layuiadmin/style/admin.css" media="all" th:href="@{/layuiadmin/style/admin.css}" >
+    <style>
+        .layui-form-label{
+            width: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="layui-fluid">
+    <div class="layui-card" style="padding-top: 5px;height: 390px;">
+        <div class="layui-card-body" style="padding: 15px;">
+            <form class="layui-form" action="" lay-filter="form1">
+                <!--                商家主键-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">商家id</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="userId" disabled lay-verify="userId" autocomplete="off" class="layui-input" th:value="${oldCoupon.userId}">
+                            <span>&nbsp;&nbsp;</span>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">优惠券删除状态</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="couponIsDelete" disabled lay-verify="couponIsDelete" autocomplete="off" class="layui-input" th:value="${oldCoupon.couponIsDelete}">
+                            <span>&nbsp;3 表示未删除</span>
+                        </div>
+                    </div>
+                </div>
+                <!--             优惠券id   优惠券名称-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">优惠券id</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="couponId" disabled lay-verify="couponId" autocomplete="off" class="layui-input" th:value="${oldCoupon.couponId}">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">优惠券名称</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="couponName" placeholder="请输入优惠券名称" lay-verify="couponName" autocomplete="off" class="layui-input" th:value="${oldCoupon.couponName}">
+                        </div>
+                    </div>
+                </div>
+                <!--                优惠商品类别id-->
+                <!--                优惠商品id-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">优惠商品类别id</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="categoryId" placeholder="请输入优惠商品类别id" lay-verify="categoryId" autocomplete="off" class="layui-input" th:value="${oldCoupon.categoryId}">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">优惠商品id</label>
+                        <div class="layui-input-inline">
+                            <input type="tel" name="productId" placeholder="请输入优惠商品id" lay-verify="productId" autocomplete="off" class="layui-input" th:value="${oldCoupon.productId}">
+                        </div>
+                    </div>
+                </div>
+
+                <!--                使用条件-->
+                <!--                优惠金额-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">使用条件（¥）</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="minAmount" placeholder="请输入最低金额" lay-verify="minAmount" autocomplete="off" class="layui-input" th:value="${oldCoupon.minAmount}">
+                            <span>&nbsp;满足金额条件可使用</span>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">优惠金额（¥）</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="couponAmount" placeholder="请输入优惠金额" lay-verify="couponAmount" autocomplete="off" class="layui-input" th:value="${oldCoupon.couponAmount}">
+                            <span>&nbsp;使用后可优惠的金额</span>
+                        </div>
+                    </div>
+                </div>
+                <!--                起始时间-->
+                <!--                截止时间-->
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">起始时间</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="cTime" lay-verify="cTime" autocomplete="off" class="layui-input" th:value="${#dates.format(oldCoupon.createTime,'yyyy-MM-dd HH:mm:ss')}">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">截止时间</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="eTime" lay-verify="eTime" autocomplete="off" class="layui-input" th:value="${#dates.format(oldCoupon.expireTime,'yyyy-MM-dd HH:mm:ss')}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item layui-layout-admin">
+                    <div class="layui-input-block">
+                        <div class="layui-footer" style="left: 0;">
+                            <button class="layui-btn" lay-submit="" lay-filter="layer_updateProduct_submit">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="../../../layuiadmin/layui/layui.js" th:src="@{/layuiadmin/layui/layui.js}"></script>
+<script>
+    layui.config({
+        // base: [('"'+@{/layuiadmin/}+'"')]
+        base:'/layuiadmin/'
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'laydate'], function(){
+        var $ = layui.$
+            ,admin = layui.admin
+            ,element = layui.element
+            ,layer = layui.layer
+            ,laydate = layui.laydate
+            ,form = layui.form;
+
+        form.render(null, 'form1');
+
+
+
+        /* 自定义验证规则 */
+        form.verify({
+            couponName: function(value){
+                if(value.length <= 0){
+                    return '商品编号为5至10个字符';
+                }
+            },
+            minAmount:function (value) {
+                if(value.length <= 0){
+                    return '商品名称不能为空';
+                }
+            },
+            couponAmount:function (value) {
+                if(value.length <= 0){
+                    return '商品关键字不能为空';
+                }
+            },
+            createTime:function (value) {
+                if(value.length <= 0){
+                    return '商品图片路径不能为空';
+                }
+            },
+            expireTime:function (value) {
+                if(value.length <= 0){
+                    return '商品描述不能为空';
+                }
+            }
+        });
+
+        /* 监听提交 */
+        form.on('submit(layer_updateProduct_submit)', function(data){
+            // parent.layer.alert(JSON.stringify(data.field), {
+            //     title: '最终的提交信息'
+            // })
+
+            //添加请求
+            $.ajax({
+                type: "POST",
+                contentType:"application/json",
+                url: "/list/updateCoupon",
+                data: JSON.stringify(data.field),
+                success: function(msg){
+                    if(msg["success"]){
+                        var layer = parent.layer;
+                        layer.msg("优惠券修改成功",{time:1000},function () {
+                            layer.closeAll();
+                            parent.location.reload();
+                        });
+
+                    }
+                },
+                dataType:"json"
+            });
+            return false;
+        });
+    });
+</script>
+</body>
+</html>
