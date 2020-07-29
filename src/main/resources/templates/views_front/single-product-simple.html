@@ -95,8 +95,15 @@
                                                     <a class="btn-number qtyplus quantity-plus" href="#">+</a>
                                                 </div>
                                             </div>
-                                            <button type="submit" class="single_add_to_cart_button button alt disabled furgan-variation-selection-needed">
-                                            </button>
+                                            <div class="group-button">
+                                                <div class="group-button-inner">
+                                                    <div type="submit" class="single_add_to_cart_button button alt disabled furgan-variation-selection-needed"
+                                                    th:class="add-to-cart">
+                                                        <a href="#" class="button product_type_variable add_to_cart_button"
+                                                           th:href="@{'/addProductToCart?id='+${productSingle.productId}}">添加到购物车</a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <input name="add-to-cart" value="27" type="hidden">
                                             <input name="product_id" value="27" type="hidden">
                                             <input name="variation_id" class="variation_id" value="0" type="hidden">
@@ -374,7 +381,8 @@
                                     </div>
                                     <a href="#" class="button yith-wcqv-button">快速预览</a>
                                     <div class="add-to-cart">
-                                        <a href="#" class="button product_type_variable add_to_cart_button">添加到购物车</a>
+                                        <a href="#" class="button product_type_variable add_to_cart_button"
+                                           th:href="@{'/addProductToCart?id='+${productSingle.productId}}">添加到购物车</a>
                                     </div>
                                 </div>
                             </div>
@@ -744,7 +752,8 @@
                                     </div>
                                     <a href="#" class="button yith-wcqv-button">快速预览</a>
                                     <div class="add-to-cart">
-                                        <a href="#" class="button product_type_simple add_to_cart_button">添加到购物车</a>
+                                        <a href="#" class="button product_type_variable add_to_cart_button"
+                                           th:href="@{'/addProductToCart?id='+${productId}}">添加到购物车</a>
                                     </div>
                                 </div>
                             </div>

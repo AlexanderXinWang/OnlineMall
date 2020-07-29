@@ -107,8 +107,8 @@
                                             </button>
                                         </div>
                                         <button type="submit" class="button" id="discountDetails" name="discountDetails"
-                                                value="Discount details" onclick="discount_Details(this)" style="cursor: pointer">
-                                            优惠明细
+                                                value="Discount details"  style="cursor: pointer"><!--onclick="discount_Details(this)"-->
+                                            <a href="javascript:;" class="openDetail">优惠明细</a>
                                         </button>
                                         <input type="hidden" id="furgan-cart-nonce" name="furgan-cart-nonce"
                                                value="f41b5bf554"><input type="hidden" name="_wp_http_referer"
@@ -421,7 +421,7 @@
     }
 </script>
 <script type="text/javascript">
-    function discount_Details(the) {
+    $(".openDetail").on("click",function () {
         alert("1111");
         layer.open({
             type: 2,
@@ -434,7 +434,7 @@
             shadeClose: true, //开启遮罩关闭  
             content: 'discountDetails.html'
         });
-    }
+    })
 </script>
 </body>
 </html>

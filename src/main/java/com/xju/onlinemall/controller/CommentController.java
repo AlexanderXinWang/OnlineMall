@@ -132,37 +132,38 @@ public class CommentController {
                 Product product = productService.selectByProductId(1);
                 productSingle=product;
             }
-            /**
-             *
-             * 如果该商品的评价是0
-             *  给他设置默认的评价
-             * */
-            if (comments==null || comments.size()==0){
-                System.out.println("后台提示:商品评论获得失败！设置默认的评论展示！！");
-                Comment comment = new Comment();
-                comment.setProductId(1);
-                comment.setUserId(1);
-                comment.setScore(10);
-                comment.setCommentTime(new Date());
-                comment.setContext("该商品没有评价！系统默认展示该评价");
-
-                comment.setUsername("系统默认");
-                comment.setCount(1);
-
-                comments.add(comment);
-                modelMap.put("commentsList",comments);
-                //添加商品信息到modelmap中
-                modelMap.put("productSingle",productSingle);
-                modelMap.put("commentCount",1);
-            }
             else {
-                //传入评论数
-                modelMap.put("commentCount",comments.size());
+                /**
+                 *
+                 * 如果该商品的评价是0
+                 *  给他设置默认的评价
+                 * */
+                if (comments==null || comments.size()==0){
+                    System.out.println("后台提示:商品评论获得失败！设置默认的评论展示！！");
+                    Comment comment = new Comment();
+                    comment.setProductId(1);
+                    comment.setUserId(1);
+                    comment.setScore(10);
+                    comment.setCommentTime(new Date());
+                    comment.setContext("该商品没有评价！系统默认展示该评价");
+
+                    comment.setUsername("系统默认");
+                    comment.setCount(1);
+
+                    comments.add(comment);
+                    modelMap.put("commentsList",comments);
+                    modelMap.put("commentCount",1);
+                }
+                else {
+                    //传入评论数
+                    modelMap.put("commentCount",comments.size());
+                    modelMap.put("commentsList",comments);
+                }
                 //添加商品信息到modelmap中
                 modelMap.put("productSingle",productSingle);
-
-                modelMap.put("commentsList",comments);
             }
+
+
             System.out.println("后台提示：查看是否获得和注入正确的商品属性："+productSingle);
             return "views_front/single-product-simple";
 
