@@ -104,4 +104,20 @@ public class Coupon extends CouponExtend {
     public void setCouponIsDelete(Byte couponIsDelete) {
         this.couponIsDelete = couponIsDelete;
     }
+
+    @Override
+    public String toString() {
+        return "Coupon{" +
+                "couponId=" + couponId +
+                ", couponName='" + couponName + '\'' +
+                ", minAmount=" + minAmount +
+                ", couponAmount=" + couponAmount +
+                ", userId=" + userId +
+                ", categoryId=" + categoryId +
+                ", productId=" + productId +
+                ", createTime=" + createTime +
+                ", expireTime=" + expireTime +
+                ", couponIsDelete=" + couponIsDelete +
+                '}';
+    }
 }

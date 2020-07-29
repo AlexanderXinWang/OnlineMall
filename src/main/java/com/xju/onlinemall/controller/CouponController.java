@@ -19,7 +19,9 @@ import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class CouponController {
@@ -138,7 +140,7 @@ public class CouponController {
     }
 
     /**
-     * 更新商品信息
+     * 更新优惠券信息
      *
      * */
     @RequestMapping("/list/updateCoupon")
@@ -160,5 +162,37 @@ public class CouponController {
         systemLog.setCreateTime(new Date());
         userService.insertLogByUser(systemLog);
         return Result.success(1,"操作成功",200);
+    }
+
+    /**
+     * 前台函数
+     *
+     *
+     * 跳转优惠券窗口
+     * */
+    @RequestMapping("/selectCoupons.html")
+    public String coupon(HttpSession session,ModelMap modelMap){
+        //从session中获取当前登录用户购物车商品内的商品
+        List<Product> cartProducts=new ArrayList<>();
+        List<Coupon> coupons=new ArrayList<>();
+        if (session.getAttribute("cartProducts")!=null){
+            cartProducts = (List<Product>)session.getAttribute("cartProducts");
+            coupons = couponService.selectUsefulCoupons(cartProducts);
+            System.out.println(coupons);
+
+        }else if (session.getAttribute("cartProducts")==null){
+            System.out.println("购物车内没商品");
+        }
+        //modelMap.addAttribute("cardProductsList",cartProducts);
+        return "views_front/coupons";
+    }
+
+    /**
+     * 跳转优惠明细
+     * */
+    @RequestMapping("/discountDetails.html")
+    public String orderDetail(){
+
+        return "views_front/discount-Details";
     }
 }

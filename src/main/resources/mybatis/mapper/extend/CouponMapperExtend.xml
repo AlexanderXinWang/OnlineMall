@@ -4,4 +4,7 @@
     <update id="logicDeleteByPrimaryKey" parameterType="com.xju.onlinemall.common.domain.Coupon">
         UPDATE tb_coupon SET coupon_is_delete = 4 WHERE coupon_id=#{couponId}
     </update>
+    <select id="selectUsefulCoupons" resultMap="BaseResultMap">
+        SELECT * FROM tb_coupon WHERE product_id=#{productId} OR (user_id=#{pmId} AND category_id=#{categoryId} AND product_id IS NULL)
+    </select>
 </mapper>

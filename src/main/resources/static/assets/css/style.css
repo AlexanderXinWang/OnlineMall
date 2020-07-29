@@ -15859,3 +15859,52 @@ body .furgan-mapper .text__area {
 	width: 100%;
 	height: 100%;
 }
+/*
+购物车中 使用优惠券、优惠明细 按钮
+*/
+.div1_discountDetails{
+	width: 160px;
+	height: 52px;
+	float: right;
+}
+.div1_useCoupon{
+	width: 160px;
+	height: 52px;
+	float: left;
+}
+.div2_discountDetails,.div2_useCoupon{
+	background-color: #1B1B1B;
+	display: inline-block;
+	line-height: 52px;
+	min-width: 160px;
+	text-align: center;
+	font-size: 14px;
+	font-weight: 600;
+	color: whitesmoke;
+	cursor: pointer;
+	-webkit-transition-duration: 0.25s; /* Safari */
+	transition-duration: 0.25s;
+	-moz-user-select: none;
+
+}
+.div2_discountDetails {
+	border-radius: 2px 2px 2px 2px;
+}
+.div2_useCoupon{
+	border-radius: 3px 0 0 3px;
+}
+.div2_discountDetails:hover,.div2_useCoupon:hover{
+	background-color: #9CC25D;
+}
+.div2_discountDetails:active,.div2_useCoupon:active{
+	background-color: #8BB243;
+	box-shadow: 0 2px #8BB243;
+	transform: translateY(2px);
+}
+.open_discountDetails,.a_div1_useCoupon{
+	display: inline-block;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	user-select: none;
+}

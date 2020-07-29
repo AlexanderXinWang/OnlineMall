@@ -4,10 +4,12 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xju.onlinemall.common.domain.Coupon;
 import com.xju.onlinemall.common.domain.CouponExample;
+import com.xju.onlinemall.common.domain.Product;
 import com.xju.onlinemall.mapper.CouponMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -78,5 +80,37 @@ public class CouponServiceImpl implements CouponService{
     @Override
     public int updateCoupon(Coupon coupon) {
         return couponMapper.updateByPrimaryKeySelective(coupon);
+    }
+
+    @Override
+    public List<Coupon> selectUsefulCoupons(List<Product> cartProducts) {
+        //System.out.println(cartProducts);
+        List<Coupon> coupons = new ArrayList<>();
+        //System.out.println(coupons);
+        for (int i=0;i<cartProducts.size();i++){
+            Product product=cartProducts.get(i);
+            List<Coupon> addCoupons =couponMapper.selectUsefulCoupons(product.getPmId(),product.getCategoryId(),product.getProductId());
+            if (coupons.size()==0){
+                //System.out.println("第一步");
+                coupons=addCoupons;
+                //System.out.println(coupons);
+            }else {
+                //System.out.println("第二步");
+                for (int j=0; j<addCoupons.size();j++){
+                    int count =0;
+                    Coupon coupon_New =addCoupons.get(j);
+                    for (int k=0; k<coupons.size();k++){
+                        Coupon coupon_Old =coupons.get(k);
+                        if (coupon_New.getCouponId()!=coupon_Old.getCouponId()){
+                            count++;
+                        }
+                    }
+                    if (count==coupons.size()){
+                        coupons.add(coupon_New);
+                    }
+                }
+            }
+        }
+        return coupons;
     }
 }
