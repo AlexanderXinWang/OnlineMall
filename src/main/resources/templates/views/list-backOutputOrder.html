@@ -86,7 +86,7 @@
                 ,{field: 'outId', title: '出货id',sort: true,  align:'center',width:140}
                 ,{field: 'outNumber', title: '出货单号',  align:'center',width:140}
                 ,{field: 'productName', title: '商品名',  align:'center'}
-                ,{field: 'outDate', title: '出货时间',  align:'center'}
+                ,{field: 'outDate', title: '出货时间',  align:'center',templet:'<div>{{ layui.util.toDateString(d.outDate, "yyyy-MM-dd HH:mm:ss") }}</div>'}
                 ,{field: 'outStatus', title: '出货状态',  align:'center',width:160}
                 ,{fixed: 'right', title: '备注',  align:'center', toolbar: '#toolbar-Mytable',width:220}
 

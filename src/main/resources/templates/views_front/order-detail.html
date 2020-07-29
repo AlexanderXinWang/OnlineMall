@@ -35,17 +35,17 @@
                 </span><br>
                 <span class='wishlist-in-stock'>
                     商品总价：&nbsp;&nbsp;&nbsp;&nbsp;
-                    ¥&nbsp;<span th:text="${amount}"></span>
+                    ¥&nbsp;<span th:text="${order.payMoney}"></span>
                 </span><br>
                 <span class='wishlist-in-stock'>
                     实&nbsp;付&nbsp;款：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     ¥&nbsp;<span th:text="${order.payMoney}"></span>
                 </span><br>
                 <span class='wishlist-in-stock'>订单编号：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span th:text="${order.orderId}"></span></span><br>
-                <span class='wishlist-in-stock'>创建时间：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span th:text="${createTime}"></span></span><br>
-                <span class='wishlist-in-stock'>付款时间：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span th:text="${createTime}"></span></span><br>
-                <span class='wishlist-in-stock'>发货时间：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span th:text="${outTime}"></span></span><br>
-                <span class='wishlist-in-stock'>成交时间：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span th:text="${outTime}"></span></span><br>
+                <span class='wishlist-in-stock'>创建时间：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span th:text="${#dates.format(order.createTime,'yyyy-MM-dd HH:mm:ss')}"></span></span><br>
+                <span class='wishlist-in-stock'>付款时间：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span th:text="${#dates.format(order.createTime,'yyyy-MM-dd HH:mm:ss')}"></span></span><br>
+                <span class='wishlist-in-stock'>发货时间：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span th:text="${#dates.format(order.outputTime,'yyyy-MM-dd HH:mm:ss')}"></span></span><br>
+                <span class='wishlist-in-stock'>成交时间：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span></span></span><br>
             </p>
         </td>
     </tr>

@@ -1,9 +1,7 @@
 package com.xju.onlinemall.controller;
 
-import com.sun.deploy.panel.ITreeNode;
 import com.xju.onlinemall.common.domain.Product;
 import com.xju.onlinemall.common.domain.User;
-import com.xju.onlinemall.common.utils.Result;
 import com.xju.onlinemall.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -238,6 +236,13 @@ public class CartController {
         return "views_front/checkout";
     }
 
+    /**
+     * 跳转优惠明细
+     * */
+    @RequestMapping("/discountDetails.html")
+    public String orderDetail(){
 
+        return "views_front/discount-Details";
+    }
 
 }

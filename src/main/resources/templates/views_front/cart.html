@@ -103,11 +103,12 @@
                                                                                             id="coupon_code" value=""
                                                                                             placeholder="优惠券码">
                                             <button type="submit" class="button" name="apply_coupon"
-                                                    value="使用优惠券">使用优惠券
+                                                    value="使用优惠券" style="cursor: pointer">使用优惠券
                                             </button>
                                         </div>
-                                        <button type="submit" class="button" name="update_cart" value="Update cart"
-                                                disabled="">更新购物车
+                                        <button type="submit" class="button" id="discountDetails" name="discountDetails"
+                                                value="Discount details" onclick="discount_Details(this)" style="cursor: pointer">
+                                            优惠明细
                                         </button>
                                         <input type="hidden" id="furgan-cart-nonce" name="furgan-cart-nonce"
                                                value="f41b5bf554"><input type="hidden" name="_wp_http_referer"
@@ -329,27 +330,6 @@
 <div th:replace="~{fragment/footer::footer_up}"></div>
 <div th:replace="~{fragment/static::script}"></div>
 <script type="text/javascript">
-    /*$(function () {
-        //加号
-        var price1=parseFloat($('#productPrice').text());
-        var num = parseInt($('input[name="quantity[25]"]').attr('value'));
-        $('.btn-number.qtyplus').click(function () {
-            num++;
-            $('input[name="quantity[25]"]').attr('value',num);
-            var amount1 = num * price1;
-            $('#productsAmount').html(amount1.toFixed(2));
-        });
-        //减号
-        $('.btn-number.qtyminus').click(function () {
-            if (num>1){
-                num--;
-                $('input[name="quantity[25]"]').attr('value',num);
-                console.log(num);
-                var amount2=num*price1;
-                $('#productsAmount').html(amount2.toFixed(2));
-            }
-        });
-    });*/
     window.onload = function()
     {
         var aLi = document.getElementsByClassName("pname");
@@ -438,6 +418,22 @@
             }
             a(i);//a(i)不能漏
         }
+    }
+</script>
+<script type="text/javascript">
+    function discount_Details(the) {
+        alert("1111");
+        layer.open({
+            type: 2,
+            title:'订单详情',
+            skin: 'layui-layer-demo', //样式类名  
+            shadeClose:true,
+            closeBtn: 1, //不显示关闭按钮  
+            anim: 2,
+            area: ['500px','580px'],
+            shadeClose: true, //开启遮罩关闭  
+            content: 'discountDetails.html'
+        });
     }
 </script>
 </body>

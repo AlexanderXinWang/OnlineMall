@@ -81,16 +81,7 @@ public class OrderController {
         orderId = Integer.parseInt(request.getParameter("orderId"));
         Order order = orderService.getByOrderId(orderId);
         Double amount=order.getOrderNumber()*order.getProduct().getPrice();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String createTime=simpleDateFormat.format(order.getCreateTime());
-        String outTime = null;
-        if (order.getOutputTime()!=null){
-            outTime=simpleDateFormat.format(order.getOutputTime());
-        }
         model.addAttribute("order",order);
-        model.addAttribute("createTime",createTime);
-        model.addAttribute("outTime",outTime);
-        model.addAttribute("amount",amount);
         return "views_front/order-detail";
     }
 
