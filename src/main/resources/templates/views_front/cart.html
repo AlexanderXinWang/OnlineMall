@@ -96,20 +96,26 @@
                                 </tr>
                                 <tr>
                                     <td colspan="6" class="actions">
-                                        <div class="coupon">
-                                            <label for="coupon_code">优惠券:</label> <input type="text"
-                                                                                            name="coupon_code"
-                                                                                            class="input-text"
-                                                                                            id="coupon_code" value=""
-                                                                                            placeholder="优惠券码">
-                                            <button type="submit" class="button" name="apply_coupon"
-                                                    value="使用优惠券" style="cursor: pointer">使用优惠券
-                                            </button>
+                                        <div class="coupon" style="width: 672px;">
+                                            <label for="coupon_code">优惠券:</label>
+                                            <input type="text" name="coupon_code" style="width: 512px;"
+                                                   class="input-text" id="coupon_code" value=""
+                                                   placeholder="优惠券码">
+                                            <div class="div1_useCoupon">
+                                                <a class="a_div1_useCoupon" >
+                                                    <div class="div2_useCoupon">
+                                                        &nbsp;使用优惠券
+                                                    </div>
+                                                </a>
+                                            </div>
                                         </div>
-                                        <button type="submit" class="button" id="discountDetails" name="discountDetails"
-                                                value="Discount details"  style="cursor: pointer"><!--onclick="discount_Details(this)"-->
-                                            <a href="javascript:;" class="openDetail">优惠明细</a>
-                                        </button>
+                                        <div class="div1_discountDetails">
+                                            <a class="open_discountDetails" >
+                                                <div class="div2_discountDetails">
+                                                    优惠明细
+                                                </div>
+                                            </a>
+                                        </div>
                                         <input type="hidden" id="furgan-cart-nonce" name="furgan-cart-nonce"
                                                value="f41b5bf554"><input type="hidden" name="_wp_http_referer"
                                                                          value="/furgan/cart/"></td>
@@ -421,20 +427,55 @@
     }
 </script>
 <script type="text/javascript">
-    $(".openDetail").on("click",function () {
-        alert("1111");
-        layer.open({
-            type: 2,
-            title:'订单详情',
-            skin: 'layui-layer-demo', //样式类名  
-            shadeClose:true,
-            closeBtn: 1, //不显示关闭按钮  
-            anim: 2,
-            area: ['500px','580px'],
-            shadeClose: true, //开启遮罩关闭  
-            content: 'discountDetails.html'
-        });
-    })
+    window.onload=function () {
+        var openCoupons=document.getElementsByClassName("a_div1_useCoupon"); //使用优惠券
+        var openDetail=document.getElementsByClassName("open_discountDetails");  //优惠明细
+        var pmId1=7,categoryId1=3,productId1=28;
+        //使用优惠券
+        for (var i=0;i<openCoupons.length;i++)
+        {
+            var a=function (k)
+            {
+                openCoupons[k].onclick = function () {
+                    alert("1111");
+                    layer.open({
+                        type: 2,
+                        title:'可用优惠券',
+                        skin: 'layui-layer-demo', //样式类名  
+                        shadeClose:true,
+                        closeBtn: 1, //不显示关闭按钮  
+                        anim: 2,
+                        area: ['500px','580px'],
+                        shadeClose: true, //开启遮罩关闭  
+                        content: 'selectCoupons.html'
+                    });
+                }
+            }
+            a(i);
+        }
+        //优惠明细
+        for (var i=0;i<openDetail.length;i++)
+        {
+            var a=function (k)
+            {
+                openDetail[k].onclick = function () {
+                    alert("1111");
+                    layer.open({
+                        type: 2,
+                        title:'优惠明细',
+                        skin: 'layui-layer-demo', //样式类名  
+                        shadeClose:true,
+                        closeBtn: 1, //不显示关闭按钮  
+                        anim: 2,
+                        area: ['500px','580px'],
+                        shadeClose: true, //开启遮罩关闭  
+                        content: 'discountDetails.html'
+                    });
+                }
+            }
+            a(i);
+        }
+    }
 </script>
 </body>
 </html>

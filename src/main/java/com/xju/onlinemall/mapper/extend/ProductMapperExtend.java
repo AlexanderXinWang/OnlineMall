@@ -2,6 +2,7 @@ package com.xju.onlinemall.mapper.extend;
 
 import com.github.pagehelper.PageInfo;
 import com.xju.onlinemall.common.domain.Product;
+import com.xju.onlinemall.common.domain.extend.pCountCName;
 import org.apache.ibatis.annotations.Param;
 
 import javax.rmi.PortableRemoteObject;
@@ -35,4 +36,6 @@ public interface ProductMapperExtend {
     List<Product> selectBySearchAndPriceRangeAndRate(String s, double min, double max);
 
     List<Product> selectBySearchAndCategoryAndPriceRangeAndRate(int cid, String s, double min, double max);
+
+    List<pCountCName> selectNumGroupByCategory(Integer userId);
 }

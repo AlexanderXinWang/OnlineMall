@@ -14,8 +14,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpSession;
 import java.time.chrono.IsoEra;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class BackSystemController {
@@ -405,6 +404,43 @@ public class BackSystemController {
 
 
         return Result.success(i,"操作成功",200);
+    }
+    /**
+     * 获得后台用户各个角色的占比
+     *
+     * */
+    @RequestMapping("/list/userPartCount")
+    @ResponseBody
+    public Object userPartCount(HttpSession session){
+        if (session.getAttribute("adminUser")==null){
+            return null;
+        }
+        else{
+            HashMap<String, Integer> map = new HashMap<>();
+
+            Integer[] userInfoCount=new Integer[]{0,0,0};
+            List<User> users = userService.selectAllUserInfo();
+            System.out.println("用户的数量"+users.size());
+            for (User user:users){
+                //如果该用户是普通用户
+                if (user.getUserRole().equals(0)){
+                    userInfoCount[0]++;
+                }
+                else if (user.getUserRole().equals(1)){
+                    userInfoCount[1]++;
+                }
+                else{
+                    userInfoCount[2]++;
+                }
+
+            }
+            System.out.println("现在数组的情况："+ Arrays.toString(userInfoCount));
+
+            map.put("o1",userInfoCount[0]);
+            map.put("o2",userInfoCount[1]);
+            map.put("o3",userInfoCount[2]);
+            return map;
+        }
     }
 
 }

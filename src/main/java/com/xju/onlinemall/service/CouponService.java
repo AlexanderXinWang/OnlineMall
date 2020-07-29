@@ -4,6 +4,8 @@ import com.github.pagehelper.PageInfo;
 import com.xju.onlinemall.common.domain.Coupon;
 import com.xju.onlinemall.common.domain.Product;
 
+import java.util.List;
+
 public interface CouponService {
     PageInfo<Coupon> getAllCouponByUserIdAndSearchInfo(int pageNo, int pageSize, Integer userId, Coupon coupon);
 
@@ -14,4 +16,6 @@ public interface CouponService {
     Coupon selectByCouponId(Integer couponId);
 
     int updateCoupon(Coupon coupon);
+
+    List<Coupon> selectUsefulCoupons(List<Product> cartProducts);
 }

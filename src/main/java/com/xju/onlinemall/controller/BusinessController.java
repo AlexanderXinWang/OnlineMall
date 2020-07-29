@@ -6,6 +6,7 @@ import com.xju.onlinemall.common.domain.Category;
 import com.xju.onlinemall.common.domain.Product;
 import com.xju.onlinemall.common.domain.SystemLog;
 import com.xju.onlinemall.common.domain.User;
+import com.xju.onlinemall.common.domain.extend.pCountCName;
 import com.xju.onlinemall.common.utils.Result;
 import com.xju.onlinemall.service.CategoryService;
 import com.xju.onlinemall.service.ProductService;
@@ -16,7 +17,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
-import java.util.Date;
+import java.util.*;
 
 @Controller
 public class BusinessController {
@@ -331,5 +332,27 @@ public class BusinessController {
         return Result.success(i,"操作成功",200);
     }
 
+    @RequestMapping("/list/productPartCount")
+    @ResponseBody
+    public  Object productPartCount(HttpSession session){
+        User adminUser =(User) session.getAttribute("adminUser");
+        //获得对应用户的全部商品
+        List<pCountCName> pCountCNameList = productService.selectAllProductGroupByCategorty(adminUser.getUserId());
+
+        HashMap<Object, Object> result = new HashMap<>();
+//        产生键值对
+        List<Map<String,Object>> list=new ArrayList<>();
+
+        for (pCountCName p:pCountCNameList){
+            Map<String, Object> temp = new HashMap<>();
+            temp.put("value",p.getCount());
+            temp.put("name",p.getCategoryName());
+            list.add(temp);
+        }
+        result.put("pCountCNameList",pCountCNameList);
+        result.put("list",list);
+
+        return result;
+    }
 
 }

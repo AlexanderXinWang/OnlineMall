@@ -72,4 +72,8 @@
         WHERE pm.pm_id=
         (SELECT p.pm_id FROM tb_product p WHERE p.product_id=#{productId})
     </select>
+    <select id="selectNumGroupByCategory" resultType="com.xju.onlinemall.common.domain.extend.pCountCName">
+        SELECT SUM(p.count) as count,category_name as categoryName
+        FROM tb_product p LEFT JOIN tb_category c ON p.category_id=c.category_id WHERE pm_id=${userId} GROUP BY p.category_id
+    </select>
 </mapper>

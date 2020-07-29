@@ -193,4 +193,9 @@ public class UserSerivceImpl implements UserService{
     public int updateBackListUserInfo(User user) {
         return userMapper.updateByPrimaryKeySelective(user);
     }
+
+    @Override
+    public List<User> selectAllUserInfo() {
+        return userMapper.selectByExample(new UserExample());
+    }
 }
