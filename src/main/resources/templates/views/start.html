@@ -104,21 +104,21 @@
                 success: function (datas) {
                     if (datas!=null){
                         var pCountCNameList=datas["pCountCNameList"];
-                        var list=datas["list"];
-                        var xVal = [];
+                        // var list=datas["list"];
                         var yVal = [];
                         var ls = [];
-                        for(var i = 0; i < pCountCNameList.length; i++) {
-                            xVal.push(pCountCNameList[i].count);
-                            yVal.push(pCountCNameList[i].categoryName);
-                            ls.push({value:pCountCNameList[i].count , name:pCountCNameList[i].categoryName});
-                        }
-                        var lss=JSON.stringify(ls);
-                        alert(lss)
-                        // var da= JSON.stringify(list)
 
-                        alert(yVal)
-                        // alert(da)
+                        for(var i = 0; i < pCountCNameList.length; i++) {
+                            yVal.push(pCountCNameList[i].categoryName);
+                            var json={};
+                            json.value=pCountCNameList[i].count;
+                            json.name=pCountCNameList[i].categoryName;
+                            ls.push(json)
+
+                        }
+
+
+
 
                         var myChart2 = echarts.init(document.getElementById("main3"))
 
@@ -143,13 +143,7 @@
                                     type: 'pie',
                                     radius: '55%',
                                     center: ['50%', '60%'],
-                                    data: lss,
-                                    //     [
-                                    //     {value: datas["o1"], name: '普通用户'},
-                                    //     {value: datas["o2"], name: '商家'},
-                                    //     {value: datas["o3"], name: '管理员'},
-                                    //
-                                    // ],
+                                    data: ls,
                                     emphasis: {
                                         itemStyle: {
                                             shadowBlur: 10,
