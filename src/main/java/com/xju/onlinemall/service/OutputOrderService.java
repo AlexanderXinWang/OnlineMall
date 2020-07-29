@@ -4,7 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.xju.onlinemall.common.domain.OutputOder;
 
 public interface OutputOrderService {
-    PageInfo<OutputOder> getAllOutputOrders(int pageNo, int pageSize, Integer userId, boolean isRemoved);
+    PageInfo<OutputOder> getAllOutputOrders(int pageNo, int pageSize, Integer userId, boolean isRemoved, boolean isSended);
 
     OutputOder selectOneOutputOrderByOutId(Integer outId);
 
@@ -17,4 +17,8 @@ public interface OutputOrderService {
     Integer getPmIdByUserId(Integer userId);
 
     int sendOutputOrderByoutId(Integer outId);
+
+    int cancelSendOutputOrder(Integer outId);
+
+    PageInfo<OutputOder> getAllSendedOutputOrders(int pageNo, int pageSize, Integer userId, boolean isSended);
 }

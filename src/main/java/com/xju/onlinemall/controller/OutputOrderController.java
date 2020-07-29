@@ -25,7 +25,8 @@ public class OutputOrderController {
         User adminUser =(User) session.getAttribute("adminUser");
         PageInfo<OutputOder> pageInfo=null;
         boolean isRemoved = false;
-        pageInfo = outputOrderService.getAllOutputOrders(pageNo, pageSize, adminUser.getUserId(), isRemoved);
+        boolean isSended = false;
+        pageInfo = outputOrderService.getAllOutputOrders(pageNo, pageSize, adminUser.getUserId(), isRemoved, isSended);
         return Result.success(pageInfo);
     }
     @RequestMapping("/list/removedoutputOrders")
@@ -34,7 +35,18 @@ public class OutputOrderController {
         User adminUser =(User) session.getAttribute("adminUser");
         PageInfo<OutputOder> pageInfo=null;
         boolean isRemoved = true;
-        pageInfo = outputOrderService.getAllOutputOrders(pageNo, pageSize, adminUser.getUserId(), isRemoved);
+        boolean isSended  = false;
+        pageInfo = outputOrderService.getAllOutputOrders(pageNo, pageSize, adminUser.getUserId(), isRemoved, isSended);
+        return Result.success(pageInfo);
+    }
+
+    @RequestMapping("/list/senedoutputOrders")
+    @ResponseBody
+    public Object ShowSenedoutputOrderList(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize, Integer pmId, HttpSession session){
+        User adminUser =(User) session.getAttribute("adminUser");
+        PageInfo<OutputOder> pageInfo=null;
+        boolean isSended = true;
+        pageInfo = outputOrderService.getAllSendedOutputOrders(pageNo, pageSize, adminUser.getUserId(), isSended);
         return Result.success(pageInfo);
     }
 
@@ -77,7 +89,7 @@ public class OutputOrderController {
         User adminUser =(User) session.getAttribute("adminUser");
         Integer pmId = outputOrderService.getPmIdByUserId(adminUser.getUserId());
         outputOder.setPmId(pmId);
-        System.out.println(outputOder);
+//        System.out.println(outputOder);
         int i = outputOrderService.addOutputOrder(outputOder);
         return Result.success(i,"操作成功",200);
     }
@@ -86,6 +98,18 @@ public class OutputOrderController {
     @ResponseBody
     public Object sendOutputOrder(@RequestBody Integer outId){
         int i = outputOrderService.sendOutputOrderByoutId(outId);
+        String msg;
+        if (i==1)
+            msg = "操作成功";
+        else msg = "操作失败";
+        return Result.success(i,msg,200);
+    }
+
+    @RequestMapping("/list/cancelSendOutputOrder")
+    @ResponseBody
+    public Object cancelSendOutputOrder(@RequestBody Integer outId){
+        int i = outputOrderService.cancelSendOutputOrder(outId);
+//        return Result.success(i,"操作成功",200);
         String msg;
         if (i==1)
             msg = "操作成功";

@@ -25,7 +25,7 @@ public class OutputOrderServiceImpl implements OutputOrderService{
     private OrderMapper orderMapper;
 
     @Override
-    public PageInfo<OutputOder> getAllOutputOrders(int pageNo, int pageSize, Integer userId, boolean isRemoved) {
+    public PageInfo<OutputOder> getAllOutputOrders(int pageNo, int pageSize, Integer userId, boolean isRemoved, boolean isSended) {
         PageHelper.startPage(pageNo,pageSize);
         ProductManageExample productManageExample = new ProductManageExample();
         productManageExample.createCriteria().andUserIdEqualTo(userId);
@@ -33,7 +33,9 @@ public class OutputOrderServiceImpl implements OutputOrderService{
         if (isRemoved){
             outputOderExample.createCriteria().andPmIdEqualTo(productManageMapper.selectByExample(productManageExample).get(0).getPmId()).andOutIsDeleteEqualTo(Byte.parseByte("4"));
         }else {
-            outputOderExample.createCriteria().andPmIdEqualTo(productManageMapper.selectByExample(productManageExample).get(0).getPmId()).andOutIsDeleteEqualTo(Byte.parseByte("3"));
+            if (!isSended){
+                outputOderExample.createCriteria().andPmIdEqualTo(productManageMapper.selectByExample(productManageExample).get(0).getPmId()).andOutIsDeleteEqualTo(Byte.parseByte("3")).andOutStatusEqualTo(6);
+            }
         }
         List<OutputOder> outputOderList = outputOderMapper.selectByExample(outputOderExample);
         for (OutputOder outputOder:outputOderList){
@@ -112,5 +114,50 @@ public class OutputOrderServiceImpl implements OutputOrderService{
             return i;
         else
             return 0;
+    }
+
+    @Override
+    public int cancelSendOutputOrder(Integer outId) {
+//        int i = outputOderMapper.cancelSendOutputOrder(outId);
+        OutputOder outputOder = outputOderMapper.selectByPrimaryKey(outId);
+        outputOder.setOutStatus(6);
+        int j = outputOderMapper.updateByPrimaryKeySelective(outputOder);
+        Order order = orderMapper.selectByPrimaryKey(outputOder.getOutNumber());
+//        Date date = null;
+//        order.setOutputTime(null);
+
+        order.setPayStatus(Byte.parseByte("6"));
+        int i = orderMapper.updateByPrimaryKeySelective(order);
+        int k = orderMapper.setNULLtoOutputTimeByOrderId(order.getOrderId());
+//        return 0;
+        if (i==1&&j==1&&k==1)
+            return i;
+        else
+            return 0;
+    }
+
+    @Override
+    public PageInfo<OutputOder> getAllSendedOutputOrders(int pageNo, int pageSize, Integer userId, boolean isSended) {
+        PageHelper.startPage(pageNo,pageSize);
+        ProductManageExample productManageExample = new ProductManageExample();
+        productManageExample.createCriteria().andUserIdEqualTo(userId);
+        OutputOderExample outputOderExample = new OutputOderExample();
+//        if (isSended){
+            outputOderExample.createCriteria().andPmIdEqualTo(productManageMapper.selectByExample(productManageExample).get(0).getPmId()).andOutIsDeleteEqualTo(Byte.parseByte("3")).andOutStatusEqualTo(7);
+//        }else {
+//            outputOderExample.createCriteria().andPmIdEqualTo(productManageMapper.selectByExample(productManageExample).get(0).getPmId()).andOutIsDeleteEqualTo(Byte.parseByte("3")).andOutStatusEqualTo(6);
+//        }
+        List<OutputOder> outputOderList = outputOderMapper.selectByExample(outputOderExample);
+        for (OutputOder outputOder:outputOderList){
+            //获得该订单的商品id
+            int productId=outputOder.getProductId();
+            //获得该订单的对应商品
+            Product product=productMapper.selectByPrimaryKey(productId);
+            product.setSeller(productMapper.selectSellerByProductId(productId));
+            outputOder.setProductName(product.getProductName());
+            outputOder.setProduct(product);
+        }
+        PageInfo<OutputOder> PageInfo = new PageInfo<>(outputOderList);
+        return PageInfo;
     }
 }

@@ -11,4 +11,6 @@ public interface OrderMapperExtend {
     void takeDeliveryOfProduct(@Param("userId") Integer userId, @Param("orderId") Integer orderId);
 
     List<Order> selectByUserId(@Param("userId") Integer userId);
+
+    int setNULLtoOutputTimeByOrderId(Integer orderId);
 }

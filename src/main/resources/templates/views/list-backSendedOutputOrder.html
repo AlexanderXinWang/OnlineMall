@@ -54,7 +54,9 @@
 
 <script type="text/html" id="toolbar-Mytable">
     <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">恢复</a>
+    <!--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">恢复</a>-->
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="cancelSend">取消发货</a>
 </script>
 
 <script src="../../../layuiadmin/layui/layui.js" th:src="@{/layuiadmin/layui/layui.js}"></script>
@@ -70,7 +72,7 @@
         table.render({
             elem: '#mytable'
             ,method:"get"
-            ,url: '/list/removedoutputOrders'
+            ,url: '/list/senedoutputOrders'
             ,page: true
             ,cols: [     [
                 {type: 'checkbox', fixed: 'left'}
@@ -109,13 +111,34 @@
                     maxmin: true,
                 });
             } else if(obj.event === 'del'){
-                layer.confirm('确认要将单号为 '+data.outNumber+" 恢复成未删除的吗？", function(index){
+                layer.confirm('确认要将单号为 '+data.outNumber+" 删除吗？", function(index){
                     var outIds=[];
                     outIds.push(data.outId)
                     $.ajax({
                         type:"POST",
                         contentType:"application/json",
                         url:"/list/deleteOutputOrders",
+                        data:JSON.stringify(outIds),
+                        success:function (msg) {
+                            if(msg["success"]){
+                                obj.del();
+                                layer.msg("操作执行成功~"+msg["data"]+"条记录已删除~",{time:900},function () {
+                                    layer.close(index);
+                                    table.reload('mytable');
+                                })
+                            }
+                        },
+                        dataType:"json"
+                    });
+                });
+            } else if(obj.event === 'edit'){
+                layer.confirm('确认要将单号为 '+data.outNumber+" 恢复成 未发货 吗？", function(index){
+                    var outIds=[];
+                    outIds.push(data.outId)
+                    $.ajax({
+                        type:"POST",
+                        contentType:"application/json",
+                        url:"/list/cancelSendOutputOrder",
                         data:JSON.stringify(outIds),
                         success:function (msg) {
                             if(msg["success"]){
@@ -129,21 +152,26 @@
                         dataType:"json"
                     });
                 });
-            } else if(obj.event === 'edit'){
-
-                var categoryId=data.categoryId;
-                layer.open({
-                    title:"编辑分类",
-                    type: 2,
-                    content: '/list/updateCategoryIdToBackPage?categoryId='+categoryId,
-                    area: ['525px', '320px'],
-                    maxmin: true,
-                    //打开默认全屏
-                    // success: function(layero, index){
-                    //     layer.full(index);
-                    // }
+            }else if(obj.event === 'cancelSend'){
+                layer.confirm('确认要取消单号为 '+data.outNumber+" 的发货吗？", function(index){
+                    var outId=data.outId;
+                    $.ajax({
+                        type:"POST",
+                        contentType:"application/json",
+                        url:"/list/cancelSendOutputOrder",
+                        data:JSON.stringify(outId),
+                        success:function (msg) {
+                            if(msg["success"]){
+                                obj.del();
+                                layer.msg("操作执行成功~"+msg["data"]+"条记录已恢复~",{time:900},function () {
+                                    layer.close(index);
+                                    table.reload('mytable');
+                                })
+                            }
+                        },
+                        dataType:"json"
+                    });
                 });
-
             }
         });
 

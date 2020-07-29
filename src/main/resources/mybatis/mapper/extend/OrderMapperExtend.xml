@@ -11,4 +11,7 @@
     <update id="takeDeliveryOfProduct" parameterType="java.lang.Integer">
         UPDATE tb_order SET pay_status = 11 WHERE user_id=#{userId} AND order_id=#{orderId};
     </update>
+    <update id="setNULLtoOutputTimeByOrderId" parameterType="java.lang.Integer">
+        update tb_order set output_time = null where order_id=#{orderId}
+    </update>
 </mapper>
