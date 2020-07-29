@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.nio.channels.ScatteringByteChannel;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -471,5 +473,14 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public List<pCountCName> selectAllProductGroupByCategorty(Integer userId) {
         return productMapper.selectNumGroupByCategory(userId);
+    }
+
+    @Override
+    public List<Product> findNewProducts() {
+        String date = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+        ProductExample productExample = new ProductExample();
+        productExample.createCriteria().andAddTimeGreaterThan(date);
+        List<Product> list = productMapper.selectByExample(productExample);
+        return list;
     }
 }

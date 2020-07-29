@@ -715,7 +715,7 @@ public class ProductExample {
             return (Criteria) this;
         }
 
-        public Criteria andAddTimeGreaterThan(Date value) {
+        public Criteria andAddTimeGreaterThan(String value) {
             addCriterion("add_time >", value, "addTime");
             return (Criteria) this;
         }

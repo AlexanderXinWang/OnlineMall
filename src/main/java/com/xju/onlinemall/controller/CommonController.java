@@ -5,6 +5,7 @@ import com.xju.onlinemall.service.CategoryService;
 import com.xju.onlinemall.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
@@ -77,8 +78,10 @@ public class CommonController {
      *跳转首页
      * */
     @RequestMapping("/index.html")
-    public String index(){
+    public String index(Model model){
 //        System.out.println("跳转index页面-----------------");
+        List<Product> newProductList = productService.findNewProducts();
+        model.addAttribute("newProductList",newProductList);
         return "index";
     }
 
