@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xju.onlinemall.common.domain.Product;
 import com.xju.onlinemall.common.domain.ProductExample;
+import com.xju.onlinemall.common.domain.extend.pCountCName;
 import com.xju.onlinemall.mapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -467,4 +468,8 @@ public class ProductServiceImpl implements ProductService{
         return productMapper.updateByPrimaryKeySelective(product);
     }
 
+    @Override
+    public List<pCountCName> selectAllProductGroupByCategorty(Integer userId) {
+        return productMapper.selectNumGroupByCategory(userId);
+    }
 }

@@ -2,6 +2,7 @@ package com.xju.onlinemall.service;
 
 import com.github.pagehelper.PageInfo;
 import com.xju.onlinemall.common.domain.Product;
+import com.xju.onlinemall.common.domain.extend.pCountCName;
 
 import java.util.List;
 
@@ -103,4 +104,10 @@ public interface ProductService {
     PageInfo<Product> searchProductsByCategoryAndPriceRangeAndPriceASC(int pageNo, int pageSize, int cid, double min, double max, String s);
 
     PageInfo<Product> searchProductsByCategoryAndPriceRangeAndPriceDESC(int pageNo, int pageSize, int cid, double min, double max, String s);
+
+    /**
+     * 获得该用户的每个分类的商品数量
+     *
+     * */
+    List<pCountCName> selectAllProductGroupByCategorty(Integer userId);
 }

@@ -7,28 +7,256 @@
 <body>
 <h1> 欢迎回来 </h1>
 <div>
-    <H1>现在已开启权限模式</H1>
-    <h2>role为1时，代表你登录的是商家，可以看到左侧商品管理选项，但是看不到用户管理选项</h2>
-    <h2>role为2时，代表你登录的是管理员，可以看到左侧用户管理选项，但是看不到商家管理选项</h2>
+<!--    <H1>现在已开启权限模式</H1>-->
+<!--    <h2>role为1时，代表你登录的是商家，可以看到左侧商品管理选项，但是看不到用户管理选项</h2>-->
+<!--    <h2>role为2时，代表你登录的是管理员，可以看到左侧用户管理选项，但是看不到商家管理选项</h2>-->
     <hr>
-    <h2 style="color:red;">如果获取不到数据,请把获取数据的请求URL前面加上/list/,详情请参照商品数据请求,'/list/searchProducts'</h2>
-    <h2 style="color: red">如果你的请求失败，请不要乱改其他的代码，问韩润方，进行协助</h2>
-    <h2>登录验证已开启，直接访问该页面或业务请求会跳转到登录页面</h2>
+<!--    <h2 style="color:red;">如果获取不到数据,请把获取数据的请求URL前面加上/list/,详情请参照商品数据请求,'/list/searchProducts'</h2>-->
+<!--    <h2 style="color: red">如果你的请求失败，请不要乱改其他的代码，问韩润方，进行协助</h2>-->
+<!--    <h2>登录验证已开启，直接访问该页面或业务请求会跳转到登录页面</h2>-->
     <hr>
     <div>
+        <input id="onlineUserRole" hidden="hidden" th:value="${session.adminUser.userRole}">
         <h2>你目前登录的用户名是:<span th:text="${session.adminUser.userName}"></span></h2>
         <h2>你目前登录的角色是:
             <span th:if="${session.adminUser.userRole == 1}">
                 商家
+                <hr>
+                <div id="main3" style="width: 600px;height:400px;"></div>
+                <hr>
+                <div id="main2" style="width: 1200px;height:500px;"></div>
             </span>
             <span th:if="${session.adminUser.userRole == 2}">
                 管理员
+                <hr>
+                <div id="main" style="width: 600px;height:400px;"></div>
             </span>
         </h2>
-
     </div>
-
 
 </div>
 </body>
 </html>
+<script src="/assets/js/jquery-1.12.4.min.js"></script>
+<script src="/echarts/echarts.min.js"></script>
+<script>
+
+    $(function () {
+        if ($("#onlineUserRole").val()==2){
+            $.ajax({
+                url: '/list/userPartCount',
+                type: 'POST',
+                success: function (data) {
+                    if (data!=null){
+                        var myChart = echarts.init(document.getElementById("main"))
+
+                        option = {
+                            title: {
+                                text: '系统用户组成视图',
+                                subtext: '仅供参考',
+                                left: 'center'
+                            },
+                            tooltip: {
+                                trigger: 'item',
+                                formatter: '{a} <br/>{b} : {c} ({d}%)'
+                            },
+                            legend: {
+                                orient: 'vertical',
+                                left: 'left',
+                                data: ['普通用户', '商家', '管理员']
+                            },
+                            series: [
+                                {
+                                    name: '用户组成',
+                                    type: 'pie',
+                                    radius: '55%',
+                                    center: ['50%', '60%'],
+                                    data: [
+                                        {value: data["o1"], name: '普通用户'},
+                                        {value: data["o2"], name: '商家'},
+                                        {value: data["o3"], name: '管理员'},
+
+                                    ],
+                                    emphasis: {
+                                        itemStyle: {
+                                            shadowBlur: 10,
+                                            shadowOffsetX: 0,
+                                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                        }
+                                    }
+                                }
+                            ]
+                        };
+                        myChart.setOption(option)
+                    }
+
+                },
+                fail: function (rep) {
+                    //TODO： 处理错误情况
+                }
+            });
+        }
+        if ($("#onlineUserRole").val()==1){
+            var myChart2 = echarts.init(document.getElementById("main3"))
+            $.ajax({
+                url: '/list/productPartCount',
+                type: 'POST',
+                success: function (datas) {
+                    if (datas!=null){
+                        var pCountCNameList=datas["pCountCNameList"];
+                        var list=datas["list"];
+                        var xVal = [];
+                        var yVal = [];
+                        var ls = [];
+                        for(var i = 0; i < pCountCNameList.length; i++) {
+                            xVal.push(pCountCNameList[i].count);
+                            yVal.push(pCountCNameList[i].categoryName);
+                            ls.push({value:pCountCNameList[i].count , name:pCountCNameList[i].categoryName});
+                        }
+                        var lss=JSON.stringify(ls);
+                        alert(lss)
+                        // var da= JSON.stringify(list)
+
+                        alert(yVal)
+                        // alert(da)
+
+                        var myChart2 = echarts.init(document.getElementById("main3"))
+
+                        option2 = {
+                            title: {
+                                text: '商家商品组成视图',
+                                subtext: '仅供参考',
+                                left: 'center'
+                            },
+                            tooltip: {
+                                trigger: 'item',
+                                formatter: '{a} <br/>{b} : {c} ({d}%)'
+                            },
+                            legend: {
+                                orient: 'vertical',
+                                left: 'left',
+                                data: yVal
+                            },
+                            series: [
+                                {
+                                    name: '用户组成',
+                                    type: 'pie',
+                                    radius: '55%',
+                                    center: ['50%', '60%'],
+                                    data: lss,
+                                    //     [
+                                    //     {value: datas["o1"], name: '普通用户'},
+                                    //     {value: datas["o2"], name: '商家'},
+                                    //     {value: datas["o3"], name: '管理员'},
+                                    //
+                                    // ],
+                                    emphasis: {
+                                        itemStyle: {
+                                            shadowBlur: 10,
+                                            shadowOffsetX: 0,
+                                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                        }
+                                    }
+                                }
+                            ]
+                        };
+                        myChart2.setOption(option2)
+                    }
+
+                },
+                fail: function (rep) {
+                    //TODO： 处理错误情况
+                }
+            });
+
+
+
+            //下面的折线图
+            var myChart1 = echarts.init(document.getElementById("main2"))
+            option1 = {
+                title: {
+                    text: '近七天商品销量图'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                        label: {
+                            backgroundColor: '#6a7985'
+                        }
+                    }
+                },
+                legend: {
+                    data: ['家具', '电脑', '手机', '图书', '零食']
+                },
+                toolbox: {
+                    feature: {
+                        saveAsImage: {}
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '家具',
+                        type: 'line',
+                        stack: '总量',
+                        areaStyle: {},
+                        data: [120, 132, 101, 134, 90, 230, 210]
+                    },
+                    {
+                        name: '电脑',
+                        type: 'line',
+                        stack: '总量',
+                        areaStyle: {},
+                        data: [220, 182, 191, 234, 290, 330, 310]
+                    },
+                    {
+                        name: '手机',
+                        type: 'line',
+                        stack: '总量',
+                        areaStyle: {},
+                        data: [150, 232, 201, 154, 190, 330, 410]
+                    },
+                    {
+                        name: '图书',
+                        type: 'line',
+                        stack: '总量',
+                        areaStyle: {},
+                        data: [320, 332, 301, 334, 390, 330, 320]
+                    },
+                    {
+                        name: '零食',
+                        type: 'line',
+                        stack: '总量',
+                        label: {
+                            normal: {
+                                show: true,
+                                position: 'top'
+                            }
+                        },
+                        areaStyle: {},
+                        data: [820, 932, 901, 934, 1290, 1330, 1320]
+                    }
+                ]
+            };
+            myChart1.setOption(option1)
+        }
+    })
+</script>

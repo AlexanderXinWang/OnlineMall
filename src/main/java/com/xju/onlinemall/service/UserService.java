@@ -74,4 +74,9 @@ public interface UserService {
     User selectUserByUserId(Integer userId);
 
     int updateBackListUserInfo(User user);
+
+    /**
+     * 获得全部的用户，用于视图可视化
+     * */
+    List<User> selectAllUserInfo();
 }

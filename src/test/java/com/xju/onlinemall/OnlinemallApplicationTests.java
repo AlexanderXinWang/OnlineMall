@@ -3,17 +3,20 @@ package com.xju.onlinemall;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xju.onlinemall.common.domain.*;
+import com.xju.onlinemall.common.domain.extend.pCountCName;
 import com.xju.onlinemall.mapper.*;
 import com.xju.onlinemall.service.CartService;
 import com.xju.onlinemall.service.CommentServiceImpl;
 import com.xju.onlinemall.service.OrderService;
 import com.xju.onlinemall.service.UserService;
 import org.junit.jupiter.api.Test;
+import org.mortbay.util.ajax.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @SpringBootTest
@@ -302,5 +305,23 @@ class OnlinemallApplicationTests {
         List<SystemLog> systemLogs = systemLogMapper.selectByMyExample(logId,userId,time2);
         System.out.println(systemLogs);
     }
+    //测试商品分类对应的商品数量
+    @Test
+    public void t20(){
+        List<pCountCName> pCountCNames = productMapper.selectNumGroupByCategory(4);
+        HashMap<String, pCountCName> map = new HashMap<>();
+        for (int i=0;i<pCountCNames.size();i++){
+            map.put("p"+i,pCountCNames.get(i));
+        }
+        System.out.println(map);
+    }
 
+    @Test
+    public void t21(){
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put("value",12);
+        map.put("name","han");
+
+        System.out.println(map);
+    }
 }
