@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -505,15 +504,15 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
-    public List<Product> findNewProducts() {
+    public List<Product> findNewProducts() throws ParseException {
         String time = "2020-01-01";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = null;
-        try {
+        Date date = simpleDateFormat.parse(time);
+        /*try {
             date = simpleDateFormat.parse(time);
         } catch (ParseException e) {
             logger.error("error");
-        }
+        } */
 //        String date = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
         ProductExample productExample = new ProductExample();
         productExample.createCriteria().andAddTimeGreaterThan(date);

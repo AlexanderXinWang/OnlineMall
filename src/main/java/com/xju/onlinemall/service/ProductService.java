@@ -4,6 +4,7 @@ import com.github.pagehelper.PageInfo;
 import com.xju.onlinemall.common.domain.Product;
 import com.xju.onlinemall.common.domain.extend.pCountCName;
 
+import java.text.ParseException;
 import java.util.List;
 
 public interface ProductService {
@@ -111,7 +112,7 @@ public interface ProductService {
      * */
     List<pCountCName> selectAllProductGroupByCategorty(Integer userId);
 
-    List<Product> findNewProducts();
+    List<Product> findNewProducts() throws ParseException;
 
     List<Product> getRecommendByUserId(Integer userId);
 }

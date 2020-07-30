@@ -138,7 +138,7 @@ public class ProductController {
         PageInfo<Product> pageInfo;
 
         //若未进行搜索
-        if(s==null){
+        if(s==null || s.equals("null")){
             /**
              * 通过header分类跳转或页面筛选，携带cid（商品类别）
              * 1-数码

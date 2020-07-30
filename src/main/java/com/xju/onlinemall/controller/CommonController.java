@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 @Controller
@@ -78,7 +79,7 @@ public class CommonController {
      *跳转首页
      * */
     @RequestMapping("/index.html")
-    public String index(Model model, HttpSession session){
+    public String index(Model model, HttpSession session) throws ParseException {
 //        System.out.println("跳转index页面-----------------");
         List<Product> newProductList = productService.findNewProducts();
         model.addAttribute("newProductList",newProductList);
