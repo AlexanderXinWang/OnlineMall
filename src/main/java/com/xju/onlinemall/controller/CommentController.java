@@ -1,22 +1,20 @@
 package com.xju.onlinemall.controller;
 
-import com.github.pagehelper.PageInfo;
 import com.xju.onlinemall.common.domain.*;
 import com.xju.onlinemall.mapper.StarMapper;
 import com.xju.onlinemall.service.CommentService;
 import com.xju.onlinemall.service.ProductService;
 import com.xju.onlinemall.service.StarService;
 import com.xju.onlinemall.service.UserService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -82,9 +80,9 @@ public class CommentController {
     //————>ProductController
     @RequestMapping("/single-product-simple.html")
     public String singleProduct(ModelMap modelMap, HttpServletRequest request,
-                                Integer productId, HttpSession session){
+                                 HttpSession session){
 
-        productId = Integer.parseInt(request.getParameter("id"));
+        Integer productId = Integer.parseInt(request.getParameter("id"));
         User user = (User)session.getAttribute("user");
         if (productId==null){
             productId=1;
@@ -150,6 +148,7 @@ public class CommentController {
                     comment.setUsername("系统默认");
                     comment.setCount(1);
 
+                    comments=new ArrayList<Comment>();
                     comments.add(comment);
                     modelMap.put("commentsList",comments);
                     modelMap.put("commentCount",1);

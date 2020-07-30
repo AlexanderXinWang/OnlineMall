@@ -43,7 +43,10 @@ public class saveToJDBC {
 
         Properties properties = new Properties();
         properties.setProperty("user","root"); //你的数据库用户名
-        properties.setProperty("password","root"); //你的数据库密码
+        //此处注释掉了，因为会出现漏洞，使用的时候请打开
+//        properties.setProperty("password","root"); //你的数据库密码
+
+
         //保存在本地数据库上                                     数据库的名称                      数据库中的表的名字
         dataset.write().mode(SaveMode.Append).jdbc("jdbc:mysql://127.0.0.1:3306/test", "ratesresult", properties);
         /**
