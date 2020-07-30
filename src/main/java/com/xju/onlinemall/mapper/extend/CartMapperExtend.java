@@ -11,7 +11,7 @@ public interface CartMapperExtend {
 
     List<Product> selectMyProductByCartId(@Param("list") List<Integer> productList);
 
-    List<Cart> selectByUserIdAndIsDelete(@Param("userId") int userId, @Param("isDelete") Byte isDelete);
+    List<Cart> selectByUserIdAndIsDelete(@Param("userId") Integer userId, @Param("isDelete") Byte isDelete);
 
     void logicDelete(@Param("userId") Integer userId, @Param("productId") Integer productId);
 }

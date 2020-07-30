@@ -183,7 +183,7 @@ public class CouponController {
         }else if (session.getAttribute("cartProducts")==null){
             System.out.println("购物车内没商品");
         }
-        //modelMap.addAttribute("cardProductsList",cartProducts);
+        modelMap.addAttribute("couponsList",coupons);
         return "views_front/coupons";
     }
 
