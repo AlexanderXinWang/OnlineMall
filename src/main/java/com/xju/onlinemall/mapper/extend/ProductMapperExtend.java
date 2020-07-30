@@ -38,4 +38,6 @@ public interface ProductMapperExtend {
     List<Product> selectBySearchAndCategoryAndPriceRangeAndRate(int cid, String s, double min, double max);
 
     List<pCountCName> selectNumGroupByCategory(Integer userId);
+
+    List<Product> selectByAddTime(String date);
 }

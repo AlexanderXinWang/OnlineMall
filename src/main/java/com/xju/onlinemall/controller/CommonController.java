@@ -80,8 +80,8 @@ public class CommonController {
     @RequestMapping("/index.html")
     public String index(Model model){
 //        System.out.println("跳转index页面-----------------");
-        List<Product> newProductList = productService.findNewProducts();
-        model.addAttribute("newProductList",newProductList);
+        /*List<Product> newProductList = productService.findNewProducts();
+        model.addAttribute("newProductList",newProductList);*/
         return "index";
     }
 

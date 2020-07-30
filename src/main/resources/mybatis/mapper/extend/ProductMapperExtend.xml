@@ -76,4 +76,8 @@
         SELECT SUM(p.count) as count,category_name as categoryName
         FROM tb_product p LEFT JOIN tb_category c ON p.category_id=c.category_id WHERE pm_id=${userId} GROUP BY p.category_id
     </select>
+    <!--<select id="selectByAddTime" resultType="BaseResultMap">
+        SELECT * FROM tb_product
+        WHERE 1=1 AND CONVERT (add_time,DATE TIME) LIKE CONCAT('%',CONCAT(#{date },'%'))
+    </select>-->
 </mapper>
