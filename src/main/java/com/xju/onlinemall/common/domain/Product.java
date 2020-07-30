@@ -2,9 +2,10 @@ package com.xju.onlinemall.common.domain;
 
 import com.xju.onlinemall.common.domain.extend.ProductExtend;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Product extends ProductExtend {
+public class Product extends ProductExtend implements Serializable {
     private Integer productId;
 
     private Integer categoryId;

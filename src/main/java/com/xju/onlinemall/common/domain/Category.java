@@ -2,7 +2,9 @@ package com.xju.onlinemall.common.domain;
 
 import com.xju.onlinemall.common.domain.extend.CategoryExtend;
 
-public class Category extends CategoryExtend{
+import java.io.Serializable;
+
+public class Category extends CategoryExtend implements Serializable {
     private Integer categoryId;
 
     private String categoryName;

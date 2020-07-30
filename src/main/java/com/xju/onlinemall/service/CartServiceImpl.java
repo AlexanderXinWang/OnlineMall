@@ -29,9 +29,7 @@ public class CartServiceImpl implements CartService{
         Byte isDelete = 3;
         List<Cart> carts = cartMapper.selectByUserIdAndIsDelete(userId,isDelete);
         List<Product> list = null;
-        if (carts.size()==0){
-            list = null;
-        } else if(carts.size()!=0){
+        if(carts.size()!=0){
             //获取商品id的列表
             List<Integer> productIds = new ArrayList<>();
             for (Cart cart: carts) {
