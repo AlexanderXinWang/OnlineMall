@@ -16,6 +16,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
+
+import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
 @Service
 public class ProductServiceImpl implements ProductService{
@@ -509,7 +512,7 @@ public class ProductServiceImpl implements ProductService{
         try {
             date = simpleDateFormat.parse(time);
         } catch (ParseException e) {
-            e.printStackTrace();
+            System.out.println("新品商品日期报错！"+e);
         }
 //        String date = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
         ProductExample productExample = new ProductExample();

@@ -86,7 +86,6 @@ public class CommonController {
         User user = (User)session.getAttribute("user");
         //获得当前用户的推荐商品列表
         List<Product> recommendList = productService.getRecommendByUserId(user.getUserId());
-        System.out.println(recommendList);
         model.addAttribute("recommendList",recommendList);
         return "index";
     }
