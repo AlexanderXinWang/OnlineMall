@@ -95,14 +95,9 @@
                                                     <a class="btn-number qtyplus quantity-plus" href="#">+</a>
                                                 </div>
                                             </div>
-                                            <div class="group-button">
-                                                <div class="group-button-inner">
-                                                    <div type="submit" class="single_add_to_cart_button button alt disabled furgan-variation-selection-needed"
-                                                    th:class="add-to-cart">
-                                                        <a href="#" class="button product_type_variable add_to_cart_button"
-                                                           th:href="@{'/addProductToCart?id='+${productSingle.productId}}">添加到购物车</a>
-                                                    </div>
-                                                </div>
+                                            <div class="add-to-cart">
+                                                <a href="#" class="button product_type_variable add_to_cart_button"
+                                                   th:href="@{'/addProductToCart?id='+${product.productId}}">添加到购物车</a>
                                             </div>
                                             <input name="add-to-cart" value="27" type="hidden">
                                             <input name="product_id" value="27" type="hidden">
@@ -856,6 +851,11 @@
                 }
             })
         })
+
+        /*$("#addToCart").click(function () {
+            var url = $(this).attr("value");
+            window.location.href(url, '_self');
+        })*/
     })
 </script>
 </body>

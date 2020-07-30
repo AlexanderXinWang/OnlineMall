@@ -34,7 +34,7 @@
         </foreach>
     </select>
     <update id="logicDelete" parameterType="com.xju.onlinemall.common.domain.Cart">
-        UPDATE tb_cart SET is_delete = 4 WHERE user_id=#{userId} AND product_id=#{productId};
+        UPDATE tb_cart SET is_delete = 4 WHERE user_id=#{userId} AND product_id=#{productId}
     </update>
 
 </mapper>

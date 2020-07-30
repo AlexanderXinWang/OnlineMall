@@ -180,12 +180,12 @@
                      data-slick="{&quot;arrows&quot;:false,&quot;slidesMargin&quot;:30,&quot;dots&quot;:true,&quot;infinite&quot;:false,&quot;speed&quot;:300,&quot;slidesToShow&quot;:4,&quot;rows&quot;:2}"
                      data-responsive="[{&quot;breakpoint&quot;:480,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:768,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:992,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1200,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1500,&quot;settings&quot;:{&quot;slidesToShow&quot;:4,&quot;slidesMargin&quot;:&quot;30&quot;}}]"
                     th:each="product:${newProductList}">
-                    <div class="product-item featured_products style-02 rows-space-30 post-34 product type-product status-publish has-post-thumbnail shipping-taxable purchasable product-type-simple">
+                    <div class="product-item featured_products style-02 rows-space-30 product product-type-simple">
                         <div class="product-inner tooltip-top">
                             <div class="product-thumb">
                                 <a class="thumb-link"
                                    href="#" tabindex="0">
-                                    <img class="img-responsive"
+                                    <img class="img-responsive" th:src="${product.pimage}"
                                          src="assets/images/apro61-1-270x350.jpg"
                                          alt="Sweeper Funnel" width="270" height="350">
                                 </a>
@@ -198,13 +198,16 @@
                                             class="rating">0</strong> out of 5</span></div>
                                     <span class="review">(0)</span></div>
                                 <h3 class="product-name product_title">
-                                    <a href="#"
+                                    <a href="#" th:text="${product.productName}"
+                                       th:href="@{'/single-product-simple.html?id='+${product.productId}}"
                                        tabindex="0">清扫漏斗</a>
                                 </h3>
-                                <span class="price"><span class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">￥</span>79.00</span> – <span
-                                        class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">￥</span>139.00</span></span>
+                                <span class="price">
+                                    <span class="furgan-Price-amount amount">
+                                        <span class="furgan-Price-currencySymbol">￥</span>
+                                        <span th:text="${product.price}">79.00</span>
+                                    </span>
+                                </span>
                             </div>
                             <div class="group-button clearfix">
                                 <div class="yith-wcwl-add-to-wishlist">
@@ -216,7 +219,8 @@
                                     <a class="button product_type_grouped">
                                         添加到购物车</a></div>
                                 <div class="furgan product compare-button">
-                                    <a href="#" class="compare button">比较其他商品</a></div>
+                                    <a href="#" class="compare button"
+                                       th:href="@{'/addProductToCart?id='+${product.productId}}">比较其他商品</a></div>
                             </div>
                         </div>
                     </div>
