@@ -9,8 +9,8 @@ import com.xju.onlinemall.service.CartService;
 import com.xju.onlinemall.service.CommentServiceImpl;
 import com.xju.onlinemall.service.OrderService;
 import com.xju.onlinemall.service.UserService;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.junit.jupiter.api.Test;
-import org.mortbay.util.ajax.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
