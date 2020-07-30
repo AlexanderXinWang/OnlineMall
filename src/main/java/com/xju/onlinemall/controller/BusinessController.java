@@ -339,20 +339,20 @@ public class BusinessController {
         //获得对应用户的全部商品
         List<pCountCName> pCountCNameList = productService.selectAllProductGroupByCategorty(adminUser.getUserId());
 
-        HashMap<Object, Object> result = new HashMap<>();
+//        HashMap<Object, Object> result = new HashMap<>();
 //        产生键值对
-        List<Map<String,Object>> list=new ArrayList<>();
+//        List<Map<String,Object>> list=new ArrayList<>();
 
-        for (pCountCName p:pCountCNameList){
-            Map<String, Object> temp = new HashMap<>();
-            temp.put("value",p.getCount());
-            temp.put("name",p.getCategoryName());
-            list.add(temp);
-        }
-        result.put("pCountCNameList",pCountCNameList);
-        result.put("list",list);
+//        for (pCountCName p:pCountCNameList){
+//            Map<String, Object> temp = new HashMap<>();
+//            temp.put("value",p.getCount());
+//            temp.put("name",p.getCategoryName());
+//            list.add(temp);
+//        }
+//        result.put("pCountCNameList",pCountCNameList);
+//        result.put("list",list);
 
-        return result;
+        return pCountCNameList;
     }
 
 }

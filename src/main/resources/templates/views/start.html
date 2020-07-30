@@ -22,7 +22,7 @@
             <span th:if="${session.adminUser.userRole == 1}">
                 商家
                 <hr>
-                <div id="main3" style="width: 600px;height:400px;"></div>
+                <div id="main3" style="width: 600px;height:500px;"></div>
                 <hr>
                 <div id="main2" style="width: 1200px;height:500px;"></div>
             </span>
@@ -54,7 +54,12 @@
                             title: {
                                 text: '系统用户组成视图',
                                 subtext: '仅供参考',
-                                left: 'center'
+                                left: 'center',
+                                textStyle: {
+                                    fontSize: 24,
+                                    fontWeight: 'bolder',
+                                    color: '#333'                             // 主标题文字颜色
+                                },
                             },
                             tooltip: {
                                 trigger: 'item',
@@ -70,7 +75,7 @@
                                     name: '用户组成',
                                     type: 'pie',
                                     radius: '55%',
-                                    center: ['50%', '60%'],
+                                    center: ['50%', '55%'],
                                     data: [
                                         {value: data["o1"], name: '普通用户'},
                                         {value: data["o2"], name: '商家'},
@@ -103,21 +108,17 @@
                 type: 'POST',
                 success: function (datas) {
                     if (datas!=null){
-                        var pCountCNameList=datas["pCountCNameList"];
-                        // var list=datas["list"];
+
                         var yVal = [];
                         var ls = [];
 
-                        for(var i = 0; i < pCountCNameList.length; i++) {
-                            yVal.push(pCountCNameList[i].categoryName);
+                        for(var i = 0; i < datas.length; i++) {
+                            yVal.push(datas[i].categoryName);
                             var json={};
-                            json.value=pCountCNameList[i].count;
-                            json.name=pCountCNameList[i].categoryName;
+                            json.value=datas[i].count;
+                            json.name=datas[i].categoryName;
                             ls.push(json)
-
                         }
-
-
 
 
                         var myChart2 = echarts.init(document.getElementById("main3"))
@@ -125,24 +126,28 @@
                         option2 = {
                             title: {
                                 text: '商家商品组成视图',
-                                subtext: '仅供参考',
-                                left: 'center'
+                                subtext: '按商品类别进行分组',
+                                left: 'left',
+                                textStyle: {
+                                    fontSize: 24,
+                                    fontWeight: 'bolder',
+                                    color: '#333'                             // 主标题文字颜色
+                                },
                             },
                             tooltip: {
                                 trigger: 'item',
                                 formatter: '{a} <br/>{b} : {c} ({d}%)'
                             },
                             legend: {
-                                orient: 'vertical',
-                                left: 'left',
+                                y: 'bottom',
                                 data: yVal
                             },
                             series: [
                                 {
-                                    name: '用户组成',
+                                    name: '商品组成',
                                     type: 'pie',
-                                    radius: '55%',
-                                    center: ['50%', '60%'],
+                                    radius: '53%',
+                                    center: ['50%', '53%'],
                                     data: ls,
                                     emphasis: {
                                         itemStyle: {
