@@ -136,8 +136,12 @@
                                     </div>
                                     <div class="group-button">
                                         <div class="yith-wcwl-add-to-wishlist">
-                                            <div class="yith-wcwl-add-button show">
-                                                <a href="#" class="add_to_wishlist">
+                                            <div class="yith-wcwl-add-button show" th:switch="${product.starIsDelete}">
+                                                <a href="#" th:case="4" th:text="添加到收藏夹" class="button add_to_wishlist" th:href="@{'/addStarByLittleButton?productId='+${product.productId}+'&starId='+${product.starId}+'&starIsDelete='+${product.starIsDelete}+'&pageSize='+${pageInfo.getPageSize()}+'&condition='+${condition}+'&product_cat='+${cid}+'&s='+${s}}">
+                                                    添加到愿望清单</a>
+                                                <a href="#" th:case="3" th:text="已添加到收藏夹" class="button added_to_wishlist" th:href="@{'/addStarByLittleButton?productId='+${product.productId}+'&starId='+${product.starId}+'&starIsDelete='+${product.starIsDelete}+'&pageSize='+${pageInfo.getPageSize()}+'&condition='+${condition}+'&product_cat='+${cid}+'&s='+${s}}">
+                                                    添加到愿望清单</a>
+                                                <a href="#" th:case="*" th:text="添加到收藏夹" class="button add_to_wishlist" th:href="@{'/addStarByLittleButton?productId='+${product.productId}+'&starId='+${product.starId}+'&starIsDelete='+${product.starIsDelete}+'&pageSize='+${pageInfo.getPageSize()}+'&condition='+${condition}+'&product_cat='+${cid}+'&s='+${s}}">
                                                     添加到愿望清单</a>
                                             </div>
                                         </div>
@@ -243,6 +247,31 @@
             window.open(url,'_self');
         })
     })
+
+    // $("#addtowishlist").onclick(function () {
+    //     var productId = $("#productId").html();
+    //     alert(productId);
+    //     layer.confirm('真的要删除单号为 '+productId+" 的记录吗？", function(index){
+    //         var outIds=[];
+    //         outIds.push(data.outId)
+    //         $.ajax({
+    //             type:"POST",
+    //             contentType:"application/json",
+    //             url:"/list/deleteOutputOrders",
+    //             data:JSON.stringify(outIds),
+    //             success:function (msg) {
+    //                 if(msg["success"]){
+    //                     obj.del();
+    //                     layer.msg("操作执行成功~"+msg["data"]+"条记录已删除~",{time:900},function () {
+    //                         layer.close(index);
+    //                         table.reload('mytable');
+    //                     })
+    //                 }
+    //             },
+    //             dataType:"json"
+    //         });
+    //     });
+    // })
 </script>
 </body>
 </html>

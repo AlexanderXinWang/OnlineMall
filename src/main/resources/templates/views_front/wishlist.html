@@ -26,14 +26,7 @@
             <div class="main-content col-md-12">
                 <div class="page-main-content">
                     <form id="yith-wcwl-form" class="furgan">
-                        <!-- TITLE -->
-                        <!-- WISHLIST TABLE -->
                         <div class="box">
-                            <!--<div class="box-header">-->
-                                <!--<div id="toolbar">-->
-                                    <!--<button class="btn btn-danger remove-batch">批量删除</button>-->
-                                <!--</div>-->
-                            <!--</div>-->
                             <div class="box-body" style="display: none;">
                                 <table id="table1" class="table table-bordered table-hover">
                                 </table>
@@ -66,7 +59,7 @@
                                     <div>
                                         <span id="productId" style="display: none;" th:text="${starProduct.productId}"></span>
                                         <a href="#" onclick="this.parentNode.parentNode.parentNode.style.display='none';"
-                                           class="remove remove_from_wishlist xWindow" title="Remove this product"
+                                           class="remove remove_from_wishlist xWindow" title="取消收藏"
                                            th:href="@{'/deleteStar?productId='+${starProduct.productId}}">
                                             ×</a>
                                     </div>

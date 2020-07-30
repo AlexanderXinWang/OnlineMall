@@ -39,15 +39,15 @@ public interface ProductService {
      */
     ///////////////////////////////////////////////////////////////////////////
     //  product.html页面方法
-    PageInfo<Product> getAllProducts(int pageNo, int pageSize);
+    PageInfo<Product> getAllProducts(int pageNo, int pageSize, Integer userId);
 
-    PageInfo<Product> getAllProductsByPriceASC(int pageNo, int pageSize);
+    PageInfo<Product> getAllProductsByPriceASC(int pageNo, int pageSize, Integer userId);
 
-    PageInfo<Product> getAllProductsByPriceDESC(int pageNo, int pageSize);
+    PageInfo<Product> getAllProductsByPriceDESC(int pageNo, int pageSize, Integer userId);
 
-    PageInfo<Product> getAllProductsByRate(int pageNo, int pageSize);
+    PageInfo<Product> getAllProductsByRate(int pageNo, int pageSize, Integer userId);
 
-    PageInfo<Product> getAllProductsByTime(int pageNo, int pageSize);
+    PageInfo<Product> getAllProductsByTime(int pageNo, int pageSize, Integer userId);
 
     ///////////////////////////////////////////////////////////////////////////
     //  product-list无cid筛选方法
@@ -66,15 +66,15 @@ public interface ProductService {
 
     ///////////////////////////////////////////////////////////////////////////
     //  product-list有cid筛选方法
-    PageInfo<Product> getProductsByCategoryAndPriceRange(int pageNo,int pageSize,int categoryId,double min, double max);
+    PageInfo<Product> getProductsByCategoryAndPriceRange(int pageNo,int pageSize,int categoryId,double min, double max, Integer userId);
 
-    PageInfo<Product> getProductsByCategoryAndPriceRangeAndRate(int pageNo, int pageSize, int cid, double min, double max);
+    PageInfo<Product> getProductsByCategoryAndPriceRangeAndRate(int pageNo, int pageSize, int cid, double min, double max, Integer userId);
 
-    PageInfo<Product> getProductsByCategoryAndPriceRangeAndTime(int pageNo, int pageSize, int cid, double min, double max);
+    PageInfo<Product> getProductsByCategoryAndPriceRangeAndTime(int pageNo, int pageSize, int cid, double min, double max, Integer userId);
 
-    PageInfo<Product> getProductsByCategoryAndPriceRangeAndPriceASC(int pageNo, int pageSize, int cid, double min, double max);
+    PageInfo<Product> getProductsByCategoryAndPriceRangeAndPriceASC(int pageNo, int pageSize, int cid, double min, double max, Integer userId);
 
-    PageInfo<Product> getProductsByCategoryAndPriceRangeAndPriceDESC(int pageNo, int pageSize, int cid, double min, double max);
+    PageInfo<Product> getProductsByCategoryAndPriceRangeAndPriceDESC(int pageNo, int pageSize, int cid, double min, double max, Integer userId);
 
     ///////////////////////////////////////////////////////////////////////////
     

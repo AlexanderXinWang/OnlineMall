@@ -5974,10 +5974,29 @@ body.admin-bar #yith-quick-view-modal {
 	font-weight: normal;
 	font-size: 18px;
 }
+.added_to_wishlist::before {
+	font-family: 'FontAwesome', sans-serif;
+	content: '\f004';
+	font-weight: normal;
+	font-size: 18px;
+}
 .add_to_wishlist.loading {
 	cursor: wait;
 }
+.added_to_wishlist.loading {
+	cursor: wait;
+}
 .add_to_wishlist.loading::before {
+	font-family: 'FontAwesome', sans-serif;
+	font-weight: normal;
+	-webkit-animation: fa-spin 1s infinite steps(8);
+	animation: fa-spin 1s infinite steps(8);
+	content: "\f110";
+	font-size: 18px;
+	display: inline-block;
+	vertical-align: middle;
+}
+.added_to_wishlist.loading::before {
 	font-family: 'FontAwesome', sans-serif;
 	font-weight: normal;
 	-webkit-animation: fa-spin 1s infinite steps(8);
@@ -7004,6 +7023,9 @@ body.admin-bar #yith-quick-view-modal {
 	.add_to_wishlist::before {
 		font-size: 15px;
 	}
+	.added_to_wishlist::before {
+		font-size: 15px;
+	}
 	.compare::before {
 		font-size: 14px;
 	}
@@ -7621,11 +7643,17 @@ div.quantity .btn-number.quantity-minus::before {
 .entry-summary .yith-wcwl-add-to-wishlist .add_to_wishlist::before {
 	font-size: 18px;
 }
+.entry-summary .yith-wcwl-add-to-wishlist .added_to_wishlist::before {
+	font-size: 18px;
+}
 .entry-summary .yith-wcwl-wishlistaddedbrowse a::before,
 .entry-summary .yith-wcwl-wishlistexistsbrowse a::before {
 	font-size: 16px;
 }
 .entry-summary .yith-wcwl-add-to-wishlist .add_to_wishlist:hover::before {
+	color: #9cc25d;
+}
+.entry-summary .yith-wcwl-add-to-wishlist .added_to_wishlist:hover::before {
 	color: #9cc25d;
 }
 .entry-summary .compare {

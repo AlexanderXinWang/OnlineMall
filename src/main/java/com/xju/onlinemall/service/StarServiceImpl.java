@@ -23,11 +23,7 @@ public class StarServiceImpl implements StarService{
     public PageInfo<Product> findStars(int pageNo, int pageSize,Integer userId) {
         StarExample starExample = new StarExample();
         starExample.createCriteria().andUserIdEqualTo(userId);
-//        List<Star> stars1 = starMapper.selectByExample(starExample);
-//
-//        stars1.get(i).getProductId();
         List<Star> stars1 = starMapper.selectByMultiExample(userId);
-//        System.out.println(stars);
         System.out.println(stars1);
         List<Product> products = new ArrayList<>();
         for (int i=0;i<stars1.size();i++){
@@ -35,21 +31,16 @@ public class StarServiceImpl implements StarService{
             System.out.println(product);
             products.add(product);
         }
-//        System.out.println(products);
         PageHelper.startPage(pageNo,pageSize);
         return new PageInfo<>(products);
     }
 
     @Override
     public void addStar(Integer productId, Integer userId) {
-//        StarExample example = new StarExample();
-//        example.createCriteria().andProductIdEqualTo(productId).andUserIdEqualTo(userId);
-//        starMapper.insertSelective(example);
         Star star = new Star();
         star.setUserId(userId);
         star.setProductId(productId);
         star.setStarIsDelete(Byte.parseByte("3"));
-        System.out.println(star);
         starMapper.insertSelective(star);
     }
 
@@ -66,9 +57,6 @@ public class StarServiceImpl implements StarService{
 
     @Override
     public List<Star> getStarByUserId(Integer userId) {
-//        StarExample starExample = new StarExample();
-//        starExample.createCriteria().andUserIdEqualTo(userId);
-//        return starMapper.selectByExample(starExample);
         return starMapper.selectByMultiExample(userId);
     }
 
@@ -77,6 +65,20 @@ public class StarServiceImpl implements StarService{
         StarExample starExample = new StarExample();
         starExample.createCriteria().andUserIdEqualTo(userId).andProductIdEqualTo(productId);
         return starMapper.selectByExample(starExample);
-//        return starMapper.selectByMultiExample(userId);
+    }
+
+    @Override
+    public void updateByPrimaryKeySelective(Star star) {
+        starMapper.updateByPrimaryKeySelective(star);
+    }
+
+    @Override
+    public List<Star> selectProductIdAndStarIdByPrimaryKey(Integer productId, Integer userId) {
+        return starMapper.selectProductIdAndStarIdByPrimaryKey(productId,userId);
+    }
+
+    @Override
+    public List<Star> selectByMultiExample(Integer userId) {
+        return starMapper.selectByMultiExample(userId);
     }
 }

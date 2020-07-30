@@ -109,7 +109,6 @@ public class OutputOrderServiceImpl implements OutputOrderService{
         order.setOutputTime(date);
         order.setPayStatus(Byte.parseByte("7"));
         int i = orderMapper.updateByPrimaryKeySelective(order);
-//        return 0;
         if (i==1&&j==1)
             return i;
         else
@@ -118,18 +117,13 @@ public class OutputOrderServiceImpl implements OutputOrderService{
 
     @Override
     public int cancelSendOutputOrder(Integer outId) {
-//        int i = outputOderMapper.cancelSendOutputOrder(outId);
         OutputOder outputOder = outputOderMapper.selectByPrimaryKey(outId);
         outputOder.setOutStatus(6);
         int j = outputOderMapper.updateByPrimaryKeySelective(outputOder);
         Order order = orderMapper.selectByPrimaryKey(outputOder.getOutNumber());
-//        Date date = null;
-//        order.setOutputTime(null);
-
         order.setPayStatus(Byte.parseByte("6"));
         int i = orderMapper.updateByPrimaryKeySelective(order);
         int k = orderMapper.setNULLtoOutputTimeByOrderId(order.getOrderId());
-//        return 0;
         if (i==1&&j==1&&k==1)
             return i;
         else
@@ -142,11 +136,7 @@ public class OutputOrderServiceImpl implements OutputOrderService{
         ProductManageExample productManageExample = new ProductManageExample();
         productManageExample.createCriteria().andUserIdEqualTo(userId);
         OutputOderExample outputOderExample = new OutputOderExample();
-//        if (isSended){
-            outputOderExample.createCriteria().andPmIdEqualTo(productManageMapper.selectByExample(productManageExample).get(0).getPmId()).andOutIsDeleteEqualTo(Byte.parseByte("3")).andOutStatusEqualTo(7);
-//        }else {
-//            outputOderExample.createCriteria().andPmIdEqualTo(productManageMapper.selectByExample(productManageExample).get(0).getPmId()).andOutIsDeleteEqualTo(Byte.parseByte("3")).andOutStatusEqualTo(6);
-//        }
+        outputOderExample.createCriteria().andPmIdEqualTo(productManageMapper.selectByExample(productManageExample).get(0).getPmId()).andOutIsDeleteEqualTo(Byte.parseByte("3")).andOutStatusEqualTo(7);
         List<OutputOder> outputOderList = outputOderMapper.selectByExample(outputOderExample);
         for (OutputOder outputOder:outputOderList){
             //获得该订单的商品id

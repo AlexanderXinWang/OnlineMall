@@ -3,8 +3,11 @@ package com.xju.onlinemall.controller;
 import com.github.pagehelper.PageInfo;
 import com.xju.onlinemall.common.domain.Comment;
 import com.xju.onlinemall.common.domain.Product;
+import com.xju.onlinemall.common.domain.Star;
+import com.xju.onlinemall.common.domain.User;
 import com.xju.onlinemall.service.CommentService;
 import com.xju.onlinemall.service.ProductService;
+import com.xju.onlinemall.service.StarService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.PushBuilder;
 import java.security.PublicKey;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +34,9 @@ public class ProductController {
     @Autowired
     CommentService commentService;
 
+    @Autowired
+    StarService starService;
+
     /**
      *跳转商品页,并从数据库获取商品信息
      * */
@@ -40,6 +47,8 @@ public class ProductController {
                             @RequestParam(defaultValue = "0") int condition,
                             @RequestParam(defaultValue = "1") int pageNo,
                             @RequestParam(defaultValue = "12") int pageSize){
+        User user = (User)session.getAttribute("user");
+        Integer userId = user.getUserId();
         //分页
         PageInfo<Product> pageInfo=null;
         //未进行搜索
@@ -54,19 +63,19 @@ public class ProductController {
             switch (condition) {
                 default:
                     //获取分页信息与商品列表
-                    pageInfo = productService.getAllProducts(pageNo, pageSize);
+                    pageInfo = productService.getAllProducts(pageNo, pageSize, userId);
                     break;
                 case 1:
-                    pageInfo = productService.getAllProductsByRate(pageNo,pageSize);
+                    pageInfo = productService.getAllProductsByRate(pageNo,pageSize, userId);
                     break;
                 case 2:
-                    pageInfo = productService.getAllProductsByTime(pageNo,pageSize);
+                    pageInfo = productService.getAllProductsByTime(pageNo,pageSize, userId);
                     break;
                 case 3:
-                    pageInfo = productService.getAllProductsByPriceASC(pageNo,pageSize);
+                    pageInfo = productService.getAllProductsByPriceASC(pageNo,pageSize, userId);
                     break;
                 case 4:
-                    pageInfo = productService.getAllProductsByPriceDESC(pageNo,pageSize);
+                    pageInfo = productService.getAllProductsByPriceDESC(pageNo,pageSize, userId);
                     break;
             }
         }
@@ -100,6 +109,7 @@ public class ProductController {
         }
 
 
+
         if (pageInfo.getList()==null) {
             System.out.println("当前数据库中无商品！");
             return "404";
@@ -126,7 +136,7 @@ public class ProductController {
      *跳转商品列表页（有分类侧边栏），并传入商品数据
      * */
     @RequestMapping("/product-list.html")
-    public String productList(Model model,HttpServletRequest request,
+    public String productList(Model model,HttpServletRequest request,HttpSession session,
                               @RequestParam(required = false) String s,
                               @RequestParam(defaultValue = "0") double min,
                               @RequestParam(defaultValue = "9999") double max,
@@ -134,6 +144,8 @@ public class ProductController {
                               @RequestParam(defaultValue = "0") int condition,
                               @RequestParam(defaultValue = "1") int pageNo,
                               @RequestParam(defaultValue = "5") int pageSize){
+        User user = (User)session.getAttribute("user");
+        Integer userId = user.getUserId();
         //分页
         PageInfo<Product> pageInfo;
 
@@ -150,19 +162,19 @@ public class ProductController {
             switch (condition) {
                 default:
                     //获取分页信息与商品列表
-                    pageInfo = productService.getProductsByCategoryAndPriceRange(pageNo,pageSize,cid,min,max);
+                    pageInfo = productService.getProductsByCategoryAndPriceRange(pageNo,pageSize,cid,min,max,userId);
                     break;
                 case 1:
-                    pageInfo = productService.getProductsByCategoryAndPriceRangeAndRate(pageNo,pageSize,cid,min,max);
+                    pageInfo = productService.getProductsByCategoryAndPriceRangeAndRate(pageNo,pageSize,cid,min,max,userId);
                     break;
                 case 2:
-                    pageInfo = productService.getProductsByCategoryAndPriceRangeAndTime(pageNo,pageSize,cid,min,max);
+                    pageInfo = productService.getProductsByCategoryAndPriceRangeAndTime(pageNo,pageSize,cid,min,max,userId);
                     break;
                 case 3:
-                    pageInfo = productService.getProductsByCategoryAndPriceRangeAndPriceASC(pageNo,pageSize,cid,min,max);
+                    pageInfo = productService.getProductsByCategoryAndPriceRangeAndPriceASC(pageNo,pageSize,cid,min,max,userId);
                     break;
                 case 4:
-                    pageInfo = productService.getProductsByCategoryAndPriceRangeAndPriceDESC(pageNo,pageSize,cid,min,max);
+                    pageInfo = productService.getProductsByCategoryAndPriceRangeAndPriceDESC(pageNo,pageSize,cid,min,max,userId);
                     break;
             }
         }

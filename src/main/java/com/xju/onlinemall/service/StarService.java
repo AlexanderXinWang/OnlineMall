@@ -14,4 +14,10 @@ public interface StarService {
     List<Star> getStarByUserId(Integer userId);
 
     List<Star> getStarByUserIdAndProductId(Integer userId, Integer productId);
+
+    void updateByPrimaryKeySelective(Star star);
+
+    List<Star> selectProductIdAndStarIdByPrimaryKey(Integer productId, Integer userId);
+
+    List<Star> selectByMultiExample(Integer userId);
 }
