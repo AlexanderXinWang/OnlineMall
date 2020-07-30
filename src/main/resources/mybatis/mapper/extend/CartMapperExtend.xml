@@ -25,7 +25,7 @@
         left join tb_product p on c.product_id=p.product_id
     </select>
     <select id="selectByUserIdAndIsDelete" resultMap="MyResultMap">
-        select * from tb_cart where user_id = #{userId} and is_delete=#{isDelete};
+        select * from tb_cart where user_id = #{userId} and is_delete=#{isDelete} order by user_id desc;
     </select>
     <select id="selectMyProductByCartId" resultMap="productByMyCart" parameterType="java.util.List">
         select * from tb_product where product_id in

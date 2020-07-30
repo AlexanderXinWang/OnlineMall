@@ -4,53 +4,53 @@
     <div th:replace="~{fragment/static::link}"></div>
     <title>优惠明细</title>
 </head>
-<body>
-<table class="shop_table cart wishlist_table" data-pagination="no" data-per-page="5"
-       data-page="1" data-id="" data-token="">
-    <tr id="yith-wcwl-row-29" data-row-id="29" style="padding-right: 20px;">
-        <td class="product-stock-status">
-            <h4 th:align="left">状&nbsp;态：&nbsp;<span></span></h4>
-            <p th:align="left">
-                <span>收货人：
-                    <span class='wishlist-in-stock'>收货人</span>
-                    &nbsp;&nbsp;
-                    <span class='wishlist-in-stock'></span>
-                </span><br>
-                <span>地&nbsp;&nbsp;&nbsp;址：&nbsp;<span class='wishlist-in-stock'></span></span>
-            </p>
-        </td>
-        <td >
-            <h4 th:align="left">订单信息 »»»
-                <span></span>
-            </h4>
-            <p th:align="left">
-                <span class='wishlist-in-stock'>
-                    订单商品：&nbsp;&nbsp;&nbsp;&nbsp;
-                    <span></span>
-                </span><br>
-                <span class='wishlist-in-stock'>
-                    单价数量：&nbsp;&nbsp;&nbsp;&nbsp;
-                    ¥&nbsp;<span></span>&nbsp;
-                    ×<span></span>
-                </span><br>
-                <span class='wishlist-in-stock'>
-                    商品总价：&nbsp;&nbsp;&nbsp;&nbsp;
-                    ¥&nbsp;<span></span>
-                </span><br>
-                <span class='wishlist-in-stock'>
-                    实&nbsp;付&nbsp;款：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    ¥&nbsp;<span></span>
-                </span><br>
-                <span class='wishlist-in-stock'>订单编号：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span></span></span><br>
-                <span class='wishlist-in-stock'>创建时间：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span></span></span><br>
-                <span class='wishlist-in-stock'>付款时间：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span></span></span><br>
-                <span class='wishlist-in-stock'>发货时间：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span></span></span><br>
-                <span class='wishlist-in-stock'>成交时间：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span></span></span><br>
-            </p>
-        </td>
-    </tr>
-</table>
-
+<body style="line-height: 16px;">
+<br>
+<div class="div_coupon_demo">
+    <!-- 优惠券 begin -->
+    <div class="stamp stamp03" th:if="${#lists.isEmpty(couponsList)}">
+        <i></i>
+        <div class="par">
+            <p>XXXXXX折扣店</p>
+            <sub class="sign">￥</sub><span class="span_coupon_amount">优惠金额</span>
+            <sub>优惠券名</sub>
+            <p>订单满&nbsp;<span>XX</span>元使用</p>
+            <span class="span_coupon_time">有效期&nbsp;
+                <span class="span_coupon_time">起始日期</span>-
+                <span class="span_coupon_time">截止日期</span>
+            </span>
+        </div>
+        <div class="copy">
+            <span style="font-weight: 600">副&nbsp;券</span><br>
+            <span class="span_coupon_copy">券号:<span>x</span></span>&nbsp;
+            <span class="span_coupon_copy">券类:<span>y</span></span>
+            <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;立即使用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+    </div>
+    <!-- 优惠券 end -->
+    <!-- 优惠券 begin -->
+    <div class="stamp stamp03" th:each="coupon:${couponsList}">
+        <i></i>
+        <div class="par">
+            <p th:text="${coupon.userName}">XXXXXX折扣店</p>
+            <sub class="sign">￥</sub><span class="span_coupon_amount" th:text="${coupon.couponAmount}">优惠金额</span>
+            <sub th:text="${coupon.couponName}" style="top: -1px;">优惠券名</sub>
+            <p>订单满&nbsp;<span th:text="${coupon.minAmount}"></span>元使用</p>
+            <span class="span_coupon_time">有效期&nbsp;
+                <span class="span_coupon_time" th:text="${#dates.format(coupon.createTime,'yyyy-MM-dd')}">起始日期</span>-
+                <span class="span_coupon_time" th:text="${#dates.format(coupon.expireTime,'yyyy-MM-dd')}">截止日期</span>
+            </span>
+        </div>
+        <div class="copy">
+            <span style="font-weight: 600">副&nbsp;券</span><br>
+            <span class="span_coupon_copy">券号:<span th:text="${coupon.couponId}"></span></span>&nbsp;
+            <span class="span_coupon_copy">券类:<span th:text="${coupon.categoryId}"></span></span>
+            <a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;立即使用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+        </div>
+    </div>
+    <!-- 优惠券 end -->
+</div>
 <div th:replace="~{fragment/static::script}"></div>
+
 </body>
 </html>
