@@ -1,29 +1,29 @@
 package com.xju.onlinemall.service;
 
-import com.github.pagehelper.IPage;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xju.onlinemall.common.domain.Product;
 import com.xju.onlinemall.common.domain.ProductExample;
 import com.xju.onlinemall.common.domain.extend.pCountCName;
 import com.xju.onlinemall.mapper.ProductMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.nio.channels.ScatteringByteChannel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Logger;
 
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
 @Service
 public class ProductServiceImpl implements ProductService{
     @Autowired
     private ProductMapper productMapper;
+
+    private final static Logger logger = LoggerFactory.getLogger(ProductServiceImpl.class);
 
     @Override
     public List<Product> selectByCategory(Integer categoryId) {
@@ -512,7 +512,7 @@ public class ProductServiceImpl implements ProductService{
         try {
             date = simpleDateFormat.parse(time);
         } catch (ParseException e) {
-            System.out.println("新品商品日期报错！"+e);
+            logger.error("error");
         }
 //        String date = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
         ProductExample productExample = new ProductExample();
