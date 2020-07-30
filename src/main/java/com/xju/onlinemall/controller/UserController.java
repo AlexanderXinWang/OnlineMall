@@ -1,6 +1,6 @@
 package com.xju.onlinemall.controller;
 
-import com.sun.org.glassfish.gmbal.ParameterNames;
+
 import com.xju.onlinemall.common.domain.Product;
 import com.xju.onlinemall.common.domain.SystemLog;
 import com.xju.onlinemall.common.domain.User;
@@ -9,14 +9,13 @@ import com.xju.onlinemall.service.UserService;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.support.SessionStatus;
 
-import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;

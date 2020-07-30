@@ -1,6 +1,5 @@
 package com.xju.onlinemall.controller;
 
-import com.sun.deploy.net.HttpResponse;
 import com.xju.onlinemall.common.domain.Product;
 import com.xju.onlinemall.common.domain.Star;
 import com.xju.onlinemall.common.domain.StarExample;
@@ -12,9 +11,7 @@ import com.xju.onlinemall.service.StarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.handler.UserRoleAuthorizationInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
