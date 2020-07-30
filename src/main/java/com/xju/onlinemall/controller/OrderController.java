@@ -54,15 +54,14 @@ public class OrderController {
      * 订单操作：确认收货、追加评价
      * */
     @RequestMapping("/orderOperation")
-    public String orderOperation(HttpSession session, HttpServletRequest request,
-                                 Integer orderId,String orderStatus,ModelMap modelMap){
+    public String orderOperation(HttpSession session, HttpServletRequest request,ModelMap modelMap){
         //获取当前登录用户信息
         User user=new User();
         user=(User) session.getAttribute("user");
         Integer userId = user.getUserId();//获取用户id
         //获取前端传值：订单id和订单状态
-        orderId=Integer.parseInt(request.getParameter("orderId"));
-        orderStatus=String.valueOf(request.getParameter("status"));
+        Integer orderId=Integer.parseInt(request.getParameter("orderId"));
+        String orderStatus=String.valueOf(request.getParameter("status"));
         System.out.println("前端传值获取成功"+orderId+","+orderStatus);
         if (orderStatus!="交易成功"){
             String msg=orderService.takeDeliveryOfProduct(userId,orderId);
@@ -77,8 +76,8 @@ public class OrderController {
     }
 
     @RequestMapping("/order-detail.html")
-    public String orderDetail(HttpServletRequest request, Integer orderId, Model model){
-        orderId = Integer.parseInt(request.getParameter("orderId"));
+    public String orderDetail(HttpServletRequest request, Model model){
+        Integer orderId = Integer.parseInt(request.getParameter("orderId"));
         Order order = orderService.getByOrderId(orderId);
         Double amount=order.getOrderNumber()*order.getProduct().getPrice();
         model.addAttribute("order",order);

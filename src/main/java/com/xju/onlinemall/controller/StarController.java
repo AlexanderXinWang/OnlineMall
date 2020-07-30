@@ -30,9 +30,9 @@ public class StarController {
     ProductService productService;
 
     @RequestMapping("/wishlist.html")
-    public String wishlist(HttpSession session, Model model, Integer userId){
+    public String wishlist(HttpSession session, Model model){
         User user = (User)session.getAttribute("user");
-        userId = user.getUserId();
+        Integer userId = user.getUserId();
 
         List<Star> starList = starService.getStarByUserId(userId);
 //        System.out.println(starList);

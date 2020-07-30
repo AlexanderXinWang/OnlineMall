@@ -75,12 +75,11 @@ public class CartController {
     @RequestMapping("/addProductToCart")
     //@ResponseBody
     public String addProject(HttpSession session, ModelMap modelMap,
-                             HttpServletRequest request,
-                             Integer productId,Integer count){
+                             HttpServletRequest request,Integer count){
         //获得当前登录的用户信息
         User user = (User) session.getAttribute("user");
         Integer userId = user.getUserId();
-        productId=Integer.parseInt(request.getParameter("id"));
+        Integer productId=Integer.parseInt(request.getParameter("id"));
         Map<String,Object> map=new HashMap<>();
         boolean b=true;
         if (count==null || count==1){
@@ -129,15 +128,14 @@ public class CartController {
      * */
     @RequestMapping("/deleteFromCart")
     public String deleteFromCart(HttpSession session, ModelMap modelMap,
-                                 HttpServletRequest request,
-                                 Integer productId){
+                                 HttpServletRequest request){
         //获取当前登录用户信息
         User user=new User();
         user=(User) session.getAttribute("user");
         String msg=null;
         Integer userId = user.getUserId();//获取用户id
         //获取要删除的商品id
-        productId=Integer.parseInt(request.getParameter("id"));
+        Integer productId=Integer.parseInt(request.getParameter("id"));
         System.out.println(productId);
         msg=cartService.logicDelete(userId,productId);
         System.out.println(msg);
@@ -157,13 +155,12 @@ public class CartController {
      * 在header的购物车中删除商品
      */
     @RequestMapping("/deleteFromHeaderCart")
-    public String delStars(HttpServletRequest request, HttpSession session,
-                           Integer userId, Integer productId, ModelMap modelMap){
+    public String delStars(HttpServletRequest request, HttpSession session, ModelMap modelMap){
         //获取当前登录用户信息
         User user=new User();
         user=(User) session.getAttribute("user");
-        userId = user.getUserId();
-        productId =  Integer.parseInt(request.getParameter("productId"));
+        Integer userId = user.getUserId();
+        Integer productId =  Integer.parseInt(request.getParameter("productId"));
         cartService.deleteByUserIdAndProductId(userId,productId);
         List<Product> cartListByUserId = cartService.getCartListByUserId(user.getUserId());
         int cartCount=cartListByUserId.size();
