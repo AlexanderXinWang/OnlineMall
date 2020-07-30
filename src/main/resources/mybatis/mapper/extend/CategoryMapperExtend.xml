@@ -20,6 +20,6 @@
     </resultMap>
     <select id="selectList" resultMap="MyResultMap">
         <!-- 查询所以商品类别，以及该类别下的商品 -->
-        select * from tb_category;
+        select * from tb_category
     </select>
 </mapper>
