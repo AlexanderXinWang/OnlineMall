@@ -178,9 +178,9 @@
             <div class="furgan-products style-02">
                 <div class="response-product product-list-owl owl-slick equal-container better-height"
                      data-slick="{&quot;arrows&quot;:false,&quot;slidesMargin&quot;:30,&quot;dots&quot;:true,&quot;infinite&quot;:false,&quot;speed&quot;:300,&quot;slidesToShow&quot;:4,&quot;rows&quot;:2}"
-                     data-responsive="[{&quot;breakpoint&quot;:480,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:768,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:992,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1200,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1500,&quot;settings&quot;:{&quot;slidesToShow&quot;:4,&quot;slidesMargin&quot;:&quot;30&quot;}}]"
-                    th:each="product:${newProductList}">
-                    <div class="product-item featured_products style-02 rows-space-30 product product-type-simple">
+                     data-responsive="[{&quot;breakpoint&quot;:480,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:768,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:992,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1200,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1500,&quot;settings&quot;:{&quot;slidesToShow&quot;:4,&quot;slidesMargin&quot;:&quot;30&quot;}}]">
+                    <div class="product-item featured_products style-02 rows-space-30 product product-type-simple"
+                         th:each="product:${newProductList}">
                         <div class="product-inner tooltip-top">
                             <div class="product-thumb">
                                 <a class="thumb-link"
@@ -216,11 +216,11 @@
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
-                                    <a class="button product_type_grouped">
+                                    <a class="button product_type_grouped"
+                                       th:href="@{'/addProductToCart?id='+${product.productId}}">
                                         添加到购物车</a></div>
                                 <div class="furgan product compare-button">
-                                    <a href="#" class="compare button"
-                                       th:href="@{'/addProductToCart?id='+${product.productId}}">比较其他商品</a></div>
+                                    <a href="#" class="compare button">比较其他商品</a></div>
                             </div>
                         </div>
                     </div>
@@ -269,17 +269,18 @@
                 <div class="response-product product-list-owl owl-slick equal-container better-height"
                      data-slick="{&quot;arrows&quot;:true,&quot;slidesMargin&quot;:30,&quot;dots&quot;:true,&quot;infinite&quot;:false,&quot;speed&quot;:300,&quot;slidesToShow&quot;:4,&quot;rows&quot;:1}"
                      data-responsive="[{&quot;breakpoint&quot;:480,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:768,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:992,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1200,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1500,&quot;settings&quot;:{&quot;slidesToShow&quot;:4,&quot;slidesMargin&quot;:&quot;30&quot;}}]">
-                    <div class="product-item recent-product style-01 rows-space-0 post-93 product type-product status-publish has-post-thumbnail product_cat-light product_cat-table product_cat-new-arrivals product_tag-table product_tag-sock first instock shipping-taxable purchasable product-type-simple  ">
+                    <div class="product-item recent-product style-01 rows-space-0 product type-product status-publish has-post-thumbnail product-type-simple"
+                         th:each="recommend:${recommendList}">
                         <div class="product-inner tooltip-left">
                             <div class="product-thumb">
                                 <a class="thumb-link"
                                    href="#" tabindex="0">
-                                    <img class="img-responsive"
+                                    <img class="img-responsive" th:src="${recommend.pimage}"
                                          src="assets/images/apro13-1-270x350.jpg"
                                          alt="Woody Table" width="270" height="350">
                                 </a>
                                 <div class="flash">
-                                    <span class="onnew"><span class="text">新品</span></span></div>
+                                    <span class="onnew"><span class="text">推荐</span></span></div>
                                 <div class="group-button">
                                     <div class="yith-wcwl-add-to-wishlist">
                                         <div class="yith-wcwl-add-button show">
@@ -291,222 +292,27 @@
                                     </div>
                                     <a href="#" class="button yith-wcqv-button">快速查看</a>
                                     <div class="add-to-cart">
-                                        <a class="button product_type_simple add_to_cart_button">添加到购物车</a>
+                                        <a class="button product_type_simple add_to_cart_button"
+                                           th:href="@{'/addProductToCart?id='+${recommend.productId}}">添加到购物车</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="product-info equal-elem">
                                 <h3 class="product-name product_title">
-                                    <a href="#"
+                                    <a href="#" th:text="${recommend.productName}"
+                                       th:href="@{'/single-product-simple.html?id='+${recommend.productId}}"
                                        tabindex="0">实木桌</a>
                                 </h3>
                                 <div class="rating-wapper nostar">
                                     <div class="star-rating"><span style="width:65%">Rated <strong
-                                            class="rating">0</strong> out of 5</span></div>
+                                            class="rating">5</strong> out of 5</span></div>
                                     <span class="review">(0)</span></div>
-                                <span class="price"><span class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">￥</span>109.00</span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item recent-product style-01 rows-space-0 post-49 product type-product status-publish has-post-thumbnail product_cat-light product_cat-bed product_cat-sofas product_tag-furniture product_tag-lamp  instock shipping-taxable purchasable product-type-simple">
-                        <div class="product-inner tooltip-left">
-                            <div class="product-thumb">
-                                <a class="thumb-link"
-                                   href="#" tabindex="0">
-                                    <img class="img-responsive"
-                                         src="assets/images/apro302-270x350.jpg"
-                                         alt="Lynn Storage" width="270" height="350">
-                                </a>
-                                <div class="flash">
-                                    <span class="onnew"><span class="text">新品</span></span></div>
-                                <div class="group-button">
-                                    <div class="yith-wcwl-add-to-wishlist">
-                                        <div class="yith-wcwl-add-button show">
-                                            <a href="#" class="add_to_wishlist">添加到愿望清单</a>
-                                        </div>
-                                    </div>
-                                    <div class="furgan product compare-button">
-                                        <a href="#" class="compare button">比较其他商品</a>
-                                    </div>
-                                    <a href="#" class="button yith-wcqv-button">快速查看</a>
-                                    <div class="add-to-cart">
-                                        <a class="button product_type_simple add_to_cart_button">添加到购物车</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-info equal-elem">
-                                <h3 class="product-name product_title">
-                                    <a href="#"
-                                       tabindex="0">钥匙扣支架</a>
-                                </h3>
-                                <div class="rating-wapper nostar">
-                                    <div class="star-rating"><span style="width:80%">Rated <strong
-                                            class="rating">0</strong> out of 5</span></div>
-                                    <span class="review">(0)</span></div>
-                                <span class="price"><span class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">￥</span>79.00</span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item recent-product style-01 rows-space-0 post-37 product type-product status-publish has-post-thumbnail product_cat-chair product_cat-bed product_tag-light product_tag-hat product_tag-sock last instock shipping-taxable purchasable product-type-simple">
-                        <div class="product-inner tooltip-left">
-                            <div class="product-thumb">
-                                <a class="thumb-link" href="#"
-                                   tabindex="0">
-                                    <img class="img-responsive"
-                                         src="assets/images/apro31-1-270x350.jpg"
-                                         alt="Knit Lamp" width="270" height="350">
-                                </a>
-                                <div class="flash">
-                                    <span class="onnew"><span class="text">新品</span></span></div>
-                                <div class="group-button">
-                                    <div class="yith-wcwl-add-to-wishlist">
-                                        <div class="yith-wcwl-add-button show">
-                                            <a href="#" class="add_to_wishlist">添加到愿望清单</a>
-                                        </div>
-                                    </div>
-                                    <div class="furgan product compare-button">
-                                        <a href="#" class="compare button">比较其他商品</a>
-                                    </div>
-                                    <a href="#" class="button yith-wcqv-button">快速查看</a>
-                                    <div class="add-to-cart">
-                                        <a class="button product_type_simple add_to_cart_button">添加到购物车</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-info equal-elem">
-                                <h3 class="product-name product_title">
-                                    <a href="#" tabindex="0">针织灯</a>
-                                </h3>
-                                <div class="rating-wapper nostar">
-                                    <div class="star-rating"><span style="width:0%">Rated <strong
-                                            class="rating">0</strong> out of 5</span></div>
-                                    <span class="review">(0)</span></div>
-                                <span class="price"><span class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">￥</span>120.00</span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item recent-product style-01 rows-space-0 post-35 product type-product status-publish has-post-thumbnail product_cat-chair product_cat-new-arrivals product_cat-lamp product_tag-light product_tag-hat product_tag-sock first instock shipping-taxable purchasable product-type-simple">
-                        <div class="product-inner tooltip-left">
-                            <div class="product-thumb">
-                                <a class="thumb-link" href="#"
-                                   tabindex="0">
-                                    <img class="img-responsive"
-                                         src="assets/images/apro41-1-270x350.jpg"
-                                         alt="Round Basket" width="270" height="350">
-                                </a>
-                                <div class="flash">
-                                    <span class="onnew"><span class="text">新品</span></span></div>
-                                <div class="group-button">
-                                    <div class="yith-wcwl-add-to-wishlist">
-                                        <div class="yith-wcwl-add-button show">
-                                            <a href="#" class="add_to_wishlist">添加到愿望清单</a>
-                                        </div>
-                                    </div>
-                                    <div class="furgan product compare-button">
-                                        <a href="#" class="compare button">比较其他商品</a>
-                                    </div>
-                                    <a href="#" class="button yith-wcqv-button">快速查看</a>
-                                    <div class="add-to-cart">
-                                        <a class="button product_type_simple add_to_cart_button">添加到购物车</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-info equal-elem">
-                                <h3 class="product-name product_title">
-                                    <a href="#" tabindex="0">圆 筐</a>
-                                </h3>
-                                <div class="rating-wapper nostar">
-                                    <div class="star-rating"><span style="width:0%">Rated <strong
-                                            class="rating">0</strong> out of 5</span></div>
-                                    <span class="review">(0)</span></div>
-                                <span class="price"><span class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">￥</span>134.00</span></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item recent-product style-01 rows-space-0 post-36 product type-product status-publish has-post-thumbnail product_cat-table product_cat-bed product_tag-light product_tag-table product_tag-sock  instock sale shipping-taxable purchasable product-type-simple">
-                        <div class="product-inner tooltip-left">
-                            <div class="product-thumb">
-                                <a class="thumb-link" href="#"
-                                   tabindex="-1">
-                                    <img class="img-responsive"
-                                         src="assets/images/apro51012-1-270x350.jpg"
-                                         alt="Long Sofa" width="270" height="350">
-                                </a>
-                                <div class="flash">
-                                    <span class="onsale"><span class="number">-21%</span></span>
-                                    <span class="onnew"><span class="text">新品</span></span></div>
-                                <div class="group-button">
-                                    <div class="yith-wcwl-add-to-wishlist">
-                                        <div class="yith-wcwl-add-button show">
-                                            <a href="#" class="add_to_wishlist">添加到愿望清单</a>
-                                        </div>
-                                    </div>
-                                    <div class="furgan product compare-button">
-                                        <a href="#" class="compare button">比较其他商品</a>
-                                    </div>
-                                    <a href="#" class="button yith-wcqv-button">快速查看</a>
-                                    <div class="add-to-cart">
-                                        <a class="button product_type_simple add_to_cart_button">添加到购物车</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-info equal-elem">
-                                <h3 class="product-name product_title">
-                                    <a href="#" tabindex="-1">长条沙发</a>
-                                </h3>
-                                <div class="rating-wapper nostar">
-                                    <div class="star-rating"><span style="width:0%">Rated <strong
-                                            class="rating">0</strong> out of 5</span></div>
-                                    <span class="review">(0)</span></div>
-                                <span class="price"><del><span class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">￥</span>125.00</span></del> <ins><span
-                                        class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">￥</span>99.00</span></ins></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-item recent-product style-01 rows-space-0 post-34 product type-product status-publish has-post-thumbnail product_cat-light product_cat-new-arrivals product_tag-light product_tag-hat product_tag-sock last instock sale featured shipping-taxable product-type-grouped">
-                        <div class="product-inner tooltip-left">
-                            <div class="product-thumb">
-                                <a class="thumb-link" href="#"
-                                   tabindex="-1">
-                                    <img class="img-responsive"
-                                         src="assets/images/apro61-1-270x350.jpg"
-                                         alt="Sweeper Funnel" width="270" height="350">
-                                </a>
-                                <div class="flash">
-                                    <span class="onnew"><span class="text">新品</span></span></div>
-                                <div class="group-button">
-                                    <div class="yith-wcwl-add-to-wishlist">
-                                        <div class="yith-wcwl-add-button show">
-                                            <a href="#" class="add_to_wishlist">添加到愿望清单</a>
-                                        </div>
-                                    </div>
-                                    <div class="furgan product compare-button">
-                                        <a href="#" class="compare button">比较其他商品</a>
-                                    </div>
-                                    <a href="#" class="button yith-wcqv-button">快速查看</a>
-                                    <div class="add-to-cart">
-                                        <a class="button product_type_simple add_to_cart_button">查看商品</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="product-info equal-elem">
-                                <h3 class="product-name product_title">
-                                    <a href="#" tabindex="-1">清扫漏斗</a>
-                                </h3>
-                                <div class="rating-wapper nostar">
-                                    <div class="star-rating"><span style="width:0%">Rated <strong
-                                            class="rating">0</strong> out of 5</span></div>
-                                    <span class="review">(0)</span></div>
-                                <span class="price"><span class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">￥</span>79.00</span> – <span
-                                        class="furgan-Price-amount amount"><span
-                                        class="furgan-Price-currencySymbol">￥</span>139.00</span></span>
+                                <span class="price">
+                                    <span class="furgan-Price-amount amount">
+                                        <span class="furgan-Price-currencySymbol">￥</span>
+                                        <span th:text="${recommend.price}">109.00</span>
+                                    </span>
+                                </span>
                             </div>
                         </div>
                     </div>

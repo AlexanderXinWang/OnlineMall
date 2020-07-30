@@ -42,24 +42,28 @@
         SELECT p.* ,AVG(c.score) FROM tb_product p
         LEFT JOIN tb_comment c ON c.`product_id`=p.`product_id`
         WHERE p.`product_name` LIKE CONCAT('%',CONCAT(#{s},'%'))
+        OR p.`pkey` LIKE CONCAT('%',CONCAT(#{s},'%'))
         GROUP BY p.product_id ORDER BY AVG(c.score) DESC
     </select>
     <select id="selectBySearchAndCategoryAndRate" resultMap="BaseResultMap">
         SELECT p.* ,AVG(c.score) FROM tb_product p
         LEFT JOIN tb_comment c ON c.`product_id`=p.`product_id`
-        WHERE p.`category_id` = #{cid} AND p.`product_name` LIKE CONCAT('%',CONCAT(#{s},'%'))
+        WHERE p.`category_id` = #{cid}
+        AND (p.`product_name` LIKE CONCAT('%',CONCAT(#{s},'%')) OR p.`pkey` LIKE CONCAT('%',CONCAT(#{s},'%')))
         GROUP BY p.product_id ORDER BY AVG(c.score) DESC
     </select>
     <select id="selectBySearchAndPriceRangeAndRate" resultMap="BaseResultMap">
         SELECT p.* ,AVG(c.score) FROM tb_product p
         LEFT JOIN tb_comment c ON c.`product_id`=p.`product_id`
-        WHERE p.`product_name` LIKE CONCAT('%',CONCAT(#{s},'%')) AND p.price BETWEEN #{min} AND #{max}
+        WHERE p.price BETWEEN #{min} AND #{max}
+        AND (p.`product_name` LIKE CONCAT('%',CONCAT(#{s},'%')) OR p.`pkey` LIKE CONCAT('%',CONCAT(#{s},'%')))
         GROUP BY p.product_id ORDER BY AVG(c.score) DESC
     </select>
     <select id="selectBySearchAndCategoryAndPriceRangeAndRate" resultMap="BaseResultMap">
         SELECT p.* ,AVG(c.score) FROM tb_product p
         LEFT JOIN tb_comment c ON c.`product_id`=p.`product_id`
-        WHERE p.`category_id` = #{cid} AND p.`product_name` LIKE CONCAT('%',CONCAT(#{s},'%')) AND p.price BETWEEN #{min} AND #{max}
+        WHERE p.`category_id` = #{cid} AND p.price BETWEEN #{min} AND #{max}
+        AND (p.`product_name` LIKE CONCAT('%',CONCAT(#{s},'%')) OR p.`pkey` LIKE CONCAT('%',CONCAT(#{s},'%')))
         GROUP BY p.product_id ORDER BY AVG(c.score) DESC
     </select>
     <select id="selectByTime" resultMap="BaseResultMap">
@@ -76,8 +80,10 @@
         SELECT SUM(p.count) as count,category_name as categoryName
         FROM tb_product p LEFT JOIN tb_category c ON p.category_id=c.category_id WHERE pm_id=${userId} GROUP BY p.category_id
     </select>
-    <!--<select id="selectByAddTime" resultType="BaseResultMap">
-        SELECT * FROM tb_product
-        WHERE 1=1 AND CONVERT (add_time,DATE TIME) LIKE CONCAT('%',CONCAT(#{date },'%'))
-    </select>-->
+    <select id="selectByUserId" resultMap="BaseResultMap">
+        SELECT p.* FROM tb_product p
+        LEFT JOIN tb_recommend r ON r.`product_id`=p.`product_id`
+        WHERE r.`user_id` = #{userId}
+        GROUP BY p.product_id
+    </select>
 </mapper>

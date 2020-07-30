@@ -78,10 +78,16 @@ public class CommonController {
      *跳转首页
      * */
     @RequestMapping("/index.html")
-    public String index(Model model){
+    public String index(Model model, HttpSession session){
 //        System.out.println("跳转index页面-----------------");
-        /*List<Product> newProductList = productService.findNewProducts();
-        model.addAttribute("newProductList",newProductList);*/
+        List<Product> newProductList = productService.findNewProducts();
+        model.addAttribute("newProductList",newProductList);
+
+        User user = (User)session.getAttribute("user");
+        //获得当前用户的推荐商品列表
+        List<Product> recommendList = productService.getRecommendByUserId(user.getUserId());
+        System.out.println(recommendList);
+        model.addAttribute("recommendList",recommendList);
         return "index";
     }
 

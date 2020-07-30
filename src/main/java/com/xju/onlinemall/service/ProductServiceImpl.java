@@ -283,9 +283,11 @@ public class ProductServiceImpl implements ProductService{
         ProductExample productExample = new ProductExample();
         if (cid==5) {
             productExample.createCriteria().andProductNameLike("%"+s+"%");
+            productExample.or(productExample.createCriteria().andPkeyLike("%"+s+"%"));
         }
         else {
             productExample.createCriteria().andCategoryIdEqualTo(cid).andProductNameLike("%"+s+"%");
+            productExample.or(productExample.createCriteria().andCategoryIdEqualTo(cid).andPkeyLike("%"+s+"%"));
         }
         List<Product> list = productMapper.selectByExample(productExample);
         PageInfo<Product> PageInfo = new PageInfo<>(list);
@@ -314,9 +316,11 @@ public class ProductServiceImpl implements ProductService{
         ProductExample productExample = new ProductExample();
         if (cid==5) {
             productExample.createCriteria().andProductNameLike("%"+s+"%");
+            productExample.or(productExample.createCriteria().andPkeyLike("%"+s+"%"));
         }
         else {
             productExample.createCriteria().andCategoryIdEqualTo(cid).andProductNameLike("%"+s+"%");
+            productExample.or(productExample.createCriteria().andCategoryIdEqualTo(cid).andPkeyLike("%"+s+"%"));
         }
         productExample.setOrderByClause("add_time desc");
         List<Product> list = productMapper.selectByExample(productExample);
@@ -330,9 +334,11 @@ public class ProductServiceImpl implements ProductService{
         ProductExample productExample = new ProductExample();
         if (cid==5) {
             productExample.createCriteria().andProductNameLike("%"+s+"%");
+            productExample.or(productExample.createCriteria().andPkeyLike("%"+s+"%"));
         }
         else {
             productExample.createCriteria().andCategoryIdEqualTo(cid).andProductNameLike("%"+s+"%");
+            productExample.or(productExample.createCriteria().andCategoryIdEqualTo(cid).andPkeyLike("%"+s+"%"));
         }
         productExample.setOrderByClause("price asc");
         List<Product> list = productMapper.selectByExample(productExample);
@@ -346,9 +352,11 @@ public class ProductServiceImpl implements ProductService{
         ProductExample productExample = new ProductExample();
         if (cid==5) {
             productExample.createCriteria().andProductNameLike("%"+s+"%");
+            productExample.or(productExample.createCriteria().andPkeyLike("%"+s+"%"));
         }
         else {
             productExample.createCriteria().andCategoryIdEqualTo(cid).andProductNameLike("%"+s+"%");
+            productExample.or(productExample.createCriteria().andCategoryIdEqualTo(cid).andPkeyLike("%"+s+"%"));
         }
         productExample.setOrderByClause("price desc");
         List<Product> list = productMapper.selectByExample(productExample);
@@ -365,10 +373,14 @@ public class ProductServiceImpl implements ProductService{
         if (cid==5) {
             productExample.createCriteria().andProductNameLike("%"+s+"%")
                     .andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max);
+            productExample.or(productExample.createCriteria().andPkeyLike("%"+s+"%")
+                    .andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max));
         }
         else {
             productExample.createCriteria().andCategoryIdEqualTo(cid).andProductNameLike("%"+s+"%")
                     .andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max);
+            productExample.or(productExample.createCriteria().andCategoryIdEqualTo(cid).andPkeyLike("%"+s+"%")
+                    .andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max));
         }
         List<Product> list = productMapper.selectByExample(productExample);
         PageInfo<Product> PageInfo = new PageInfo<>(list);
@@ -398,10 +410,14 @@ public class ProductServiceImpl implements ProductService{
         if (cid==5) {
             productExample.createCriteria().andProductNameLike("%"+s+"%")
                     .andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max);
+            productExample.or(productExample.createCriteria().andPkeyLike("%"+s+"%")
+                    .andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max));
         }
         else {
             productExample.createCriteria().andCategoryIdEqualTo(cid).andProductNameLike("%"+s+"%")
                     .andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max);
+            productExample.or(productExample.createCriteria().andCategoryIdEqualTo(cid).andPkeyLike("%"+s+"%")
+                    .andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max));
         }
         productExample.setOrderByClause("add_time desc");
         List<Product> list = productMapper.selectByExample(productExample);
@@ -416,10 +432,14 @@ public class ProductServiceImpl implements ProductService{
         if (cid==5) {
             productExample.createCriteria().andProductNameLike("%"+s+"%")
                     .andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max);
+            productExample.or(productExample.createCriteria().andPkeyLike("%"+s+"%")
+                    .andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max));
         }
         else {
             productExample.createCriteria().andCategoryIdEqualTo(cid).andProductNameLike("%"+s+"%")
                     .andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max);
+            productExample.or(productExample.createCriteria().andCategoryIdEqualTo(cid).andPkeyLike("%"+s+"%")
+                    .andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max));
         }
         productExample.setOrderByClause("price asc");
         List<Product> list = productMapper.selectByExample(productExample);
@@ -434,10 +454,14 @@ public class ProductServiceImpl implements ProductService{
         if (cid==5) {
             productExample.createCriteria().andProductNameLike("%"+s+"%")
                     .andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max);
+            productExample.or(productExample.createCriteria().andPkeyLike("%"+s+"%")
+                    .andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max));
         }
         else {
             productExample.createCriteria().andCategoryIdEqualTo(cid).andProductNameLike("%"+s+"%")
                     .andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max);
+            productExample.or(productExample.createCriteria().andCategoryIdEqualTo(cid).andPkeyLike("%"+s+"%")
+                    .andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max));
         }
         productExample.setOrderByClause("price desc");
         List<Product> list = productMapper.selectByExample(productExample);
@@ -479,7 +503,22 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public List<Product> findNewProducts() {
-        String date = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
-        return productMapper.selectByAddTime(date);
+        String time = "2020-01-01";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = null;
+        try {
+            date = simpleDateFormat.parse(time);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+//        String date = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
+        ProductExample productExample = new ProductExample();
+        productExample.createCriteria().andAddTimeGreaterThan(date);
+        return productMapper.selectByExample(productExample);
+    }
+
+    @Override
+    public List<Product> getRecommendByUserId(Integer userId) {
+        return productMapper.selectByUserId(userId);
     }
 }

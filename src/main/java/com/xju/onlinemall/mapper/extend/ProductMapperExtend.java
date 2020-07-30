@@ -39,5 +39,5 @@ public interface ProductMapperExtend {
 
     List<pCountCName> selectNumGroupByCategory(Integer userId);
 
-    List<Product> selectByAddTime(String date);
+    List<Product> selectByUserId(Integer userId);
 }

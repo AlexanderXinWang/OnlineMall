@@ -112,4 +112,6 @@ public interface ProductService {
     List<pCountCName> selectAllProductGroupByCategorty(Integer userId);
 
     List<Product> findNewProducts();
+
+    List<Product> getRecommendByUserId(Integer userId);
 }
