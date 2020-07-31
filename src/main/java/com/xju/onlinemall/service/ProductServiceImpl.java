@@ -1,5 +1,6 @@
 package com.xju.onlinemall.service;
 
+import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.xju.onlinemall.common.domain.Product;
@@ -102,7 +103,7 @@ public class ProductServiceImpl implements ProductService{
     //  product.html页面方法
     @Override
     public PageInfo<Product> getAllProducts(int pageNo, int pageSize, Integer userId) {
-        PageHelper.startPage(pageNo,pageSize);
+//        PageHelper.startPage(pageNo,pageSize);
         List<Product> list = productMapper.selectAllProduct();
         List<Product> productList2 = new ArrayList<>();
         for (Product product:list){
@@ -115,7 +116,21 @@ public class ProductServiceImpl implements ProductService{
                 }
                 productList2.add(product);
         }
-        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
+
+        int total = productList2.size();
+        if (total > pageSize) {
+            int toIndex = pageSize * pageNo;
+            if (toIndex > total) {
+                toIndex = total;
+            }
+            productList2 = productList2.subList(pageSize * (pageNo - 1), toIndex);
+        }
+        Page<Product> page = new Page<>(pageNo, pageSize);
+        page.addAll(productList2);
+        page.setPages((total + pageSize - 1) / pageSize);
+        page.setTotal(total);
+
+        PageInfo<Product> PageInfo = new PageInfo<>(page);
         return PageInfo;
     }
 

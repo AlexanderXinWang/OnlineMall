@@ -139,7 +139,7 @@ public class StarController {
             }
         }else{
             try {
-                response.sendRedirect("/product.html?pageSize="+request.getParameter("pageSize")+"&condition="+request.getParameter("condition")+"&product_cat="+request.getParameter("product_cat")+"&s="+request.getParameter("s"));
+                response.sendRedirect("/product.html?pageNo="+request.getParameter("pageNo")+"&pageSize="+request.getParameter("pageSize")+"&condition="+request.getParameter("condition")+"&product_cat="+request.getParameter("product_cat")+"&s="+request.getParameter("s"));
             } catch (IOException e) {
                 System.out.println("页面跳转出错！");
             }

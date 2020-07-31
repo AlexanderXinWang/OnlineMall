@@ -63,6 +63,7 @@ public class ProductController {
             switch (condition) {
                 default:
                     //获取分页信息与商品列表
+                    System.out.println(pageNo+"pageNo!!!");
                     pageInfo = productService.getAllProducts(pageNo, pageSize, userId);
                     break;
                 case 1:
@@ -206,7 +207,6 @@ public class ProductController {
         }else{
             //取出商品列表并注入视图
             List<Product> productList = pageInfo.getList();
-            System.out.println(productList);
             //分页注入视图
             model.addAttribute("pageInfo", pageInfo);
             //将所有商品列表传入页面
