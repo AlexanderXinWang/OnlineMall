@@ -1,5 +1,6 @@
 package com.xju.onlinemall.service;
 
+import com.xju.onlinemall.common.domain.Comment;
 import com.xju.onlinemall.common.domain.Order;
 
 import java.util.List;
@@ -26,4 +27,6 @@ public interface OrderService {
      * 存储订单
      * */
     String saveOrders(List<Order> orderList);
+
+    String saveOrderComment(Comment comment);
 }

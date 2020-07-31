@@ -1,6 +1,7 @@
 package com.xju.onlinemall.controller;
 
 
+import com.xju.onlinemall.common.domain.Comment;
 import com.xju.onlinemall.common.domain.Order;
 import com.xju.onlinemall.common.domain.Product;
 import com.xju.onlinemall.common.domain.User;
@@ -95,7 +96,7 @@ public class OrderController {
         Integer orderId = Integer.parseInt(request.getParameter("comment_orderId"));
         Order order = orderService.getByOrderId(orderId);
         System.out.println(order);
-        //model.addAttribute("order",order);
+        model.addAttribute("commentOrder",order);
         return "views_front/order-comment";
     }
 
@@ -201,6 +202,32 @@ public class OrderController {
         modelMap.addAttribute("headerCartProductList",cartListByUserId);
         modelMap.addAttribute("cartCount",cartCount);
         return "views_front/checkout";
+    }
+
+    /**
+     * 订单追加评价 前台ajax参数接收
+     * */
+    @RequestMapping("/saveOrderComment")
+    @ResponseBody
+    public String saveOrderComment(HttpSession session,
+                                   @RequestParam(value = "ProductId", defaultValue = "") Integer productId,
+                                   @RequestParam(value = "Score", defaultValue = "") Integer score,
+                                   @RequestParam(value = "Context", defaultValue = "") String context){
+        //获取当前登录用户信息
+        User user=new User();
+        user=(User) session.getAttribute("user");
+        Integer userId = user.getUserId();//获取用户id
+        System.out.println(productId+","+score+","+context);
+        Comment comment = new Comment();
+        comment.setUserId(userId);
+        comment.setScore(score);
+        comment.setContext(context);
+        comment.setProductId(productId);
+        comment.setCommentTime(new Date());
+        comment.setIsDelete((byte)3);
+        String msg = orderService.saveOrderComment(comment);
+        System.out.println(msg);
+        return null;
     }
 
 }
