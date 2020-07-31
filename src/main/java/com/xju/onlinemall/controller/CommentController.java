@@ -77,7 +77,7 @@ public class CommentController {
     //————>ProductController
     @RequestMapping("/single-product-simple.html")
     public String singleProduct(ModelMap modelMap, HttpServletRequest request,
-                                 HttpSession session, String categoryName){
+                                 HttpSession session){
 
         Integer productId = Integer.parseInt(request.getParameter("id"));
         User user = (User)session.getAttribute("user");
@@ -104,6 +104,7 @@ public class CommentController {
          * 获得用户点击的商品信息
          * */
         Product productSingle =  productService.selectByProductId(productId);
+        String categoryName = null;
         switch (productSingle.getCategoryId()){
             default:
                 categoryName = "";
