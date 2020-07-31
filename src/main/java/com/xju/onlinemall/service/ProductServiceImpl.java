@@ -103,7 +103,6 @@ public class ProductServiceImpl implements ProductService{
     //  product.html页面方法
     @Override
     public PageInfo<Product> getAllProducts(int pageNo, int pageSize, Integer userId) {
-//        PageHelper.startPage(pageNo,pageSize);
         List<Product> list = productMapper.selectAllProduct();
         List<Product> productList2 = new ArrayList<>();
         for (Product product:list){
@@ -116,7 +115,6 @@ public class ProductServiceImpl implements ProductService{
             }
             productList2.add(product);
         }
-
         int total = productList2.size();
         if (total > pageSize) {
             int toIndex = pageSize * pageNo;
@@ -129,14 +127,12 @@ public class ProductServiceImpl implements ProductService{
         page.addAll(productList2);
         page.setPages((total + pageSize - 1) / pageSize);
         page.setTotal(total);
-
         PageInfo<Product> PageInfo = new PageInfo<>(page);
         return PageInfo;
     }
 
     @Override
     public PageInfo<Product> getAllProductsByPriceASC(int pageNo, int pageSize, Integer userId) {
-        PageHelper.startPage(pageNo,pageSize);
         List<Product> list = productMapper.selectByPriceASC();
         List<Product> productList2 = new ArrayList<>();
         for (Product product:list){
@@ -149,14 +145,24 @@ public class ProductServiceImpl implements ProductService{
             }
             productList2.add(product);
         }
-
-        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
+        int total = productList2.size();
+        if (total > pageSize) {
+            int toIndex = pageSize * pageNo;
+            if (toIndex > total) {
+                toIndex = total;
+            }
+            productList2 = productList2.subList(pageSize * (pageNo - 1), toIndex);
+        }
+        Page<Product> page = new Page<>(pageNo, pageSize);
+        page.addAll(productList2);
+        page.setPages((total + pageSize - 1) / pageSize);
+        page.setTotal(total);
+        PageInfo<Product> PageInfo = new PageInfo<>(page);
         return PageInfo;
     }
 
     @Override
     public PageInfo<Product> getAllProductsByPriceDESC(int pageNo, int pageSize, Integer userId) {
-        PageHelper.startPage(pageNo,pageSize);
         List<Product> list = productMapper.selectByPriceDESC();
         List<Product> productList2 = new ArrayList<>();
         for (Product product:list){
@@ -169,13 +175,24 @@ public class ProductServiceImpl implements ProductService{
             }
             productList2.add(product);
         }
-        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
+        int total = productList2.size();
+        if (total > pageSize) {
+            int toIndex = pageSize * pageNo;
+            if (toIndex > total) {
+                toIndex = total;
+            }
+            productList2 = productList2.subList(pageSize * (pageNo - 1), toIndex);
+        }
+        Page<Product> page = new Page<>(pageNo, pageSize);
+        page.addAll(productList2);
+        page.setPages((total + pageSize - 1) / pageSize);
+        page.setTotal(total);
+        PageInfo<Product> PageInfo = new PageInfo<>(page);
         return PageInfo;
     }
 
     @Override
     public PageInfo<Product> getAllProductsByRate(int pageNo, int pageSize, Integer userId) {
-        PageHelper.startPage(pageNo,pageSize);
         List<Product> list = productMapper.selectByRate();
         List<Product> productList2 = new ArrayList<>();
         for (Product product:list){
@@ -188,13 +205,24 @@ public class ProductServiceImpl implements ProductService{
             }
             productList2.add(product);
         }
-        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
+        int total = productList2.size();
+        if (total > pageSize) {
+            int toIndex = pageSize * pageNo;
+            if (toIndex > total) {
+                toIndex = total;
+            }
+            productList2 = productList2.subList(pageSize * (pageNo - 1), toIndex);
+        }
+        Page<Product> page = new Page<>(pageNo, pageSize);
+        page.addAll(productList2);
+        page.setPages((total + pageSize - 1) / pageSize);
+        page.setTotal(total);
+        PageInfo<Product> PageInfo = new PageInfo<>(page);
         return PageInfo;
     }
 
     @Override
     public PageInfo<Product> getAllProductsByTime(int pageNo, int pageSize, Integer userId) {
-        PageHelper.startPage(pageNo,pageSize);
         List<Product> list = productMapper.selectByTime();
         List<Product> productList2 = new ArrayList<>();
         for (Product product:list){
@@ -207,7 +235,19 @@ public class ProductServiceImpl implements ProductService{
             }
             productList2.add(product);
         }
-        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
+        int total = productList2.size();
+        if (total > pageSize) {
+            int toIndex = pageSize * pageNo;
+            if (toIndex > total) {
+                toIndex = total;
+            }
+            productList2 = productList2.subList(pageSize * (pageNo - 1), toIndex);
+        }
+        Page<Product> page = new Page<>(pageNo, pageSize);
+        page.addAll(productList2);
+        page.setPages((total + pageSize - 1) / pageSize);
+        page.setTotal(total);
+        PageInfo<Product> PageInfo = new PageInfo<>(page);
         return PageInfo;
     }
 
@@ -276,7 +316,6 @@ public class ProductServiceImpl implements ProductService{
     //————————>与无cid方法合并
     @Override
     public PageInfo<Product> getProductsByCategoryAndPriceRange(int pageNo,int pageSize,int cid,double min, double max, Integer userId) {
-        PageHelper.startPage(pageNo,pageSize);
         ProductExample productExample = new ProductExample();
         if(cid==5) {
             productExample.createCriteria().andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max);
@@ -296,13 +335,24 @@ public class ProductServiceImpl implements ProductService{
             }
             productList2.add(product);
         }
-        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
+        int total = productList2.size();
+        if (total > pageSize) {
+            int toIndex = pageSize * pageNo;
+            if (toIndex > total) {
+                toIndex = total;
+            }
+            productList2 = productList2.subList(pageSize * (pageNo - 1), toIndex);
+        }
+        Page<Product> page = new Page<>(pageNo, pageSize);
+        page.addAll(productList2);
+        page.setPages((total + pageSize - 1) / pageSize);
+        page.setTotal(total);
+        PageInfo<Product> PageInfo = new PageInfo<>(page);
         return PageInfo;
     }
 
     @Override
     public PageInfo<Product> getProductsByCategoryAndPriceRangeAndRate(int pageNo, int pageSize, int cid, double min, double max, Integer userId) {
-        PageHelper.startPage(pageNo,pageSize);
         List<Product> list = new ArrayList<>();
         if(cid==5) {
             list = productMapper.selectByPriceRangeAndRate(min,max);
@@ -320,13 +370,24 @@ public class ProductServiceImpl implements ProductService{
             }
             productList2.add(product);
         }
-        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
+        int total = productList2.size();
+        if (total > pageSize) {
+            int toIndex = pageSize * pageNo;
+            if (toIndex > total) {
+                toIndex = total;
+            }
+            productList2 = productList2.subList(pageSize * (pageNo - 1), toIndex);
+        }
+        Page<Product> page = new Page<>(pageNo, pageSize);
+        page.addAll(productList2);
+        page.setPages((total + pageSize - 1) / pageSize);
+        page.setTotal(total);
+        PageInfo<Product> PageInfo = new PageInfo<>(page);
         return PageInfo;
     }
 
     @Override
     public PageInfo<Product> getProductsByCategoryAndPriceRangeAndTime(int pageNo, int pageSize, int cid, double min, double max, Integer userId) {
-        PageHelper.startPage(pageNo,pageSize);
         ProductExample productExample = new ProductExample();
         if(cid==5) {
             productExample.createCriteria().andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max);
@@ -347,13 +408,24 @@ public class ProductServiceImpl implements ProductService{
             }
             productList2.add(product);
         }
-        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
+        int total = productList2.size();
+        if (total > pageSize) {
+            int toIndex = pageSize * pageNo;
+            if (toIndex > total) {
+                toIndex = total;
+            }
+            productList2 = productList2.subList(pageSize * (pageNo - 1), toIndex);
+        }
+        Page<Product> page = new Page<>(pageNo, pageSize);
+        page.addAll(productList2);
+        page.setPages((total + pageSize - 1) / pageSize);
+        page.setTotal(total);
+        PageInfo<Product> PageInfo = new PageInfo<>(page);
         return PageInfo;
     }
 
     @Override
     public PageInfo<Product> getProductsByCategoryAndPriceRangeAndPriceASC(int pageNo, int pageSize, int cid, double min, double max, Integer userId) {
-        PageHelper.startPage(pageNo,pageSize);
         ProductExample productExample = new ProductExample();
         if (cid==5) {
             productExample.createCriteria().andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max);
@@ -374,13 +446,24 @@ public class ProductServiceImpl implements ProductService{
             }
             productList2.add(product);
         }
-        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
+        int total = productList2.size();
+        if (total > pageSize) {
+            int toIndex = pageSize * pageNo;
+            if (toIndex > total) {
+                toIndex = total;
+            }
+            productList2 = productList2.subList(pageSize * (pageNo - 1), toIndex);
+        }
+        Page<Product> page = new Page<>(pageNo, pageSize);
+        page.addAll(productList2);
+        page.setPages((total + pageSize - 1) / pageSize);
+        page.setTotal(total);
+        PageInfo<Product> PageInfo = new PageInfo<>(page);
         return PageInfo;
     }
 
     @Override
     public PageInfo<Product> getProductsByCategoryAndPriceRangeAndPriceDESC(int pageNo, int pageSize, int cid, double min, double max, Integer userId) {
-        PageHelper.startPage(pageNo,pageSize);
         ProductExample productExample = new ProductExample();
         if (cid==5) {
             productExample.createCriteria().andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max);
@@ -401,7 +484,19 @@ public class ProductServiceImpl implements ProductService{
             }
             productList2.add(product);
         }
-        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
+        int total = productList2.size();
+        if (total > pageSize) {
+            int toIndex = pageSize * pageNo;
+            if (toIndex > total) {
+                toIndex = total;
+            }
+            productList2 = productList2.subList(pageSize * (pageNo - 1), toIndex);
+        }
+        Page<Product> page = new Page<>(pageNo, pageSize);
+        page.addAll(productList2);
+        page.setPages((total + pageSize - 1) / pageSize);
+        page.setTotal(total);
+        PageInfo<Product> PageInfo = new PageInfo<>(page);
         return PageInfo;
     }
 
@@ -412,7 +507,6 @@ public class ProductServiceImpl implements ProductService{
     //  header搜索功能——————>跳转到product
     @Override
     public PageInfo<Product> searchProductsByCategory(int pageNo, int pageSize, int cid, String s, Integer userId) {
-        PageHelper.startPage(pageNo,pageSize);
         ProductExample productExample = new ProductExample();
         if (cid==5) {
             productExample.createCriteria().andProductNameLike("%"+s+"%");
@@ -434,13 +528,24 @@ public class ProductServiceImpl implements ProductService{
             }
             productList2.add(product);
         }
-        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
+        int total = productList2.size();
+        if (total > pageSize) {
+            int toIndex = pageSize * pageNo;
+            if (toIndex > total) {
+                toIndex = total;
+            }
+            productList2 = productList2.subList(pageSize * (pageNo - 1), toIndex);
+        }
+        Page<Product> page = new Page<>(pageNo, pageSize);
+        page.addAll(productList2);
+        page.setPages((total + pageSize - 1) / pageSize);
+        page.setTotal(total);
+        PageInfo<Product> PageInfo = new PageInfo<>(page);
         return PageInfo;
     }
 
     @Override
     public PageInfo<Product> searchProductsByCategoryAndRate(int pageNo, int pageSize, int cid, String s, Integer userId) {
-        PageHelper.startPage(pageNo,pageSize);
         //5为全部分类，即查询所有商品
         List<Product> list = new ArrayList<>();
         if (cid==5) {
@@ -460,13 +565,24 @@ public class ProductServiceImpl implements ProductService{
             }
             productList2.add(product);
         }
-        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
+        int total = productList2.size();
+        if (total > pageSize) {
+            int toIndex = pageSize * pageNo;
+            if (toIndex > total) {
+                toIndex = total;
+            }
+            productList2 = productList2.subList(pageSize * (pageNo - 1), toIndex);
+        }
+        Page<Product> page = new Page<>(pageNo, pageSize);
+        page.addAll(productList2);
+        page.setPages((total + pageSize - 1) / pageSize);
+        page.setTotal(total);
+        PageInfo<Product> PageInfo = new PageInfo<>(page);
         return PageInfo;
     }
 
     @Override
     public PageInfo<Product> searchProductsByCategoryAndTime(int pageNo, int pageSize, int cid, String s, Integer userId) {
-        PageHelper.startPage(pageNo,pageSize);
         ProductExample productExample = new ProductExample();
         if (cid==5) {
             productExample.createCriteria().andProductNameLike("%"+s+"%");
@@ -489,13 +605,24 @@ public class ProductServiceImpl implements ProductService{
             }
             productList2.add(product);
         }
-        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
+        int total = productList2.size();
+        if (total > pageSize) {
+            int toIndex = pageSize * pageNo;
+            if (toIndex > total) {
+                toIndex = total;
+            }
+            productList2 = productList2.subList(pageSize * (pageNo - 1), toIndex);
+        }
+        Page<Product> page = new Page<>(pageNo, pageSize);
+        page.addAll(productList2);
+        page.setPages((total + pageSize - 1) / pageSize);
+        page.setTotal(total);
+        PageInfo<Product> PageInfo = new PageInfo<>(page);
         return PageInfo;
     }
 
     @Override
     public PageInfo<Product> searchProductsByCategoryAndPriceASC(int pageNo, int pageSize, int cid, String s, Integer userId) {
-        PageHelper.startPage(pageNo,pageSize);
         ProductExample productExample = new ProductExample();
         if (cid==5) {
             productExample.createCriteria().andProductNameLike("%"+s+"%");
@@ -518,13 +645,24 @@ public class ProductServiceImpl implements ProductService{
             }
             productList2.add(product);
         }
-        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
+        int total = productList2.size();
+        if (total > pageSize) {
+            int toIndex = pageSize * pageNo;
+            if (toIndex > total) {
+                toIndex = total;
+            }
+            productList2 = productList2.subList(pageSize * (pageNo - 1), toIndex);
+        }
+        Page<Product> page = new Page<>(pageNo, pageSize);
+        page.addAll(productList2);
+        page.setPages((total + pageSize - 1) / pageSize);
+        page.setTotal(total);
+        PageInfo<Product> PageInfo = new PageInfo<>(page);
         return PageInfo;
     }
 
     @Override
     public PageInfo<Product> searchProductsByCategoryAndPriceDESC(int pageNo, int pageSize, int cid, String s, Integer userId) {
-        PageHelper.startPage(pageNo,pageSize);
         ProductExample productExample = new ProductExample();
         if (cid==5) {
             productExample.createCriteria().andProductNameLike("%"+s+"%");
@@ -547,7 +685,19 @@ public class ProductServiceImpl implements ProductService{
             }
             productList2.add(product);
         }
-        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
+        int total = productList2.size();
+        if (total > pageSize) {
+            int toIndex = pageSize * pageNo;
+            if (toIndex > total) {
+                toIndex = total;
+            }
+            productList2 = productList2.subList(pageSize * (pageNo - 1), toIndex);
+        }
+        Page<Product> page = new Page<>(pageNo, pageSize);
+        page.addAll(productList2);
+        page.setPages((total + pageSize - 1) / pageSize);
+        page.setTotal(total);
+        PageInfo<Product> PageInfo = new PageInfo<>(page);
         return PageInfo;
     }
 
@@ -555,7 +705,6 @@ public class ProductServiceImpl implements ProductService{
     //  product-list
     @Override
     public PageInfo<Product> searchProductsByCategoryAndPriceRange(int pageNo, int pageSize, int cid, double min, double max, String s, Integer userId) {
-        PageHelper.startPage(pageNo,pageSize);
         ProductExample productExample = new ProductExample();
         if (cid==5) {
             productExample.createCriteria().andProductNameLike("%"+s+"%")
@@ -581,13 +730,24 @@ public class ProductServiceImpl implements ProductService{
             }
             productList2.add(product);
         }
-        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
+        int total = productList2.size();
+        if (total > pageSize) {
+            int toIndex = pageSize * pageNo;
+            if (toIndex > total) {
+                toIndex = total;
+            }
+            productList2 = productList2.subList(pageSize * (pageNo - 1), toIndex);
+        }
+        Page<Product> page = new Page<>(pageNo, pageSize);
+        page.addAll(productList2);
+        page.setPages((total + pageSize - 1) / pageSize);
+        page.setTotal(total);
+        PageInfo<Product> PageInfo = new PageInfo<>(page);
         return PageInfo;
     }
 
     @Override
     public PageInfo<Product> searchProductsByCategoryAndPriceRangeAndRate(int pageNo, int pageSize, int cid, double min, double max, String s, Integer userId) {
-        PageHelper.startPage(pageNo,pageSize);
         //5为全部分类，即查询所有商品
         List<Product> list = new ArrayList<>();
         if (cid==5) {
@@ -607,13 +767,24 @@ public class ProductServiceImpl implements ProductService{
             }
             productList2.add(product);
         }
-        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
+        int total = productList2.size();
+        if (total > pageSize) {
+            int toIndex = pageSize * pageNo;
+            if (toIndex > total) {
+                toIndex = total;
+            }
+            productList2 = productList2.subList(pageSize * (pageNo - 1), toIndex);
+        }
+        Page<Product> page = new Page<>(pageNo, pageSize);
+        page.addAll(productList2);
+        page.setPages((total + pageSize - 1) / pageSize);
+        page.setTotal(total);
+        PageInfo<Product> PageInfo = new PageInfo<>(page);
         return PageInfo;
     }
 
     @Override
     public PageInfo<Product> searchProductsByCategoryAndPriceRangeAndTime(int pageNo, int pageSize, int cid, double min, double max, String s, Integer userId) {
-        PageHelper.startPage(pageNo,pageSize);
         ProductExample productExample = new ProductExample();
         if (cid==5) {
             productExample.createCriteria().andProductNameLike("%"+s+"%")
@@ -640,13 +811,24 @@ public class ProductServiceImpl implements ProductService{
             }
             productList2.add(product);
         }
-        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
+        int total = productList2.size();
+        if (total > pageSize) {
+            int toIndex = pageSize * pageNo;
+            if (toIndex > total) {
+                toIndex = total;
+            }
+            productList2 = productList2.subList(pageSize * (pageNo - 1), toIndex);
+        }
+        Page<Product> page = new Page<>(pageNo, pageSize);
+        page.addAll(productList2);
+        page.setPages((total + pageSize - 1) / pageSize);
+        page.setTotal(total);
+        PageInfo<Product> PageInfo = new PageInfo<>(page);
         return PageInfo;
     }
 
     @Override
     public PageInfo<Product> searchProductsByCategoryAndPriceRangeAndPriceASC(int pageNo, int pageSize, int cid, double min, double max, String s, Integer userId) {
-        PageHelper.startPage(pageNo,pageSize);
         ProductExample productExample = new ProductExample();
         if (cid==5) {
             productExample.createCriteria().andProductNameLike("%"+s+"%")
@@ -673,13 +855,24 @@ public class ProductServiceImpl implements ProductService{
             }
             productList2.add(product);
         }
-        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
+        int total = productList2.size();
+        if (total > pageSize) {
+            int toIndex = pageSize * pageNo;
+            if (toIndex > total) {
+                toIndex = total;
+            }
+            productList2 = productList2.subList(pageSize * (pageNo - 1), toIndex);
+        }
+        Page<Product> page = new Page<>(pageNo, pageSize);
+        page.addAll(productList2);
+        page.setPages((total + pageSize - 1) / pageSize);
+        page.setTotal(total);
+        PageInfo<Product> PageInfo = new PageInfo<>(page);
         return PageInfo;
     }
 
     @Override
     public PageInfo<Product> searchProductsByCategoryAndPriceRangeAndPriceDESC(int pageNo, int pageSize, int cid, double min, double max, String s, Integer userId) {
-        PageHelper.startPage(pageNo,pageSize);
         ProductExample productExample = new ProductExample();
         if (cid==5) {
             productExample.createCriteria().andProductNameLike("%"+s+"%")
@@ -706,7 +899,19 @@ public class ProductServiceImpl implements ProductService{
             }
             productList2.add(product);
         }
-        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
+        int total = productList2.size();
+        if (total > pageSize) {
+            int toIndex = pageSize * pageNo;
+            if (toIndex > total) {
+                toIndex = total;
+            }
+            productList2 = productList2.subList(pageSize * (pageNo - 1), toIndex);
+        }
+        Page<Product> page = new Page<>(pageNo, pageSize);
+        page.addAll(productList2);
+        page.setPages((total + pageSize - 1) / pageSize);
+        page.setTotal(total);
+        PageInfo<Product> PageInfo = new PageInfo<>(page);
         return PageInfo;
     }
 
@@ -715,7 +920,6 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public int removeProductsByProductIds(Integer... productIds) {
        int count=0;
-
         if (productIds!=null && productIds.length>0){
             for(Integer id:productIds){
                 int i = productMapper.deleteByPrimaryKey(id);
