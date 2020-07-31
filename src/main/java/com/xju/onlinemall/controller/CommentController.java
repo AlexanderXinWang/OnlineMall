@@ -104,7 +104,13 @@ public class CommentController {
          * 获得用户点击的商品信息
          * */
         Product productSingle =  productService.selectByProductId(productId);
-        String categoryName = null;
+
+        if (productSingle == null){
+            System.out.println("后台提示：商品信息获取失败！默认设置获取id为1的商品,请注意！！！！");
+            productSingle=productService.selectByProductId(1);
+        }
+
+        String categoryName = "";
         switch (productSingle.getCategoryId()){
             default:
                 categoryName = "";
@@ -134,12 +140,8 @@ public class CommentController {
          * */
         List<Comment> comments = commentService.selectByProductId(productId);
 
-        if (productSingle == null){
-            System.out.println("后台提示：商品信息获取失败！默认设置获取id为1的商品,请注意！！！！");
-            Product product = productService.selectByProductId(1);
-            productSingle=product;
-        }
-        else {
+
+
          /**
           *
           * 如果该商品的评价是0
@@ -173,7 +175,8 @@ public class CommentController {
             modelMap.put("categoryName",categoryName);
             modelMap.addAttribute("recommendList",recommendList);
             modelMap.put("relativeList",relativeList);
-            }
+            System.out.println(relativeList);
+
 
 
         System.out.println("后台提示：查看是否获得和注入正确的商品属性："+productSingle);
