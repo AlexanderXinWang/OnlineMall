@@ -2,12 +2,12 @@ package com.xju.onlinemall.service;
 
 import com.xju.onlinemall.common.domain.*;
 import com.xju.onlinemall.mapper.CartMapper;
+import com.xju.onlinemall.mapper.CommentMapper;
 import com.xju.onlinemall.mapper.OrderMapper;
 import com.xju.onlinemall.mapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,6 +19,9 @@ public class OrderServiceImpl implements OrderService {
     ProductMapper productMapper;
     @Autowired
     CartMapper cartMapper;
+    @Autowired
+    CommentMapper commentMapper;
+
     //注意！该函数返回的是用户的所有订单
     @Override
     public List<Order> getOrderList(Integer userId) {
@@ -87,5 +90,11 @@ public class OrderServiceImpl implements OrderService {
         }
 
         return "下单成功！";
+    }
+
+    @Override
+    public String saveOrderComment(Comment comment) {
+        commentMapper.insert(comment);
+        return "评价成功";
     }
 }

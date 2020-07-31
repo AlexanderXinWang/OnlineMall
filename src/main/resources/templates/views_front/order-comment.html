@@ -2,39 +2,43 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <div th:replace="~{fragment/static::link}"></div>
-    <title>优惠明细</title>
+    <title>追加评价</title>
 </head>
 <body>
 <table class="shop_table cart wishlist_table" data-pagination="no" data-per-page="5"
        data-page="1" data-id="" data-token="">
     <tr id="yith-wcwl-row-29" data-row-id="29" style="color: #1b1b1b">
         <td class="product-stock-status">
-            <h4 style="font-weight: 600">金额优惠明细</h4>
-            <span>*实际优惠金额请以下单页为准</span>
-        </td>
-        <td >
-            <p th:align="left">
-                <span class='wishlist-in-stock'>
-                    商品总价：
-                    <span style="float: right">¥ XX.XX</span>
-                </span><br>
-                <span class='wishlist-in-stock'>
-                    跨店满减：
-                    <span style="float: right;color: #76951C">-¥ XX.XX</span>
-                </span><br>
-                <span class='wishlist-in-stock'>
-                    店铺优惠：
-                   <span style="float: right;color: #76951C">-¥ XX.XX</span>
-                </span><br>
-                <span class='wishlist-in-stock'>
-                    单品优惠：
-                    <span style="float: right;color: #76951C">-¥ XX.XX</span>
-                </span><br>
-            </p>
+            <h4 style="font-weight: 600">发表你的评价</h4>
+            <span>*请根据你的实际情况对商品进行评价</span>
         </td>
         <td>
-            <h5 th:align="left">共优惠：<span style="float: right;color: #76951C">-¥ XX.XX</span></h5>
-            <h5 th:align="left">合计：<span style="float: right">¥ XX.XX</span></h5>
+            <div style="float: left">
+                <img th:src="${commentOrder.product.pimage}" style="height: 78px;width: 78px;">
+            </div>
+            <div style="float: left;text-align: left;padding-left: 15px;">
+                <span>订单号：<span th:text="${commentOrder.orderId}"></span></span><br>
+                <span style="color: #76951C" th:text="${commentOrder.product.productName}"></span><br>
+                <span style="color: #76951C" th:text="${commentOrder.product.context}"></span>
+            </div>
+        </td>
+        <td style="border-color: ">
+            <form id="commentFrom" class="commentFrom" name="commentFrom" method="post">
+                <p th:align="left">
+                <span class='wishlist-in-stock' style="height: 40px;">
+                    <span style="top: 10px;">商品评分：</span>
+                    <input id="commentScore" class="commentScore" name="commentScore" type="text" value=""
+                           onkeyup="this.value=this.value.replace(/\s+/g,'')"
+                           style="float: right;color: #76951C;width:80px;vertical-align:middle;" >
+                    <input id="commentProductId" class="commentProductId" name="commentProductId"
+                           type="text" style="display: none" th:value="${commentOrder.product.productId}">
+                </span><br><br>
+                    <span class='wishlist-in-stock'>评价内容：</span><br>
+                    <textarea id="commentContext" class="commentContext" name="commentContext"
+                              placeholder="请在这里写下你对本商品的评价吧~" style="min-height:200px;"></textarea>
+                </p>
+            </form>
+
         </td>
     </tr>
 </table>
