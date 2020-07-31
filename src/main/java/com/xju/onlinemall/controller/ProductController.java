@@ -127,6 +127,7 @@ public class ProductController {
             //搜索条件与商品种类置入页面
             model.addAttribute("cid",product_cat);
             model.addAttribute("s",s);
+            System.out.println("此页商品"+pageInfo);
             System.out.println("此页商品数"+productList.size());
         }
 

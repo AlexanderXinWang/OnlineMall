@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,7 +74,7 @@ public class CartController {
      **/
 
     @RequestMapping("/addProductToCart")
-    //@ResponseBody
+//    @ResponseBody
     public String addProject(HttpSession session, ModelMap modelMap,
                              HttpServletRequest request,Integer count){
         //获得当前登录的用户信息
@@ -120,6 +121,7 @@ public class CartController {
         modelMap.addAttribute("headerCartProductList",cartProducts);
         modelMap.addAttribute("amount",amount);
         modelMap.addAttribute("cartCount",cartCount);
+
         return "views_front/cart";
     }
 

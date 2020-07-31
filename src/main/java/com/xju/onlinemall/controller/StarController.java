@@ -187,7 +187,7 @@ public class StarController {
             }
         }else{
             try {
-                response.sendRedirect("/product-list.html?pageSize="+request.getParameter("pageSize")+"&condition="+request.getParameter("condition")+"&cid="+request.getParameter("cid")+"&min="+request.getParameter("min")+"&max="+request.getParameter("max")+"&s="+request.getParameter("s"));
+                response.sendRedirect("/product-list.html?pageNo="+request.getParameter("pageNo")+"&pageSize="+request.getParameter("pageSize")+"&condition="+request.getParameter("condition")+"&cid="+request.getParameter("cid")+"&min="+request.getParameter("min")+"&max="+request.getParameter("max")+"&s="+request.getParameter("s"));
             } catch (IOException e) {
                 System.out.println("页面跳转出错！");
             }

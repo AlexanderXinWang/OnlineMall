@@ -110,11 +110,11 @@ public class ProductServiceImpl implements ProductService{
             StarExample starExample = new StarExample();
             starExample.createCriteria().andUserIdEqualTo(userId).andProductIdEqualTo(product.getProductId());
             List<Star> starList = starMapper.selectByExample(starExample);
-                if (starList.size()!=0){
-                    product.setStarId(starList.get(0).getStarId());
-                    product.setStarIsDelete(starList.get(0).getStarIsDelete());
-                }
-                productList2.add(product);
+            if (starList.size()!=0){
+                product.setStarId(starList.get(0).getStarId());
+                product.setStarIsDelete(starList.get(0).getStarIsDelete());
+            }
+            productList2.add(product);
         }
 
         int total = productList2.size();
@@ -149,6 +149,7 @@ public class ProductServiceImpl implements ProductService{
             }
             productList2.add(product);
         }
+
         PageInfo<Product> PageInfo = new PageInfo<>(productList2);
         return PageInfo;
     }

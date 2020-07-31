@@ -206,11 +206,20 @@
                                         </div>
                                         <div class="yith-wcwl-add-to-wishlist">
                                             <div class="yith-wcwl-add-button show" th:switch="${product.starIsDelete}">
-                                                <a href="#" th:case="4" th:text="添加到收藏夹" class="button add_to_wishlist" th:href="@{'/addStarInProductList?productId='+${product.productId}+'&starId='+${product.starId}+'&starIsDelete='+${product.starIsDelete}+'&pageSize='+${pageInfo.getPageSize()}+'&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}+'&s='+${s}}">
+                                                <a href="#" th:case="4" th:text="添加到收藏夹" class="button add_to_wishlist"
+                                                   th:href="@{'/addStarInProductList?productId='+${product.productId}+'&starId='+${product.starId}
+                                                   +'&starIsDelete='+${product.starIsDelete}+'&pageNo='+${pageInfo.getPageNum()}+'&pageSize='+${pageInfo.getPageSize()}
+                                                   +'&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}+'&s='+${s}}">
                                                     </a>
-                                                <a href="#" th:case="3" th:text="已添加到收藏夹" class="button added_to_wishlist" th:href="@{'/addStarInProductList?productId='+${product.productId}+'&starId='+${product.starId}+'&starIsDelete='+${product.starIsDelete}+'&pageSize='+${pageInfo.getPageSize()}+'&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}+'&s='+${s}}">
+                                                <a href="#" th:case="3" th:text="已添加到收藏夹" class="button added_to_wishlist"
+                                                   th:href="@{'/addStarInProductList?productId='+${product.productId}+'&starId='+${product.starId}
+                                                   +'&starIsDelete='+${product.starIsDelete}+'&pageNo='+${pageInfo.getPageNum()}+'&pageSize='+${pageInfo.getPageSize()}
+                                                   +'&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}+'&s='+${s}}">
                                                     </a>
-                                                <a href="#" th:case="*" th:text="添加到收藏夹" class="button add_to_wishlist" th:href="@{'/addStarInProductList?productId='+${product.productId}+'&starId='+${product.starId}+'&starIsDelete='+${product.starIsDelete}+'&pageSize='+${pageInfo.getPageSize()}+'&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}+'&s='+${s}}">
+                                                <a href="#" th:case="*" th:text="添加到收藏夹" class="button add_to_wishlist"
+                                                   th:href="@{'/addStarInProductList?productId='+${product.productId}+'&starId='+${product.starId}
+                                                   +'&starIsDelete='+${product.starIsDelete}+'&pageNo='+${pageInfo.getPageNum()}+'&pageSize='+${pageInfo.getPageSize()}
+                                                   +'&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}+'&s='+${s}}">
                                                     </a>
                                             </div>
                                         </div>
