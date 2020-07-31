@@ -164,8 +164,7 @@ public class UserController {
      * */
     @RequestMapping("/changeDetail")
     @ResponseBody
-    public Object changeDetail(HttpSession session,@Param("username") String username,String password,
-                               String phone,String email,String payPassword) {
+    public Object changeDetail(HttpSession session,@Param("username") String username, String phone,String email) {
         ModelMap modelMap = new ModelMap();
         User userOrigin = (User)session.getAttribute("user");
         User user = new User();
@@ -178,11 +177,13 @@ public class UserController {
         user.setRegisterTime(userOrigin.getRegisterTime());
         user.setIsDelete(userOrigin.getIsDelete());
         user.setImageUrl(userOrigin.getImageUrl());
+        user.setPassword(userOrigin.getPassword());
+        user.setPayPassword(userOrigin.getPayPassword());
 
         //修改的信息
         user.setUserName(username);
-        user.setPassword(password);
-        user.setPayPassword(payPassword);
+        /*user.setPassword(password);
+        user.setPayPassword(payPassword);*/
         user.setPhone(phone);
         user.setEmail(email);
 
@@ -199,6 +200,39 @@ public class UserController {
             System.out.println("修改成功!");
             modelMap.put("success", true);
             modelMap.put("msg", "/logout");
+        }
+        return modelMap;
+    }
+
+    @RequestMapping("/changePassword")
+    @ResponseBody
+    public Object changePassword(HttpSession session,@Param("password") String password, @Param("newPassword")String newPassword,
+                                 @Param("payPassword")String payPassword,@Param("newPayPassword")String newPayPassword) {
+        ModelMap modelMap = new ModelMap();
+        User userOrigin = (User)session.getAttribute("user");
+
+        //修改验证
+        if (userOrigin.getPassword().equals(password) && userOrigin.getPayPassword().equals(payPassword)) {
+            User user = new User();
+            //传入修改信息
+            //不修改的原值
+            user.setUserId(userOrigin.getUserId());
+            user.setUserRole(userOrigin.getUserRole());
+            user.setRegisterTime(userOrigin.getRegisterTime());
+            user.setIsDelete(userOrigin.getIsDelete());
+            user.setImageUrl(userOrigin.getImageUrl());
+
+            //修改的信息
+            user.setPassword(newPassword);
+            user.setPayPassword(newPayPassword);
+
+            userService.changeAccountDetail(user);
+            //查询结果返回前端
+            modelMap.put("success", true);
+            modelMap.put("msg", "/logout");
+        }
+        else {
+            modelMap.put("success", false);
         }
         return modelMap;
     }
