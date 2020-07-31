@@ -173,7 +173,6 @@ public class CommentController {
             modelMap.put("categoryName",categoryName);
             modelMap.addAttribute("recommendList",recommendList);
             modelMap.put("relativeList",relativeList);
-            System.out.println(relativeList);
             }
 
 
