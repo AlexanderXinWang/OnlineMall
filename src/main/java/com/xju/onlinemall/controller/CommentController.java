@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 
 @Controller
@@ -46,17 +43,19 @@ public class CommentController {
     @RequestMapping("/addComment")
     @ResponseBody
     public Object addComment(HttpSession session,Integer productId,String author,String email,Integer rating,String comment){
+
         User user = (User)session.getAttribute("user");
 
         //获得用户主键
         Integer userId = user.getUserId();
-        HashMap<String, Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         System.out.println("前台传来的值:"+author+" "+email+" "+rating+" "+comment+" "+productId);
         /**
          * 如果商品
          * */
-        if (productId==null || email==null){
+        if (productId==null || email.isEmpty() || !author.equals(user.getUserName())){
             map.put("success",false);
+            System.out.println("评论失败");
         }
         else {
             boolean b = commentService.insertIntoCommentByDetails(userId, productId, rating, comment, new Date());
@@ -103,68 +102,60 @@ public class CommentController {
         }
         modelMap.addAttribute("starId", starList.get(0).getStarId());
         modelMap.addAttribute("starIsDelete", starList.get(0).getStarIsDelete().intValue());
-            /**
-             * 获得用户点击的商品信息
-             * */
-            Product productSingle =  productService.selectByProductId(productId);
-            modelMap.addAttribute("productSingle",productSingle);
-//            modelMap.addAttribute("productName",productSingle.getProductName());
-//            modelMap.addAttribute("pImage",productSingle.getPimage());
-//            modelMap.addAttribute("context",productSingle.getContext());
-//            modelMap.addAttribute("price",productSingle.getPrice());
-//            modelMap.addAttribute("proNo",productSingle.getProNo());
-//            modelMap.addAttribute("productId",productSingle.getProductId());
+        /**
+         * 获得用户点击的商品信息
+         * */
+        Product productSingle =  productService.selectByProductId(productId);
+        modelMap.addAttribute("productSingle",productSingle);
 
-            /**
-             *
-             * 获得该商品评论的列表
-             * */
-            List<Comment> comments = commentService.selectByProductId(productId);
+        modelMap.addAttribute("productIdmmm",productId);
 
-            /**
-             *
-             * 检测该商品评论是否获得成功
-             * */
-            if (productSingle == null){
-                System.out.println("后台提示：商品信息获取失败！默认设置获取id为1的商品,请注意！！！！");
-                Product product = productService.selectByProductId(1);
-                productSingle=product;
-            }
-            else {
-                /**
-                 *
-                 * 如果该商品的评价是0
-                 *  给他设置默认的评价
-                 * */
-                if (comments==null || comments.size()==0){
-                    System.out.println("后台提示:商品评论获得失败！设置默认的评论展示！！");
-                    Comment comment = new Comment();
-                    comment.setProductId(1);
-                    comment.setUserId(1);
-                    comment.setScore(10);
-                    comment.setCommentTime(new Date());
-                    comment.setContext("该商品没有评价！系统默认展示该评价");
+        /**
+         *
+         * 获得该商品评论的列表
+         * */
+        List<Comment> comments = commentService.selectByProductId(productId);
 
-                    comment.setUsername("系统默认");
-                    comment.setCount(1);
+        if (productSingle == null){
+            System.out.println("后台提示：商品信息获取失败！默认设置获取id为1的商品,请注意！！！！");
+            Product product = productService.selectByProductId(1);
+            productSingle=product;
+        }
+        else {
+         /**
+          *
+          * 如果该商品的评价是0
+          *  给他设置默认的评价
+          * */
+           if (comments==null || comments.size()==0){
+               System.out.println("后台提示:商品评论获得失败！设置默认的评论展示！！");
+               Comment comment = new Comment();
+               comment.setProductId(1);
+               comment.setUserId(1);
+               comment.setScore(10);
+               comment.setCommentTime(new Date());
+               comment.setContext("该商品没有评价！系统默认展示该评价");
 
-                    comments=new ArrayList<Comment>();
-                    comments.add(comment);
-                    modelMap.put("commentsList",comments);
-                    modelMap.put("commentCount",1);
-                }
-                else {
-                    //传入评论数
-                    modelMap.put("commentCount",comments.size());
-                    modelMap.put("commentsList",comments);
-                }
+               comment.setUsername("系统默认");
+               comment.setCount(1);
+
+               comments=new ArrayList<>();
+               comments.add(comment);
+               modelMap.put("commentsList",comments);
+               modelMap.put("commentCount",1);
+           }
+           else {
+               //传入评论数
+               modelMap.put("commentCount",comments.size());
+               modelMap.put("commentsList",comments);
+           }
                 //添加商品信息到modelmap中
-                modelMap.put("productSingle",productSingle);
-            }
+            modelMap.put("productSingle",productSingle);
+        }
 
 
-            System.out.println("后台提示：查看是否获得和注入正确的商品属性："+productSingle);
-            return "views_front/single-product-simple";
+        System.out.println("后台提示：查看是否获得和注入正确的商品属性："+productSingle);
+        return "views_front/single-product-simple";
 
 
     }

@@ -17,6 +17,7 @@
         </nav>
     </div>
 </div>
+<input hidden="hidden" id="productIdmmm" th:value="${productIdmmm}">
 <div class="single-thumb-vertical main-container shop-page no-sidebar">
     <div class="container">
         <div class="row">
@@ -839,26 +840,23 @@
             var email=$("#email").val().trim();
             var rating=$("#rating option:selected").val();
             var comment=$("#comment").val().trim();
+            var prodcutId = $("#productIdmmm").val();
             // var gradeStars=$("#gradeStars").val();
-            //测试是否能够拿到值
-            // alert(author+" "+email+" "+rating+" "+comment+" ");
             $.ajax({
                 type:"POST",
-                //该URL 如果前面加/,相对的是根地址，不是项目地址,不加/相对的就是项目地址
                 url:"addComment",
                 dataType:"json",
-                data:{"author":author,"email":email,"rating":rating,"comment":comment,"productId":1},
+                data:{"author":author,"email":email,"rating":rating,"comment":comment,"productId":prodcutId},
                 success:function (data) {
                     if (data["success"]){
-                        //返回值是learn/t1 相对于项目地址
-                        //返回值是/learn/t1 相对于根地址 http://localhost:8080/learn/t1
-                        // alert("评论成功,您可以继续选择购物或关注该产品的后续动态！")
-                        layer.msg("评论成功,您可以继续选择购物或关注该产品的后续动态！",{time:1700},function () {
+                        alert("评论成功！")
+                        window.location.reload()
+                        layer.msg("评论成功",{time:1800},function () {
                             layer.close(index);
                         })
                     }
                     else{
-                        // alert("评论失败,请检测您的用户名或电子邮件是否正确！")
+                        alert("评论失败,请检测您的用户名或电子邮件是否正确！")
                         layer.msg("评论失败,请检测您的用户名或电子邮件是否正确！",{time:1700},function () {
                             layer.close(index);
                         })
