@@ -358,7 +358,7 @@
                     </h2>
                 </div>
                 <div class="owl-slick owl-products equal-container better-height"
-                     data-slick="{&quot;arrows&quot;:false,&quot;slidesMargin&quot;:30,&quot;dots&quot;:true,&quot;infinite&quot;:false,&quot;slidesToShow&quot;:4}"
+                     data-slick="{&quot;arrows&quot;:false,&quot;slidesMargin&quot;:30,&quot;dots&quot;:false,&quot;infinite&quot;:false,&quot;slidesToShow&quot;:4}"
                      data-responsive="[{&quot;breakpoint&quot;:480,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:768,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:992,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1200,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1500,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;30&quot;}}]">
                     <div class="product-item recent-product style-01 rows-space-0 product type-product status-publish has-post-thumbnail product-type-simple"
                          th:each="relative:${relativeList}">
@@ -373,15 +373,15 @@
                                 <div class="flash">
                                     <span class="onnew"><span class="text">推荐</span></span></div>
                                 <div class="group-button">
-                                    <div class="yith-wcwl-add-to-wishlist">
-                                        <div class="yith-wcwl-add-button show">
-                                            <a></a>
-                                        </div>
-                                    </div>
-                                    <div class="furgan product compare-button">
-                                        <a href="#" class="compare button">比较其他商品</a>
-                                    </div>
-                                    <a href="#" class="button yith-wcqv-button">快速查看</a>
+                                    <!--<div class="yith-wcwl-add-to-wishlist">-->
+                                        <!--<div class="yith-wcwl-add-button show">-->
+                                            <!--<a></a>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="furgan product compare-button">-->
+                                        <!--<a href="#" class="compare button">比较其他商品</a>-->
+                                    <!--</div>-->
+                                    <!--<a href="#" class="button yith-wcqv-button">快速查看</a>-->
                                     <div class="add-to-cart">
                                         <a class="button product_type_simple add_to_cart_button"
                                            th:href="@{'/addProductToCart?id='+${relative.productId}}">添加到购物车</a>
@@ -416,7 +416,7 @@
                     </h2>
                 </div>
                 <div class="owl-slick owl-products equal-container better-height"
-                     data-slick="{&quot;arrows&quot;:false,&quot;slidesMargin&quot;:30,&quot;dots&quot;:true,&quot;infinite&quot;:false,&quot;slidesToShow&quot;:4}"
+                     data-slick="{&quot;arrows&quot;:false,&quot;slidesMargin&quot;:30,&quot;dots&quot;:false,&quot;infinite&quot;:false,&quot;slidesToShow&quot;:4}"
                      data-responsive="[{&quot;breakpoint&quot;:480,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:768,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:992,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1200,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1500,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;30&quot;}}]">
                     <div class="product-item recent-product style-01 rows-space-0 product type-product status-publish has-post-thumbnail product-type-simple"
                          th:each="recommend:${recommendList}">
@@ -431,15 +431,15 @@
                                 <div class="flash">
                                     <span class="onnew"><span class="text">推荐</span></span></div>
                                 <div class="group-button">
-                                    <div class="yith-wcwl-add-to-wishlist">
-                                        <div class="yith-wcwl-add-button show">
-                                            <a href="#" class="add_to_wishlist">添加到愿望清单</a>
-                                        </div>
-                                    </div>
-                                    <div class="furgan product compare-button">
-                                        <a href="#" class="compare button">比较其他商品</a>
-                                    </div>
-                                    <a href="#" class="button yith-wcqv-button">快速查看</a>
+                                    <!--<div class="yith-wcwl-add-to-wishlist">-->
+                                        <!--<div class="yith-wcwl-add-button show">-->
+                                            <!--<a href="#" class="add_to_wishlist">添加到愿望清单</a>-->
+                                        <!--</div>-->
+                                    <!--</div>-->
+                                    <!--<div class="furgan product compare-button">-->
+                                        <!--<a href="#" class="compare button">比较其他商品</a>-->
+                                    <!--</div>-->
+                                    <!--<a href="#" class="button yith-wcqv-button">快速查看</a>-->
                                     <div class="add-to-cart">
                                         <a class="button product_type_simple add_to_cart_button"
                                            th:href="@{'/addProductToCart?id='+${recommend.productId}}">添加到购物车</a>
