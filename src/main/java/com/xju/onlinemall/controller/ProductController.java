@@ -91,19 +91,19 @@ public class ProductController {
             switch (condition) {
                 default:
                     //获取分页信息与商品列表
-                    pageInfo = productService.searchProductsByCategory(pageNo, pageSize,product_cat,s);
+                    pageInfo = productService.searchProductsByCategory(pageNo, pageSize,product_cat,s,userId);
                     break;
                 case 1:
-                    pageInfo = productService.searchProductsByCategoryAndRate(pageNo, pageSize,product_cat,s);
+                    pageInfo = productService.searchProductsByCategoryAndRate(pageNo, pageSize,product_cat,s,userId);
                     break;
                 case 2:
-                    pageInfo = productService.searchProductsByCategoryAndTime(pageNo, pageSize,product_cat,s);
+                    pageInfo = productService.searchProductsByCategoryAndTime(pageNo, pageSize,product_cat,s,userId);
                     break;
                 case 3:
-                    pageInfo = productService.searchProductsByCategoryAndPriceASC(pageNo, pageSize,product_cat,s);
+                    pageInfo = productService.searchProductsByCategoryAndPriceASC(pageNo, pageSize,product_cat,s,userId);
                     break;
                 case 4:
-                    pageInfo = productService.searchProductsByCategoryAndPriceDESC(pageNo, pageSize,product_cat,s);
+                    pageInfo = productService.searchProductsByCategoryAndPriceDESC(pageNo, pageSize,product_cat,s,userId);
                     break;
             }
         }
@@ -183,19 +183,19 @@ public class ProductController {
             switch (condition) {
                 default:
                     //获取分页信息与商品列表
-                    pageInfo = productService.searchProductsByCategoryAndPriceRange(pageNo,pageSize,cid,min,max,s);
+                    pageInfo = productService.searchProductsByCategoryAndPriceRange(pageNo,pageSize,cid,min,max,s,userId);
                     break;
                 case 1:
-                    pageInfo = productService.searchProductsByCategoryAndPriceRangeAndRate(pageNo,pageSize,cid,min,max,s);
+                    pageInfo = productService.searchProductsByCategoryAndPriceRangeAndRate(pageNo,pageSize,cid,min,max,s,userId);
                     break;
                 case 2:
-                    pageInfo = productService.searchProductsByCategoryAndPriceRangeAndTime(pageNo,pageSize,cid,min,max,s);
+                    pageInfo = productService.searchProductsByCategoryAndPriceRangeAndTime(pageNo,pageSize,cid,min,max,s,userId);
                     break;
                 case 3:
-                    pageInfo = productService.searchProductsByCategoryAndPriceRangeAndPriceASC(pageNo,pageSize,cid,min,max,s);
+                    pageInfo = productService.searchProductsByCategoryAndPriceRangeAndPriceASC(pageNo,pageSize,cid,min,max,s,userId);
                     break;
                 case 4:
-                    pageInfo = productService.searchProductsByCategoryAndPriceRangeAndPriceDESC(pageNo,pageSize,cid,min,max,s);
+                    pageInfo = productService.searchProductsByCategoryAndPriceRangeAndPriceDESC(pageNo,pageSize,cid,min,max,s,userId);
                     break;
             }
         }
@@ -206,6 +206,7 @@ public class ProductController {
         }else{
             //取出商品列表并注入视图
             List<Product> productList = pageInfo.getList();
+            System.out.println(productList);
             //分页注入视图
             model.addAttribute("pageInfo", pageInfo);
             //将所有商品列表传入页面

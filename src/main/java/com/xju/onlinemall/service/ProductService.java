@@ -84,27 +84,27 @@ public interface ProductService {
      */
     ///////////////////////////////////////////////////////////////////////////
     //header————>跳转到product
-    PageInfo<Product> searchProductsByCategory(int pageNo, int pageSize, int cid, String s);
+    PageInfo<Product> searchProductsByCategory(int pageNo, int pageSize, int cid, String s, Integer userId);
 
-    PageInfo<Product> searchProductsByCategoryAndRate(int pageNo, int pageSize, int cid, String s);
+    PageInfo<Product> searchProductsByCategoryAndRate(int pageNo, int pageSize, int cid, String s, Integer userId);
 
-    PageInfo<Product> searchProductsByCategoryAndTime(int pageNo, int pageSize, int cid, String s);
+    PageInfo<Product> searchProductsByCategoryAndTime(int pageNo, int pageSize, int cid, String s, Integer userId);
 
-    PageInfo<Product> searchProductsByCategoryAndPriceASC(int pageNo, int pageSize, int cid, String s);
+    PageInfo<Product> searchProductsByCategoryAndPriceASC(int pageNo, int pageSize, int cid, String s, Integer userId);
 
-    PageInfo<Product> searchProductsByCategoryAndPriceDESC(int pageNo, int pageSize, int cid, String s);
+    PageInfo<Product> searchProductsByCategoryAndPriceDESC(int pageNo, int pageSize, int cid, String s, Integer userId);
 
     ///////////////////////////////////////////////////////////////////////////
     // product-list
-    PageInfo<Product> searchProductsByCategoryAndPriceRange(int pageNo, int pageSize, int cid, double min, double max, String s);
+    PageInfo<Product> searchProductsByCategoryAndPriceRange(int pageNo, int pageSize, int cid, double min, double max, String s, Integer userId);
 
-    PageInfo<Product> searchProductsByCategoryAndPriceRangeAndRate(int pageNo, int pageSize, int cid, double min, double max, String s);
+    PageInfo<Product> searchProductsByCategoryAndPriceRangeAndRate(int pageNo, int pageSize, int cid, double min, double max, String s, Integer userId);
 
-    PageInfo<Product> searchProductsByCategoryAndPriceRangeAndTime(int pageNo, int pageSize, int cid, double min, double max, String s);
+    PageInfo<Product> searchProductsByCategoryAndPriceRangeAndTime(int pageNo, int pageSize, int cid, double min, double max, String s, Integer userId);
 
-    PageInfo<Product> searchProductsByCategoryAndPriceRangeAndPriceASC(int pageNo, int pageSize, int cid, double min, double max, String s);
+    PageInfo<Product> searchProductsByCategoryAndPriceRangeAndPriceASC(int pageNo, int pageSize, int cid, double min, double max, String s, Integer userId);
 
-    PageInfo<Product> searchProductsByCategoryAndPriceRangeAndPriceDESC(int pageNo, int pageSize, int cid, double min, double max, String s);
+    PageInfo<Product> searchProductsByCategoryAndPriceRangeAndPriceDESC(int pageNo, int pageSize, int cid, double min, double max, String s, Integer userId);
 
     /**
      * 获得该用户的每个分类的商品数量

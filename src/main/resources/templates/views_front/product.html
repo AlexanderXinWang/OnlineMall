@@ -146,7 +146,7 @@
                                             </div>
                                         </div>
                                         <div class="furgan product compare-button">
-                                            <a href="#" class="compare button">比较其他商品</a>
+                                            <a href="/404.html" class="compare button">比较其他商品</a>
                                         </div>
                                         <a href="#" class="button yith-wcqv-button">快速查看</a>
                                         <div class="add-to-cart">
@@ -194,8 +194,8 @@
                     </nav>
                     <p class="furgan-result-count">
                         显示
-                        <span th:text="${pageInfo.getStartRow()}">1</span>–
-                        <span th:text="${pageInfo.getEndRow()}">12</span>
+                        <span th:text="${pageInfo.getStartRow()}+1">1</span>–
+                        <span th:text="${pageInfo.getEndRow()}+1">12</span>
                         件商品 共
                         <span th:text="${pageInfo.getTotal()}">20</span>
                         件商品

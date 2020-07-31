@@ -207,15 +207,15 @@
                                         <div class="yith-wcwl-add-to-wishlist">
                                             <div class="yith-wcwl-add-button show" th:switch="${product.starIsDelete}">
                                                 <a href="#" th:case="4" th:text="添加到收藏夹" class="button add_to_wishlist" th:href="@{'/addStarInProductList?productId='+${product.productId}+'&starId='+${product.starId}+'&starIsDelete='+${product.starIsDelete}+'&pageSize='+${pageInfo.getPageSize()}+'&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}+'&s='+${s}}">
-                                                    添加到愿望清单</a>
+                                                    </a>
                                                 <a href="#" th:case="3" th:text="已添加到收藏夹" class="button added_to_wishlist" th:href="@{'/addStarInProductList?productId='+${product.productId}+'&starId='+${product.starId}+'&starIsDelete='+${product.starIsDelete}+'&pageSize='+${pageInfo.getPageSize()}+'&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}+'&s='+${s}}">
-                                                    添加到愿望清单</a>
+                                                    </a>
                                                 <a href="#" th:case="*" th:text="添加到收藏夹" class="button add_to_wishlist" th:href="@{'/addStarInProductList?productId='+${product.productId}+'&starId='+${product.starId}+'&starIsDelete='+${product.starIsDelete}+'&pageSize='+${pageInfo.getPageSize()}+'&condition='+${condition}+'&cid='+${cid}+'&min='+${min}+'&max='+${max}+'&s='+${s}}">
-                                                    添加到愿望清单</a>
+                                                    </a>
                                             </div>
                                         </div>
                                         <div class="furgan product compare-button">
-                                            <a href="#" class="compare button">比较其他商品</a>
+                                            <a href="/404.html" class="compare button">比较其他商品</a>
                                         </div>
                                     </div>
                                 </div>
@@ -240,8 +240,8 @@
                     </nav>
                     <p class="furgan-result-count">
                         显示
-                        <span th:text="${pageInfo.getStartRow()}">1</span>–
-                        <span th:text="${pageInfo.getEndRow()}">12</span>
+                        <span th:text="${pageInfo.getStartRow()+1}">1</span>–
+                        <span th:text="${pageInfo.getEndRow()}+1">12</span>
                         件商品 共
                         <span th:text="${pageInfo.getTotal()}">20</span>
                         件商品

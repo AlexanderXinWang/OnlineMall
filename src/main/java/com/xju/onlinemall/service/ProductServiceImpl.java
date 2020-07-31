@@ -395,7 +395,7 @@ public class ProductServiceImpl implements ProductService{
     ///////////////////////////////////////////////////////////////////////////
     //  header搜索功能——————>跳转到product
     @Override
-    public PageInfo<Product> searchProductsByCategory(int pageNo, int pageSize, int cid, String s) {
+    public PageInfo<Product> searchProductsByCategory(int pageNo, int pageSize, int cid, String s, Integer userId) {
         PageHelper.startPage(pageNo,pageSize);
         ProductExample productExample = new ProductExample();
         if (cid==5) {
@@ -407,28 +407,49 @@ public class ProductServiceImpl implements ProductService{
             productExample.or(productExample.createCriteria().andCategoryIdEqualTo(cid).andPkeyLike("%"+s+"%"));
         }
         List<Product> list = productMapper.selectByExample(productExample);
-        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        List<Product> productList2 = new ArrayList<>();
+        for (Product product:list){
+            StarExample starExample = new StarExample();
+            starExample.createCriteria().andUserIdEqualTo(userId).andProductIdEqualTo(product.getProductId());
+            List<Star> starList = starMapper.selectByExample(starExample);
+            if (starList.size()!=0){
+                product.setStarId(starList.get(0).getStarId());
+                product.setStarIsDelete(starList.get(0).getStarIsDelete());
+            }
+            productList2.add(product);
+        }
+        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
         return PageInfo;
     }
 
     @Override
-    public PageInfo<Product> searchProductsByCategoryAndRate(int pageNo, int pageSize, int cid, String s) {
+    public PageInfo<Product> searchProductsByCategoryAndRate(int pageNo, int pageSize, int cid, String s, Integer userId) {
         PageHelper.startPage(pageNo,pageSize);
         //5为全部分类，即查询所有商品
+        List<Product> list = new ArrayList<>();
         if (cid==5) {
-            List<Product> list = productMapper.selectBySearchAndRate(s);
-            PageInfo<Product> PageInfo = new PageInfo<>(list);
-            return PageInfo;
+            list = productMapper.selectBySearchAndRate(s);
         }
         else {
-            List<Product> list = productMapper.selectBySearchAndCategoryAndRate(cid,s);
-            PageInfo<Product> PageInfo = new PageInfo<>(list);
-            return PageInfo;
+            list = productMapper.selectBySearchAndCategoryAndRate(cid,s);
         }
+        List<Product> productList2 = new ArrayList<>();
+        for (Product product:list){
+            StarExample starExample = new StarExample();
+            starExample.createCriteria().andUserIdEqualTo(userId).andProductIdEqualTo(product.getProductId());
+            List<Star> starList = starMapper.selectByExample(starExample);
+            if (starList.size()!=0){
+                product.setStarId(starList.get(0).getStarId());
+                product.setStarIsDelete(starList.get(0).getStarIsDelete());
+            }
+            productList2.add(product);
+        }
+        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
+        return PageInfo;
     }
 
     @Override
-    public PageInfo<Product> searchProductsByCategoryAndTime(int pageNo, int pageSize, int cid, String s) {
+    public PageInfo<Product> searchProductsByCategoryAndTime(int pageNo, int pageSize, int cid, String s, Integer userId) {
         PageHelper.startPage(pageNo,pageSize);
         ProductExample productExample = new ProductExample();
         if (cid==5) {
@@ -441,12 +462,23 @@ public class ProductServiceImpl implements ProductService{
         }
         productExample.setOrderByClause("add_time desc");
         List<Product> list = productMapper.selectByExample(productExample);
-        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        List<Product> productList2 = new ArrayList<>();
+        for (Product product:list){
+            StarExample starExample = new StarExample();
+            starExample.createCriteria().andUserIdEqualTo(userId).andProductIdEqualTo(product.getProductId());
+            List<Star> starList = starMapper.selectByExample(starExample);
+            if (starList.size()!=0){
+                product.setStarId(starList.get(0).getStarId());
+                product.setStarIsDelete(starList.get(0).getStarIsDelete());
+            }
+            productList2.add(product);
+        }
+        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
         return PageInfo;
     }
 
     @Override
-    public PageInfo<Product> searchProductsByCategoryAndPriceASC(int pageNo, int pageSize, int cid, String s) {
+    public PageInfo<Product> searchProductsByCategoryAndPriceASC(int pageNo, int pageSize, int cid, String s, Integer userId) {
         PageHelper.startPage(pageNo,pageSize);
         ProductExample productExample = new ProductExample();
         if (cid==5) {
@@ -459,12 +491,23 @@ public class ProductServiceImpl implements ProductService{
         }
         productExample.setOrderByClause("price asc");
         List<Product> list = productMapper.selectByExample(productExample);
-        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        List<Product> productList2 = new ArrayList<>();
+        for (Product product:list){
+            StarExample starExample = new StarExample();
+            starExample.createCriteria().andUserIdEqualTo(userId).andProductIdEqualTo(product.getProductId());
+            List<Star> starList = starMapper.selectByExample(starExample);
+            if (starList.size()!=0){
+                product.setStarId(starList.get(0).getStarId());
+                product.setStarIsDelete(starList.get(0).getStarIsDelete());
+            }
+            productList2.add(product);
+        }
+        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
         return PageInfo;
     }
 
     @Override
-    public PageInfo<Product> searchProductsByCategoryAndPriceDESC(int pageNo, int pageSize, int cid, String s) {
+    public PageInfo<Product> searchProductsByCategoryAndPriceDESC(int pageNo, int pageSize, int cid, String s, Integer userId) {
         PageHelper.startPage(pageNo,pageSize);
         ProductExample productExample = new ProductExample();
         if (cid==5) {
@@ -477,14 +520,25 @@ public class ProductServiceImpl implements ProductService{
         }
         productExample.setOrderByClause("price desc");
         List<Product> list = productMapper.selectByExample(productExample);
-        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        List<Product> productList2 = new ArrayList<>();
+        for (Product product:list){
+            StarExample starExample = new StarExample();
+            starExample.createCriteria().andUserIdEqualTo(userId).andProductIdEqualTo(product.getProductId());
+            List<Star> starList = starMapper.selectByExample(starExample);
+            if (starList.size()!=0){
+                product.setStarId(starList.get(0).getStarId());
+                product.setStarIsDelete(starList.get(0).getStarIsDelete());
+            }
+            productList2.add(product);
+        }
+        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
         return PageInfo;
     }
 
     ///////////////////////////////////////////////////////////////////////////
     //  product-list
     @Override
-    public PageInfo<Product> searchProductsByCategoryAndPriceRange(int pageNo, int pageSize, int cid, double min, double max, String s) {
+    public PageInfo<Product> searchProductsByCategoryAndPriceRange(int pageNo, int pageSize, int cid, double min, double max, String s, Integer userId) {
         PageHelper.startPage(pageNo,pageSize);
         ProductExample productExample = new ProductExample();
         if (cid==5) {
@@ -500,28 +554,49 @@ public class ProductServiceImpl implements ProductService{
                     .andPriceGreaterThanOrEqualTo(min).andPriceLessThanOrEqualTo(max));
         }
         List<Product> list = productMapper.selectByExample(productExample);
-        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        List<Product> productList2 = new ArrayList<>();
+        for (Product product:list){
+            StarExample starExample = new StarExample();
+            starExample.createCriteria().andUserIdEqualTo(userId).andProductIdEqualTo(product.getProductId());
+            List<Star> starList = starMapper.selectByExample(starExample);
+            if (starList.size()!=0){
+                product.setStarId(starList.get(0).getStarId());
+                product.setStarIsDelete(starList.get(0).getStarIsDelete());
+            }
+            productList2.add(product);
+        }
+        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
         return PageInfo;
     }
 
     @Override
-    public PageInfo<Product> searchProductsByCategoryAndPriceRangeAndRate(int pageNo, int pageSize, int cid, double min, double max, String s) {
+    public PageInfo<Product> searchProductsByCategoryAndPriceRangeAndRate(int pageNo, int pageSize, int cid, double min, double max, String s, Integer userId) {
         PageHelper.startPage(pageNo,pageSize);
         //5为全部分类，即查询所有商品
+        List<Product> list = new ArrayList<>();
         if (cid==5) {
-            List<Product> list = productMapper.selectBySearchAndPriceRangeAndRate(s,min,max);
-            PageInfo<Product> PageInfo = new PageInfo<>(list);
-            return PageInfo;
+            list = productMapper.selectBySearchAndPriceRangeAndRate(s,min,max);
         }
         else {
-            List<Product> list = productMapper.selectBySearchAndCategoryAndPriceRangeAndRate(cid,s,min,max);
-            PageInfo<Product> PageInfo = new PageInfo<>(list);
-            return PageInfo;
+            list = productMapper.selectBySearchAndCategoryAndPriceRangeAndRate(cid,s,min,max);
         }
+        List<Product> productList2 = new ArrayList<>();
+        for (Product product:list){
+            StarExample starExample = new StarExample();
+            starExample.createCriteria().andUserIdEqualTo(userId).andProductIdEqualTo(product.getProductId());
+            List<Star> starList = starMapper.selectByExample(starExample);
+            if (starList.size()!=0){
+                product.setStarId(starList.get(0).getStarId());
+                product.setStarIsDelete(starList.get(0).getStarIsDelete());
+            }
+            productList2.add(product);
+        }
+        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
+        return PageInfo;
     }
 
     @Override
-    public PageInfo<Product> searchProductsByCategoryAndPriceRangeAndTime(int pageNo, int pageSize, int cid, double min, double max, String s) {
+    public PageInfo<Product> searchProductsByCategoryAndPriceRangeAndTime(int pageNo, int pageSize, int cid, double min, double max, String s, Integer userId) {
         PageHelper.startPage(pageNo,pageSize);
         ProductExample productExample = new ProductExample();
         if (cid==5) {
@@ -538,12 +613,23 @@ public class ProductServiceImpl implements ProductService{
         }
         productExample.setOrderByClause("add_time desc");
         List<Product> list = productMapper.selectByExample(productExample);
-        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        List<Product> productList2 = new ArrayList<>();
+        for (Product product:list){
+            StarExample starExample = new StarExample();
+            starExample.createCriteria().andUserIdEqualTo(userId).andProductIdEqualTo(product.getProductId());
+            List<Star> starList = starMapper.selectByExample(starExample);
+            if (starList.size()!=0){
+                product.setStarId(starList.get(0).getStarId());
+                product.setStarIsDelete(starList.get(0).getStarIsDelete());
+            }
+            productList2.add(product);
+        }
+        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
         return PageInfo;
     }
 
     @Override
-    public PageInfo<Product> searchProductsByCategoryAndPriceRangeAndPriceASC(int pageNo, int pageSize, int cid, double min, double max, String s) {
+    public PageInfo<Product> searchProductsByCategoryAndPriceRangeAndPriceASC(int pageNo, int pageSize, int cid, double min, double max, String s, Integer userId) {
         PageHelper.startPage(pageNo,pageSize);
         ProductExample productExample = new ProductExample();
         if (cid==5) {
@@ -560,12 +646,23 @@ public class ProductServiceImpl implements ProductService{
         }
         productExample.setOrderByClause("price asc");
         List<Product> list = productMapper.selectByExample(productExample);
-        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        List<Product> productList2 = new ArrayList<>();
+        for (Product product:list){
+            StarExample starExample = new StarExample();
+            starExample.createCriteria().andUserIdEqualTo(userId).andProductIdEqualTo(product.getProductId());
+            List<Star> starList = starMapper.selectByExample(starExample);
+            if (starList.size()!=0){
+                product.setStarId(starList.get(0).getStarId());
+                product.setStarIsDelete(starList.get(0).getStarIsDelete());
+            }
+            productList2.add(product);
+        }
+        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
         return PageInfo;
     }
 
     @Override
-    public PageInfo<Product> searchProductsByCategoryAndPriceRangeAndPriceDESC(int pageNo, int pageSize, int cid, double min, double max, String s) {
+    public PageInfo<Product> searchProductsByCategoryAndPriceRangeAndPriceDESC(int pageNo, int pageSize, int cid, double min, double max, String s, Integer userId) {
         PageHelper.startPage(pageNo,pageSize);
         ProductExample productExample = new ProductExample();
         if (cid==5) {
@@ -582,7 +679,18 @@ public class ProductServiceImpl implements ProductService{
         }
         productExample.setOrderByClause("price desc");
         List<Product> list = productMapper.selectByExample(productExample);
-        PageInfo<Product> PageInfo = new PageInfo<>(list);
+        List<Product> productList2 = new ArrayList<>();
+        for (Product product:list){
+            StarExample starExample = new StarExample();
+            starExample.createCriteria().andUserIdEqualTo(userId).andProductIdEqualTo(product.getProductId());
+            List<Star> starList = starMapper.selectByExample(starExample);
+            if (starList.size()!=0){
+                product.setStarId(starList.get(0).getStarId());
+                product.setStarIsDelete(starList.get(0).getStarIsDelete());
+            }
+            productList2.add(product);
+        }
+        PageInfo<Product> PageInfo = new PageInfo<>(productList2);
         return PageInfo;
     }
 

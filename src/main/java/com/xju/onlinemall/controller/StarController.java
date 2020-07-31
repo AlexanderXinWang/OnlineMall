@@ -131,7 +131,7 @@ public class StarController {
             star.setStarIsDelete(star_is_delete3);
             starService.updateByPrimaryKeySelective(star);
         }
-        if (request.getParameter("condition").equals("0")){
+        if (request.getParameter("condition").equals("null")){
             try {
                 response.sendRedirect("/product.html");
             } catch (IOException e) {
@@ -154,12 +154,11 @@ public class StarController {
         Integer product_id = Integer.parseInt(request.getParameter("productId"));
         Integer star_id = null;
         Byte star_is_delete = 1;
-        Object rstarId = request.getParameter("starId");
-        Object rstarIsDelete = request.getParameter("starIsDelete");
-        if(!rstarId.equals("null")){
+
+        if(!request.getParameter("starId").equals("null")){
             star_id = Integer.parseInt(request.getParameter("starId"));
         }
-        if(!rstarIsDelete.equals("null")){
+        if(!request.getParameter("starIsDelete").equals("null")){
             star_is_delete = Byte.parseByte(request.getParameter("starIsDelete"));
         }
         Star star = new Star();
@@ -180,7 +179,7 @@ public class StarController {
             star.setStarIsDelete(star_is_delete3);
             starService.updateByPrimaryKeySelective(star);
         }
-        if (request.getParameter("condition").equals("0")){
+        if (request.getParameter("condition").equals("null")){
             try {
                 response.sendRedirect("/product-list.html");
             } catch (IOException e) {
