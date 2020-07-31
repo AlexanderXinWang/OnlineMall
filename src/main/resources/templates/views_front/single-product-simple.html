@@ -297,8 +297,14 @@
                                             <!--                                                </tbody>-->
                                             <!--                                            </table>-->
                                         </div>
+                                        <div style="height: 20px"></div>
                                         <div id="respond" class="comment-respond">
-                                            <span id="reply-title" class="comment-reply-title">现在第一个为商品评论</span>
+                                            <span th:if="${commentCount ==0}">
+                                                <span id="reply-title" class="comment-reply-title">现在第一个为商品评论</span>
+                                            </span>
+                                            <span th:if="${commentCount >0}">
+                                                <span id="reply-title" class="comment-reply-title">继续为该商品评论</span>
+                                            </span>
                                             <form id="commentform" class="comment-form">
                                                 <p class="comment-notes"><span id="email-notes">放心，您的电子邮箱不会被公开.</span>
                                                     必填字段已被标记 <span class="required">*</span></p>
