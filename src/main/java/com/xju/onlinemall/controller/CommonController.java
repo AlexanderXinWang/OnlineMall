@@ -237,4 +237,8 @@ public class CommonController {
         return "views_back/layout";
     }
 
+    @RequestMapping("/password.html")
+    public String password(){
+        return "views_front/password";
+    }
 }

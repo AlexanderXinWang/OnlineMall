@@ -37,12 +37,6 @@
                                         <input type="text" class="furgan-Input furgan-Input--text input-text"
                                                name="username" id="username" autocomplete="username" value="" th:value="${uname}"></p>
                                     <p class="furgan-form-row furgan-form-row--wide form-row form-row-wide">
-                                        <label for="password">密码&nbsp;<span class="required">*</span></label>
-                                        <input class="furgan-Input furgan-Input--text input-text"
-                                               type="password" name="password" id="password"
-                                               autocomplete="current-password" th:value="${password}">
-                                    </p>
-                                    <p class="furgan-form-row furgan-form-row--wide form-row form-row-wide">
                                         <label for="username">电话号码&nbsp<span
                                                 class="required">*</span></label>
                                         <input type="text" class="furgan-Input furgan-Input--text input-text"
@@ -53,19 +47,13 @@
                                         <input type="email" class="furgan-Input furgan-Input--text input-text"
                                                name="email" id="email" autocomplete="email" value="" th:value="${email}">
                                     </p>
-                                    <p class="furgan-form-row furgan-form-row--wide form-row form-row-wide">
-                                        <label for="password">支付密码&nbsp;<span class="required">*</span></label>
-                                        <input class="furgan-Input furgan-Input--text input-text"
-                                               type="password" name="password_pay" id="password_pay"
-                                               autocomplete="current-password" th:value="${payPassword}">
-                                    </p>
                                     <p>
-                                        <input type="hidden" id="furgan-login-nonce" name="furgan-login-nonce"
-                                               value="832993cb93"><input type="hidden" name="_wp_http_referer"
-                                                                         value="/furgan/my-account/">
                                         <button id="buttonChangeDetail" type="button" class="furgan-Button button" name="changeDetailButton"
                                                 value="Change">点击修改
                                         </button>
+                                        <label class="furgan-form__label furgan-form__label-for-checkbox inline">
+                                            <a href="/password.html">修改密码 ?</a>
+                                        </label>
                                     </p>
                                 </form>
                             </div>
@@ -86,23 +74,23 @@
     $(function () {
         $("#buttonChangeDetail").click(function () {
             var name=$("#username").val().trim();
-            var pwd=$("#password").val().trim();
+            // var pwd=$("#password").val().trim();
             var sex=$("#sex").val();
             // var sex=$("#sex").val();
             var phone=$("#phone").val().trim();
             var email = $("#email").val().trim();
-            var password_pay=$("#password_pay").val().trim();
+            // var password_pay=$("#password_pay").val().trim();
 
             $.ajax({
                 type:"POST",
                 url:"changeDetail",
                 dataType:"json",
-                data:{"username":name,"password":pwd,"sex":sex,"phone":phone,"email":email,"payPassword":password_pay,},
+                data:{"username":name,"sex":sex,"phone":phone,"email":email},
                 success:function (data) {
                     if (data["success"]) {
                         //返回值是learn/t1 相对于项目地址
                         //返回值是/learn/t1 相对于根地址 http://localhost:8080/learn/t1
-                        alert("修改成功!");
+                        alert("修改成功!请重新登录。");
                         window.location.href = data["msg"];
                     }
                     else{
