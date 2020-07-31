@@ -51,7 +51,7 @@ public class OrderController {
     }
 
     /**
-     * 订单操作：确认收货、追加评价
+     * 订单操作：确认收货
      * */
     @RequestMapping("/orderOperation")
     public String orderOperation(HttpSession session, HttpServletRequest request,ModelMap modelMap){
@@ -75,6 +75,9 @@ public class OrderController {
         return "views_front/order";
     }
 
+    /**
+     * 打开订单详情页
+     * */
     @RequestMapping("/order-detail.html")
     public String orderDetail(HttpServletRequest request, Model model){
         Integer orderId = Integer.parseInt(request.getParameter("orderId"));
@@ -82,6 +85,18 @@ public class OrderController {
         Double amount=order.getOrderNumber()*order.getProduct().getPrice();
         model.addAttribute("order",order);
         return "views_front/order-detail";
+    }
+
+    /**
+     * 打开订单追加评价页
+     * */
+    @RequestMapping("/orderComment.html")
+    public String orderComment(HttpServletRequest request, Model model){
+        Integer orderId = Integer.parseInt(request.getParameter("comment_orderId"));
+        Order order = orderService.getByOrderId(orderId);
+        System.out.println(order);
+        //model.addAttribute("order",order);
+        return "views_front/order-comment";
     }
 
     /**
@@ -187,4 +202,5 @@ public class OrderController {
         modelMap.addAttribute("cartCount",cartCount);
         return "views_front/checkout";
     }
+
 }

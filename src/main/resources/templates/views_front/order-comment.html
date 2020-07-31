@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="~{fragment/static::link}"></div>
+    <title>优惠明细</title>
+</head>
+<body>
+<table class="shop_table cart wishlist_table" data-pagination="no" data-per-page="5"
+       data-page="1" data-id="" data-token="">
+    <tr id="yith-wcwl-row-29" data-row-id="29" style="color: #1b1b1b">
+        <td class="product-stock-status">
+            <h4 style="font-weight: 600">金额优惠明细</h4>
+            <span>*实际优惠金额请以下单页为准</span>
+        </td>
+        <td >
+            <p th:align="left">
+                <span class='wishlist-in-stock'>
+                    商品总价：
+                    <span style="float: right">¥ XX.XX</span>
+                </span><br>
+                <span class='wishlist-in-stock'>
+                    跨店满减：
+                    <span style="float: right;color: #76951C">-¥ XX.XX</span>
+                </span><br>
+                <span class='wishlist-in-stock'>
+                    店铺优惠：
+                   <span style="float: right;color: #76951C">-¥ XX.XX</span>
+                </span><br>
+                <span class='wishlist-in-stock'>
+                    单品优惠：
+                    <span style="float: right;color: #76951C">-¥ XX.XX</span>
+                </span><br>
+            </p>
+        </td>
+        <td>
+            <h5 th:align="left">共优惠：<span style="float: right;color: #76951C">-¥ XX.XX</span></h5>
+            <h5 th:align="left">合计：<span style="float: right">¥ XX.XX</span></h5>
+        </td>
+    </tr>
+</table>
+
+<div th:replace="~{fragment/static::script}"></div>
+</body>
+</html>
