@@ -115,4 +115,6 @@ public interface ProductService {
     List<Product> findNewProducts() throws ParseException;
 
     List<Product> getRecommendByUserId(Integer userId);
+
+    List<Product> getRelativeByCategory(Integer categoryId);
 }

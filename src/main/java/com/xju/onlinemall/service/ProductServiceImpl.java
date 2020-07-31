@@ -9,6 +9,7 @@ import com.xju.onlinemall.common.domain.extend.pCountCName;
 import com.xju.onlinemall.common.domain.Star;
 import com.xju.onlinemall.common.domain.StarExample;
 import com.xju.onlinemall.mapper.ProductMapper;
+import org.apache.hadoop.yarn.webapp.hamlet.Hamlet;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.xju.onlinemall.mapper.StarMapper;
@@ -1026,4 +1027,14 @@ public class ProductServiceImpl implements ProductService{
     public List<Product> getRecommendByUserId(Integer userId) {
         return productMapper.selectByUserId(userId);
     }
+
+    @Override
+    public List<Product> getRelativeByCategory(Integer categoryId) {
+        ProductExample productExample = new ProductExample();
+        productExample.createCriteria().andCategoryIdEqualTo(categoryId);
+        productExample.setOrderByClause("price desc");
+        return productMapper.selectByExample(productExample);
+    }
+
+
 }

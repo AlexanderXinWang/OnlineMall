@@ -43,19 +43,17 @@ public class CommentController {
     @RequestMapping("/addComment")
     @ResponseBody
     public Object addComment(HttpSession session,Integer productId,String author,String email,Integer rating,String comment){
-
         User user = (User)session.getAttribute("user");
 
         //获得用户主键
         Integer userId = user.getUserId();
-        Map<String, Object> map = new HashMap<>();
+        HashMap<String, Object> map = new HashMap<>();
         System.out.println("前台传来的值:"+author+" "+email+" "+rating+" "+comment+" "+productId);
         /**
          * 如果商品
          * */
-        if (productId==null || email.isEmpty() || !author.equals(user.getUserName())){
+        if (productId==null || email==null){
             map.put("success",false);
-            System.out.println("评论失败");
         }
         else {
             boolean b = commentService.insertIntoCommentByDetails(userId, productId, rating, comment, new Date());
@@ -79,7 +77,7 @@ public class CommentController {
     //————>ProductController
     @RequestMapping("/single-product-simple.html")
     public String singleProduct(ModelMap modelMap, HttpServletRequest request,
-                                 HttpSession session){
+                                 HttpSession session, String categoryName){
 
         Integer productId = Integer.parseInt(request.getParameter("id"));
         User user = (User)session.getAttribute("user");
@@ -106,7 +104,26 @@ public class CommentController {
          * 获得用户点击的商品信息
          * */
         Product productSingle =  productService.selectByProductId(productId);
-        modelMap.addAttribute("productSingle",productSingle);
+        switch (productSingle.getCategoryId()){
+            default:
+                categoryName = "";
+                break;
+            case 1:
+                categoryName = "数码";
+                break;
+            case 2:
+                categoryName = "家具电器";
+                break;
+            case 3:
+                categoryName = "食品";
+                break;
+            case 4:
+                categoryName = "服饰";
+        }
+        //获得当前商品的相关商品列表
+        List<Product> relativeList = productService.getRelativeByCategory(productSingle.getCategoryId());
+        //获得当前用户的推荐商品列表
+        List<Product> recommendList = productService.getRecommendByUserId(user.getUserId());
 
         modelMap.addAttribute("productIdmmm",productId);
 
@@ -149,9 +166,14 @@ public class CommentController {
                modelMap.put("commentCount",comments.size());
                modelMap.put("commentsList",comments);
            }
-                //添加商品信息到modelmap中
+
+            //添加商品信息到modelmap中
             modelMap.put("productSingle",productSingle);
-        }
+            modelMap.put("categoryName",categoryName);
+            modelMap.addAttribute("recommendList",recommendList);
+            modelMap.put("relativeList",relativeList);
+            System.out.println(relativeList);
+            }
 
 
         System.out.println("后台提示：查看是否获得和注入正确的商品属性："+productSingle);
