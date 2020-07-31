@@ -249,8 +249,8 @@
                     </nav>
                     <p class="furgan-result-count">
                         显示
-                        <span th:text="${pageInfo.getStartRow()+1}">1</span>–
-                        <span th:text="${pageInfo.getEndRow()}+1">12</span>
+                        <span th:text="${pageInfo.getStartRow()}">1</span>–
+                        <span th:text="${pageInfo.getEndRow()}">12</span>
                         件商品 共
                         <span th:text="${pageInfo.getTotal()}">20</span>
                         件商品
@@ -290,7 +290,7 @@
                         <ul class="product-categories" th:each="category:${categoryList}">
                             <li class="cat-item cat-item-22">
                                 <div th:swith="${category.categoryId==null}">
-                                    <a href="#" th:href="@{'/product-list.html?pageSize='+${pageInfo.getPageSize()}
+                                    <a href="#" th:href="@{'/product-list.html?pageNo'+${pageInfo.getPageNum()}+'&pageSize='+${pageInfo.getPageSize()}
                                     +'&condition='+${condition}+'&cid='+${category.categoryId}+'&min='+${min}+'&max='+${max}+'&s='+${s}}"
                                        th:text="${category.categoryName}">Light</a>
                                 </div>

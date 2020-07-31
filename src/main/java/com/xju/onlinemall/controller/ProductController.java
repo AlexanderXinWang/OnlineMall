@@ -63,7 +63,6 @@ public class ProductController {
             switch (condition) {
                 default:
                     //获取分页信息与商品列表
-                    System.out.println(pageNo+"pageNo!!!");
                     pageInfo = productService.getAllProducts(pageNo, pageSize, userId);
                     break;
                 case 1:
