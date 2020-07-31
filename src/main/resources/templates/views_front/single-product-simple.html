@@ -29,9 +29,9 @@
                         <div class="contain-left has-gallery">
                             <div class="single-left">
                                 <div class="furgan-product-gallery furgan-product-gallery--with-images furgan-product-gallery--columns-4 images">
-                                    <a href="#" class="furgan-product-gallery__trigger">
-                                        <img draggable="false" class="emoji" alt="🔍"
-                                             src="https://s.w.org/images/core/emoji/11/svg/1f50d.svg"></a>
+                                    <!--<a href="#" class="furgan-product-gallery__trigger">-->
+                                        <!--<img draggable="false" class="emoji" alt="🔍"-->
+                                             <!--src="https://s.w.org/images/core/emoji/11/svg/1f50d.svg"></a>-->
                                     <div class="flex-viewport">
                                         <figure class="furgan-product-gallery__wrapper">
                                             <div class="furgan-product-gallery__image">
@@ -84,51 +84,35 @@
                                         <li>精致的品牌和斜面板细节</li>
                                     </ul>
                                 </div>
-                                <form class="variations_form cart">
-                                    <div class="single_variation_wrap">
-                                        <div class="furgan-variation single_variation"></div>
-                                        <div class="furgan-variation-add-to-cart variations_button furgan-variation-add-to-cart-disabled">
-                                            <!--<div class="quantity">
-                                                &lt;!&ndash;<span class="qty-label">数量:</span>
-                                                <div class="control">
-                                                    <a class="btn-number qtyminus quantity-minus" href="#">-</a>
-                                                    <input type="text" data-step="1" min="0" max="" name="quantity[25]" value="0" title="Qty" class="input-qty input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
-                                                    <a class="btn-number qtyplus quantity-plus" href="#">+</a>
-                                                </div>&ndash;&gt;
-                                            </div>-->
-                                            <div class="div1_useCoupon" style="float: left">
-                                                <a class="a_div1_useCoupon" th:href="@{'/addProductToCart?id='+${productSingle.productId}}">
-                                                    <div class="div2_useCoupon">
-                                                        添加到购物车
-                                                    </div>
-                                                </a>
+                                <div>
+                                    <form class="variations_form cart">
+                                        <div class="single_variation_wrap">
+                                            <!--<div class="furgan-variation single_variation"></div>-->
+                                            <div class="furgan-variation-add-to-cart variations_button furgan-variation-add-to-cart-disabled">
+                                                <!--<div class="quantity">
+                                                    &lt;!&ndash;<span class="qty-label">数量:</span>
+                                                    <div class="control">
+                                                        <a class="btn-number qtyminus quantity-minus" href="#">-</a>
+                                                        <input type="text" data-step="1" min="0" max="" name="quantity[25]" value="0" title="Qty" class="input-qty input-text qty text" size="4" pattern="[0-9]*" inputmode="numeric">
+                                                        <a class="btn-number qtyplus quantity-plus" href="#">+</a>
+                                                    </div>&ndash;&gt;
+                                                </div>-->
+                                                <div class="div1_useCoupon" style="float: left">
+                                                    <a class="a_div1_useCoupon" th:href="@{'/addProductToCart?id='+${productSingle.productId}}">
+                                                        <div class="div2_useCoupon">
+                                                            添加到购物车
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <input name="add-to-cart" value="27" type="hidden">
+                                                <input name="product_id" value="27" type="hidden">
+                                                <input name="variation_id" class="variation_id" value="0" type="hidden">
                                             </div>
-                                            <input name="add-to-cart" value="27" type="hidden">
-                                            <input name="product_id" value="27" type="hidden">
-                                            <input name="variation_id" class="variation_id" value="0" type="hidden">
                                         </div>
-                                    </div>
-                                </form><br>
-                                <div class="yith-wcwl-add-to-wishlist">
-                                    <!--<div class="yith-wcwl-add-button show">-->
-                                        <!--<a href="#" rel="nofollow"-->
-                                           <!--data-product-id="27" data-product-type="variable" class=" button add_to_wishlist"-->
-                                           <!--th:href="@{'/addStar?productId='+${productSingle.productId}+'&starId='+${starId}+'&starIsDelete='+${starIsDelete}}">-->
-                                            <!--&lt;!&ndash;<span th:value="${starId}"></span>&ndash;&gt;-->
-                                            <!--&lt;!&ndash;<span th:value="${starIsDelete}"></span>&ndash;&gt;-->
-                                            <!--<div th:switch="${starIsDelete}">-->
-                                                <!--<p>-->
-                                                    <!--<span th:case="4" th:text="添加到收藏夹"></span>-->
-                                                    <!--<span th:case="3" th:text="已添加到收藏夹"></span>-->
-                                                    <!--<span th:case="*" th:text="添加到收藏夹"></span>-->
-                                                <!--</p>-->
-                                                <!--&lt;!&ndash;<p th:case="4" th:text="♡添加到收藏夹"></p>&ndash;&gt;-->
-                                                <!--&lt;!&ndash;<p th:case="3" th:text="♥已添加">已添加</p>&ndash;&gt;-->
-                                                <!--&lt;!&ndash;<p th:case="*" th:text="♡添加到收藏夹">添加到收藏夹</p>&ndash;&gt;-->
-                                            <!--</div>-->
-                                        <!--</a>-->
-                                    <!--</div>-->
-                                    <p>
+                                    </form>
+                                    <br>
+                                    <br>
+                                    <div class="yith-wcwl-add-to-wishlist">
                                         <div class="yith-wcwl-add-button show" th:switch="${starIsDelete}">
                                             <a href="#" rel="nofollow" th:case="4" th:text="添加到收藏夹"
                                                data-product-id="27" data-product-type="variable" class=" button add_to_wishlist"
@@ -143,9 +127,11 @@
                                                th:href="@{'/addStar?productId='+${productSingle.productId}+'&starId='+${starId}+'&starIsDelete='+${starIsDelete}}">
                                             </a>
                                         </div>
-                                    </p>
+
+                                    </div>
                                 </div>
-                                <div class="clear"></div>
+
+                                <!--<div class="clear"></div>-->
                                 <!--<a href="#"
                                    class="compare button" data-product_id="27" rel="nofollow">和其他商品比较一下</a>-->
                                 <div class="product_meta">
