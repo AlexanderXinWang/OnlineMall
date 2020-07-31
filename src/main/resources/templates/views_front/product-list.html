@@ -266,25 +266,41 @@
                             <button type="submit" value="Search">搜索</button>
                         </form>
                     </div>
-                    <div id="furgan_price_filter-2" class="widget furgan widget_price_filter">
-                        <h2 class="widgettitle">按价格筛选<span class="arrow"></span></h2>
+                    <!--<div id="furgan_price_filter-2" class="widget furgan widget_price_filter">-->
+                        <!--<h2 class="widgettitle">按价格筛选<span class="arrow"></span></h2>-->
+                        <!--<form method="post">-->
+                            <!--<p class="furgan-form-row furgan-form-row&#45;&#45;wide form-row form-row-wide">-->
+                                <!--<label for="from">最低价&nbsp</label>-->
+                                <!--<input type="text" style="border-bottom: #0a0a0a"-->
+                                       <!--name="min" id="from" autocomplete="10" value="" th:placeholder="${min}"></p>-->
+                            <!--<p class="furgan-form-row furgan-form-row&#45;&#45;wide form-row form-row-wide">-->
+                                <!--<label for="to">最高价&nbsp</label>-->
+                                <!--<input type="text" class="furgan-product-search-field-0"-->
+                                       <!--name="max" id="to" autocomplete="999" value="" th:placeholder="${max}"></p>-->
+                            <!--<p class="furgan-form-row furgan-form-row&#45;&#45;wide form-row form-row-wide">-->
+                                <!--<button id="buttonFilter" type="button" class="furgan-Button button"-->
+                                        <!--name="filterButton" value="">筛选-->
+                                <!--</button>-->
+                            <!--</p>-->
+                        <!--</form>-->
+                    <!--</div>-->
+                    <!--<p th:height="20px">&nbsp;</p>-->
+                    <div id="furgan_price_filter-3" class="widget furgan widget_price_filter"><h2
+                            class="widgettitle">价格筛选<span class="arrow"></span></h2>
                         <form method="post">
-                            <p class="furgan-form-row furgan-form-row--wide form-row form-row-wide">
-                                <label for="from">最低价&nbsp</label>
-                                <input type="text"
-                                       name="min" id="from" autocomplete="10" value="" th:placeholder="${min}"></p>
-                            <p class="furgan-form-row furgan-form-row--wide form-row form-row-wide">
-                                <label for="to">最高价&nbsp</label>
-                                <input type="text"
-                                       name="max" id="to" autocomplete="999" value="" th:placeholder="${max}"></p>
-                            <p class="form-row">
-                                <button id="buttonFilter" type="button" class="furgan-Button button"
-                                        name="filterButton" value="">筛选
-                                </button>
-                            </p>
+                            <div class="price_slider_wrapper">
+                                <div class="price_slider_amount">
+                                    <div class="price_label">
+                                        <input id="fromlow" type="text" class="from" autocomplete="10" name="min" placeholder="最低价" th:value="${min}"/> -
+                                        <p></p><input id="tohigh" type="text" class="to" autocomplete="999" name="max" placeholder="最高价" th:value="${max}"/>
+                                    </div>
+                                </div>
+                                <br>
+                                <button id="buttonFilter2" type="submit" class="button" style="position: absolute">筛选</button>
+                            </div>
                         </form>
                     </div>
-                    <p th:height="20px"></p>
+                    <p th:height="20px">&nbsp;</p>
                     <div id="furgan_product_categories-3" class="widget furgan widget_product_categories"><h2
                             class="widgettitle">商品分类<span class="arrow"></span></h2>
                         <ul class="product-categories" th:each="category:${categoryList}">
@@ -368,11 +384,40 @@
             })
         })*/
 
+        $("#buttonFilter2").click(function () {
+            var min=$("#fromlow").val().trim();
+            var max=$("#tohigh").val().trim();
+            if (min=="" || min==null || min=="null")
+                min=0;
+            if (max=="" || max==null || max=="null")
+                max=9999;
+            alert(min+"|"+max);
+            $.ajax({
+                type:"POST",
+                url:"priceRangeFilter",
+                dataType:"json",
+                data:{"min":min,"max":max},
+                success:function (data) {
+                    if (data["success"]){
+                        layer.msg("查询成功！跳转中···",{time:1700},function () {
+                            layer.close(index);
+                        })
+                        window.location.href=data["msg"];
+                    }
+                    else{
+                        layer.msg("查询失败！请稍后再试。",{time:1700},function () {
+                            layer.close(index);
+                        })
+                    }
+                }
+            })
+        })
+
 
         $("#buttonFilter").click(function () {
             var min=$("#from").val().trim();
             var max=$("#to").val().trim();
-            alert(min+"|"+max);
+            // alert(min+"|"+max);
             $.ajax({
                 type:"POST",
                 url:"priceRangeFilter",

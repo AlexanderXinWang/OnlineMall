@@ -10,7 +10,7 @@
 <div class="banner-wrapper no_background">
     <div class="banner-wrapper-inner">
         <nav class="furgan-breadcrumb">
-            <a href="index.html">首页</a>
+            <a href="index.html" th:href="@{/index.html}">首页</a>
             <i class="fa fa-angle-right"></i>
             <a href="product.html">商城</a>
             <i class="fa fa-angle-right"></i>单个商品
@@ -112,6 +112,7 @@
                                     </form>
                                     <br>
                                     <br>
+                                    <br>
                                     <div class="yith-wcwl-add-to-wishlist">
                                         <div class="yith-wcwl-add-button show" th:switch="${starIsDelete}">
                                             <a href="#" rel="nofollow" th:case="4" th:text="添加到收藏夹"
@@ -158,17 +159,17 @@
                                 </div>
                                 <div class="furgan-share-socials">
                                     <h5 class="social-heading">分享: </h5>
-                                    <a target="_blank" class="facebook" href="#">
+                                    <a target="_blank" class="facebook" href="/404.html">
                                         <i class="fa fa-facebook-f"></i>
                                     </a>
                                     <a target="_blank" class="twitter"
-                                       href="#"><i class="fa fa-twitter"></i>
+                                       href="/404.html"><i class="fa fa-twitter"></i>
                                     </a>
                                     <a target="_blank" class="pinterest"
-                                       href="#"> <i class="fa fa-pinterest"></i>
+                                       href="/404.html"> <i class="fa fa-pinterest"></i>
                                     </a>
                                     <a target="_blank" class="googleplus"
-                                       href="#"><i class="fa fa-google-plus"></i>
+                                       href="/404.html"><i class="fa fa-google-plus"></i>
                                     </a>
                                 </div>
                             </div>
@@ -479,8 +480,11 @@
 
 <div th:replace="~{fragment/footer::footer}"></div>
 <div th:replace="~{fragment/footer::footer_mobile}"></div>
-<div th:replace="~{fragment/footer::footer_up}"></div>
-
+<div>
+    <a href="#" class="backtotop ">
+        <i class="fa fa-angle-double-up" style="padding-top:12px"></i>
+    </a>
+</div>
 <div th:replace="~{fragment/static::script}"></div>
 <script>
     $(function () {
