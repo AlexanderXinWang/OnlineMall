@@ -51,13 +51,6 @@ public class Star {
         this.productId = productId;
     }
 
-
-
-//    @Override
-//    public String toString() {
-//        return productId.toString();
-//    }
-
     @Override
     public String toString() {
         return "Star{" +
