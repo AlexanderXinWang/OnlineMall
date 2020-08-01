@@ -20,13 +20,13 @@
                 <div class="layui-inline">
                     <label class="layui-form-label">出货单id</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="out_id" placeholder="请输入" autocomplete="off" class="layui-input">
+                        <input type="text" name="outId" lay-verify="number" placeholder="请输入出货单id" autocomplete="off" class="layui-input">
                     </div>
                 </div>
                 <div class="layui-inline">
                     <label class="layui-form-label">出货单号</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="out_number" placeholder="请输入" autocomplete="off" class="layui-input">
+                        <input type="text" name="outNumber" lay-verify="number" placeholder="请输入出货单号" autocomplete="off" class="layui-input">
                     </div>
                 </div>
 
@@ -72,7 +72,7 @@
         table.render({
             elem: '#mytable'
             ,method:"get"
-            ,url: '/list/senedoutputOrders'
+            ,url: '/list/sendedoutputOrders'
             ,page: true
             ,cols: [     [
                 {type: 'checkbox', fixed: 'left'}
@@ -177,14 +177,14 @@
 
 
         //监听搜索
-        /* form.on('submit(LAY-app-contcomm-search)', function(data){
+        form.on('submit(LAY-app-contcomm-search)', function(data){
              var field = data.field;
 
              //执行重载
-             table.reload('LAY-app-content-comm', {
+             table.reload('mytable', {
                  where: field
              });
-         });*/
+         });
 
         //点击 批量删除 事件
         var active = {

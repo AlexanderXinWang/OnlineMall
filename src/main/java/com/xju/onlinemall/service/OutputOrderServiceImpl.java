@@ -10,7 +10,6 @@ import com.xju.onlinemall.mapper.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 @Service
@@ -25,31 +24,66 @@ public class OutputOrderServiceImpl implements OutputOrderService{
     private OrderMapper orderMapper;
 
     @Override
-    public PageInfo<OutputOder> getAllOutputOrders(int pageNo, int pageSize, Integer userId, boolean isRemoved, boolean isSended) {
+    public PageInfo<OutputOder> getAllOutputOrders(int pageNo, int pageSize, Integer userId, boolean isRemoved, boolean isSended, OutputOder outputOder) {
         PageHelper.startPage(pageNo,pageSize);
         ProductManageExample productManageExample = new ProductManageExample();
         productManageExample.createCriteria().andUserIdEqualTo(userId);
         OutputOderExample outputOderExample = new OutputOderExample();
-        if (isRemoved){
-            outputOderExample.createCriteria().andPmIdEqualTo(productManageMapper.selectByExample(productManageExample).get(0).getPmId()).andOutIsDeleteEqualTo(Byte.parseByte("4"));
-        }else {
+        if (outputOder==null){
             if (!isSended){
                 outputOderExample.createCriteria().andPmIdEqualTo(productManageMapper.selectByExample(productManageExample).get(0).getPmId()).andOutIsDeleteEqualTo(Byte.parseByte("3")).andOutStatusEqualTo(6);
             }
+        }else {
+            OutputOderExample.Criteria criteria = outputOderExample.createCriteria();
+            criteria.andPmIdEqualTo(productManageMapper.selectByExample(productManageExample).get(0).getPmId()).andOutIsDeleteEqualTo(Byte.parseByte("3")).andOutStatusEqualTo(6);
+            if (outputOder.getOutId()!=null){
+                criteria.andOutIdEqualTo(outputOder.getOutId());
+            }
+            if (outputOder.getOutNumber()!=null){
+                criteria.andOutNumberEqualTo(outputOder.getOutNumber());
+            }
         }
         List<OutputOder> outputOderList = outputOderMapper.selectByExample(outputOderExample);
-        for (OutputOder outputOder:outputOderList){
+        for (OutputOder opOder:outputOderList){
             //获得该订单的商品id
-            int productId=outputOder.getProductId();
+            int productId=opOder.getProductId();
             //获得该订单的对应商品
             Product product=productMapper.selectByPrimaryKey(productId);
             product.setSeller(productMapper.selectSellerByProductId(productId));
-            outputOder.setProductName(product.getProductName());
-            outputOder.setProduct(product);
+            opOder.setProductName(product.getProductName());
+            opOder.setProduct(product);
         }
         PageInfo<OutputOder> PageInfo = new PageInfo<>(outputOderList);
         return PageInfo;
     }
+    @Override
+    public PageInfo<OutputOder> getAllRemovedOutputOrders(int pageNo, int pageSize, Integer userId, boolean isRemoved, boolean isSended, OutputOder outputOder) {
+        PageHelper.startPage(pageNo,pageSize);
+        ProductManageExample productManageExample = new ProductManageExample();
+        productManageExample.createCriteria().andUserIdEqualTo(userId);
+        OutputOderExample outputOderExample = new OutputOderExample();
+        if (outputOder==null){
+            outputOderExample.createCriteria().andPmIdEqualTo(productManageMapper.selectByExample(productManageExample).get(0).getPmId()).andOutIsDeleteEqualTo(Byte.parseByte("4"));
+        }else {
+            OutputOderExample.Criteria criteria = outputOderExample.createCriteria();
+            criteria.andPmIdEqualTo(productManageMapper.selectByExample(productManageExample).get(0).getPmId()).andOutIsDeleteEqualTo(Byte.parseByte("4"));
+            if (outputOder.getOutId()!=null){
+                criteria.andOutIdEqualTo(outputOder.getOutId());
+            }
+            if (outputOder.getOutNumber()!=null){
+                criteria.andOutNumberEqualTo(outputOder.getOutNumber());
+            }
+        }
+        List<OutputOder> outputOderList = outputOderMapper.selectByExample(outputOderExample);
+        for (OutputOder opOder:outputOderList){
+            int productId=opOder.getProductId();
+            Product product=productMapper.selectByPrimaryKey(productId);
+            product.setSeller(productMapper.selectSellerByProductId(productId));
+            opOder.setProductName(product.getProductName());
+            opOder.setProduct(product);
+        }
+        PageInfo<OutputOder> PageInfo = new PageInfo<>(outputOderList);
+        return PageInfo;    }
 
     @Override
     public OutputOder selectOneOutputOrderByOutId(Integer outId) {
@@ -131,21 +165,32 @@ public class OutputOrderServiceImpl implements OutputOrderService{
     }
 
     @Override
-    public PageInfo<OutputOder> getAllSendedOutputOrders(int pageNo, int pageSize, Integer userId, boolean isSended) {
+    public PageInfo<OutputOder> getAllSendedOutputOrders(int pageNo, int pageSize, Integer userId, boolean isSended, OutputOder outputOder) {
         PageHelper.startPage(pageNo,pageSize);
         ProductManageExample productManageExample = new ProductManageExample();
         productManageExample.createCriteria().andUserIdEqualTo(userId);
         OutputOderExample outputOderExample = new OutputOderExample();
-        outputOderExample.createCriteria().andPmIdEqualTo(productManageMapper.selectByExample(productManageExample).get(0).getPmId()).andOutIsDeleteEqualTo(Byte.parseByte("3")).andOutStatusEqualTo(7);
+        if(outputOder==null){
+            outputOderExample.createCriteria().andPmIdEqualTo(productManageMapper.selectByExample(productManageExample).get(0).getPmId()).andOutIsDeleteEqualTo(Byte.parseByte("3")).andOutStatusEqualTo(7);
+        }else{
+            OutputOderExample.Criteria criteria = outputOderExample.createCriteria();
+            criteria.andPmIdEqualTo(productManageMapper.selectByExample(productManageExample).get(0).getPmId()).andOutIsDeleteEqualTo(Byte.parseByte("3")).andOutStatusEqualTo(7);
+            if (outputOder.getOutId()!=null){
+                criteria.andOutIdEqualTo(outputOder.getOutId());
+            }
+            if (outputOder.getOutNumber()!=null){
+                criteria.andOutNumberEqualTo(outputOder.getOutNumber());
+            }
+        }
         List<OutputOder> outputOderList = outputOderMapper.selectByExample(outputOderExample);
-        for (OutputOder outputOder:outputOderList){
+        for (OutputOder opOder:outputOderList){
             //获得该订单的商品id
-            int productId=outputOder.getProductId();
+            int productId=opOder.getProductId();
             //获得该订单的对应商品
             Product product=productMapper.selectByPrimaryKey(productId);
             product.setSeller(productMapper.selectSellerByProductId(productId));
-            outputOder.setProductName(product.getProductName());
-            outputOder.setProduct(product);
+            opOder.setProductName(product.getProductName());
+            opOder.setProduct(product);
         }
         PageInfo<OutputOder> PageInfo = new PageInfo<>(outputOderList);
         return PageInfo;

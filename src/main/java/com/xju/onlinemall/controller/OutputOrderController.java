@@ -21,32 +21,32 @@ public class OutputOrderController {
 
     @RequestMapping("/list/outputOrders")
     @ResponseBody
-    public Object ShowOutputOrderList(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize, Integer pmId, HttpSession session){
+    public Object ShowOutputOrderList(OutputOder outputOder, @RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize, Integer pmId, HttpSession session){
         User adminUser =(User) session.getAttribute("adminUser");
         PageInfo<OutputOder> pageInfo=null;
         boolean isRemoved = false;
         boolean isSended = false;
-        pageInfo = outputOrderService.getAllOutputOrders(pageNo, pageSize, adminUser.getUserId(), isRemoved, isSended);
+        pageInfo = outputOrderService.getAllOutputOrders(pageNo, pageSize, adminUser.getUserId(), isRemoved, isSended, outputOder);
         return Result.success(pageInfo);
     }
     @RequestMapping("/list/removedoutputOrders")
     @ResponseBody
-    public Object ShowRemovedOutputOrderList(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize, Integer pmId, HttpSession session){
+    public Object ShowRemovedOutputOrderList(OutputOder outputOder, @RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize, Integer pmId, HttpSession session){
         User adminUser =(User) session.getAttribute("adminUser");
         PageInfo<OutputOder> pageInfo=null;
         boolean isRemoved = true;
         boolean isSended  = false;
-        pageInfo = outputOrderService.getAllOutputOrders(pageNo, pageSize, adminUser.getUserId(), isRemoved, isSended);
+        pageInfo = outputOrderService.getAllRemovedOutputOrders(pageNo, pageSize, adminUser.getUserId(), isRemoved, isSended, outputOder);
         return Result.success(pageInfo);
     }
 
-    @RequestMapping("/list/senedoutputOrders")
+    @RequestMapping("/list/sendedoutputOrders")
     @ResponseBody
-    public Object ShowSenedoutputOrderList(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize, Integer pmId, HttpSession session){
+    public Object ShowSendedoutputOrderList(OutputOder outputOder, @RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize, Integer pmId, HttpSession session){
         User adminUser =(User) session.getAttribute("adminUser");
         PageInfo<OutputOder> pageInfo=null;
         boolean isSended = true;
-        pageInfo = outputOrderService.getAllSendedOutputOrders(pageNo, pageSize, adminUser.getUserId(), isSended);
+        pageInfo = outputOrderService.getAllSendedOutputOrders(pageNo, pageSize, adminUser.getUserId(), isSended, outputOder);
         return Result.success(pageInfo);
     }
 
