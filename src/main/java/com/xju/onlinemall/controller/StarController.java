@@ -44,7 +44,6 @@ public class StarController {
         return "views_front/wishlist";
     }
 
-
     @RequestMapping("/getstars")
     @ResponseBody
     public Object getStars(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10")int pageSize, HttpSession session){
@@ -68,9 +67,7 @@ public class StarController {
         if(!(request.getParameter("starIsDelete")).equals("null")){
             star_is_delete = Byte.parseByte(request.getParameter("starIsDelete"));
         }
-
         Star star = new Star();
-
         if (star_is_delete!=3 && star_is_delete!=4){
             starService.addStar(product_id,user.getUserId());
         }
@@ -104,16 +101,13 @@ public class StarController {
         Byte star_is_delete = 1;
         Object rstarId = request.getParameter("starId");
         Object rstarIsDelete = request.getParameter("starIsDelete");
-//        if(rstarId!=null && !rstarId.equals("null") && !rstarId.equals("")){
         if(!rstarId.equals("null")){
             star_id = Integer.parseInt(request.getParameter("starId"));
         }
         if(!rstarIsDelete.equals("null")){
             star_is_delete = Byte.parseByte(request.getParameter("starIsDelete"));
         }
-
         Star star = new Star();
-
         if (star_is_delete!=3 && star_is_delete!=4){
             starService.addStar(product_id,user.getUserId());
         }
@@ -139,12 +133,13 @@ public class StarController {
             }
         }else{
             try {
-                response.sendRedirect("/product.html?pageNo="+request.getParameter("pageNo")+"&pageSize="+request.getParameter("pageSize")+"&condition="+request.getParameter("condition")+"&product_cat="+request.getParameter("product_cat")+"&s="+request.getParameter("s"));
+                response.sendRedirect("/product.html?pageNo="+request.getParameter("pageNo")
+                        +"&pageSize="+request.getParameter("pageSize")+"&condition="+request.getParameter("condition")
+                        +"&product_cat="+request.getParameter("product_cat")+"&s="+request.getParameter("s"));
             } catch (IOException e) {
                 System.out.println("页面跳转出错！");
             }
         }
-
         return "product.html";
     }
     @RequestMapping("/addStarInProductList")
@@ -187,12 +182,14 @@ public class StarController {
             }
         }else{
             try {
-                response.sendRedirect("/product-list.html?pageNo="+request.getParameter("pageNo")+"&pageSize="+request.getParameter("pageSize")+"&condition="+request.getParameter("condition")+"&cid="+request.getParameter("cid")+"&min="+request.getParameter("min")+"&max="+request.getParameter("max")+"&s="+request.getParameter("s"));
+                response.sendRedirect("/product-list.html?pageNo="+request.getParameter("pageNo")
+                        +"&pageSize="+request.getParameter("pageSize")+"&condition="+request.getParameter("condition")
+                        +"&cid="+request.getParameter("cid")+"&min="+request.getParameter("min")+"&max="+request.getParameter("max")
+                        +"&s="+request.getParameter("s"));
             } catch (IOException e) {
                 System.out.println("页面跳转出错！");
             }
         }
-
         return "product-list.html";
     }
     @RequestMapping("/deleteStar")

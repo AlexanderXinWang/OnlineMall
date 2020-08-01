@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.Date;
-import java.util.List;
 
 @Controller
 public class OutputOrderController {
@@ -89,7 +88,6 @@ public class OutputOrderController {
         User adminUser =(User) session.getAttribute("adminUser");
         Integer pmId = outputOrderService.getPmIdByUserId(adminUser.getUserId());
         outputOder.setPmId(pmId);
-//        System.out.println(outputOder);
         int i = outputOrderService.addOutputOrder(outputOder);
         return Result.success(i,"操作成功",200);
     }
@@ -109,7 +107,6 @@ public class OutputOrderController {
     @ResponseBody
     public Object cancelSendOutputOrder(@RequestBody Integer outId){
         int i = outputOrderService.cancelSendOutputOrder(outId);
-//        return Result.success(i,"操作成功",200);
         String msg;
         if (i==1)
             msg = "操作成功";

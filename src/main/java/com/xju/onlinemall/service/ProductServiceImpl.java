@@ -58,8 +58,6 @@ public class ProductServiceImpl implements ProductService{
         List<Product> list = productMapper.selectByExample(productExample);
         //得到分页器
         PageInfo<Product> PageInfo = new PageInfo<>(list);
-
-
         return PageInfo;
     }
     /**
